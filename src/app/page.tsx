@@ -1,20 +1,16 @@
-"use client";
-
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <>
-      <div className="flex gap-5 ">
-        {[1, 2, 3, 4, 5].map((id) => (
-          <Link
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            href={`/product/${id} `}
-            key={id}
-          >
-            Product {id}
-          </Link>
-        ))}
+      <div className="h-screen flex items-center justify-center">
+        <div className="flex gap-5 ">
+          {[1, 2, 3, 4, 5].map((id) => (
+            <Button key={id} variant="ghost" size={"large"}>
+              Button {id}
+            </Button>
+          ))}
+        </div>
       </div>
     </>
   );
