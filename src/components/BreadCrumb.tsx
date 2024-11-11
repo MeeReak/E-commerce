@@ -21,7 +21,7 @@ export function BreadcrumbWithCustomSeparator() {
   const pathArray = pathName.split("/").filter(Boolean);
 
   return (
-    <div className="bg-black w-screen h-[120px] flex items-center pl-[300px]">
+    <div className=" w-[500px] py-11 ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -41,13 +41,13 @@ export function BreadcrumbWithCustomSeparator() {
                 <BreadcrumbItem>
                   <BreadcrumbLink isWrapped>
                     {isLast ? (
-                      <BreadcrumbPage className="text-base font-normal leading-[1.5] text-[#00B207]">
+                      <BreadcrumbPage className="text-lg  font-normal leading-[1.5] text-[#00B207]">
                         {item}
                       </BreadcrumbPage>
                     ) : (
                       <Link
                         href={linkPath}
-                        className="hover:text-white text-base font-normal leading-[1.5]"
+                        className="hover:text-white text-lg font-normal leading-[1.5]"
                       >
                         {item}
                       </Link>
