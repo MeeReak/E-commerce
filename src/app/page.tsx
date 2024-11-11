@@ -1,4 +1,4 @@
-import { FeatureCard } from "@/components/FeatureCard";
+import { Navigation } from "@/components/Navigation";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
           {/* {[1, 2, 3].map((id) => (
             <TeamCard key={id} />
           ))} */}
-          <FeatureCard />
+          <Navigation />
         </div>
       </div>
     </>

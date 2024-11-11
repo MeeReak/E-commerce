@@ -16,7 +16,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Ecobazar",
   description: "Ecobazar is a marketplace for sustainable products.",
-  icons: "./logo.svg",
+  icons: "./svg/logo.svg",
 };
 
 export default function RootLayout({
