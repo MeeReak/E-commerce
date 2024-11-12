@@ -1,10 +1,12 @@
 import React from "react";
 import { SelectDemo } from "./Select";
-import { MapPinIcon, PhoneCallIcon } from "lucide-react";
+import { MapPinIcon, PhoneCallIcon, SearchIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { BreadcrumbWithCustomSeparator } from "./BreadCrumb";
 import { ShoppingCart } from "./ShoppingCart";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 export const Navigation = () => {
   const lan = ["En", "Km"];
@@ -12,15 +14,15 @@ export const Navigation = () => {
 
   return (
     <nav>
-      <div className="flex bg-[#333333] w-screen items-center justify-evenly ">
+      <div className="flex bg-[#333333]  items-center justify-around ">
         <div className="flex gap-x-1 items-center ">
           <MapPinIcon className=" text-gray-400 size-5" />
           <p className=" text-gray-400 text-sm">
-            Store Location: Lincoln- 344, Illinois, Chicago, USA
+            Location: Lincoln- 344, Illinois, Chicago, USA
           </p>
         </div>
 
-        <span className=" w-[200px]"></span>
+        <span className=" w-[220px]"></span>
 
         <div className="flex items-center ">
           <SelectDemo item={lan} />
@@ -44,7 +46,7 @@ export const Navigation = () => {
         </div>
       </div>
 
-      <div className=" flex justify-evenly py-7  border-b-[1px] border-[#CCCCCC]">
+      <div className=" flex justify-around py-7  border-b-[1px] border-[#CCCCCC]">
         {/* logo */}
         <div className="flex items-center gap-2">
           <Image src={"/svg/logo.svg"} alt="logo" width={32} height={32} />
@@ -53,7 +55,15 @@ export const Navigation = () => {
           </h1>
         </div>
 
-        <input type="text" className=" w-[500px] border-2" />
+        <div className=" flex items-center">
+          <Input
+            className="w-[400px] py-[21px] rounded-tr-none rounded-br-none"
+            type="text"
+            placeholder="Search..."
+            leftIcon={<SearchIcon />}
+          />
+          <Button className=" py-3 px-6 rounded-tl-none rounded-bl-none">Search</Button>
+        </div>
 
         <div className=" flex gap-x-4 items-center">
           <svg
@@ -75,7 +85,7 @@ export const Navigation = () => {
         </div>
       </div>
 
-      <div className=" flex justify-evenly items-center py-4 border-b-[1px] border-[#CCCCCC]">
+      <div className=" flex justify-around items-center py-4 border-b-[1px] border-[#CCCCCC]">
         <ul className=" flex gap-x-8">
           <li className="text-gray-600 text-sm font-medium leading-[21px] hover:text-[#00B207]">
             <Link href={"/"}>Home</Link>
@@ -107,7 +117,6 @@ export const Navigation = () => {
       <div
         style={{
           backgroundImage: `url(/images/Breadcrumbs.jpg)`,
-
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

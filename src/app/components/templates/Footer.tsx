@@ -195,8 +195,8 @@ const Footer = () => {
             <h3 className="mb-4 text-base font-bold">Download Mobile App</h3>
             <div className="flex gap-3">
               {[
-                { src: "\\AppleLogo.svg", name: "App Store" },
-                { src: "\\Play-store.svg", name: "Play Store" },
+                { src: "/svg/AppleLogo.svg", name: "App Store" },
+                { src: "/svg/Play-store.svg", name: "Play Store" },
               ].map((id) => (
                 <div
                   key={id.name}
