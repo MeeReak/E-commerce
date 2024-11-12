@@ -67,3 +67,20 @@ export const feature = [
     detail: "100% Organic Vegetables",
   },
 ];
+
+export const shoppingCart = [
+  {
+    id:1,
+    src: "/images/vegetable-1.png",
+    name: "Fresh Indian Orange",
+    qty: "1",
+    price: "12.00",
+  },
+  {
+    id:2,
+    src: "/images/vegetable-2.png",
+    name: "Chinese Cabbage",
+    qty: "4",
+    price: "15.00",
+  },
+];
