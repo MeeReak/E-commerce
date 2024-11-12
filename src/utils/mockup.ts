@@ -70,17 +70,56 @@ export const feature = [
 
 export const shoppingCart = [
   {
-    id:1,
+    id: 1,
     src: "/images/vegetable-1.png",
     name: "Fresh Indian Orange",
     qty: "1",
     price: "12.00",
   },
   {
-    id:2,
+    id: 2,
     src: "/images/vegetable-2.png",
     name: "Chinese Cabbage",
     qty: "4",
     price: "15.00",
+  },
+];
+
+export const blog = [
+  {
+    id: 1,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "Admin",
+    comment: 65,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id: 2,
+    src: "/images/orange-lamp.png",
+    tag: "Vegetable",
+    user: "User",
+    comment: 80,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id: 3,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "Admin",
+    comment: 65,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id:4,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "User",
+    comment: 100,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
   },
 ];
