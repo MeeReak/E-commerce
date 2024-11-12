@@ -4,6 +4,7 @@ import { MapPinIcon, PhoneCallIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { BreadcrumbWithCustomSeparator } from "./BreadCrumb";
+import { ShoppingCart } from "./ShoppingCart";
 
 export const Navigation = () => {
   const lan = ["En", "Km"];
@@ -46,7 +47,7 @@ export const Navigation = () => {
       <div className=" flex justify-evenly py-7  border-b-[1px] border-[#CCCCCC]">
         {/* logo */}
         <div className="flex items-center gap-2">
-          <Image src={"/logo.svg"} alt="logo" width={32} height={32} />
+          <Image src={"/svg/logo.svg"} alt="logo" width={32} height={32} />
           <h1 className="text-[#002603] font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
             Ecobazar
           </h1>
@@ -70,35 +71,7 @@ export const Navigation = () => {
             />
           </svg>
           <span className=" h-7 w-[1.5px] bg-[#CCCCCC]"></span>
-          <div className=" flex gap-3">
-            <div className="relative">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-                />
-              </svg>
-              <span className="absolute -top-1 left-[19px] border-white border-2 px-1 text-[10px] text-white py-0 bg-[#2C742F] rounded-full">
-                2
-              </span>
-            </div>
-            <div className=" space-y-1">
-              <p className="text-gray-600 text-[11px] font-normal leading-[1.2]">
-                Shopping cart:
-              </p>
-              <p className="text-gray-800 text-sm font-medium leading-[1]">
-                $57.00
-              </p>
-            </div>
-          </div>
+          <ShoppingCart />
         </div>
       </div>
 

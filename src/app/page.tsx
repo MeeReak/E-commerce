@@ -6,6 +6,7 @@ export default function Home() {
           {[1, 2, 3].map((id) => (
           ))}
         </div> */}
+
       </div>
     </>
   );
