@@ -14,13 +14,13 @@ export default async function Page({
         <ProductCard
           title="Green Apple"
           price={14.99}
-          imageUrl="/Apple.png"
+          imageUrl="/images/apple.png"
           rating={4}
         />
         <ProductCard
           title="Banana"
           price={9.99}
-          imageUrl="/Orange.png"
+          imageUrl="/images/orange.png"
           rating={1}
         />
       </div>
@@ -29,11 +29,11 @@ export default async function Page({
           title="sjsjjs"
           price={100}
           rating={2}
-          imgURl="/Orange.png"
+          imgURl="/images/orange.png"
         />
       </div>
       <div>
-        <FeedBackCard name="Reak kak" rating={5} profile="/Apple.png" />
+        <FeedBackCard name="Reak kak" rating={5} profile="/images/apple.png" />
       </div>
     </>
   );
