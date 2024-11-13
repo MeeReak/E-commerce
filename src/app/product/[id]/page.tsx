@@ -1,6 +1,6 @@
 import FeedBackCard from "@/app/components/atoms/FeedBackCard";
-import ProductCard from "@/app/components/atoms/Product-card";
-import ProductCardY from "@/app/components/atoms/ProductCard-y";
+import ProductCard from "@/app/components/atoms/ProductCardX";
+import ProductCardY from "@/app/components/atoms/ProductCardY";
 export default async function Page({
   params,
 }: {

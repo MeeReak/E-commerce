@@ -152,3 +152,27 @@ export const mainFeature = [
     detail: "30 Days Money-Back Guarantee",
   },
 ];
+
+export const productCard = [
+  {
+    id: 1,
+    src: "/images/apple.png",
+    name: "Fresh Indian Orange",
+    price: 12,
+    rating: 4,
+  },
+  {
+    id: 2,
+    src: "/images/orange.png",
+    name: "Chinese Cabbage",
+    price: 15,
+    rating: 3,
+  },
+  {
+    id: 3,
+    src: "/images/green-lettuce.png",
+    name: "Fresh Red Tomato",
+    price: 10,
+    rating: 5,
+  },
+];
