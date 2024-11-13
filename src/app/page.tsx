@@ -1,5 +1,3 @@
-import Footer from "./components/templates/Footer";
-
 export default function Home() {
   return (
     <>
@@ -9,7 +7,6 @@ export default function Home() {
           ))}
         </div>
         */}
-        <Footer /> 
       </div>
     </>
   );
