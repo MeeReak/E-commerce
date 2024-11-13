@@ -1,15 +1,19 @@
-import { Featured } from "@/components/FeatureCard";
+import ProductCard from "./components/atoms/ProductCardX";
+import { productCard as Product } from "@/utils/mockup";
 
 export default function Home() {
   return (
     <>
-      <div className="h-screen flex items-center justify-center">
-        {/* <div className="flex gap-5 ">
-          {[1, 2, 3].map((id) => (
-          ))}
-        </div>
-        */}
-        <Featured />
+      <div className="h-screen flex items-center gap-x-5 justify-center">
+        {Product.map((product) => (
+          <ProductCard
+            key={product.id}
+            imageUrl={product.src}
+            price={product.price}
+            rating={product.rating}
+            title={product.name}
+          />
+        ))}
       </div>
     </>
   );
