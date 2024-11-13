@@ -129,3 +129,26 @@ export const heroImage = [
   "/images/hero-vegetable-1.png",
   "/images/hero-vegetable-6.png",
 ];
+
+export const mainFeature = [
+  {
+    image: "/svg/car.svg",
+    title: "Free Shipping",
+    detail: "Free shipping on all your order",
+  },
+  {
+    image: "/svg/headphone.svg",
+    title: "Customer Support 24/7",
+    detail: "Instant access to Support",
+  },
+  {
+    image: "/svg/shoping-bag.svg",
+    title: "100% Secure Payment",
+    detail: "We ensure your money is save",
+  },
+  {
+    image: "/svg/package.svg",
+    title: "Money-Back Guarantee",
+    detail: "30 Days Money-Back Guarantee",
+  },
+];

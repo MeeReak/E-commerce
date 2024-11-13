@@ -1,23 +1,31 @@
+import Image from "next/image";
 import React from "react";
-import { Button } from "./ui/button";
-import { HeadsetIcon } from "lucide-react";
+import { mainFeature as MainFeature } from "@/utils/mockup";
 
-export const FeatureCard = () => {
+interface FeatureCardProps {
+  image: string;
+  title: string;
+  detail: string;
+}
+
+export const Featured = () => {
+  console.log(MainFeature);
+
   return (
-    <div className="group flex items-center gap-x-4 border-b-4 border-white pb-7 hover:border-[#00B207]">
-      <Button
-        size="icon"
-        variant="custom"
-        className="bg-[#EDF2EE] text-[#00B207] p-4 group-hover:bg-[#00B207] group-hover:text-white"
-      >
-        <HeadsetIcon className="size-9" />
-      </Button>
-      <div className="space-y-2 mr-4">
-        <p className="text-gray-900 text-[18px] font-semibold leading-[1.5]">Great Support 24/7</p>
-        <p className="text-gray-400 text-[14px] font-normal leading-[1.5]">
-          Instant access to Contact
-        </p>
-      </div>
+    <div className=" flex gap-x-8 p-10 shadow-md">
+      {MainFeature.map((item: FeatureCardProps, index) => (
+        <div key={index} className=" flex gap-x-4">
+          <Image src={item.image} width={40} height={40} alt="car" />
+          <div className="space-y-2">
+            <p className="text-gray-900 text-[16px] font-semibold leading-[120%]">
+              {item.title}
+            </p>
+            <p className="text-gray-400 text-[14px] font-normal leading-[150%]">
+              {item.detail}
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
