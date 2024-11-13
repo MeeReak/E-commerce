@@ -114,7 +114,7 @@ export const blog = [
       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
   },
   {
-    id:4,
+    id: 4,
     src: "/images/orange-lamp.png",
     tag: "Food",
     user: "User",
@@ -122,4 +122,10 @@ export const blog = [
     title:
       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
   },
+];
+
+export const heroImage = [
+  "/images/hero-vegetable-2.png",
+  "/images/hero-vegetable-1.png",
+  "/images/hero-vegetable-6.png",
 ];
