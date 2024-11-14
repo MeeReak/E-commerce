@@ -152,3 +152,74 @@ export const mainFeature = [
     detail: "30 Days Money-Back Guarantee",
   },
 ];
+
+export const productCard = [
+  {
+    id: 1,
+    src: "/images/apple.png",
+    name: "Fresh Indian Orange",
+    price: 12,
+    rating: 4,
+  },
+  {
+    id: 2,
+    src: "/images/orange.png",
+    name: "Chinese Cabbage",
+    price: 15,
+    rating: 3,
+  },
+  {
+    id: 3,
+    src: "/images/green-lettuce.png",
+    name: "Fresh Red Tomato",
+    price: 10,
+    rating: 5,
+  },
+];
+
+export const category = [
+  {
+    image: "/images/category-vegetable.png",
+    title: "Fresh Vegetables",
+  },
+  {
+    image: "/images/category-fruits.png",
+    title: "Fresh Fruit",
+  },
+  {
+    image: "/images/category-bakery.png",
+    title: "Bread & Bakery",
+  },
+  {
+    image: "/images/category-beverages.png",
+    title: "Beverages",
+  },
+  {
+    image: "/images/category-meat.png",
+    title: "Meat & Fish",
+  },
+  {
+    image: "/images/category-milk.png",
+    title: "Diabetic Food",
+  },
+  {
+    image: "/images/category-oil.png",
+    title: "Oil",
+  },
+  {
+    image: "/images/category-snacks.png",
+    title: "Snacks",
+  },
+  {
+    image: "/images/category-spices.png",
+    title: "Cooking",
+  },
+  {
+    image: "/images/category-canfood.png",
+    title: "Canned Food ",
+  },
+  {
+    image: "/images/category-seafood.png",
+    title: "Sea Food",
+  },
+];

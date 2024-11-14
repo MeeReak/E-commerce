@@ -139,11 +139,11 @@ const Footer = () => {
             <header className="flex space-x-2">
               <span className="flex justify-center items-center">
                 <Image
-                  src="/FlowerIcon.png"
+                  src="/svg/logo.png"
                   alt=""
                   width={32}
                   height={32}
-                ></Image>
+                />
               </span>
               <h1 className="font-bold text-[32px]">Ecobar</h1>
             </header>
@@ -203,7 +203,7 @@ const Footer = () => {
                   className="flex p-[10px] space-x-3 bg-white w-[154px]"
                 >
                   <div className="flex justify-center items-center">
-                    <Image src={id.src} alt="" width={28} height={28}></Image>
+                    <Image src={id.src} alt="" width={28} height={28}/>
                   </div>
                   <div>
                     <p className="text-[11px] text-[#4D4D4D]">

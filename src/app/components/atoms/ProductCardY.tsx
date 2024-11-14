@@ -17,7 +17,7 @@ const ProductCardY: React.FC<ProductCardYProps> = ({
   return (
     <div className="container w-[248px] border border-[#E6E6E6] shadow hover:border-green-700 hover:shadow-[0px_0px_12px_0px_rgba(32,181,38,0.32)] ">
       <div className="flex justify-center items-center">
-        <Image src={imgURl} alt="" width={248} height={200}></Image>
+        <Image src={imgURl} alt="" width={248} height={200}/>
       </div>
       <div className="flex justify-between p-5">
         <div className="flex flex-col justify-center space-y-2">
