@@ -33,10 +33,10 @@ export const Hero = () => {
         className="w-full h-full"
       >
         <Image
-          className="object-cover h-[800px]"
+          className="object-cover w-[1320px] h-[700px]"
           src={images}
           alt="hero"
-          width={1500}
+          width={1320}
           height={600}
         />
       </motion.div>

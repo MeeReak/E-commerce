@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-const CountdownTimer: React.FC = () => {
+export const CountdownTimer: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 2,
@@ -81,5 +81,3 @@ const CountdownTimer: React.FC = () => {
     </div>
   );
 };
-
-export default CountdownTimer;

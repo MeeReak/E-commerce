@@ -1,8 +1,19 @@
+import { Hero } from "@/components/Hero";
+import { Banners } from "../components/Banners";
+import { Categories } from "@/components/Categorys";
+import { Featured } from "@/components/FeatureCard";
+
 
 export default function Home() {
   return (
     <>
-      <div className="h-screen flex items-center justify-center">
+      <div className=" w-[1320px] mx-auto space-y-5 h-[1000vh]">
+        <Hero />
+        <Featured />
+        {/* Banner */}
+        <Banners />
+        {/* Category */}
+        <Categories />
       </div>
     </>
   );
