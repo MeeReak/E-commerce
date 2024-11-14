@@ -139,7 +139,7 @@ const Footer = () => {
             <header className="flex space-x-2">
               <span className="flex justify-center items-center">
                 <Image
-                  src="/images/FlowerIcon.png"
+                  src="/svg/logo.png"
                   alt=""
                   width={32}
                   height={32}

@@ -7,6 +7,8 @@ interface IBannerProps {
   title?: string;
   children?: React.ReactNode;
   backgroundImage?: string;
+  titleStyle?: string;
+  subTitleStyle?: string;
 }
 
 export const Banner: React.FC<IBannerProps> = ({
@@ -14,21 +16,27 @@ export const Banner: React.FC<IBannerProps> = ({
   title = "Sale of the Month",
   children,
   backgroundImage = "/images/banner-vegetable.png",
+  titleStyle = "text-white",
+  subTitleStyle = "text-white",
 }) => {
   return (
-    <div className="relative">
+    <div className="relative ">
       <Image
         src={backgroundImage}
-        className="w-[424px] h-[536px]"
+        className="w-[424px] h-[536px] rounded-sm"
         width={424}
-        height={536} // Adjusted height to match the aspect ratio of the image
+        height={536}
         alt="banner"
       />
       <div className="absolute top-[35px] w-full flex flex-col items-center justify-center">
-        <p className="text-white text-center text-sm font-medium mb-4 leading-[14px] tracking-[0.42px] uppercase">
+        <p
+          className={` text-center text-sm font-medium mb-4 leading-[14px] tracking-[0.42px] uppercase ${subTitleStyle}`}
+        >
           {subTitle}
         </p>
-        <p className="text-white text-center text-4xl mb-2 font-semibold leading-[48px]">
+        <p
+          className={` text-center text-4xl mb-2 font-semibold leading-[48px] ${titleStyle}`}
+        >
           {title}
         </p>
         <div>{children}</div>
