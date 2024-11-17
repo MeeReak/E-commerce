@@ -33,7 +33,7 @@ export const Hero = () => {
         className="w-full h-full"
       >
         <Image
-          className="object-cover w-[1320px] h-[700px]"
+          className="object-cover w-[1320px] h-[600px]"
           src={images}
           alt="hero"
           width={1320}
@@ -47,7 +47,7 @@ export const Hero = () => {
         animate={{ opacity: 1, x: 20 }}
         exit={{ opacity: 0, x: -20 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`absolute top-[30%] ${
+        className={`absolute top-[20%] ${
           selected % 2 === 0
             ? "right-[5%] flex items-end text-end flex-col"
             : "flex flex-col left-[5%] items-start "
