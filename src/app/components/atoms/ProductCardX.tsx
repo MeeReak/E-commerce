@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import ActionProduct from "./ActionProduct";
 import { renderStars } from "./RenderStar";
@@ -19,6 +19,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { amount: 0.2 }); // Triggers when 20% of the element is visible
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -34,14 +36,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
   return (
     <motion.div
+      ref={ref}
       className=" w-[312px] border border-[#E6E6E6] hover:border-green-700 hover:shadow-[0px_0px_12px_0px_rgba(32,181,38,0.32)] hover:text-green-800"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      initial={{ scale: 1, opacity: 1 }}
-      animate={
-        isHovered ? { scale: 1.05, opacity: 1 } : { scale: 1, opacity: 1 }
-      }
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <div className="flex p-1 gap-5 items-center pr-5 ">
         <motion.div
@@ -59,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         </motion.div>
         <div className="flex flex-col justify-center items-start text-start space-y-1">
-          <header className="text-gray-700 text-[14px] font-normal leading-[150%]">
+          <header className="text-[#4D4D4D] text-sm font-normal leading-[1.5]">
             {title}
           </header>
           {isHovered ? (

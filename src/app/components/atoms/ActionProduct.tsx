@@ -4,7 +4,7 @@ import React from "react";
 const IconButton: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Button
     variant="custom"
-    className="p-[10px] text-black border-2 border-[#F2F2F2] hover:bg-[#00B207] hover:text-white"
+    className="p-[10px] bg-[#F2F2F2] text-black border-2 border-[#F2F2F2] hover:bg-[#00B207] hover:text-white"
     size="icon"
   >
     {children}

@@ -42,7 +42,7 @@ export const CountdownTimer: React.FC = () => {
   const formatTime = (time: number) => String(time).padStart(2, "0");
 
   return (
-    <div className="flex items-start justify-center space-x-2 px-4 rounded-lg text-white text-xl font-semibold">
+    <div className="flex mb-6 items-start justify-center space-x-2 px-4 rounded-lg text-white text-xl font-semibold">
       <div className="text-center">
         <div className="text-white text-center text-2xl font-normal leading-[36px]">
           {formatTime(timeLeft.days)}

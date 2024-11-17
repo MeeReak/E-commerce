@@ -79,3 +79,57 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+/* Fade-in animation */
+.animated-fade-in {
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-in from the top */
+.animated-slide-in-down {
+  animation: slideInDown 0.8s ease-out forwards;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+@keyframes slideInDown {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Slide-in from the bottom */
+.animated-slide-in-up {
+  animation: slideInUp 0.8s ease-out forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes slideInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scale-in animation */
+.animated-scale-in {
+  animation: scaleIn 0.8s ease-in forwards;
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
