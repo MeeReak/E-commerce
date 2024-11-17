@@ -1,8 +1,8 @@
 import { Hero } from "@/components/Hero";
-import { Banners } from "../components/Banners";
+import { Banners } from "@/components/Banners";
 import { Categories } from "@/components/Categorys";
 import { Featured } from "@/components/FeatureCard";
-
+import { Products } from "@/components/Products";
 
 export default function Home() {
   return (
@@ -14,6 +14,8 @@ export default function Home() {
         <Banners />
         {/* Category */}
         <Categories />
+        {/* New Feature Products */}
+        <Products />
       </div>
     </>
   );
