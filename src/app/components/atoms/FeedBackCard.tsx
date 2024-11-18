@@ -8,8 +8,8 @@ type FeedBackCardProps = {
 };
 const FeedBackCard = ({ rating, name, profile }: FeedBackCardProps) => {
   return (
-    <div className="container w-[384px] bg-white  shadow">
-      <div className="p-6 space-y-5">
+    <div className="container w-[384px] shadow-md">
+      <div className="p-6 space-y-4">
         <header>
           <svg
             width="32"
@@ -27,7 +27,7 @@ const FeedBackCard = ({ rating, name, profile }: FeedBackCardProps) => {
             />
           </svg>
         </header>
-        <p className="text-[14px] text-[#4D4D4D] line-clamp-3">
+        <p className="text-[14px] text-[#4D4D4D] line-clamp-4">
           Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
           Phasellus imperdiet elit eu magna dictum, bibendum cursus velit
           sodales. Donec sed neque eget
@@ -40,16 +40,16 @@ const FeedBackCard = ({ rating, name, profile }: FeedBackCardProps) => {
               alt=" "
               width={56}
               height={56}
-            ></Image>
+            />
 
             <div>
               <p className="font-medium text-[16px]">{name}</p>
-              <p className="font-normal text-[14px] text-[#999999]">Customer</p>
+              <p className="text-[14px] font-normal leading-[21px] text-gray-700">
+                Customer
+              </p>
             </div>
           </div>
-          <div className="flex justify-center items-center">
-            {renderStars({ rating })}
-          </div>
+          <div className="flex items-center">{renderStars({ rating })}</div>
         </div>
       </div>
     </div>

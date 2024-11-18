@@ -1,17 +1,21 @@
-// import CartTotal from "@/components/CartTotal";
-import OrderSummary from "@/components/OrderSummary";
+import { Hero } from "@/components/Hero";
+import { Banners } from "@/components/Banners";
+import { Categories } from "@/components/Categorys";
+import { Featured } from "@/components/FeatureCard";
+import { Products } from "@/components/Products";
 
 export default function Home() {
   return (
     <>
-      <div className="w-full h-screen flex items-center justify-center">
-        {/* <div className="flex gap-5 ">
-          {[1, 2, 3].map((id) => (
-          ))}
-        </div>
-         */}
-        {/* <CartTotal price={100} ship="free" /> */}
-        <OrderSummary price={100} ship="free" />
+      <div className=" w-[1320px] mx-auto space-y-5 h-[1000vh]">
+        <Hero />
+        <Featured />
+        {/* Banner */}
+        <Banners />
+        {/* Category */}
+        <Categories />
+        {/* New Feature Products */}
+        <Products />
       </div>
     </>
   );

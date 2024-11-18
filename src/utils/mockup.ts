@@ -70,17 +70,250 @@ export const feature = [
 
 export const shoppingCart = [
   {
-    id:1,
+    id: 1,
     src: "/images/vegetable-1.png",
     name: "Fresh Indian Orange",
     qty: "1",
     price: "12.00",
   },
   {
-    id:2,
+    id: 2,
     src: "/images/vegetable-2.png",
     name: "Chinese Cabbage",
     qty: "4",
     price: "15.00",
+  },
+];
+
+export const blog = [
+  {
+    id: 1,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "Admin",
+    comment: 65,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id: 2,
+    src: "/images/orange-lamp.png",
+    tag: "Vegetable",
+    user: "User",
+    comment: 80,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id: 3,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "Admin",
+    comment: 65,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+  {
+    id: 4,
+    src: "/images/orange-lamp.png",
+    tag: "Food",
+    user: "User",
+    comment: 100,
+    title:
+      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+  },
+];
+
+export const heroImage = [
+  "/images/hero-vegetable-2.png",
+  "/images/hero-vegetable-1.png",
+  "/images/hero-vegetable-6.png",
+];
+
+export const mainFeature = [
+  {
+    image: "/svg/car.svg",
+    title: "Free Shipping",
+    detail: "Free shipping on all your order",
+  },
+  {
+    image: "/svg/headphone.svg",
+    title: "Customer Support 24/7",
+    detail: "Instant access to Support",
+  },
+  {
+    image: "/svg/shoping-bag.svg",
+    title: "100% Secure Payment",
+    detail: "We ensure your money is save",
+  },
+  {
+    image: "/svg/package.svg",
+    title: "Money-Back Guarantee",
+    detail: "30 Days Money-Back Guarantee",
+  },
+];
+
+export const productCard = [
+  {
+    id: 1,
+    src: "/images/apple.png",
+    name: "Fresh Indian Orange",
+    price: 12,
+    rating: 4,
+  },
+  {
+    id: 2,
+    src: "/images/orange.png",
+    name: "Chinese Cabbage",
+    price: 15,
+    rating: 3,
+  },
+  {
+    id: 3,
+    src: "/images/green-lettuce.png",
+    name: "Fresh Red Tomato",
+    price: 10,
+    rating: 5,
+  },
+];
+
+export const category = [
+  {
+    image: "/images/category-vegetable.png",
+    title: "Fresh Vegetables",
+  },
+  {
+    image: "/images/category-fruits.png",
+    title: "Fresh Fruit",
+  },
+  {
+    image: "/images/category-bakery.png",
+    title: "Bread & Bakery",
+  },
+  {
+    image: "/images/category-beverages.png",
+    title: "Beverages",
+  },
+  {
+    image: "/images/category-meat.png",
+    title: "Meat & Fish",
+  },
+  {
+    image: "/images/category-milk.png",
+    title: "Diabetic Food",
+  },
+  {
+    image: "/images/category-oil.png",
+    title: "Oil",
+  },
+  {
+    image: "/images/category-snacks.png",
+    title: "Snacks",
+  },
+  {
+    image: "/images/category-spices.png",
+    title: "Cooking",
+  },
+  {
+    image: "/images/category-canfood.png",
+    title: "Canned Food ",
+  },
+  {
+    image: "/images/category-seafood.png",
+    title: "Sea Food",
+  },
+];
+
+export const Product = [
+  {
+    name: "Apple",
+    src: "/images/Apple.png",
+    type: "hot deal",
+    price: 14.5,
+    star: 5,
+  },
+  {
+    name: "Fresh Cauliflower",
+    src: "/images/cauli-flower.png",
+    type: "top rate",
+    price: 30,
+    star: 4,
+  },
+  {
+    name: "Chanise Cabbage",
+    src: "/images/chanise-cabbage.png",
+    type: "discount",
+    price: 14.5,
+    star: 3,
+  },
+  {
+    name: "Corn",
+    src: "/images/corn.png",
+    type: "discount",
+    price: 14.5,
+    star: 5,
+  },
+  {
+    name: "Eggplant",
+    src: "/images/eggplant.png",
+    type: "best seller",
+    price: 14.5,
+    star: 5,
+  },
+  {
+    name: "Green Chili",
+    src: "/images/green-chili.png",
+    type: "discount",
+    price: 14.5,
+    star: 4,
+  },
+  {
+    name: "Green Lettuce",
+    src: "/images/green-lettuce.png",
+    type: "discount",
+    price: 14.5,
+    star: 3,
+  },
+  {
+    name: "Okras",
+    src: "/images/okras.png",
+    type: "best seller",
+    price: 14.5,
+    star: 5,
+  },
+  {
+    name: "Indian Malta",
+    src: "/images/Orange.png",
+    type: "hot deal",
+    price: 14.5,
+    star: 3,
+  },
+  {
+    name: "Red Capsicum",
+    src: "/images/red-capsicum.png",
+    type: "top rate",
+    price: 14.5,
+    star: 4,
+  },
+  {
+    name: "Red Tomatos",
+    src: "/images/red-tomatos.png",
+    type: "best seller",
+    price: 14.5,
+    star: 4,
+  },
+  {
+    name: "Red Cherry",
+    src: "/images/cherry.png",
+    type: "hot deal",
+    price: 14.5,
+    star: 5,
+  },
+  {
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    star: 3,
   },
 ];
