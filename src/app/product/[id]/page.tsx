@@ -1,3 +1,5 @@
+import OrderSummary from "@/components/OrderSummary";
+
 export default async function Page({
   params,
 }: {
@@ -6,7 +8,16 @@ export default async function Page({
   const id = (await params).id;
   return (
     <>
-      <div>Product page: {id}</div>;
+      <div>Product page: {id}</div>
+      <div>
+        <OrderSummary
+          imageUrl="/images/watermelon.png"
+          name="Watermelon"
+          qty={10}
+          price={5.0}
+          ship="free"
+        />
+      </div>
     </>
   );
 }
