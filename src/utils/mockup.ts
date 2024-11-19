@@ -125,9 +125,9 @@ export const blog = [
 ];
 
 export const heroImage = [
-  "/images/hero-vegetable-2.png",
-  "/images/hero-vegetable-1.png",
-  "/images/hero-vegetable-6.png",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-2.png",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-1.png",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-6.png",
 ];
 
 export const mainFeature = [
@@ -179,47 +179,58 @@ export const productCard = [
 
 export const category = [
   {
-    image: "/images/category-vegetable.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-vegetable.png",
     title: "Fresh Vegetables",
   },
   {
-    image: "/images/category-fruits.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-fruits.png",
     title: "Fresh Fruit",
   },
   {
-    image: "/images/category-bakery.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-bakery.png",
     title: "Bread & Bakery",
   },
   {
-    image: "/images/category-beverages.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-beverages.png",
     title: "Beverages",
   },
   {
-    image: "/images/category-meat.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-meat.png",
     title: "Meat & Fish",
   },
   {
-    image: "/images/category-milk.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-milk.png",
     title: "Diabetic Food",
   },
   {
-    image: "/images/category-oil.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-oil.png",
     title: "Oil",
   },
   {
-    image: "/images/category-snacks.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-snacks.png",
     title: "Snacks",
   },
   {
-    image: "/images/category-spices.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-spices.png",
     title: "Cooking",
   },
   {
-    image: "/images/category-canfood.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-canfood.png",
     title: "Canned Food ",
   },
   {
-    image: "/images/category-seafood.png",
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-seafood.png",
     title: "Sea Food",
   },
 ];

@@ -19,7 +19,7 @@ export const Products = () => {
             className=" w-[248px] h-[338px]"
             subTitleStyle="text-[#1A1A1A]"
             titleStyle="text-[#00B207]"
-            backgroundImage="/images/banner-fruits.png"
+            backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/banner-fruits.png"
             subTitle="Summer Sale"
             title="75% off"
           />
@@ -88,7 +88,7 @@ export const Products = () => {
             className=" w-[300px] h-[370px]"
             subTitleStyle="text-[#1A1A1A]"
             titleStyle="text-center text-gray-900 font-semibold text-3xl leading-tight"
-            backgroundImage="/images/hero-vegetable-5.png"
+            backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-5.png"
             subTitle="Summer Sale"
             title="Save 37% on
              Every Order"
