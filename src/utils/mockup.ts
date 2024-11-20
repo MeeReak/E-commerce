@@ -317,3 +317,38 @@ export const Product = [
     star: 3,
   },
 ];
+
+export const WishListProduct = [
+  {
+    id: 1,
+    name: "Apple",
+    src: "/images/Apple.png",
+    type: "hot deal",
+    price: 14.5,
+    qty: 10,
+  },
+  {
+    id: 2,
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    qty: 0,
+  },
+  {
+    id: 3,
+    name: "Red Tomatos",
+    src: "/images/red-tomatos.png",
+    type: "best seller",
+    price: 14.5,
+    qty: 1,
+  },
+  {
+    id: 4,
+    name: "Red Cherry",
+    src: "/images/cherry.png",
+    type: "hot deal",
+    price: 14.5,
+    qty: 0,
+  },
+];
