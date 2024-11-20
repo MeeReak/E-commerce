@@ -10,7 +10,13 @@ import {
   TwitterIcon,
 } from "lucide-react";
 
-export const TeamCard = () => {
+interface TeamCardProps {
+  image: string;
+  name: string;
+  role: string;
+}
+
+export const TeamCard = ({ name, image, role }: TeamCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const socialIcons = [
@@ -22,7 +28,7 @@ export const TeamCard = () => {
 
   return (
     <div
-      className="relative"
+      className="relative "
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -43,16 +49,16 @@ export const TeamCard = () => {
       )}
 
       <Image
-        className="w-[312px] h-[280px] object-cover"
-        src="/images/farmer.jpg"
+        className="w-[312px] h-[280px] object-cover rounded-t-md"
+        src={image}
         alt="Team member Jenny Wilson"
         width={312}
         height={280}
       />
 
-      <div className="p-5 pt-4 border border-t-0">
-        <p className="text-[18px] font-medium text-gray-900">Jenny Wilson</p>
-        <p className="text-[14px] font-normal text-gray-500">H.E & CEO</p>
+      <div className="p-5 pt-4 border border-t-0 rounded-md">
+        <p className="text-[18px] font-medium text-gray-900">{name}</p>
+        <p className="text-[14px] font-normal text-gray-500">{role}</p>
       </div>
     </div>
   );

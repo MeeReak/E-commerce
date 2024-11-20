@@ -6,10 +6,26 @@ import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import Image from "next/image";
 
 const IMAGES = [
-  { id: 1, src: "/images/vegetable-1.png", alt: "Image 1" },
-  { id: 2, src: "/images/vegetable-2.png", alt: "Image 2" },
-  { id: 3, src: "/images/vegetable-3.png", alt: "Image 3" },
-  { id: 4, src: "/images/vegetable-4.png", alt: "Image 4" },
+  {
+    id: 1,
+    src: "https://img.freepik.com/free-vector/food-cartoon-illustration_52683-135634.jpg?semt=ais_hybrid",
+    alt: "Image 1",
+  },
+  {
+    id: 2,
+    src: "https://img.freepik.com/premium-photo/picture-green-vegetable-with-face-drawn-it_1308157-373698.jpg",
+    alt: "Image 2",
+  },
+  {
+    id: 3,
+    src: "https://img.freepik.com/free-vector/hand-drawn-food-cartoon-illustration_23-2150760206.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1721433600&semt=ais_user",
+    alt: "Image 3",
+  },
+  {
+    id: 4,
+    src: "https://img.freepik.com/free-vector/food-cartoon-illustration_52683-135660.jpg?w=360",
+    alt: "Image 4",
+  },
 ];
 
 export const ProductDisplay = () => {

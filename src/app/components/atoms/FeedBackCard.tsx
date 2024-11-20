@@ -1,15 +1,22 @@
 import React from "react";
 import { renderStars } from "./RenderStar";
-import Image from "next/image";
+import { Profile } from "@/components/Profile";
+
 type FeedBackCardProps = {
   name: string;
   profile: string;
   rating: number;
+  content: string;
 };
-const FeedBackCard = ({ rating, name, profile }: FeedBackCardProps) => {
+const FeedBackCard = ({
+  rating,
+  name,
+  content,
+  profile,
+}: FeedBackCardProps) => {
   return (
-    <div className="container w-[384px] shadow-md">
-      <div className="p-6 space-y-4">
+    <div className="container w-[384px] shadow-md bg-white ">
+      <div className="p-6 space-y-4 ">
         <header>
           <svg
             width="32"
@@ -27,20 +34,10 @@ const FeedBackCard = ({ rating, name, profile }: FeedBackCardProps) => {
             />
           </svg>
         </header>
-        <p className="text-[14px] text-[#4D4D4D] line-clamp-4">
-          Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
-          Phasellus imperdiet elit eu magna dictum, bibendum cursus velit
-          sodales. Donec sed neque eget
-        </p>
+        <p className="text-[14px] text-[#4D4D4D] line-clamp-4">{content}</p>
         <div className="flex justify-between">
           <div className="flex space-x-3">
-            <Image
-              className="flex justify-center items-center rounded-full  w-11 bg-red-500"
-              src={profile}
-              alt=" "
-              width={56}
-              height={56}
-            />
+            <Profile profile={profile} />
 
             <div>
               <p className="font-medium text-[16px]">{name}</p>
