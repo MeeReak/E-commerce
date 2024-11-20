@@ -1,0 +1,63 @@
+"use client";
+
+import React, { useRef } from "react";
+import { BlogCard } from "./BlogCard";
+import { blogInfo as data } from "@/utils/mockup";
+import { motion, useInView } from "framer-motion";
+
+export const Blogs = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { amount: 0.2 });
+
+  return (
+    <motion.section
+      ref={containerRef}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}
+      className="pt-14"
+    >
+      {/* Category Header */}
+      <header className="text-center">
+        <motion.p
+          className="text-[#00B207] text-[14px] font-medium leading-[14px] tracking-[0.28px] uppercase"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Category
+        </motion.p>
+        <motion.h2
+          className="text-[#1A1A1A] pt-2 pb-9 text-[36px] font-semibold leading-[43.2px]"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          Shop by Top Categories
+        </motion.h2>
+      </header>
+
+      {/* Blog Card Grid */}
+      <div className="flex justify-between w-full">
+        {data.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <BlogCard
+              src={item.src}
+              tag={item.tag}
+              user={item.user}
+              comment={item.comment}
+              title={item.title}
+              day={item.day}
+              month={item.month}
+            />
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
+  );
+};

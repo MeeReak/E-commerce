@@ -17,27 +17,34 @@ interface CardIconTextProps {
 
 const CardIconText: React.FC<CardIconTextProps> = ({ Icon, text }) => (
   <div className="flex gap-x-2 items-center">
-    <Icon className="text-[#B3B3B3]" />
+    <Icon className="text-[#B3B3B3] stroke-1" />
     <p className="text-gray-700 text-sm font-normal leading-[21px]">{text}</p>
   </div>
 );
 
 interface BlogCardProps {
-  blog: {
-    id: number;
-    src: string;
-    tag: string;
-    user: string;
-    comment: number;
-    title: string;
-  };
+  src: string;
+  tag: string;
+  user: string;
+  comment: string;
+  title: string;
+  day: number;
+  month: string
+  // blog: string;
 }
 
-export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-  const { id, src, tag, user, comment, title } = blog;
-
+export const BlogCard: React.FC<BlogCardProps> = ({
+  src,
+  tag,
+  user,
+  comment,
+  title,
+  day,
+  month,
+  // blog
+}) => {
   return (
-    <div key={id} className="group shadow-md rounded-sm">
+    <div className="group shadow-md rounded-sm relative">
       <Image
         className="h-[323px] w-[424px] object-cover rounded-tl-sm rounded-tr-sm"
         src={src}
@@ -45,12 +52,20 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
         width={424}
         height={324}
       />
-      <div className="flex flex-col gap-y-5 p-6 shadow-sm">
+      <span className=" absolute top-[47%] left-[20px] bg-white rounded-md py-[10px] px-4">
+        <p className="text-[#1A1A1A] text-[20px] font-medium leading-[30px]">
+         {day}
+        </p>
+        <p className="text-[#808080] text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase">
+          {month}
+        </p>
+      </span>
+      <div className="flex flex-col gap-y-3 p-5 shadow-sm">
         <div className="flex flex-col gap-y-2">
           <div className="flex items-center gap-x-5">
             <CardIconText Icon={TagIcon} text={tag} />
             <div className="flex gap-x-2 items-center">
-              <UserIcon className="text-[#B3B3B3]" />
+              <UserIcon className="text-[#B3B3B3] stroke-1" />
               <span className="text-[#4D4D4D] text-sm font-normal leading-[21px]">
                 By
               </span>
@@ -60,7 +75,10 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
             </div>
             <CardIconText Icon={MessageSquareIcon} text={comment.toString()} />
           </div>
-          <p className="w-[376px] text-black text-lg font-medium leading-[27px] group-hover:text-[#2C742F]">
+          {/* <p className="text-[#002603] text-[18px] font-medium leading-[27px]">
+            {blog}
+          </p> */}
+          <p className="w-[376px] text-black text-[14px] font-medium leading-[27px] group-hover:text-[#2C742F]">
             {title}
           </p>
         </div>

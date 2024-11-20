@@ -71,14 +71,14 @@ export const feature = [
 export const shoppingCart = [
   {
     id: 1,
-    src: "/images/vegetable-1.png",
+    src: "https://img.freepik.com/free-vector/food-cartoon-illustration_52683-135634.jpg?semt=ais_hybrid",
     name: "Fresh Indian Orange",
     qty: "1",
     price: "12.00",
   },
   {
     id: 2,
-    src: "/images/vegetable-2.png",
+    src: "https://img.freepik.com/premium-photo/picture-green-vegetable-with-face-drawn-it_1308157-373698.jpg",
     name: "Chinese Cabbage",
     qty: "4",
     price: "15.00",
@@ -326,5 +326,106 @@ export const Product = [
     type: "top rate",
     price: 14.5,
     star: 3,
+  },
+];
+
+export const teamInfo = [
+  {
+    name: "Jenny Wilson",
+    position: "Ceo & Founder",
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611746.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+  {
+    name: "Jane Cooper",
+    position: "Worker",
+    src: "https://img.freepik.com/premium-psd/3d-render-avatar-character_23-2150611774.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+  {
+    name: "Cody Fisher",
+    position: "Security Guard",
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611737.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+  {
+    name: "Robert Fox",
+    position: "Senior Farmer Manager",
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611731.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+];
+
+export const feedbackInfo = [
+  {
+    content:
+      "I absolutely love the freshness and taste of your produce! The vegetables last much longer than what I usually get from the store. Keep up the amazing quality—it's the reason I keep coming back.",
+    name: "Robert Fox",
+    star: 5,
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611737.jpg?t=st=1732084610~exp=1732088210~hmac=765f69450c2fcd39476268cf32bbc4e45e67496c0f34f52512a368e3ddc71a23&w=740",
+  },
+  {
+    content:
+      "The produce is fresh, but sometimes items are out of stock. It would be great if you could manage inventory better to ensure availability, especially for popular items.",
+    name: "Dianne Russell",
+    star: 4,
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611756.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+  {
+    content:
+      "Your customer service is excellent, and I always feel welcomed! However, the prices could be more competitive. A loyalty program might help customers like me stick around longer.",
+    name: "Eleanor Pena",
+    star: 4,
+    src: "https://img.freepik.com/premium-psd/3d-render-avatar-character_23-2150611774.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+  {
+    content:
+      "The packaging for your items is top-notch! I appreciate that nothing gets damaged during delivery. Perhaps adding recipe cards for your produce could be a nice touch.",
+    name: "Sophia Moore",
+    star: 5,
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611725.jpg?t=st=1732086047~exp=1732089647~hmac=6bb8a190a4c7e0f561cd61a8f938e72143ec9c84707d033a07214ab090d376b7&w=740",
+  },
+  {
+    content:
+      "I love supporting your business because of the emphasis on local produce! That said, delivery times could be more consistent—I’ve experienced some delays recently.",
+    name: "James Brown",
+    star: 3,
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611731.jpg?t=st=1732086030~exp=1732089630~hmac=a7218d82844d1081b99140ab725844fcffae68269e9c15d4200efa67ed72278f&w=740",
+  },
+  {
+    content:
+      "I love supporting your business because of the emphasis on local produce! That said, delivery times could be more consistent—I’ve experienced some delays recently.",
+    name: "James Brown",
+    star: 3,
+    src: "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611740.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+  },
+];
+
+export const blogInfo = [
+  {
+    month: "Nov",
+    day: 19,
+    src: "https://www.webshapers.cc/sites/default/files/parallax/mae-mu-hkMGgTVBTSA-unsplash-square_1.webp",
+    tag: "Fruit",
+    user: "Admin",
+    comment: "34 Comment",
+    title:
+      "Enjoy the refreshing power of oranges! Packed with vitamin C and flavor, they’re the perfect addition to your day. Dive into the citrusy goodness now and start feeling refreshed.",
+  },
+  {
+    month: "Jan",
+    day: 23,
+    src: "https://raivatkitchen.com/assets/uploads/itemimages/aamras.jpg",
+    tag: "Drink",
+    user: "Admin",
+    comment: "70 Comment",
+    title:
+      "Sip your way to happiness with a delicious mango smoothie. Perfectly blended with tropical sweetness, it’s the drink you won’t want to miss this season.",
+  },
+  {
+    month: "Jun",
+    day: 12,
+    src: "https://img.freepik.com/premium-photo/group-fruits-table_922985-10493.jpg",
+    tag: "Fruit",
+    user: "Emma",
+    comment: "50 Comment",
+    title:
+      "Savor the vibrant tastes of a tropical fruit mix! With juicy pineapples, tangy pomegranates, and sweet grapes, it’s a healthful treat that excites the senses.",
   },
 ];

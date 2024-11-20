@@ -21,7 +21,7 @@ export function BreadcrumbWithCustomSeparator() {
   const pathArray = pathName.split("/").filter(Boolean);
 
   return (
-    <div className=" w-[500px] py-11 ">
+    <div className=" max-w-[720px] min-w-[600px] py-11 ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
