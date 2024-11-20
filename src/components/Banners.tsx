@@ -7,6 +7,7 @@ export const Banners = () => {
     <div className=" flex justify-between">
       <div className="flex ">
         <Banner
+          backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/banner-vegetable.png"
           subTitle="best deal"
           className="w-[424px] h-[536px]"
           title="Sale of the Month"
@@ -16,7 +17,7 @@ export const Banners = () => {
       </div>
       <div className="flex ">
         <Banner
-          backgroundImage="/images/banner-meat.png"
+          backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/banner-meat.png"
           subTitle="85% Fat Free"
           title="Low-Fat Meat"
           className="w-[424px] h-[536px]"
@@ -36,7 +37,7 @@ export const Banners = () => {
           className="w-[424px] h-[536px]"
           subTitleStyle="text-[#1A1A1A]"
           titleStyle="text-[#1A1A1A]"
-          backgroundImage="/images/banner-fruit.png"
+          backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/banner-fruit.png"
           subTitle="Summer Sale"
           title="100% Fresh Fruit"
         >
