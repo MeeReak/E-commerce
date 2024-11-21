@@ -4,7 +4,9 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 const Footer = () => {
   return (
-    <div className="container w-[1320px]">
+    <>
+      <div className="flex justify-around">
+      <div className="container w-[1320px]">
       {/* subcribe */}
       <div className="w-full bg-black text-white p-[60px]">
         <div className="flex justify-between items-center">
@@ -218,6 +220,9 @@ const Footer = () => {
         </div>
       </div>
     </div>
+      </div>
+    </>
+    
   );
 };
 
