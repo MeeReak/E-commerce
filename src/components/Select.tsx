@@ -9,11 +9,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function SelectDemo({ item }: { item: string[] }) {
+export function SelectDemo({
+  item,
+  className = "w-[70px]  text-gray-400",
+  placeHolder,
+}: {
+  item: string[];
+  className?: string;
+  placeHolder?: string;
+}) {
   return (
     <Select>
-      <SelectTrigger className="w-[70px] border-none text-gray-400">
-        <SelectValue placeholder={`${item[0]}`} />
+      <SelectTrigger className={`${className}`}>
+        <SelectValue placeholder={placeHolder ? placeHolder : `${item[0]}`} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>

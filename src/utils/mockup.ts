@@ -429,3 +429,37 @@ export const blogInfo = [
       "Savor the vibrant tastes of a tropical fruit mix! With juicy pineapples, tangy pomegranates, and sweet grapes, it’s a healthful treat that excites the senses.",
   },
 ];
+export const WishListProduct = [
+  {
+    id: 1,
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    qty: 10,
+  },
+  {
+    id: 2,
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    qty: 0,
+  },
+  {
+    id: 3,
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    qty: 1,
+  },
+  {
+    id: 4,
+    name: "Fresh Broccoli",
+    src: "/images/fresh-broccoli.png",
+    type: "top rate",
+    price: 14.5,
+    qty: 0,
+  },
+];
