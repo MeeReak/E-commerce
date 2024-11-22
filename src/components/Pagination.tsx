@@ -7,7 +7,13 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 
-export function PaginationDemo({ param }: { param: string }) {
+export function PaginationDemo({
+  param,
+  pageName,
+}: {
+  param: string;
+  pageName: string;
+}) {
   const page = [1, 2, 3, 4, 5];
   const currentPage = parseInt(param);
 
@@ -30,7 +36,7 @@ export function PaginationDemo({ param }: { param: string }) {
                   ? "bg-[#00B207] hover:bg-[#00B207] text-white text-center text-base font-normal leading-[150%] px-[15px]"
                   : "text-gray-600 bg-white text-center text-base font-normal leading-[150%] px-[15px]"
               }
-              href={`${item}`}
+              href={`${pageName}/${item}`}
               isActive={currentPage === item}
             >
               {item}

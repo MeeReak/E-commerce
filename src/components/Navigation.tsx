@@ -25,8 +25,14 @@ export const Navigation = () => {
         <span className=" w-[220px]"></span>
 
         <div className="flex items-center ">
-          <SelectDemo item={lan} />
-          <SelectDemo item={curr} />
+          <SelectDemo
+            item={lan}
+            className=" border-none w-auto space-x-2 text-white"
+          />
+          <SelectDemo
+            item={curr}
+            className=" border-none w-auto space-x-2 text-white"
+          />
           <span className=" text-gray-400 pr-4">|</span>
           <div className="flex items-center gap-x-2">
             <Link
@@ -62,7 +68,9 @@ export const Navigation = () => {
             placeholder="Search..."
             leftIcon={<SearchIcon />}
           />
-          <Button className=" py-3 px-6 rounded-tl-none rounded-bl-none">Search</Button>
+          <Button className=" py-3 px-6 rounded-tl-none rounded-bl-none">
+            Search
+          </Button>
         </div>
 
         <div className=" flex gap-x-4 items-center">
@@ -120,7 +128,7 @@ export const Navigation = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className=" flex justify-evenly items-center "
+        className=" flex justify-evenly items-center h-[90px]"
       >
         <BreadcrumbWithCustomSeparator />
         <span className=" w-[110px]"></span>
