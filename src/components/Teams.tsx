@@ -27,7 +27,7 @@ export const Teams = () => {
           Team
         </motion.p>
         <motion.p
-          className="text-[#1A1A1A] text-[36px] font-semibold leading-[43.2px]"
+          className="text-[#1A1A1A] text-[36px]  pt-2 font-semibold leading-[43.2px]"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}

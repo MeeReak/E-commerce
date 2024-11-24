@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { category as cate } from "@/utils/mockup";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 
 export const Categories = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -42,15 +43,16 @@ export const Categories = () => {
           className="flex overflow-x-scroll space-x-4 hide-scrollbar"
         >
           {cate.map((item, index) => (
-            <motion.div
-              key={index}
-              className="flex-shrink-0 w-[200px]"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Category title={item.title} image={item.image} />
-            </motion.div>
+            <Link href={`category/${index+1}`} key={index}>
+              <motion.div
+                className="flex-shrink-0 w-[200px]"
+                initial={{ opacity: 0, x: -50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Category title={item.title} image={item.image} />
+              </motion.div>
+            </Link>
           ))}
         </div>
         <ScrollButton direction="right" onClick={() => handleScroll("right")} />

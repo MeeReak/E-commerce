@@ -21,7 +21,7 @@ export function BreadcrumbWithCustomSeparator() {
   const pathArray = pathName.split("/").filter(Boolean);
 
   return (
-    <div className=" max-w-[720px] min-w-[600px] py-11 ">
+    <div className="max-w-[720px] min-w-[700px] py-11 ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -41,7 +41,7 @@ export function BreadcrumbWithCustomSeparator() {
                 <BreadcrumbItem>
                   <BreadcrumbLink isWrapped>
                     {isLast ? (
-                      <BreadcrumbPage className="text-lg  font-normal leading-[1.5] text-[#00B207]">
+                      <BreadcrumbPage className="text-lg font-normal leading-[1.5] text-[#00B207]">
                         {item}
                       </BreadcrumbPage>
                     ) : (

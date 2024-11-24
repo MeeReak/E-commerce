@@ -1,5 +1,6 @@
-import * as React from "react";
+"use client";
 
+import * as React from "react";
 import {
   Select,
   SelectContent,
@@ -9,21 +10,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function SelectDemo({ item }: { item: string[] }) {
+export function SelectDemo({
+  item,
+  className = "w-[70px] text-gray-400",
+  placeHolder,
+  query,
+  onSelectChange,
+}: {
+  item: string[];
+  className?: string;
+  placeHolder?: string;
+  query?: string;
+  onSelectChange?: (query: string, value: string) => void;
+}) {
+  const handleValueChange = (value: string) => {
+    onSelectChange?.(query || "", value); // Notify parent of the change
+  };
+
   return (
-    <Select>
-      <SelectTrigger className="w-[70px] border-none text-gray-400">
-        <SelectValue placeholder={`${item[0]}`} />
+    <Select onValueChange={handleValueChange}>
+      <SelectTrigger className={`${className}`}>
+        <SelectValue placeholder={placeHolder || item[0]} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {item.map((_x, index) => {
-            return (
-              <SelectItem key={index} value={_x}>
-                {_x}
-              </SelectItem>
-            );
-          })}
+          {item.map((option, index) => (
+            <SelectItem key={index} value={option.toLowerCase()}>
+              {option}
+            </SelectItem>
+          ))}
         </SelectGroup>
       </SelectContent>
     </Select>
