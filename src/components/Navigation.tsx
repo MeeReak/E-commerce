@@ -128,7 +128,7 @@ export const Navigation = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className=" flex justify-evenly items-center h-[90px]"
+        className=" flex justify-evenly items-center "
       >
         <BreadcrumbWithCustomSeparator />
         <span className=" w-[110px]"></span>
