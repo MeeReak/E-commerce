@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 export const BannerDiscount = () => {
   return (
     <div
-      className="w-[1320px] relative h-[400px] mt-12 gap-y-5 flex flex-col items-end justify-center pr-20"
+      className="w-[1320px] relative h-[400px] mt-5 gap-y-5 flex flex-col items-end justify-center pr-20"
       style={{
         backgroundImage: `url(https://s3-alpha-sig.figma.com/img/736a/c341/802327b2806c879e76b9b8612d16e984?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Y6BRkqATh2myZEaokbc5mTU1MpM43i3s9k~byde85cGAPHcs8UIgIFPEzhB8xs0SIwdA4xZUMCbAERLn3pP4wdenBV0wHv9loO2pZ-rfBfRQ4KwDhmF1hT7dSH8c9fUG8yIK~R7yAAC3nB~kVu2HEmxtubBa-TrpnxveJ11auoCY6n4IvJ~3abZyJ9XDVyX7uCJ7lbiO85wz1BBw-Jh~edZpJiezsJEaZ~HKax18l6nlvjiDeCLJuJ8qYJLo-L3VZTwTriNKLL62AcNvXUAAd1EoEB~MHevMlAKd9EloitViyR7e2Lq0u8F7YsNxgQKMkLbVnlFkdnbhB6C2vqyVgg__)`,
         backgroundSize: "cover",

@@ -5,7 +5,12 @@ import { Option } from "@/components/Option";
 import { ProductFilter } from "@/components/ProductFilter";
 import { PaginationDemo } from "@/components/Pagination";
 
-export default function page() {
+export default async function page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const id = (await params).id;
   return (
     <div className="flex flex-col items-center space-y-5 h-[1000vh]">
       {/* discount banner */}
@@ -20,7 +25,7 @@ export default function page() {
       <ProductFilter />
 
       {/* Pagination */}
-      <PaginationDemo pageName="product" param="3"/>
+      <PaginationDemo pageName="category" param={id} />
     </div>
   );
 }
