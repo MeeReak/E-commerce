@@ -73,7 +73,7 @@ export const Navigation = () => {
       </div>
 
       {/* Logo and Search Bar */}
-      <div className="flex justify-around py-7 border-b-[1px] border-[#CCCCCC]">
+      <div className="flex justify-around py-5 border-b-[1px] border-[#CCCCCC]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/svg/logo.svg" alt="logo" width={32} height={32} />

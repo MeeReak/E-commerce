@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const productDescription = {
   describe:
     "Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas auctor tortor lacus, nec laoreet nisi porttitor vel. Etiam tincidunt metus vel dui interdum sollicitudin. Mauris sem ante, vestibulum nec orci vitae, aliquam mollis lacus. Sed et condimentum arcu, id molestie tellus. Nulla facilisi. Nam scelerisque vitae justo a convallis. Morbi urna ipsum, placerat quis commodo quis, egestas elementum leo. Donec convallis mollis enim. Aliquam id mi quam. Phasellus nec fringilla elit. Nulla mauris tellus, feugiat quis pharetra sed, gravida ac dui. Sed iaculis, metus faucibus elementum tincidunt, turpis mi viverra velit, pellentesque tristique neque mi eget nulla. Proin luctus elementum neque et pharetra.",
@@ -248,6 +250,7 @@ export const category = [
 
 export const Product = [
   {
+    id: uuidv4(),
     name: "Apple",
     src: "/images/Apple.png",
     type: "hot deal",
@@ -257,6 +260,7 @@ export const Product = [
     dateAdded: "2023-10-01T10:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Fresh Cauliflower",
     src: "/images/cauli-flower.png",
     type: "top rate",
@@ -266,6 +270,7 @@ export const Product = [
     dateAdded: "2023-09-15T09:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Chanise Cabbage",
     src: "/images/chanise-cabbage.png",
     type: "discount",
@@ -275,6 +280,7 @@ export const Product = [
     dateAdded: "2023-08-20T08:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Corn",
     src: "/images/corn.png",
     type: "discount",
@@ -284,6 +290,7 @@ export const Product = [
     dateAdded: "2023-07-30T07:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Eggplant",
     src: "/images/eggplant.png",
     type: "best seller",
@@ -293,6 +300,7 @@ export const Product = [
     dateAdded: "2023-06-25T06:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Green Chili",
     src: "/images/green-chili.png",
     type: "discount",
@@ -302,6 +310,7 @@ export const Product = [
     dateAdded: "2023-05-10T05:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Green Lettuce",
     src: "/images/green-lettuce.png",
     type: "discount",
@@ -311,6 +320,7 @@ export const Product = [
     dateAdded: "2023-04-05T04:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Okras",
     src: "/images/okras.png",
     type: "best seller",
@@ -320,6 +330,7 @@ export const Product = [
     dateAdded: "2023-03-15T03:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Indian Malta",
     src: "/images/Orange.png",
     type: "hot deal",
@@ -329,6 +340,7 @@ export const Product = [
     dateAdded: "2023-02-20T02:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Red Capsicum",
     src: "/images/red-capsicum.png",
     type: "top rate",
@@ -338,6 +350,7 @@ export const Product = [
     dateAdded: "2023-01-30T01:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Red Tomatos",
     src: "/images/red-tomatos.png",
     type: "best seller",
@@ -347,6 +360,7 @@ export const Product = [
     dateAdded: "2023-01-10T00:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Red Cherry",
     src: "/images/cherry.png",
     type: "hot deal",
@@ -356,6 +370,7 @@ export const Product = [
     dateAdded: "2022-12-25T23:00:00Z",
   },
   {
+    id: uuidv4(),
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",

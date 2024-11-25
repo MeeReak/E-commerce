@@ -45,7 +45,7 @@ export const ProductDisplay = () => {
 
   return (
     <div className="w-[660px] h-[558px] flex gap-x-3 items-center">
-      <div className="space-y-12 flex items-center flex-col">
+      <div className="space-y-6 flex items-center flex-col">
         <Button
           onClick={handleDecrease}
           size="icon"
@@ -63,7 +63,7 @@ export const ProductDisplay = () => {
               width={80}
               height={90}
               onClick={() => handleSelect(image.id)}
-              className={`cursor-pointer ${
+              className={`cursor-pointer w-auto h-auto ${
                 image.id === selected
                   ? "border-2 border-[#00B207] rounded-sm"
                   : ""
