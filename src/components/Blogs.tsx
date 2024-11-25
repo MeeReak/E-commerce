@@ -25,7 +25,7 @@ export const Blogs = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Category
+          Blog
         </motion.p>
         <motion.h2
           className="text-[#1A1A1A] pt-2 pb-9 text-[36px] font-semibold leading-[43.2px]"
@@ -33,7 +33,7 @@ export const Blogs = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Shop by Top Categories
+          Latest Blog
         </motion.h2>
       </header>
 

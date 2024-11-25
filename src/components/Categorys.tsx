@@ -43,9 +43,9 @@ export const Categories = () => {
           className="flex overflow-x-scroll space-x-4 hide-scrollbar"
         >
           {cate.map((item, index) => (
-            <Link href={`category/${index+1}`} key={index}>
+            <Link href={`shop/1?category=${item.category}`} key={index}>
               <motion.div
-                className="flex-shrink-0 w-[200px]"
+                className="flex-shrink-0 w-[190px]"
                 initial={{ opacity: 0, x: -50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -74,7 +74,7 @@ export const ScrollButton: React.FC<ScrollButtonProps> = ({
     variant="custom"
     onClick={onClick}
     className={`absolute ${
-      direction === "left" ? "left-[-100px]" : "right-[-120px]"
+      direction === "left" ? "left-[-70px]" : "right-[-70px]"
     } top-1/2 transform -translate-y-1/2 text-black border-[1px] border-gray-200 bg-white p-4 shadow-sm rounded-full hover:text-gray-400`}
   >
     {direction === "left" ? <ArrowLeftIcon /> : <ArrowRightIcon />}

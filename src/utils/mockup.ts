@@ -182,56 +182,67 @@ export const category = [
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-vegetable.png",
     title: "Fresh Vegetables",
+    category: "vegetable",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-fruits.png",
     title: "Fresh Fruit",
+    category: "fruits",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-bakery.png",
     title: "Bread & Bakery",
+    category: "bakery",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-beverages.png",
     title: "Beverages",
+    category: "berages",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-meat.png",
     title: "Meat & Fish",
+    category: "meat",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-milk.png",
     title: "Diabetic Food",
+    category: "diabetic food",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-oil.png",
     title: "Oil",
+    category: "oil",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-snacks.png",
     title: "Snacks",
+    category: "snacks",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-spices.png",
     title: "Cooking",
+    category: "ingredients",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-canfood.png",
     title: "Canned Food ",
+    category: "canned food",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-seafood.png",
     title: "Sea Food",
+    category: "sea food",
   },
 ];
 

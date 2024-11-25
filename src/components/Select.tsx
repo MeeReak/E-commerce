@@ -35,7 +35,11 @@ export function SelectDemo({
       <SelectContent>
         <SelectGroup>
           {item.map((option, index) => (
-            <SelectItem key={index} value={option.toLowerCase()}>
+            <SelectItem
+              className=" cursor-pointer"
+              key={index}
+              value={option.toLowerCase()}
+            >
               {option}
             </SelectItem>
           ))}

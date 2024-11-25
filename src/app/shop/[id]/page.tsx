@@ -12,7 +12,7 @@ export default async function page({
 }) {
   const id = (await params).id;
   return (
-    <div className="flex flex-col items-center space-y-5 h-[1000vh]">
+    <div className="flex flex-col items-center space-y-5 pb-5">
       {/* discount banner */}
       <BannerDiscount />
       {/* Filter Option */}
@@ -25,7 +25,7 @@ export default async function page({
       <ProductFilter />
 
       {/* Pagination */}
-      <PaginationDemo pageName="category" param={id} />
+      <PaginationDemo pageName="shop" param={id} />
     </div>
   );
 }
