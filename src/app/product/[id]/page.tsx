@@ -1,22 +1,22 @@
-import OrderSummary from "@/components/OrderSummary";
+import { OverView } from "@/components/OverView";
+import { ProductDetail } from "@/components/ProductDetail";
+import { RelateProduct } from "@/components/RelateProduct";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const id = (await params).id;
+export default async function Page(
+  {
+    //   params,
+    // }: {
+    //   params: Promise<{ id: string }>;
+  }
+) {
+  // const id = (await params).id;
   return (
     <>
-      <div>Product page: {id}</div>
-      <div>
-        <OrderSummary
-          imageUrl="/images/watermelon.png"
-          name="Watermelon"
-          qty={10}
-          price={5.0}
-          ship="free"
-        />
+      {/* <p>Product page: {id}</p> */}
+      <div className=" w-[1320px] mx-auto mb-12">
+        <OverView />
+        <ProductDetail />
+        <RelateProduct />
       </div>
     </>
   );

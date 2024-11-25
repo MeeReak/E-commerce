@@ -106,7 +106,7 @@ interface TabNavigationProps {
 }
 
 const TabNavigation: React.FC<TabNavigationProps> = ({ selectedTab, onSelect }) => (
-  <div className="border-b-[1px] w-screen flex items-center justify-center">
+  <div className="border-b-[1px] w-full flex items-center justify-center">
     {(["Descriptions", "Additional Information", "Customer Feedback"] as TabOption[]).map((tabName) => (
       <span
         key={tabName}

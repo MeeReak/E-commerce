@@ -27,6 +27,7 @@ export const Products = () => {
         {Items.filter((item) => item.type == "discount").map((x, index) => (
           <div key={index}>
             <ProductCardY
+              id={x.id}
               imgURl={x.src}
               price={x.price}
               rating={x.star}
@@ -43,6 +44,7 @@ export const Products = () => {
           {Items.filter((item) => item.type == "hot deal").map((x, index) => (
             <div key={index}>
               <ProductCard
+                id={x.id}
                 imageUrl={x.src}
                 price={x.price}
                 rating={x.star}
@@ -59,6 +61,7 @@ export const Products = () => {
             (x, index) => (
               <div key={index}>
                 <ProductCard
+                  id={x.id}
                   imageUrl={x.src}
                   price={x.price}
                   rating={x.star}
@@ -75,6 +78,7 @@ export const Products = () => {
           {Items.filter((item) => item.type == "top rate").map((x, index) => (
             <div key={index}>
               <ProductCard
+                id={x.id}
                 imageUrl={x.src}
                 price={x.price}
                 rating={x.star}

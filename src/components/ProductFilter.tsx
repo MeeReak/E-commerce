@@ -74,6 +74,7 @@ export const ProductFilter = () => {
               price={item.price}
               rating={item.star}
               title={item.name}
+              id={""}
             />
           ))}
         </div>

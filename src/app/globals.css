@@ -133,3 +133,9 @@ body {
     opacity: 1;
   }
 }
+
+/* Dancing Script */
+.dancing-script {
+  /* ... */
+  font-family: 'Dancing Script', 'Helvetica Neue', cursive;
+}
