@@ -22,7 +22,7 @@ export const ActiveFiltered = () => {
   };
 
   return (
-    <div className="border w-screen">
+    <div className="border border-x-0 w-full">
       <div className="flex space-x-3 mx-auto w-[1320px] py-5">
         <p className="text-gray-500 font-poppins text-sm font-normal leading-[21px]">
           Active Filters:
@@ -32,7 +32,7 @@ export const ActiveFiltered = () => {
             activeFilters.map(({ key, value }) => (
               <div key={key} className="flex items-center space-x-1">
                 <p className="text-gray-900 font-poppins text-sm font-medium leading-[21px]">
-                  {value}
+                  {value.toUpperCase()}
                 </p>
                 <XIcon
                   onClick={() => handleDelete(key)}
