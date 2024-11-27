@@ -33,12 +33,12 @@ export const FeedBacks = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="bg-[#F2F2F2]"
+      className="bg-[#F2F2F2] pt-14 mt-14"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Section */}
-      <header className="text-center pt-14 pb-9">
+      <header className="text-center pb-9">
         <motion.p
           className="text-[#00B207] text-[14px] font-medium leading-[14px] tracking-[0.28px] uppercase"
           initial={{ opacity: 0 }}
