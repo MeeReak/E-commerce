@@ -2,14 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { SelectDemo } from "./Select";
-import { MapPinIcon, PhoneCallIcon, SearchIcon } from "lucide-react";
+import { MapPinIcon, PhoneCallIcon, UserRoundIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 // import { BreadcrumbWithCustomSeparator } from "./BreadCrumb";
 import { ShoppingCart } from "./ShoppingCart";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { usePathname } from "next/navigation";
+import { Search } from "./Search";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -23,7 +22,7 @@ export const Navigation = () => {
   const menuItems = [
     { href: "/", label: "Home" },
     { href: "/shop/1", label: "Shop" },
-    { href: "/blog", label: "Blog" },
+    { href: "/blog/1", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
   ];
@@ -77,23 +76,13 @@ export const Navigation = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/svg/logo.svg" alt="logo" width={32} height={32} />
-          <h1 className="text-[#002603] font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
-            Ecobazar
+          <h1 className="text-[#002603] dancing-script font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
+            EcoFresh
           </h1>
         </Link>
 
         {/* Search Bar */}
-        <div className="flex items-center">
-          <Input
-            className="w-[400px] py-[21px] rounded-tr-none rounded-br-none"
-            type="text"
-            placeholder="Search..."
-            leftIcon={<SearchIcon />}
-          />
-          <Button className="py-3 px-6 rounded-tl-none rounded-bl-none">
-            Search
-          </Button>
-        </div>
+        <Search />
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">
@@ -103,7 +92,7 @@ export const Navigation = () => {
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-8"
+            className="size-8 cursor-pointer"
           >
             <path
               strokeLinecap="round"
@@ -111,6 +100,10 @@ export const Navigation = () => {
               d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
             />
           </svg>
+          <UserRoundIcon
+            onClick={() => (window.location.href = "/account")}
+            className=" cursor-pointer size-8 stroke-[1.5px]"
+          />
           <span className="h-7 w-[1.5px] bg-[#CCCCCC]"></span>
           <ShoppingCart />
         </div>

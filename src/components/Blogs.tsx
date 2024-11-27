@@ -41,6 +41,7 @@ export const Blogs = () => {
       <div className="flex justify-between w-full">
         {data.map((item, index) => (
           <motion.div
+            onClick={() => (window.location.href = `/blog/${item.id}`)}
             key={index}
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -54,6 +55,7 @@ export const Blogs = () => {
               title={item.title}
               day={item.day}
               month={item.month}
+              id={item.id}
             />
           </motion.div>
         ))}
