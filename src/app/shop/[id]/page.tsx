@@ -26,6 +26,6 @@ export default async function page({
 
       {/* Pagination */}
       <PaginationDemo pageName="shop" param={id} />
-    </div>
+    </div>  
   );
 }

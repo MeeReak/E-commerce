@@ -8,11 +8,26 @@ export const ActiveFiltered = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Extract non-"all" query values
+  // Extract non-"all" query values and ensure unique filter values
   const activeFilters = useMemo(() => {
-    return Array.from(searchParams.entries())
-      .filter(([, value]) => value !== "all")
+    const filters = Array.from(searchParams.entries())
+      .filter(([, value]) => value !== "all") // Exclude filters with value "all"
       .map(([key, value]) => ({ key, value }));
+
+    // Remove duplicate filter values by using a Set
+    const uniqueFiltersMap: Record<string, string> = {};
+
+    filters.forEach(({ key, value }) => {
+      // If the value hasn't been added already, store it in uniqueFiltersMap
+      if (!uniqueFiltersMap[value]) {
+        uniqueFiltersMap[value] = key;
+      }
+    });
+
+    return Object.entries(uniqueFiltersMap).map(([value, key]) => ({
+      key,
+      value,
+    }));
   }, [searchParams]);
 
   const handleDelete = (filterKey: string) => {

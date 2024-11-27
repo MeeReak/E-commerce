@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { MoveRightIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { heroImage as Images } from "@/utils/mockup";
+import Link from "next/link";
 
 export const Hero = () => {
   const [selected, setSelected] = React.useState(1);
@@ -23,7 +24,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <Link href={`/shop/1`} className="relative">
       <motion.div
         key={selected} // This triggers re-mounting on every change of `selected`
         initial={{ opacity: 0, scale: 0.95 }}
@@ -102,6 +103,6 @@ export const Hero = () => {
           ></motion.div>
         ))}
       </div>
-    </div>
+    </Link>
   );
 };
