@@ -70,7 +70,7 @@ export const ProductFilter = () => {
           {filteredItems.map((item, index) => (
             <ProductCardY
               key={index}
-              imgURl={item.src}
+              imgUrl={item.src}
               price={item.price}
               rating={item.star}
               title={item.name}

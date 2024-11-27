@@ -11,7 +11,7 @@ type ProductCardYProps = {
   title: string;
   price: number;
   rating: number;
-  imgURl: string;
+  imgUrl: string;
 };
 
 export const ProductCardY: React.FC<ProductCardYProps> = ({
@@ -19,7 +19,7 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
   title,
   price,
   rating,
-  imgURl,
+  imgUrl,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -69,7 +69,7 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
           className={`size-[248px] object-contain transition-transform duration-500 ${
             isVisible ? "scale-95" : "scale-90"
           }`}
-          src={imgURl}
+          src={imgUrl}
           alt=""
           width={248}
           height={200}

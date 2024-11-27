@@ -15,7 +15,7 @@ export const Blogs = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="pt-14"
+      className="py-14"
     >
       {/* Category Header */}
       <header className="text-center">

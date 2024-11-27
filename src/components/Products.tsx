@@ -28,7 +28,7 @@ export const Products = () => {
           <div key={index}>
             <ProductCardY
               id={x.id}
-              imgURl={x.src}
+              imgUrl={x.src}
               price={x.price}
               rating={x.star}
               title={x.name}

@@ -56,7 +56,7 @@ export const TeamCard = ({ name, image, role }: TeamCardProps) => {
         height={280}
       />
 
-      <div className="p-5 pt-4 border border-t-0 rounded-md">
+      <div className="p-5 pt-4 border border-t-0 rounded-b-md">
         <p className="text-[18px] font-medium text-gray-900">{name}</p>
         <p className="text-[14px] font-normal text-gray-500">{role}</p>
       </div>
