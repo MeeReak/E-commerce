@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as idv4 } from "id";
 
 export const productDescription = {
   describe:
@@ -27,7 +27,7 @@ export const reviews = [
   {
     id: 1,
     name: "Kristin Watson",
-    rating: 5,
+    rating: 4,
     date: "2 min ago",
     comment: "Duis at ullamcorper nulla, eu dictum eros.",
   },
@@ -35,6 +35,37 @@ export const reviews = [
     id: 2,
     name: "Jane Cooper",
     rating: 4,
+    date: "30 Apr, 2021",
+    comment:
+      'Keep the soil evenly moist for the healthiest growth. If the sun gets too hot, Chinese cabbage tends to "bolt" or go to seed; in long periods of heat, some kind of shade may be helpful. Watch out for snails, as they will harm the plants.',
+  },
+  {
+    id: 3,
+    name: "Jacob Jones",
+    rating: 4,
+    date: "2 min ago",
+    comment:
+      "Vivamus eget euismod magna. Nam sed lacinia nibh, et lacinia lacus.",
+  },
+  {
+    id: 4,
+    name: "Ralph Edwards",
+    rating: 5,
+    date: "2 min ago",
+    comment:
+      "200+ Canton Pak Choi Bok Choy Chinese Cabbage Seeds Heirloom Non-GMO Productive Brassica rapa VAR. chinensis, a.k.a. Canton's Choice, Bok Choi, from USA",
+  },
+  {
+    id: 1,
+    name: "Kristin Watson",
+    rating: 4,
+    date: "2 min ago",
+    comment: "Duis at ullamcorper nulla, eu dictum eros.",
+  },
+  {
+    id: 2,
+    name: "Jane Cooper",
+    rating: 3,
     date: "30 Apr, 2021",
     comment:
       'Keep the soil evenly moist for the healthiest growth. If the sun gets too hot, Chinese cabbage tends to "bolt" or go to seed; in long periods of heat, some kind of shade may be helpful. Watch out for snails, as they will harm the plants.',
@@ -50,7 +81,7 @@ export const reviews = [
   {
     id: 4,
     name: "Ralph Edwards",
-    rating: 5,
+    rating: 4,
     date: "2 min ago",
     comment:
       "200+ Canton Pak Choi Bok Choy Chinese Cabbage Seeds Heirloom Non-GMO Productive Brassica rapa VAR. chinensis, a.k.a. Canton's Choice, Bok Choi, from USA",
@@ -250,7 +281,7 @@ export const category = [
 
 export const Product = [
   {
-    id: uuidv4(),
+    id: "f2d4f4c8-2a78-4b0c-a47b-f8b0d517e97e",
     name: "Apple",
     src: "/images/Apple.png",
     type: "hot deal",
@@ -260,7 +291,7 @@ export const Product = [
     dateAdded: "2023-10-01T10:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "18b75c12-028b-4e66-a4f1-3f1c6fbdc7b3",
     name: "Fresh Cauliflower",
     src: "/images/cauli-flower.png",
     type: "top rate",
@@ -270,7 +301,7 @@ export const Product = [
     dateAdded: "2023-09-15T09:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "1d93c8bb-b6a0-4b29-b604-6a738e3e2fc5",
     name: "Chanise Cabbage",
     src: "/images/chanise-cabbage.png",
     type: "discount",
@@ -280,7 +311,7 @@ export const Product = [
     dateAdded: "2023-08-20T08:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "c1c580d7-e9f9-40d6-b527-b54a3a03db90",
     name: "Corn",
     src: "/images/corn.png",
     type: "discount",
@@ -290,7 +321,7 @@ export const Product = [
     dateAdded: "2023-07-30T07:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "f1184e87-d5ae-4d36-b8e0-8e2bcfa8e020",
     name: "Eggplant",
     src: "/images/eggplant.png",
     type: "best seller",
@@ -300,7 +331,7 @@ export const Product = [
     dateAdded: "2023-06-25T06:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "08c77dbb-9a4a-4f75-b651-550c4d2184b5",
     name: "Green Chili",
     src: "/images/green-chili.png",
     type: "discount",
@@ -310,7 +341,7 @@ export const Product = [
     dateAdded: "2023-05-10T05:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "b6ed12a7-2a8f-4961-8232-31250f1224b4",
     name: "Green Lettuce",
     src: "/images/green-lettuce.png",
     type: "discount",
@@ -320,7 +351,7 @@ export const Product = [
     dateAdded: "2023-04-05T04:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "ccd0e345-cb6b-4639-bd60-6a3f93f7c118",
     name: "Okras",
     src: "/images/okras.png",
     type: "best seller",
@@ -330,7 +361,7 @@ export const Product = [
     dateAdded: "2023-03-15T03:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "e0d9f1e3-3cfa-4577-a1fb-7b9887a97565",
     name: "Indian Malta",
     src: "/images/Orange.png",
     type: "hot deal",
@@ -340,7 +371,7 @@ export const Product = [
     dateAdded: "2023-02-20T02:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "045ad7a4-6b69-4fcf-8e2d-0b0d599a77d5",
     name: "Red Capsicum",
     src: "/images/red-capsicum.png",
     type: "top rate",
@@ -350,7 +381,7 @@ export const Product = [
     dateAdded: "2023-01-30T01:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "ff2994b1-e6e1-419d-ae45-f12a4b6025d1",
     name: "Red Tomatos",
     src: "/images/red-tomatos.png",
     type: "best seller",
@@ -360,7 +391,7 @@ export const Product = [
     dateAdded: "2023-01-10T00:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "5dbed365-23db-4a1e-97b6-e3728235ab6b",
     name: "Red Cherry",
     src: "/images/cherry.png",
     type: "hot deal",
@@ -370,7 +401,7 @@ export const Product = [
     dateAdded: "2022-12-25T23:00:00Z",
   },
   {
-    id: uuidv4(),
+    id: "0d7f3bde-53c9-4889-a50d-9ed41bfb8d07",
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",
