@@ -22,7 +22,7 @@ export const Navigation = () => {
   const menuItems = [
     { href: "/", label: "Home" },
     { href: "/shop/1", label: "Shop" },
-    { href: "/blog/1", label: "Blog" },
+    { href: "/blog-list", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
   ];
@@ -82,7 +82,11 @@ export const Navigation = () => {
         </Link>
 
         {/* Search Bar */}
-        <Search />
+        {pathname === "blog-list" ? (
+          <Search />
+        ) : (
+          <div className=" w-[424px]"></div>
+        )}
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">
