@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { number, z } from "zod";
+import { z } from "zod";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
@@ -58,15 +58,15 @@ export function BillingInformation() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("Hello");
-  }
+  // function onSubmit(data: z.infer<typeof FormSchema>) {
+  //   console.log("Hello");
+  // }
 
   return (
     <>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          // onSubmit={form.handleSubmit(onSubmit)}
           className="w-2/3 space-y-7"
         >
           <div className="w-full flex gap-5">
@@ -238,7 +238,10 @@ export function BillingInformation() {
             </header>
             <div className="space-y-2">
               <p className="text-[14px] font-normal">Order Notes (Optional)</p>
-              <Textarea className="h-[100px]" placeholder="Notes about your order, e.g. special notes for delivery" />
+              <Textarea
+                className="h-[100px]"
+                placeholder="Notes about your order, e.g. special notes for delivery"
+              />
             </div>
           </div>
         </form>
