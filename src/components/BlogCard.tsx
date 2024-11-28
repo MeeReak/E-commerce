@@ -23,6 +23,7 @@ const CardIconText: React.FC<CardIconTextProps> = ({ Icon, text }) => (
 );
 
 interface BlogCardProps {
+  id: string;
   src: string;
   tag: string;
   user: string;
@@ -44,7 +45,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
   // blog
 }) => {
   return (
-    <div className="group shadow-md rounded-sm relative">
+    <div className="cursor-pointer group shadow-md rounded-sm relative">
       <Image
         className="h-[323px] w-[424px] object-cover rounded-tl-sm rounded-tr-sm"
         src={src}

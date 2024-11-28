@@ -9,17 +9,20 @@ export const FeedBacks = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { amount: 0.2 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Update the index every 5 seconds
+  // Update the index every 5 seconds unless hovered
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex + 3 >= data.length ? 0 : prevIndex + 3
-      );
-    }, 5000);
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) =>
+          prevIndex + 3 >= data.length ? 0 : prevIndex + 3
+        );
+      }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }
+  }, [isHovered, currentIndex]);
 
   // Get the current set of items to display
   const currentItems = data.slice(currentIndex, currentIndex + 3);
@@ -30,10 +33,12 @@ export const FeedBacks = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="bg-[#F2F2F2]"
+      className="bg-[#F2F2F2] pt-14 mt-14"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Header Section */}
-      <header className="text-center pt-14 pb-9">
+      <header className="text-center pb-9">
         <motion.p
           className="text-[#00B207] text-[14px] font-medium leading-[14px] tracking-[0.28px] uppercase"
           initial={{ opacity: 0 }}
@@ -43,7 +48,7 @@ export const FeedBacks = () => {
           Client Testimonial
         </motion.p>
         <motion.p
-          className="text-[#1A1A1A] text-[36px] font-semibold leading-[43.2px]"
+          className="text-[#1A1A1A] pt-2 text-[36px] font-semibold leading-[43.2px]"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}

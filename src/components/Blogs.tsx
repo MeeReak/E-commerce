@@ -15,7 +15,7 @@ export const Blogs = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className="pt-14"
+      className="py-14"
     >
       {/* Category Header */}
       <header className="text-center">
@@ -25,7 +25,7 @@ export const Blogs = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Category
+          Blog
         </motion.p>
         <motion.h2
           className="text-[#1A1A1A] pt-2 pb-9 text-[36px] font-semibold leading-[43.2px]"
@@ -33,7 +33,7 @@ export const Blogs = () => {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          Shop by Top Categories
+          Latest Blog
         </motion.h2>
       </header>
 
@@ -41,6 +41,7 @@ export const Blogs = () => {
       <div className="flex justify-between w-full">
         {data.map((item, index) => (
           <motion.div
+            onClick={() => (window.location.href = `/blog/${item.id}`)}
             key={index}
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -54,6 +55,7 @@ export const Blogs = () => {
               title={item.title}
               day={item.day}
               month={item.month}
+              id={item.id}
             />
           </motion.div>
         ))}

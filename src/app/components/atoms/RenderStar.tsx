@@ -14,7 +14,7 @@ export const renderStars = ({ rating }: renderStarsProps) => {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="none"
-        className="size-4 outline-none"
+        className="size-5 outline-none"
       >
         <path
           strokeLinecap="round"

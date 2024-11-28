@@ -11,12 +11,14 @@ export const Banners = () => {
           subTitle="best deal"
           className="w-[424px] h-[536px]"
           title="Sale of the Month"
+          cate="vegetable"
         >
           <CountdownTimer />
         </Banner>
       </div>
       <div className="flex ">
         <Banner
+          cate="meat"
           backgroundImage="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/banner-meat.png"
           subTitle="85% Fat Free"
           title="Low-Fat Meat"
@@ -34,6 +36,7 @@ export const Banners = () => {
       </div>
       <div className="flex ">
         <Banner
+          cate="fruit"
           className="w-[424px] h-[536px]"
           subTitleStyle="text-[#1A1A1A]"
           titleStyle="text-[#1A1A1A]"

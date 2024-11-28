@@ -1,3 +1,5 @@
+// import { v4 as idv4 } from "id";
+
 export const productDescription = {
   describe:
     "Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas auctor tortor lacus, nec laoreet nisi porttitor vel. Etiam tincidunt metus vel dui interdum sollicitudin. Mauris sem ante, vestibulum nec orci vitae, aliquam mollis lacus. Sed et condimentum arcu, id molestie tellus. Nulla facilisi. Nam scelerisque vitae justo a convallis. Morbi urna ipsum, placerat quis commodo quis, egestas elementum leo. Donec convallis mollis enim. Aliquam id mi quam. Phasellus nec fringilla elit. Nulla mauris tellus, feugiat quis pharetra sed, gravida ac dui. Sed iaculis, metus faucibus elementum tincidunt, turpis mi viverra velit, pellentesque tristique neque mi eget nulla. Proin luctus elementum neque et pharetra.",
@@ -25,7 +27,7 @@ export const reviews = [
   {
     id: 1,
     name: "Kristin Watson",
-    rating: 5,
+    rating: 4,
     date: "2 min ago",
     comment: "Duis at ullamcorper nulla, eu dictum eros.",
   },
@@ -33,6 +35,37 @@ export const reviews = [
     id: 2,
     name: "Jane Cooper",
     rating: 4,
+    date: "30 Apr, 2021",
+    comment:
+      'Keep the soil evenly moist for the healthiest growth. If the sun gets too hot, Chinese cabbage tends to "bolt" or go to seed; in long periods of heat, some kind of shade may be helpful. Watch out for snails, as they will harm the plants.',
+  },
+  {
+    id: 3,
+    name: "Jacob Jones",
+    rating: 4,
+    date: "2 min ago",
+    comment:
+      "Vivamus eget euismod magna. Nam sed lacinia nibh, et lacinia lacus.",
+  },
+  {
+    id: 4,
+    name: "Ralph Edwards",
+    rating: 5,
+    date: "2 min ago",
+    comment:
+      "200+ Canton Pak Choi Bok Choy Chinese Cabbage Seeds Heirloom Non-GMO Productive Brassica rapa VAR. chinensis, a.k.a. Canton's Choice, Bok Choi, from USA",
+  },
+  {
+    id: 1,
+    name: "Kristin Watson",
+    rating: 4,
+    date: "2 min ago",
+    comment: "Duis at ullamcorper nulla, eu dictum eros.",
+  },
+  {
+    id: 2,
+    name: "Jane Cooper",
+    rating: 3,
     date: "30 Apr, 2021",
     comment:
       'Keep the soil evenly moist for the healthiest growth. If the sun gets too hot, Chinese cabbage tends to "bolt" or go to seed; in long periods of heat, some kind of shade may be helpful. Watch out for snails, as they will harm the plants.',
@@ -48,7 +81,7 @@ export const reviews = [
   {
     id: 4,
     name: "Ralph Edwards",
-    rating: 5,
+    rating: 4,
     date: "2 min ago",
     comment:
       "200+ Canton Pak Choi Bok Choy Chinese Cabbage Seeds Heirloom Non-GMO Productive Brassica rapa VAR. chinensis, a.k.a. Canton's Choice, Bok Choi, from USA",
@@ -182,150 +215,200 @@ export const category = [
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-vegetable.png",
     title: "Fresh Vegetables",
+    category: "vegetable",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-fruits.png",
     title: "Fresh Fruit",
+    category: "fruits",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-bakery.png",
     title: "Bread & Bakery",
+    category: "bakery",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-beverages.png",
     title: "Beverages",
+    category: "berages",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-meat.png",
     title: "Meat & Fish",
+    category: "meat",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-milk.png",
     title: "Diabetic Food",
+    category: "diabetic food",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-oil.png",
     title: "Oil",
+    category: "oil",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-snacks.png",
     title: "Snacks",
+    category: "snacks",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-spices.png",
     title: "Cooking",
+    category: "ingredients",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-canfood.png",
     title: "Canned Food ",
+    category: "canned food",
   },
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-seafood.png",
     title: "Sea Food",
+    category: "sea food",
   },
 ];
 
 export const Product = [
   {
+    id: "f2d4f4c8-2a78-4b0c-a47b-f8b0d517e97e",
     name: "Apple",
     src: "/images/Apple.png",
     type: "hot deal",
     price: 14.5,
     star: 5,
+    category: "fruits",
+    dateAdded: "2023-10-01T10:00:00Z",
   },
   {
+    id: "18b75c12-028b-4e66-a4f1-3f1c6fbdc7b3",
     name: "Fresh Cauliflower",
     src: "/images/cauli-flower.png",
     type: "top rate",
     price: 30,
     star: 4,
+    category: "vegetable",
+    dateAdded: "2023-09-15T09:00:00Z",
   },
   {
+    id: "1d93c8bb-b6a0-4b29-b604-6a738e3e2fc5",
     name: "Chanise Cabbage",
     src: "/images/chanise-cabbage.png",
     type: "discount",
     price: 14.5,
     star: 3,
+    category: "vegetable",
+    dateAdded: "2023-08-20T08:00:00Z",
   },
   {
+    id: "c1c580d7-e9f9-40d6-b527-b54a3a03db90",
     name: "Corn",
     src: "/images/corn.png",
     type: "discount",
-    price: 14.5,
+    price: 10.5,
     star: 5,
+    category: "fruits",
+    dateAdded: "2023-07-30T07:00:00Z",
   },
   {
+    id: "f1184e87-d5ae-4d36-b8e0-8e2bcfa8e020",
     name: "Eggplant",
     src: "/images/eggplant.png",
     type: "best seller",
-    price: 14.5,
+    price: 18.5,
     star: 5,
+    category: "vegetable",
+    dateAdded: "2023-06-25T06:00:00Z",
   },
   {
+    id: "08c77dbb-9a4a-4f75-b651-550c4d2184b5",
     name: "Green Chili",
     src: "/images/green-chili.png",
     type: "discount",
-    price: 14.5,
+    price: 17,
     star: 4,
+    category: "vegetable",
+    dateAdded: "2023-05-10T05:00:00Z",
   },
   {
+    id: "b6ed12a7-2a8f-4961-8232-31250f1224b4",
     name: "Green Lettuce",
     src: "/images/green-lettuce.png",
     type: "discount",
-    price: 14.5,
+    price: 37,
     star: 3,
+    category: "vegetable",
+    dateAdded: "2023-04-05T04:00:00Z",
   },
   {
+    id: "ccd0e345-cb6b-4639-bd60-6a3f93f7c118",
     name: "Okras",
     src: "/images/okras.png",
     type: "best seller",
-    price: 14.5,
+    price: 85,
     star: 5,
+    category: "vegetable",
+    dateAdded: "2023-03-15T03:00:00Z",
   },
   {
+    id: "e0d9f1e3-3cfa-4577-a1fb-7b9887a97565",
     name: "Indian Malta",
     src: "/images/Orange.png",
     type: "hot deal",
     price: 14.5,
     star: 3,
+    category: "fruit",
+    dateAdded: "2023-02-20T02:00:00Z",
   },
   {
+    id: "045ad7a4-6b69-4fcf-8e2d-0b0d599a77d5",
     name: "Red Capsicum",
     src: "/images/red-capsicum.png",
     type: "top rate",
-    price: 14.5,
+    price: 25,
     star: 4,
+    category: "vegetable",
+    dateAdded: "2023-01-30T01:00:00Z",
   },
   {
-    name: "Red Tomatos",
-    src: "/images/red-tomatos.png",
+    id: "ff2994b1-e6e1-419d-ae45-f12a4b6025d1",
+    name: "Red Tomatoes",
+    src: "/images/red-Tomatos.png",
     type: "best seller",
-    price: 14.5,
+    price: 1.5,
     star: 4,
+    category: "vegetable",
+    dateAdded: "2023-01-10T00:00:00Z",
   },
   {
+    id: "5dbed365-23db-4a1e-97b6-e3728235ab6b",
     name: "Red Cherry",
     src: "/images/cherry.png",
     type: "hot deal",
-    price: 14.5,
+    price: 4.5,
     star: 5,
+    category: "fruit",
+    dateAdded: "2022-12-25T23:00:00Z",
   },
   {
+    id: "0d7f3bde-53c9-4889-a50d-9ed41bfb8d07",
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",
-    price: 14.5,
+    price: 95,
     star: 3,
+    category: "vegetable",
+    dateAdded: "2022-11-15T22:00:00Z",
   },
 ];
 
@@ -399,6 +482,7 @@ export const feedbackInfo = [
 
 export const blogInfo = [
   {
+    id: "b13e230a-5b9a-433e-9357-289c90a8462c",
     month: "Nov",
     day: 19,
     src: "https://www.webshapers.cc/sites/default/files/parallax/mae-mu-hkMGgTVBTSA-unsplash-square_1.webp",
@@ -409,6 +493,7 @@ export const blogInfo = [
       "Enjoy the refreshing power of oranges! Packed with vitamin C and flavor, they’re the perfect addition to your day. Dive into the citrusy goodness now and start feeling refreshed.",
   },
   {
+    id: "d3f39c98-e709-4e23-8ed3-f7c4d4675c28",
     month: "Jan",
     day: 23,
     src: "https://raivatkitchen.com/assets/uploads/itemimages/aamras.jpg",
@@ -419,6 +504,7 @@ export const blogInfo = [
       "Sip your way to happiness with a delicious mango smoothie. Perfectly blended with tropical sweetness, it’s the drink you won’t want to miss this season.",
   },
   {
+    id: "9a2db524-1fa3-4b10-a123-42e35c9037e0",
     month: "Jun",
     day: 12,
     src: "https://img.freepik.com/premium-photo/group-fruits-table_922985-10493.jpg",
@@ -435,7 +521,7 @@ export const WishListProduct = [
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",
-    price: 14.5,
+    price: 19,
     qty: 10,
   },
   {
@@ -451,7 +537,7 @@ export const WishListProduct = [
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",
-    price: 14.5,
+    price: 10.5,
     qty: 1,
   },
   {
@@ -459,7 +545,35 @@ export const WishListProduct = [
     name: "Fresh Broccoli",
     src: "/images/fresh-broccoli.png",
     type: "top rate",
-    price: 14.5,
+    price: 4.5,
     qty: 0,
+  },
+];
+
+export const optionsConfig = [
+  {
+    query: "category",
+    placeholder: "Select Category",
+    items: ["All", "Vegetable", "Fruit", "Meat", "Fish", "Egg", "Milk"],
+  },
+  {
+    query: "price",
+    placeholder: "Select Price",
+    items: ["All", "Low to High", "High to Low"],
+  },
+  {
+    query: "rating",
+    placeholder: "Select Rating",
+    items: ["All", "1", "2", "3", "4", "5"],
+  },
+  {
+    query: "release",
+    placeholder: "Select Release",
+    items: ["All", "New", "Old"],
+  },
+  {
+    query: "show",
+    placeholder: "Select Show",
+    items: ["All", "10", "20", "30", "40", "50"],
   },
 ];

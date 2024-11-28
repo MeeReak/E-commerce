@@ -36,6 +36,11 @@ export const TeamCard = ({ name, image, role }: TeamCardProps) => {
         <div className="absolute h-[280px] inset-0 bg-black bg-opacity-40 flex justify-center items-center space-x-2">
           {socialIcons.map((social, index) => (
             <Button
+              onClick={() =>
+                window.location.assign(
+                  "https://www.facebook.com/profile.php?id=100024190094545"
+                )
+              }
               key={index}
               size="icon"
               variant="custom"
@@ -56,7 +61,7 @@ export const TeamCard = ({ name, image, role }: TeamCardProps) => {
         height={280}
       />
 
-      <div className="p-5 pt-4 border border-t-0 rounded-md">
+      <div className="p-5 pt-4 border border-t-0 rounded-b-md">
         <p className="text-[18px] font-medium text-gray-900">{name}</p>
         <p className="text-[14px] font-normal text-gray-500">{role}</p>
       </div>
