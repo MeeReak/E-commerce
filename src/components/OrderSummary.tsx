@@ -62,7 +62,7 @@ const OrderSummary = ({
 
   return (
     <>
-      <Card className="w-[424px]">
+      <Card className="w-[424px] h-[580px]">
         <CardHeader>
           <CardTitle className="font-semibold text-[20px] text-[#1A1A1A]">
             Order Summary
