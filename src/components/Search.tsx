@@ -101,7 +101,7 @@ export const Search = () => {
             setQuery(e.target.value)
           }
           onKeyDown={handleKeyDown} // Listen for the Enter key press
-          leftIcon={<SearchIcon />}
+          leftIcon={<SearchIcon className=" text-gray-900 stroke-[1.5px]" />}
         />
         <Button
           onClick={handleSearchClick}

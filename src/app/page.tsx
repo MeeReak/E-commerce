@@ -24,12 +24,12 @@ export default function Home() {
         <Products />
         {/* Video */}
         <Video />
-        {/* Team Card */}
-        <Teams />
-        {/* Feedback from client */}
-        <FeedBacks />
         {/* Blog New */}
         <Blogs />
+        {/* Feedback from client */}
+        <FeedBacks />
+        {/* Team Card */}
+        <Teams />
       </div>
     </>
   );

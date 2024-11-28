@@ -1,8 +1,10 @@
-import Footer from "@/app/components/templates/Footer";
+import { Sidebar } from "@/components/Sidebar";
 import React from "react";
 
 export default function page() {
   return (
-      <Footer />
+    <div className=" w-[1320px] mx-auto space-y-10 mt-5">
+      <Sidebar />
+    </div>
   );
 }

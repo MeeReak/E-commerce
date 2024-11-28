@@ -17,12 +17,12 @@ export const Navigation = () => {
   useEffect(() => {
     setHydratedPathname(pathname);
   }, [pathname]);
-  const languages = ["En", "Km"];
+  const languages = ["EN", "KH"];
   const currencies = ["USD", "KHR"];
   const menuItems = [
     { href: "/", label: "Home" },
     { href: "/shop/1", label: "Shop" },
-    { href: "/blog/1", label: "Blog" },
+    { href: "/blog-list", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
   ];
@@ -82,11 +82,16 @@ export const Navigation = () => {
         </Link>
 
         {/* Search Bar */}
-        <Search />
+        {pathname === "blog-list" ? (
+          <Search />
+        ) : (
+          <div className=" w-[424px]"></div>
+        )}
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">
           <svg
+            onClick={() => (window.location.href = "/wishlist")}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
