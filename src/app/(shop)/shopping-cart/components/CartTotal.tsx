@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Button } from "./ui/button";
+import { Button } from "../../../../components/ui/button";
 
 type CartTotalProps = {
   ship: string; // Assuming ship is a string like "$10.00"
@@ -19,10 +19,12 @@ const CartTotal = ({ price, ship }: CartTotalProps) => {
   const total = price + shippingCost;
 
   return (
-    <>
-      <Card className="w-[424px]">
+    <div className="w-[50%]">
+      <Card>
         <CardHeader>
-          <CardTitle className="font-semibold text-[20px]">Cart Total</CardTitle>
+          <CardTitle className="font-semibold text-[20px]">
+            Cart Total
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
           <div className="flex justify-between items-center pb-4 border-b-2">
@@ -44,7 +46,7 @@ const CartTotal = ({ price, ship }: CartTotalProps) => {
           </Button>
         </CardFooter>
       </Card>
-    </>
+    </div>
   );
 };
 
