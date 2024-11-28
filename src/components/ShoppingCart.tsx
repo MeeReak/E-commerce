@@ -73,6 +73,7 @@ export const ShoppingCart: React.FC = () => {
         <CartFooter
           itemCount={shoppingCart.length}
           totalPrice={calculateTotalPrice()}
+          setIsOpen={setIsOpen}
         />
       </motion.div>
     </div>
@@ -190,13 +191,17 @@ const EmptyCartMessage: React.FC = () => (
     <p>Empty</p>
   </div>
 );
-
 interface CartFooterProps {
   itemCount: number;
   totalPrice: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CartFooter: React.FC<CartFooterProps> = ({ itemCount, totalPrice }) => (
+const CartFooter: React.FC<CartFooterProps> = ({
+  itemCount,
+  totalPrice,
+  setIsOpen,
+}) => (
   <div className="pb-10 px-4">
     <div className="flex justify-between pb-5">
       <p className="text-[#1A1A1A] font-poppins font-medium text-[16px] leading-[1.2]">
@@ -208,7 +213,14 @@ const CartFooter: React.FC<CartFooterProps> = ({ itemCount, totalPrice }) => (
     </div>
     <div className="flex flex-col gap-y-3">
       <Button className="border-none text-white rounded-full py-4 font-semibold text-[16px] leading-[1.2] bg-green-600">
-        <Link href="/checkout">Checkout</Link>
+        <Link
+          onClick={() => {
+            setIsOpen(false);
+          }}
+          href="/shopping-cart"
+        >
+          Checkout
+        </Link>
       </Button>
       <Button
         className="border-none rounded-full py-4 font-semibold text-[16px] leading-[1.2]"
