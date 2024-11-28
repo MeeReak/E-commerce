@@ -5,55 +5,31 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <>
-      <div className="flex justify-around">
-      <div className="container w-[1320px]">
-      {/* subcribe */}
-      <div className="w-full bg-black text-white p-[60px]">
-        <div className="flex justify-between items-center">
-          <div className="flex space-x-1">
-            <div className="flex justify-center items-center">
-              <Button
-                leftIcon={
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-10"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z"
-                    />
-                  </svg>
-                }
-                size={"icon"}
-                variant={"custom"}
-                className="shadow-none text-[#00B207]"
-              />
-            </div>
-            <div>
-              <header className="font-medium text-2xl">
-                Subcribe our NewSletter
-              </header>
-              <p className="font-normal text-[14px] text-[#666666]">
-                Pellentesque eu nibh eget mauris congue mattis matti.
-              </p>
-            </div>
+      <div>
+        {/* subcribe */}
+        <div className="flex justify-around items-center bg-[#F7F7F7] text-black py-8">
+          <div className="flex items-center">
+            <p className="text-2xl font-semibold">Subcribe our NewSletter</p>
+            {/* <p className="font-normal text-[14px] w-1/2">
+              Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
+              Phasellus imperdiet elit eu magna.
+            </p> */}
           </div>
-          <div className="flex">
+          <div className="flex items-center">
             <Input
               type="text"
               placeholder="Your email address"
-              className="rounded-full outline-none w-[460px] border-none bg-[#333333] !px-6 !py-4"
+              className="rounded-full w-[220px] px-6 py-6"
             />
-            <Button size={"small"} className="rounded-full px-10 -ml-32">
+            <Button
+              variant={"custom"}
+              className="rounded-full px-10 py-4 bg-[#2C742F] -ml-10 z-10"
+            >
               Subcribe
             </Button>
           </div>
-          <div className="flex gap-2">
+
+          <div className="flex items-center gap-x-4">
             <Button
               leftIcon={
                 <svg
@@ -132,28 +108,19 @@ const Footer = () => {
             />
           </div>
         </div>
-      </div>
 
-      {/* footer */}
-      <div className="w-full bg-[#F2F2F2] p-[60px]">
-        <div className="flex space-x-20">
-          <div className="w-[336px] space-y-4">
-            <header className="flex space-x-2">
-              <span className="flex justify-center items-center">
-                <Image
-                  src="/svg/logo.png"
-                  alt=""
-                  width={32}
-                  height={32}
-                />
-              </span>
+        {/* footer */}
+        <div className="flex justify-around bg-[#1A1A1A] text-white py-10">
+          <div className="space-y-5">
+            <header className="flex gap-x-2 items-center">
+              <Image src="/svg/logo.svg" alt="" width={32} height={32} />
               <h1 className="font-bold text-[32px]">Ecobar</h1>
             </header>
-            <p className="text-[#808080] text-sm leading-5 w-[90%]">
+            <p className="text-sm leading-5 ">
               Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis
               dui, eget bibendum magna congue nec.
             </p>
-            <div className="flex space-x-5  font-semibold text-[#1A1A1A] text-sm  ">
+            <div className="flex space-x-5  font-semibold text-sm  ">
               <p className="border-b-2 border-green-600 cursor-pointer">
                 (219) 555-0114
               </p>
@@ -163,66 +130,76 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div>
-            <h1 className="mb-4 font-bold text-base">My Account</h1>
-            <span className="space-y-3 text-sm text-[#666666]">
-              <p>My Account</p>
-              <p>Order History</p>
-              <p>Shoping Cart</p>
-              <p>Wishlist</p>
-            </span>
-          </div>
+          <div className="flex items-center gap-x-16">
+            <div>
+              <h1 className="mb-4 font-bold text-base">My Account</h1>
+              <span className="space-y-3 text-sm">
+                <p>My Account</p>
+                <p>Order History</p>
+                <p>Shoping Cart</p>
+                <p>Wishlist</p>
+              </span>
+            </div>
 
-          {/* help */}
-          <div>
-            <h1 className="mb-4 font-bold text-base">Help</h1>
-            <span className="space-y-3 text-sm text-[#666666]">
-              <p>Contact</p>
-              <p>Faqs</p>
-              <p>Terms & Condition</p>
-              <p>Privacy Policy</p>
-            </span>
-          </div>
-          {/* proxy */}
-          <div>
-            <h1 className="mb-4 font-bold text-base">Proxy</h1>
-            <span className="space-y-3 text-sm text-[#666666]">
-              <p>About</p>
-              <p>Shop</p>
-              <p>Product</p>
-              <p>Track Order</p>
-            </span>
-          </div>
-          <div>
-            <h3 className="mb-4 text-base font-bold">Download Mobile App</h3>
-            <div className="flex gap-3">
-              {[
-                { src: "/svg/AppleLogo.svg", name: "App Store" },
-                { src: "/svg/Play-store.svg", name: "Play Store" },
-              ].map((id) => (
-                <div
-                  key={id.name}
-                  className="flex p-[10px] space-x-3 bg-white w-[154px]"
-                >
-                  <div className="flex justify-center items-center">
-                    <Image src={id.src} alt="" width={28} height={28}/>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-[#4D4D4D]">
-                      Download on the
-                    </p>
-                    <p className="text-base font-semibold">{id.name}</p>
-                  </div>
-                </div>
-              ))}
+            {/* help */}
+            <div>
+              <h1 className="mb-4 font-bold text-base">Help</h1>
+              <span className="space-y-3 text-sm ">
+                <p>Contact</p>
+                <p>Faqs</p>
+                <p>Terms & Condition</p>
+                <p>Privacy Policy</p>
+              </span>
+            </div>
+            {/* proxy */}
+            <div>
+              <h1 className="mb-4 font-bold text-base">Proxy</h1>
+              <span className="space-y-3 text-sm ">
+                <p>About</p>
+                <p>Shop</p>
+                <p>Product</p>
+                <p>Track Order</p>
+              </span>
+            </div>
+            {/* Categories */}
+            <div>
+              <h1 className="mb-4 font-bold text-base">Categories</h1>
+              <span className="space-y-3 text-sm ">
+                <p>Fruit & Vegetables</p>
+                <p>Meat & Fish</p>
+                <p>Bread & Bakery</p>
+                <p>Beauty & Health</p>
+              </span>
             </div>
           </div>
+
+          {/* <div>
+              <h3 className="mb-4 text-base font-bold">Download Mobile App</h3>
+              <div className="flex gap-3">
+                {[
+                  { src: "/svg/AppleLogo.svg", name: "App Store" },
+                  { src: "/svg/Play-store.svg", name: "Play Store" },
+                ].map((id) => (
+                  <div
+                    key={id.name}
+                    className="flex p-[10px] space-x-3 bg-white w-[154px]"
+                  >
+                    <div className="flex justify-center items-center">
+                      <Image src={id.src} alt="" width={28} height={28} />
+                    </div>
+                    <div>
+                      <p className="text-[11px] text-[#4D4D4D]">
+                        Download on the
+                      </p>
+                      <p className="text-base font-semibold">{id.name}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div> */}
         </div>
       </div>
-    </div>
-      </div>
     </>
-    
   );
 };
 
