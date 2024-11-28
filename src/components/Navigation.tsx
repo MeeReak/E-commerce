@@ -18,7 +18,7 @@ export const Navigation = () => {
   useEffect(() => {
     setHydratedPathname(pathname);
   }, [pathname]);
-  const languages = ["En", "Km"];
+  const languages = ["EN", "KH"];
   const currencies = ["USD", "KHR"];
   const menuItems = [
     { href: "/", label: "Home" },
