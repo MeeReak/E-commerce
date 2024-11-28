@@ -382,8 +382,8 @@ export const Product = [
   },
   {
     id: "ff2994b1-e6e1-419d-ae45-f12a4b6025d1",
-    name: "Red Tomatos",
-    src: "/images/red-tomatos.png",
+    name: "Red Tomatoes",
+    src: "/images/red-Tomatos.png",
     type: "best seller",
     price: 1.5,
     star: 4,
@@ -482,6 +482,7 @@ export const feedbackInfo = [
 
 export const blogInfo = [
   {
+    id: "b13e230a-5b9a-433e-9357-289c90a8462c",
     month: "Nov",
     day: 19,
     src: "https://www.webshapers.cc/sites/default/files/parallax/mae-mu-hkMGgTVBTSA-unsplash-square_1.webp",
@@ -492,6 +493,7 @@ export const blogInfo = [
       "Enjoy the refreshing power of oranges! Packed with vitamin C and flavor, they’re the perfect addition to your day. Dive into the citrusy goodness now and start feeling refreshed.",
   },
   {
+    id: "d3f39c98-e709-4e23-8ed3-f7c4d4675c28",
     month: "Jan",
     day: 23,
     src: "https://raivatkitchen.com/assets/uploads/itemimages/aamras.jpg",
@@ -502,6 +504,7 @@ export const blogInfo = [
       "Sip your way to happiness with a delicious mango smoothie. Perfectly blended with tropical sweetness, it’s the drink you won’t want to miss this season.",
   },
   {
+    id: "9a2db524-1fa3-4b10-a123-42e35c9037e0",
     month: "Jun",
     day: 12,
     src: "https://img.freepik.com/premium-photo/group-fruits-table_922985-10493.jpg",

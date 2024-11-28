@@ -16,6 +16,7 @@ export const ProductFilter = () => {
     show: searchParams.get("show"),
     category: searchParams.get("category")?.toLowerCase(),
     dateOrder: searchParams.get("release")?.toLowerCase(),
+    search: searchParams.get("q")?.toLowerCase(),
   };
 
   // Filter and sort products
@@ -59,6 +60,15 @@ export const ProductFilter = () => {
       filtered = filtered.slice(0, parseInt(queryParams.show, 10));
     }
 
+    // Filter by search query
+    if (queryParams.search) {
+      filtered = filtered.filter(
+        (item) =>
+          item.name.toLowerCase().includes(queryParams.search || "") ||
+          item.category.toLowerCase().includes(queryParams.search || "")
+      );
+    }
+
     return filtered;
   }, [queryParams]);
 
@@ -74,7 +84,7 @@ export const ProductFilter = () => {
               price={item.price}
               rating={item.star}
               title={item.name}
-              id={""}
+              id={item.id}
             />
           ))}
         </div>

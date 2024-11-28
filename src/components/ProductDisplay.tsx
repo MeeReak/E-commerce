@@ -126,3 +126,113 @@ export const ProductDisplay = () => {
     </motion.div>
   );
 };
+
+// "use client";
+
+// import React, { useState } from "react";
+// import { Button } from "./ui/button";
+// import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+// import Image from "next/image";
+// import { motion } from "framer-motion";
+
+// export const ProductDisplay = ({
+//   images,
+// }: {
+//   images: { id: number; src: string; alt: string }[];
+// }) => {
+//   const [selected, setSelected] = useState(1);
+
+//   // Helper function to handle image selection
+//   const handleImageChange = (direction: "increment" | "decrement") => {
+//     setSelected((prev) => {
+//       if (direction === "increment") {
+//         return prev === images.length ? 1 : prev + 1;
+//       } else {
+//         return prev === 1 ? images.length : prev - 1;
+//       }
+//     });
+//   };
+
+//   // Motion variants for entrance animations
+//   const motionVariants = {
+//     initial: { opacity: 0, y: 50 },
+//     animate: {
+//       opacity: 1,
+//       y: 0,
+//       transition: { duration: 0.5, ease: "easeOut" },
+//     },
+//     exit: { opacity: 0, y: -50, transition: { duration: 0.5 } },
+//   };
+
+//   return (
+//     <motion.div
+//       className="w-[660px] h-[558px] flex gap-x-3 items-center"
+//       initial="initial"
+//       animate="animate"
+//       exit="exit"
+//       variants={motionVariants}
+//     >
+//       <div className="space-y-6 flex items-center flex-col">
+//         <Button
+//           onClick={() => handleImageChange("decrement")}
+//           size="icon"
+//           variant="custom"
+//           className="text-black hover:text-[#999999]"
+//         >
+//           <ChevronUpIcon />
+//         </Button>
+
+//         <motion.div
+//           className="flex gap-y-3 flex-col"
+//           initial="initial"
+//           animate="animate"
+//           exit="exit"
+//           variants={motionVariants}
+//         >
+//           {images.map((image) => (
+//             <motion.div
+//               key={image.id}
+//               whileHover={{ scale: 1.1 }}
+//               onClick={() => setSelected(image.id)}
+//               className={`cursor-pointer w-auto h-auto ${
+//                 image.id === selected
+//                   ? "border-2 border-[#00B207] rounded-sm"
+//                   : ""
+//               }`}
+//             >
+//               <Image src={image.src} alt={image.alt} width={80} height={90} />
+//             </motion.div>
+//           ))}
+//         </motion.div>
+
+//         <Button
+//           onClick={() => handleImageChange("increment")}
+//           size="icon"
+//           variant="custom"
+//           className="text-black hover:text-[#999999]"
+//         >
+//           <ChevronDownIcon />
+//         </Button>
+//       </div>
+
+//       <div>
+//         <motion.div
+//           initial="initial"
+//           animate="animate"
+//           exit="exit"
+//           variants={motionVariants}
+//         >
+//           <Image
+//             src={images.find((image) => image.id === selected)?.src || ""}
+//             alt={
+//               images.find((image) => image.id === selected)?.alt ||
+//               "Selected Image"
+//             }
+//             width={556}
+//             height={556}
+//           />
+//         </motion.div>
+//       </div>
+//     </motion.div>
+//   );
+// };

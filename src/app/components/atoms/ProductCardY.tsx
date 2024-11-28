@@ -126,7 +126,7 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
         )}
         <div className="flex items-center justify-between px-4 py-3">
           <div>
-            <header className="text-[#4D4D4D] text-sm font-normal leading-[1.5]">
+            <header className="text-[#4D4D4D] text-sm font-normal line-clamp-1 leading-[1.5]">
               {title}
             </header>
             <p className="text-[#1A1A1A] font-poppins text-base font-medium leading-[1.5]">

@@ -30,7 +30,7 @@ export const Products = () => {
               id={x.id}
               imgUrl={x.src}
               price={x.price}
-              rating={x.star}
+              rating={x.star!}
               title={x.name}
             />
           </div>
