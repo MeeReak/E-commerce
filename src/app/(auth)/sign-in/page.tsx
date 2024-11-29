@@ -6,7 +6,7 @@ export default function SignInPage() {
     <div className="flex flex-col min-h-screen">
       {/* Sign-In Section */}
       <div className="flex items-center justify-center flex-grow bg-gray-100">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 m">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
           <h2 className="text-3xl font-bold text-center mb-6">Sign In</h2>
           <form>
             {/* Email Input */}
