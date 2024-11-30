@@ -5,34 +5,38 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
+import Faqs from "../../../public/images/faq.webp";
 export default function page() {
   const items = [
     {
       value: "item-1",
-      title: "In elementum est a ante sodales iaculis.",
+      title: "What is Ecofresh, and how does it work?",
       content:
-        "Morbi porttitor ligula in nunc varius sagittis. Proin dui nisi, laoreet ut tempor ac, cursus vitae eros. Cras quis ultricies elit. Proin ac lectus arcu. Maecenas aliquet vel tellus at accumsan. Donec a eros non massa vulputate ornare. Vivamus ornare commodo ante, at commodo felis congue vitae.",
+        "Ecofresh is an online platform that connects customers with fresh, organic vegetables and eco-friendly products. Simply browse our website, add items to your cart, and place an order. We’ll deliver healthy, sustainably-sourced produce right to your doorstep.",
     },
     {
       value: "item-2",
-      title: "Etiam lobortis massa eu nibh tempor elementum.",
-      content: "Don't have ",
+      title: "Why should I choose Ecofresh?",
+      content:
+        "Ecofresh ensures you get the freshest, 100% organic, and pesticide-free vegetables while supporting local farmers who practice sustainable agriculture. It's better for your health and the planet! ",
     },
     {
       value: "item-3",
-      title: "In elementum est a ante sodales iaculis.",
-      content: "Don't have ",
+      title: "How long does delivery take?",
+      content:
+        "Orders are typically delivered within 24-48 hours to ensure freshness. ",
     },
     {
       value: "item-4",
-      title: "Aenean quis quam nec lacus semper dignissim.",
-      content: "Don't have ",
+      title: "What should I do if I receive a damaged product?",
+      content:
+        "If any item is damaged or does not meet your expectations, contact our support team within 24 hours for a replacement or refund. ",
     },
     {
       value: "item-5",
-      title: "Nulla tincidunt eros id tempus accumsan.",
-      content: "Don't have ",
+      title: "How can I contact Ecofresh for help?",
+      content:
+        " You can reach us via email, live chat on our website, or by calling our customer support hotline. ",
     },
   ];
 
@@ -40,10 +44,7 @@ export default function page() {
     <>
       <div className="flex justify-center">
         <section className="w-[648] h-[592] relative mr-[5.5rem] mt-[7rem]">
-          <h1 className="text-4xl font-bold mb-4">
-            Welcome, Let’s Talk <br />
-            About Our Ecobazar
-          </h1>
+          <h1 className="text-4xl font-bold mb-4">FAQs</h1>
           <Accordion type="single" collapsible>
             {items.map(({ value, title, content }) => (
               <AccordionItem
@@ -61,10 +62,10 @@ export default function page() {
             ))}
           </Accordion>
         </section>
-        <section className="justify-center items-center">
+        <section className="justify-center items-center relative mt-16">
           <img
-            className="w-[640px] h-[708px]"
-            src="https://bcbmart.com/wp-content/uploads/2024/02/658e52a2-man_.png"
+            // src="/images/faq.webp"
+            src="https://www.claretschool.edu.ph/images/FAQs.png"
             alt="image-here"
           />
         </section>
