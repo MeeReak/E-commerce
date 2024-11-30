@@ -1,6 +1,5 @@
 import { EyeIcon } from "lucide-react";
 import React from "react";
-// import Footer_Section from "../footer";
 export default function CreateAccountPage() {
   return (
     <>
