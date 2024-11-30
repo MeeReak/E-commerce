@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 // import Footer_Section from "../footer";
 import { LuEye } from "react-icons/lu";
 export default function SignInPage() {
@@ -69,9 +70,10 @@ export default function SignInPage() {
           {/* Register Link */}
           <p className="text-center text-sm text-gray-600 mt-4">
             Don’t have account?{" "}
-            <a href="#" className="text-black hover:underline font-bold">
+            {/* <a href="#" >
               Register
-            </a>
+            </a> */}
+            <Link href="/sign-up" className="text-black hover:underline font-bold">Register</Link>
           </p>
         </div>
       </div>

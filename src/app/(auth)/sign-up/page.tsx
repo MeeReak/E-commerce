@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 // import Footer_Section from "../footer";
 import { LuEye } from "react-icons/lu";
 export default function CreateAccountPage() {
@@ -10,9 +11,6 @@ export default function CreateAccountPage() {
         <form>
           {/* Email Input */}
           <div className="mb-4">
-            {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label> */}
             <input
               type="email"
               id="email"
@@ -23,9 +21,6 @@ export default function CreateAccountPage() {
 
           {/* Password Input */}
           <div className="mb-4">
-            {/* <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label> */}
             <div className="relative">
               <input
                 type="password"
@@ -44,9 +39,7 @@ export default function CreateAccountPage() {
 
           {/* Confirm Password Input */}
           <div className="mb-4">
-            {/* <label htmlFor="confirm-password" className="block text-sm font-medium text-gray-700 mb-1">
-              Confirm Password
-            </label> */}
+          
             <div className="relative">
               <input
                 type="password"
@@ -87,9 +80,7 @@ export default function CreateAccountPage() {
         {/* Login Link */}
         <p className="text-center text-sm text-gray-600 mt-4">
           Already have account?{" "}
-          <a href="#" className="text-black font-bold hover:underline">
-            Login
-          </a>
+          <Link href="/sign-in" className="text-black hover:underline font-bold">Login</Link>
         </p>
       </div>
     </div>
