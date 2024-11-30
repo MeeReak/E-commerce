@@ -10,7 +10,7 @@ export default async function page({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const id = (await params).id;
+  const id = (await params).id;//
   return (
     <div className="flex flex-col items-center space-y-5 pb-5">
       {/* discount banner */}
