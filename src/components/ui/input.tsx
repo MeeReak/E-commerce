@@ -1,41 +1,22 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
 
-interface InputProps extends React.ComponentProps<"input"> {
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-}
+import { cn } from "@/lib/utils"
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, leftIcon, rightIcon, ...props }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type, ...props }, ref) => {
     return (
-      <div className="relative flex items-center">
-        {leftIcon && (
-          <span className="absolute left-3 size-5 flex items-center pointer-events-none">
-            {leftIcon}
-          </span>
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className
         )}
-        <input
-          type={type}
-          className={cn(
-            "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-            leftIcon ? "pl-10" : "",
-            rightIcon ? "pr-10" : "",
-            className
-          )}
-          ref={ref}
-          {...props}
-        />
-        {rightIcon && (
-          <span className="absolute right-3 size-5 flex items-center pointer-events-none">
-            {rightIcon}
-          </span>
-        )}
-      </div>
-    );
+        ref={ref}
+        {...props}
+      />
+    )
   }
-);
+)
+Input.displayName = "Input"
 
-Input.displayName = "Input";
-
-export { Input };
+export { Input }
