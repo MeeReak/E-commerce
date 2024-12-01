@@ -17,12 +17,12 @@ export const Navigation = () => {
   useEffect(() => {
     setHydratedPathname(pathname);
   }, [pathname]);
-  const languages = ["EN", "KH"];
+  const languages = ["EN", "KM"];
   const currencies = ["USD", "KHR"];
   const menuItems = [
     { href: "/", label: "Home" },
     { href: "/shop/1", label: "Shop" },
-    { href: "/blog-list", label: "Blog" },
+    { href: "/blog-list/1", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
   ];
