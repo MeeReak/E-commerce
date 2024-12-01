@@ -118,47 +118,47 @@ export const shoppingCart = [
   },
 ];
 
-export const blog = [
-  {
-    id: 1,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    src: "/images/blog-cucumber.jpg",
-    user: "Admin",
-    comment: 65,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 2,
-    src: "/images/orange-lamp.png",
-    tag: "Vegetable",
-    user: "User",
-    comment: 80,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 3,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    src: "/images/blog-cucumber.jpg",
-    user: "Admin",
-    comment: 65,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 4,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    src: "/images/blog-cucumber.jpg",
-    user: "User",
-    comment: 100,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-];
+// export const blog = [
+//   {
+//     id: 1,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "Admin",
+//     comment: 65,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 2,
+//     src: "/images/orange-lamp.png",
+//     tag: "Vegetable",
+//     user: "User",
+//     comment: 80,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 3,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "Admin",
+//     comment: 65,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 4,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "User",
+//     comment: 100,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+// ];
 
 export const heroImage = [
   "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-2.png",
