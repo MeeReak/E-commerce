@@ -1,10 +1,66 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Input } from "./ui/input";
-import { CalendarIcon, SearchIcon } from "lucide-react";
+import { CalendarIcon, SearchIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
 export const Sidebar = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // State for selected values (categories and tags)
+  const [selectedValues, setSelectedValues] = useState<Record<string, string>>(
+    () => Object.fromEntries(searchParams.entries())
+  );
+
+  // State to store the search query and debounce timeout
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
+
+  // Update the selected values based on search params when the URL changes
+  useEffect(() => {
+    setSelectedValues(Object.fromEntries(searchParams.entries()));
+  }, [searchParams]);
+
+  // Handle category/tag selection and update URL
+  const handleSelectChange = useCallback(
+    (query: string, value: string) => {
+      const updatedValues = { ...selectedValues, [query]: value };
+      setSelectedValues(updatedValues);
+      const queryString = new URLSearchParams(updatedValues)
+        .toString()
+        .toLocaleLowerCase();
+      router.replace(`?${queryString}`);
+    },
+    [router, selectedValues]
+  );
+
+  // Handle search input change with debounce
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setSearchQuery(value);
+
+      // Clear the previous timeout
+      if (debounceTimeout) clearTimeout(debounceTimeout);
+
+      // Set a new timeout to update the URL after 500ms
+      const timeout = setTimeout(() => {
+        handleSelectChange("search", value);
+      }, 500);
+
+      setDebounceTimeout(timeout);
+    },
+    [debounceTimeout, handleSelectChange]
+  );
+
+  // Categories and Tags data
   const Category = [
     { name: "Fresh Fruit", number: 134 },
     { name: "Fresh Vegetables", number: 150 },
@@ -17,7 +73,7 @@ export const Sidebar = () => {
 
   const Tag = [
     "Healthy",
-    "Vegetarain",
+    "Vegetarian",
     "Bread",
     "Vitamins",
     "Snack",
@@ -37,94 +93,224 @@ export const Sidebar = () => {
     "/images/blog-cucumber.jpg",
   ];
 
-  // const Recent = [
-  //   "/images/blog-mango.png",
-  //   "/images/blog-orange.png",
-  //   "/images/blog-black-berry.png",
-  // ];
+  const Recent = [
+    {
+      src: "/images/blog-mango.png",
+      title: "Curabitur porttitor orci eget nequ accumsan.",
+      date: "Apr 25, 2021",
+    },
+    {
+      src: "/images/blog-orange.png",
+      title: "Donec mattis arcu faucibus suscipit viverra.",
+      date: "Apr 25, 2021",
+    },
+    {
+      src: "/images/blog-black-berry.png",
+      title: "Quisque posuere tempus rutrum. Integer velit ex.",
+      date: "Apr 25, 2021",
+    },
+  ];
+
+  const activeFilters = useMemo(() => {
+    const filters = Array.from(searchParams.entries())
+      .filter(([key, value]) => key !== "search" && value !== "all")
+      .map(([key, value]) => ({ key, value }));
+
+    // Remove duplicate filter values by using a Set
+    const uniqueFiltersMap: Record<string, string> = {};
+
+    filters.forEach(({ key, value }) => {
+      // If the value hasn't been added already, store it in uniqueFiltersMap
+      if (!uniqueFiltersMap[value]) {
+        uniqueFiltersMap[value] = key;
+      }
+    });
+
+    return Object.entries(uniqueFiltersMap).map(([value, key]) => ({
+      key,
+      value,
+    }));
+  }, [searchParams]);
+
+  const handleDelete = (filterKey: string) => {
+    const updatedParams = new URLSearchParams(searchParams.toString());
+    updatedParams.delete(filterKey);
+    router.push(`?${updatedParams.toString()}`);
+  };
+
+  const renderCategory = (item: { name: string; number: number }) => (
+    <div
+      key={item.name}
+      onClick={() => handleSelectChange("category", item.name)}
+      className="flex cursor-pointer justify-between items-center py-1"
+    >
+      <p className="text-gray-800 hover:text-gray-950 text-sm font-normal leading-6">
+        {item.name}
+      </p>
+      <p className="text-gray-500 text-sm font-normal leading-6">
+        ({item.number})
+      </p>
+    </div>
+  );
+
+  const renderTag = (tag: string) => (
+    <div
+      key={tag}
+      onClick={() => handleSelectChange("tag", tag)}
+      className={
+        searchParams.get("tag") === tag.toLocaleLowerCase()
+          ? ` cursor-pointer bg-[#00B207] m-1 ml-0 text-white px-4 py-1 rounded-full text-sm font-normal leading-6 hover:bg-gray-200`
+          : `cursor-pointer bg-[#F2F2F2] m-1 ml-0 text-gray-900 px-4 py-1 rounded-full text-sm font-normal leading-6 hover:bg-gray-200`
+      }
+    >
+      {tag}
+    </div>
+  );
+
+  const renderImageBlog = (src: string, index: number) => (
+    <Link href={`/blog/${index}`} key={index}>
+      <Image
+        className="object-cover w-[100px] h-[100px] rounded-sm"
+        src={src}
+        alt={`Blog image ${index}`}
+        width={100}
+        height={100}
+      />
+    </Link>
+  );
+
+  const renderRecentPost = (
+    item: { src: string; title: string; date: string },
+    index: number
+  ) => (
+    <Link
+      href={`/blog/${index}`}
+      key={index}
+      className="flex cursor-pointer items-center gap-x-3"
+    >
+      <Image
+        alt="blog"
+        className="w-[100px] h-[100px] object-cover rounded-sm"
+        src={item.src}
+        width={80}
+        height={70}
+      />
+      <div className="space-y-1">
+        <p className="text-gray-900 text-base font-medium leading-[150%]">
+          {item.title}
+        </p>
+        <div className="flex gap-x-2 items-center">
+          <CalendarIcon className="size-5 text-[#00B307] stroke-[1.5px]" />
+          <p className="text-gray-600 text-sm font-normal leading-6">
+            {item.date}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
 
   return (
-    <div className=" w-[33%]">
-      <div className="pb-7 border-b border-gray-200">
+    <motion.div
+      className="mt-[41px] w-[424px]"
+      initial={{ opacity: 0, y: 50 }} // Starting position and opacity
+      animate={{ opacity: 1, y: 0 }} // Final state
+      transition={{ duration: 0.6 }} // Duration of the animation
+    >
+      {/* Search Section */}
+      <motion.div
+        className="pb-7 border-b border-gray-200"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
         <Input
-          className="w-[424px] py-5 rounded-md "
+          onChange={handleSearchChange}
+          className="w-[424px] py-5 rounded-md"
           type="text"
           placeholder="Search..."
-          leftIcon={<SearchIcon className=" text-gray-900 stroke-[1.5px]" />}
+          value={searchQuery}
+          leftIcon={<SearchIcon className="text-gray-900 stroke-[1.5px]" />}
         />
-      </div>
-      <div className=" pb-7 border-b border-gray-200">
+      </motion.div>
+
+      {/* Applied filters Section */}
+      {activeFilters.length > 0 && (
+        <motion.div
+          className="pb-7 border-b border-gray-200"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.1, delay: 0 }}
+        >
+          <p className="text-gray-900 pt-5 text-lg font-medium leading-7">
+            Applied filters
+          </p>
+          <div className=" flex flex-wrap">
+            {activeFilters.map(({ key, value }) => (
+              <div
+                key={key}
+                className="flex items-center w-fit space-x-1 cursor-pointer bg-[#00B207] m-1 ml-0 text-white px-3 py-1 rounded-full text-sm font-normal leading-6 "
+              >
+                <p className="text-white text-sm font-medium leading-[21px]">
+                  {value.toUpperCase()}
+                </p>
+                <XIcon
+                  onClick={() => handleDelete(key)}
+                  className="size-4 text-[#ffffff] hover:text-[#1A1A1A] cursor-pointer"
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Category Section */}
+      <motion.div
+        className="pb-7 border-b border-gray-200"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
         <p className="text-gray-900 pt-5 text-lg font-medium leading-7">
           Top Categories
         </p>
-        <div>
-          {Category.map((item, index) => (
-            <Link
-              href={`/blog-list?category=${item.name}`}
-              key={index}
-              className="flex justify-between items-center py-1"
-            >
-              <p className="text-gray-800 hover:text-gray-950 text-sm font-normal leading-6">
-                {item.name}
-              </p>
-              <p className="text-gray-500 text-sm font-normal leading-6">
-                ({item.number})
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className=" pb-7 border-b border-gray-200">
-        <p className="text-gray-900 pt-5 text-lg font-medium leading-7 ">
-          Popular Tag
+        <div>{Category.map(renderCategory)}</div>
+      </motion.div>
+
+      {/* Tag Section */}
+      <motion.div
+        className="pb-7 border-b border-gray-200"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+      >
+        <p className="text-gray-900 pt-5 text-lg font-medium leading-7">
+          Popular Tags
         </p>
-        <div className="pt-4 flex flex-wrap">
-          {Tag.map((item, index) => (
-            <Link
-              className=" bg-[#F2F2F2] m-1 ml-0 text-gray-900 px-4 py-1 rounded-full text-sm font-normal leading-6 hover:bg-gray-200"
-              key={index}
-              href={`/blog-list?tag=${item}`}
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-      </div>
-      <div className=" flex gap-2 pt-7 flex-wrap pb-7 border-b border-gray-200 ">
-        {ImagesBlog.map((item, index) => (
-          <Image
-            key={index}
-            className=" object-cover w-[100px] h-[100px] rounded-sm"
-            src={item}
-            alt={`Blog image ${index}`}
-            width={100}
-            height={100}
-          />
-        ))}
-      </div>
-      <div className=" pb-7 border-b pt-7 border-gray-200 ">
-        <p className="pb-4">Recently Added</p>
-        <div className="flex items-center gap-x-3">
-          <Image
-            alt="blog"
-            className=" w-[100px] h-[70px] rounded-sm"
-            src={"/images/blog-mango.png"}
-            width={100}
-            height={100}
-          />
-          <div>
-            <p className=" text-gray-900 text-base font-medium leading-6">
-              Curabitur porttitor orci eget nequ accumsan.
-            </p>
-            <div className=" flex gap-x-2">
-              <CalendarIcon className=" size-5 text-[#00B307]" />
-              <p className="text-gray-600 text-sm font-normal leading-6">
-                Apr 25, 2021
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        <div className="pt-4 flex flex-wrap">{Tag.map(renderTag)}</div>
+      </motion.div>
+
+      {/* Blog Images Section */}
+      <motion.div
+        className="grid gap-x-2 gap-y-2 pt-7 grid-cols-4 pb-7 border-b border-gray-200"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        {ImagesBlog.map(renderImageBlog)}
+      </motion.div>
+
+      {/* Recent Posts Section */}
+      <motion.div
+        className="pt-7"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+      >
+        <p className="pb-4 text-gray-900 text-lg font-medium leading-7">
+          Recently Added
+        </p>
+        <div className="space-y-4">{Recent.map(renderRecentPost)}</div>
+      </motion.div>
+    </motion.div>
   );
 };
