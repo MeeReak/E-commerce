@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function SignInPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-[600px]">
       {/* Sign-In Section */}
       <div className="flex items-center justify-center flex-grow bg-gray-100">
         <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
