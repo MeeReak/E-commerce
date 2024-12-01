@@ -43,7 +43,7 @@ export default function page() {
               <br />
               project and you need my help? Feel free to contact me.
             </p>
-            <div className="flex">
+            <div className="flex space-x-4">
               <Input placeholder="Template Cookie" />
               <Input placeholder="example@email.com" />
             </div>
