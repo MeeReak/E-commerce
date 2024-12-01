@@ -118,44 +118,47 @@ export const shoppingCart = [
   },
 ];
 
-export const blog = [
-  {
-    id: 1,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    user: "Admin",
-    comment: 65,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 2,
-    src: "/images/orange-lamp.png",
-    tag: "Vegetable",
-    user: "User",
-    comment: 80,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 3,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    user: "Admin",
-    comment: 65,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-  {
-    id: 4,
-    src: "/images/orange-lamp.png",
-    tag: "Food",
-    user: "User",
-    comment: 100,
-    title:
-      "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
-  },
-];
+// export const blog = [
+//   {
+//     id: 1,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "Admin",
+//     comment: 65,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 2,
+//     src: "/images/orange-lamp.png",
+//     tag: "Vegetable",
+//     user: "User",
+//     comment: 80,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 3,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "Admin",
+//     comment: 65,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+//   {
+//     id: 4,
+//     src: "/images/orange-lamp.png",
+//     tag: "Food",
+//     src: "/images/blog-cucumber.jpg",
+//     user: "User",
+//     comment: 100,
+//     title:
+//       "Curabitur porttitor orci eget neque accumsan venenatis. Nunc fermentum.",
+//   },
+// ];
 
 export const heroImage = [
   "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-2.png",
@@ -577,3 +580,115 @@ export const optionsConfig = [
     items: ["All", "10", "20", "30", "40", "50"],
   },
 ];
+
+export const Blogs = [
+  {
+    tag: "meat",
+    src: "/images/blog-cucumber.jpg",
+    category: "beverages",
+    by: "Admin",
+    comment: 46,
+    title:
+      "The Best Bread Recipes for Beginners: From Soft Loafs to Crispy Crusts",
+    date: {
+      day: 12,
+      month: "January",
+      year: 2024,
+    },
+  },
+  {
+    tag: "vegetarian",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    category: "fresh vegetables",
+    comment: 46,
+    title:
+      "How to Make Your Own Sourdough Starter at Home: A Step-by-Step Guide",
+    date: {
+      day: 20,
+      month: "March",
+      year: 2024,
+    },
+  },
+  {
+    tag: "snack",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    category: "snacks",
+    comment: 46,
+    title:
+      "The Secret to Fluffy, Delicious Breads: Tips and Tricks You Need to Know",
+    date: {
+      day: 8,
+      month: "May",
+      year: 2024,
+    },
+  },
+  {
+    tag: "launch",
+    category: "cooking",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    comment: 46,
+    title: "Why You Should Be Baking Your Own Bread: Benefits Beyond the Taste",
+    date: {
+      day: 5,
+      month: "August",
+      year: 2024,
+    },
+  },
+  {
+    tag: "tiffin",
+    category: "bread & bakery",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    comment: 46,
+    title:
+      "Exploring the World of Artisan Breads: A Journey of Flavor and Texture",
+    date: {
+      day: 22,
+      month: "November",
+      year: 2024,
+    },
+  },
+  {
+    tag: "vitamins",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    category: "fresh fruit",
+    comment: 46,
+    title: "Simple and Delicious: 5 Quick Bread Recipes for Busy Weekdays",
+    date: {
+      day: 17,
+      month: "September",
+      year: 2024,
+    },
+  },
+  {
+    tag: "healthy",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    category: "beauty & health",
+    comment: 46,
+    title: "Baking with Kids: Fun and Easy Bread Recipes for the Whole Family",
+    date: {
+      day: 3,
+      month: "February",
+      year: 2024,
+    },
+  },
+  {
+    tag: "healthy",
+    src: "/images/blog-cucumber.jpg",
+    by: "Admin",
+    comment: 46,
+    category: "fresh vegetables",
+    title: "Gluten-Free Bread: Delicious Recipes for a Healthier Alternative",
+    date: {
+      day: 18,
+      month: "October",
+      year: 2024,
+    },
+  },
+];
+

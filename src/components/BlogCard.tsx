@@ -54,11 +54,11 @@ export const BlogCard: React.FC<BlogCardProps> = ({
         height={324}
       />
       <span className=" absolute top-[47%] left-[20px] bg-white rounded-md py-[10px] px-4">
-        <p className="text-[#1A1A1A] text-[20px] font-medium leading-[30px]">
+        <p className="text-[#1A1A1A] text-center text-[20px] font-medium leading-[30px]">
          {day}
         </p>
         <p className="text-[#808080] text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase">
-          {month}
+          {month.slice(0,3)}
         </p>
       </span>
       <div className="flex flex-col gap-y-3 p-5 shadow-sm">
