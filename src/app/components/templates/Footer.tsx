@@ -7,28 +7,31 @@ const Footer = () => {
     <>
       <div>
         {/* subcribe */}
-        <div className="flex justify-around items-center bg-[#F7F7F7] text-black py-8">
-          <div className="flex items-center">
-            <p className="text-2xl font-semibold">Subcribe our NewSletter</p>
-            {/* <p className="font-normal text-[14px] w-1/2">
+        <div className="flex flex-row justify-around items-center bg-[#F7F7F7] text-black py-8  box-border px-20">
+          <div className="text-2xl font-semibold ">
+            <p>Subcribe our NewSletter</p>
+            <p className="font-normal text-[14px] leading-[20px]">
+              Pellentesque eu nibh eget mauris congue mattis mattis nec <br />
+              tellus. Phasellus imperdiet elit eu magna.
+            </p>
+          </div>
+          {/* <p className="font-normal text-[14px] w-1/2">
               Pellentesque eu nibh eget mauris congue mattis mattis nec tellus.
               Phasellus imperdiet elit eu magna.
             </p> */}
-          </div>
-          <div className="flex items-center">
+          <div className="flex items-center gap-5">
             <Input
               type="text"
               placeholder="Your email address"
-              className="rounded-full w-[220px] px-6 py-6"
+              className="rounded-full px-6 py-6 pr-56"
             />
             <Button
               variant={"custom"}
-              className="rounded-full px-10 py-4 bg-[#2C742F] -ml-10 z-10"
+              className="rounded-full px-10 py-4 bg-[#2C742F] -ml-16 z-10"
             >
               Subcribe
             </Button>
           </div>
-
           <div className="flex items-center gap-x-4">
             <Button
               leftIcon={
@@ -110,8 +113,8 @@ const Footer = () => {
         </div>
 
         {/* footer */}
-        <div className="flex justify-around bg-[#1A1A1A] text-white py-10">
-          <div className="space-y-5">
+        <div className="flex flex-row justify-around box-border bg-[#1A1A1A] text-white py-16">
+          <div className="flex flex-col space-y-5">
             <header className="flex gap-x-2 items-center">
               <Image src="/svg/logo.svg" alt="" width={32} height={32} />
               <h1 className="font-bold text-[32px]">Ecobar</h1>
@@ -172,7 +175,6 @@ const Footer = () => {
               </span>
             </div>
           </div>
-
           {/* <div>
               <h3 className="mb-4 text-base font-bold">Download Mobile App</h3>
               <div className="flex gap-3">
@@ -197,6 +199,25 @@ const Footer = () => {
                 ))}
               </div>
             </div> */}
+        </div>
+        <div className="flex justify-around items-center bg-[#1A1A1A] text-white py-6">
+          <div className="flex items-center">
+            <p>Ecobazar eCommerce © 2021. All Rights Reserved</p>
+          </div>
+          <span className="w-[50px]"></span>
+          <div className="flex items-center gap-x-3">
+            <div className="border border-gray-300 p-2 rounded-lg">
+              Apple Pay
+            </div>
+            <div className="border border-gray-300 p-2 rounded-lg">VISA</div>
+            <div className="border border-gray-300 p-2 rounded-lg">
+              Discover
+            </div>
+            <div className="border border-gray-300 p-2 rounded-lg">
+              Master card
+            </div>
+            <div className="border border-gray-300 p-2 rounded-lg">Cart</div>
+          </div>
         </div>
       </div>
     </>
