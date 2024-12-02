@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import {
   Card,
@@ -41,7 +43,12 @@ const CartTotal = ({ price, ship }: CartTotalProps) => {
           </div>
         </CardContent>
         <CardFooter>
-          <Button className="w-full rounded-full font-semibold">
+          <Button
+            onClick={() => {
+              window.location.href = "/checkout";
+            }}
+            className="w-full rounded-full font-semibold"
+          >
             Proceed to checkout
           </Button>
         </CardFooter>

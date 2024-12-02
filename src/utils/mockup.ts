@@ -450,6 +450,7 @@ export const optionsConfig = [
 
 export const Blogs = [
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0d2",
     tag: "meat",
     src: "/images/blog-cucumber.jpg",
     category: "beverages",
@@ -464,6 +465,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0dd",
     tag: "vegetarian",
     src: "/images/blog-cucumber.jpg",
     by: "Admin",
@@ -478,6 +480,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0c2",
     tag: "snack",
     src: "/images/blog-cucumber.jpg",
     by: "Admin",
@@ -492,6 +495,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0dx",
     tag: "launch",
     category: "cooking",
     src: "/images/blog-cucumber.jpg",
@@ -505,6 +509,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0da",
     tag: "tiffin",
     category: "bread & bakery",
     src: "/images/blog-cucumber.jpg",
@@ -519,6 +524,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0c2",
     tag: "vitamins",
     src: "/images/blog-cucumber.jpg",
     by: "Admin",
@@ -532,6 +538,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6bedc0d2",
     tag: "healthy",
     src: "/images/blog-cucumber.jpg",
     by: "Admin",
@@ -545,6 +552,7 @@ export const Blogs = [
     },
   },
   {
+    id: "b1e50a5f-8d7a-4c61-b7de-3e5d6belc0d2",
     tag: "healthy",
     src: "/images/blog-cucumber.jpg",
     by: "Admin",
@@ -2073,49 +2081,49 @@ export const Product = [
 ];
 
 export const SingleBlogMock = {
-  "src": "",
-  "tag": "Food",
-  "by": "Admin",
-  "comment": "70 comments",
-  "category": "Fruits",
-  "title": "Oranges: A Burst of Citrus Goodness",
-  "user": {
-    "name": "Admin",
-    "avatar": "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-    "date": "1 Dec 2024"
+  id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0d2",
+  src: "",
+  tag: "Food",
+  by: "Admin",
+  comment: "70 comments",
+  category: "Fruits",
+  title: "Oranges: A Burst of Citrus Goodness",
+  user: {
+    name: "Cameron Williamson",
+    avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    date: "1 Dec 2024",
   },
-  "des1": "Oranges are a popular citrus fruit known for their juicy, refreshing flavor. Packed with vitamin C, they are an immunity booster and a natural way to keep colds at bay.",
-  "des2": "In addition to vitamin C, oranges provide potassium, which helps regulate blood pressure, and fiber for better digestion. They are hydrating and low in calories, making them a great choice for those looking to stay fit and energized.",
-  "des3": "Oranges are incredibly versatile. Enjoy them as a snack, in fresh juice, or as zest in baked goods. Their tangy-sweet flavor also complements savory dishes and salads. Add oranges to your diet for a burst of nutrition and sunshine in every bite.",
-  "images": [
-    "https://cdn.vuetifyjs.com/images/cards/orange1.jpg",
-    "https://cdn.vuetifyjs.com/images/cards/orange2.jpg"
+  des1: "Oranges are a popular citrus fruit known for their juicy, refreshing flavor. Packed with vitamin C, they are an immunity booster and a natural way to keep colds at bay.",
+  des2: "In addition to vitamin C, oranges provide potassium, which helps regulate blood pressure, and fiber for better digestion. They are hydrating and low in calories, making them a great choice for those looking to stay fit and energized.",
+  des3: "Oranges are incredibly versatile. Enjoy them as a snack, in fresh juice, or as zest in baked goods. Their tangy-sweet flavor also complements savory dishes and salads. Add oranges to your diet for a burst of nutrition and sunshine in every bite.",
+  images: [
+    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-1.jpg",
+    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-4.jpg",
   ],
-  "comments": [
+  comments: [
     {
-      "name": "Mia",
-      "avatar": "https://cdn.vuetifyjs.com/images/lists/14.jpg",
-      "comment": "Freshly squeezed orange juice is my morning ritual!",
-      "date": "1 Dec 2024"
+      name: "Mia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+      comment: "Freshly squeezed orange juice is my morning ritual!",
+      date: "1 Dec 2024",
     },
     {
-      "name": "Oliver",
-      "avatar": "https://cdn.vuetifyjs.com/images/lists/15.jpg",
-      "comment": "I love adding orange slices to my salads for a tangy twist.",
-      "date": "1 Dec 2024"
+      name: "Oliver",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+      comment: "I love adding orange slices to my salads for a tangy twist.",
+      date: "1 Dec 2024",
     },
     {
-      "name": "Sophia",
-      "avatar": "https://cdn.vuetifyjs.com/images/lists/16.jpg",
-      "comment": "Candied orange peels are my favorite holiday treat.",
-      "date": "1 Dec 2024"
+      name: "Sophia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+      comment: "Candied orange peels are my favorite holiday treat.",
+      date: "1 Dec 2024",
     },
     {
-      "name": "Liam",
-      "avatar": "https://cdn.vuetifyjs.com/images/lists/17.jpg",
-      "comment": "Oranges are a lifesaver during flu season!",
-      "date": "1 Dec 2024"
-    }
-  ]
-}
-
+      name: "Liam",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+      comment: "Oranges are a lifesaver during flu season!",
+      date: "1 Dec 2024",
+    },
+  ],
+};
