@@ -26,6 +26,7 @@ export const Navigation = () => {
     { href: "/blog-list/1", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
+    { href: "/faqs", label: "FAQs" },
   ];
 
   return (

@@ -6,6 +6,7 @@ import { Blogs as data } from "@/utils/mockup";
 import { BlogCard } from "./BlogCard";
 import { PaginationDemo } from "./Pagination";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export const BlogList = ({ id }: { id: string }) => {
   const router = useRouter();
@@ -69,7 +70,7 @@ export const BlogList = ({ id }: { id: string }) => {
     }
 
     return filtered;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   // Render Blog Cards or No Results Message
@@ -86,16 +87,18 @@ export const BlogList = ({ id }: { id: string }) => {
 
     return filteredItems.slice(0, 8).map((item, index) => (
       <div key={index} className="flex">
-        <BlogCard
-          id={index.toString()}
-          comment={item.comment.toString()}
-          day={item.date.day}
-          month={item.date.month}
-          src={item.src}
-          tag={item.tag}
-          title={item.title}
-          user={item.by}
-        />
+        <Link key={index} href={`/blog/${item.id}`}>
+          <BlogCard
+            id={index.toString()}
+            comment={item.comment.toString()}
+            day={item.date.day}
+            month={item.date.month}
+            src={item.src}
+            tag={item.tag}
+            title={item.title}
+            user={item.by}
+          />
+        </Link>
       </div>
     ));
   };

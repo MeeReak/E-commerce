@@ -4,7 +4,6 @@ import { Mail } from "lucide-react";
 import { PhoneCall } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Map } from "lucide-react";
 
 export default function page() {
   return (
