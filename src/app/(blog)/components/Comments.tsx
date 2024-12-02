@@ -33,7 +33,9 @@ const Comments = () => {
   });
   return (
     <>
-      <h1 className="text-2xl font-semibold pb-4">Leave a Comment</h1>
+      <h1 className="text-gray-900  text-[24px] font-medium leading-[36px]">
+        Leave a Comment
+      </h1>
       <Form {...form}>
         <form className="space-y-5">
           <div className="w-full flex gap-5">
@@ -41,10 +43,16 @@ const Comments = () => {
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Full Name</FormLabel>
+                <FormItem className="w-full pt-4">
+                  <FormLabel className="text-gray-900 text-sm  font-normal leading-6">
+                    Full Name
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter Full name" {...field} />
+                    <Input
+                      className="placeholder:text-gray-600 text-base font-normal leading-[20.8px]"
+                      placeholder="Enter Full name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -55,9 +63,15 @@ const Comments = () => {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-6">
+                    Email
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input
+                      className="placeholder:text-gray-600 text-base font-normal leading-[20.8px]"
+                      placeholder="Enter your email"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -65,20 +79,32 @@ const Comments = () => {
             />
           </div>
           <div className="grid w-full gap-1.5">
-            <Label htmlFor="message">Message</Label>
-            <Textarea placeholder="Write your comment here." id="message" />
+            <Label
+              className="text-gray-900 text-sm font-normal leading-6"
+              htmlFor="message"
+            >
+              Message
+            </Label>
+            <Textarea
+              className="placeholder:text-gray-600 text-base font-normal leading-[20.8px]"
+              placeholder="Write your comment here."
+              id="message"
+            />
           </div>
           <div className="flex items-center space-x-2">
-            <Checkbox id="terms" />
+            <Checkbox id="terms" className=" border-[#CCCCCC] border" />
             <label
               htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="text-gray-600 text-sm font-normal leading-6 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               Save my name and email in this browser for the next time I
               comment.
             </label>
           </div>
-          <Button className="rounded-full" type="submit">
+          <Button
+            className="rounded-full text-white text-base font-semibold leading-6"
+            type="submit"
+          >
             Post comments
           </Button>
         </form>
