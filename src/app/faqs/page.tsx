@@ -42,20 +42,20 @@ export default function page() {
 
   return (
     <>
-      <div className="flex w-[1320px] mx-auto justify-center">
+      <div className="flex min-h-[600px] mx-auto justify-center">
         <section className="w-[648] h-[592] relative mr-[5.5rem] mt-[7rem]">
           <h1 className="text-4xl font-bold mb-4">FAQs</h1>
-          <Accordion type="single" collapsible>
+          <Accordion type="single" collapsible className="space-y-3">
             {items.map(({ value, title, content }) => (
               <AccordionItem
                 value={value}
                 key={value}
-                className="bg-gray-50 rounded p-2 grid grid-cols-1 gap-2"
+                className="bg-gray-50 rounded-md pl-4 grid grid-cols-1"
               >
                 <AccordionTrigger className="font-bold hover:no-underline hover:text-green-600">
                   {title}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400 transition-all duration-300 ease-in-out">
+                <AccordionContent className="text-gray-400 transition-all duration-300 ease-in-out ">
                   {content}
                 </AccordionContent>
               </AccordionItem>
