@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { Teams } from "@/components/Teams";
 import { FeedBacks } from "@/components/FeedBacks";
+import { AboutMock } from "@/utils/mockup";
 export default function page() {
   return (
     <>
@@ -55,18 +56,23 @@ export default function page() {
               a mi. Nulla eu eros consequat tortor tincidunt feugiat.{" "}
             </p>
           </header>
-          <div className="flex items-center gap-x-3">
-            <Image
-              className="bg-black rounded-full"
-              src="/images"
-              alt=""
-              width={72}
-              height={72}
-            ></Image>
-            <div>
-              <p className="text-lg font-semibold">100% Organic food</p>
-              <span>100% healthy & Fresh food.</span>
-            </div>
+          
+          <div className="grid grid-cols-2 gap-6">
+            {AboutMock.map((item, index) => (
+              <div key={index} className="flex items-center gap-x-3">
+                <Image
+                  className="bg-black rounded-full"
+                  src={item.src}
+                  alt={item.name}
+                  width={72}
+                  height={72}
+                />
+                <div>
+                  <p className="text-lg font-semibold">{item.name}</p>
+                  <span>{item.description}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -105,6 +111,7 @@ export default function page() {
         <div>
           <Teams />
         </div>
+        {/* feedback */}
         <div>
           <FeedBacks />
         </div>
