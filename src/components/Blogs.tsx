@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { BlogCard } from "./BlogCard";
-import { blogInfo as data } from "@/utils/mockup";
+import { BlogsMock as data } from "@/utils/mockup";
 import { motion, useInView } from "framer-motion";
 
 export const Blogs = () => {
@@ -39,7 +39,7 @@ export const Blogs = () => {
 
       {/* Blog Card Grid */}
       <div className="flex justify-between w-full">
-        {data.map((item, index) => (
+        {data.slice(0,3).map((item, index) => (
           <motion.div
             onClick={() => (window.location.href = `/blog/${item.id}`)}
             key={index}
@@ -50,11 +50,11 @@ export const Blogs = () => {
             <BlogCard
               src={item.src}
               tag={item.tag}
-              user={item.user}
+              user={item.by}
               comment={item.comment}
               title={item.title}
-              day={item.day}
-              month={item.month}
+              day={item.date.day}
+              month={item.date.month}
               id={item.id}
             />
           </motion.div>

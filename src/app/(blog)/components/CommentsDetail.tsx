@@ -3,22 +3,27 @@ import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import Image from "next/image";
 import { SingleBlogMock } from "@/utils/mockup";
-const CommentsDetail = () => {
-  const [visibleReviews, setVisibleReviews] = useState(4); // Start with 5 reviews
+
+const CommentsDetail = ({
+  comment,
+}: {
+  comment: { name: string; comment: string; avatar: string; date: string }[];
+}) => {
+  const [visibleReviews, setVisibleReviews] = useState(3); // Start with 5 reviews
   const handleLoadMore = () => {
     setVisibleReviews((prev) => prev + 2); // Load 5 more each time
   };
   return (
     <>
-      <div className="py-10">
+      <div className="py-5">
         <h1 className="text-gray-900 text-2xl font-medium leading-9">
           Comments
         </h1>
-        {SingleBlogMock.comments.slice(0, visibleReviews).map((data, index) => (
+        {comment.slice(0, visibleReviews).map((data, index) => (
           <div key={index} className="flex gap-x-5 border-b py-6">
             <Image
               className="bg-black rounded-full w-10 h-10"
-              src={"https://cdn.vuetifyjs.com/images/lists/1.jpg"}
+              src={data.avatar}
               alt={data.name ? `${data.name}'s avatar` : "Avatar"} // Meaningful alt text
               width={40}
               height={40}
