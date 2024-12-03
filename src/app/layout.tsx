@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ecobazar",
-  description: "Ecobazar is a marketplace for sustainable products.",
+  title: "EcoFresh",
+  description: "EcoFresh is a marketplace for sustainable products.",
   icons: "/svg/logo.svg",
 };
 

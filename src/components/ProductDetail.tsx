@@ -482,7 +482,7 @@ export const ProductDetail = ({ id }: { id: string }) => {
             {/* Animated iframe and feature list */}
             <motion.iframe
               className="w-full h-[300px] rounded-lg shadow-lg"
-              src="https://www.youtube.com/embed/gfU1iZnjRZM"
+              src="https://www.youtube.com/embed/k0QlUtEUits"
               frameBorder="0"
               allowFullScreen
               initial={{ opacity: 0 }}

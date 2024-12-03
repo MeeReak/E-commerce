@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion"; // Import motion from framer-motion
+import { BlogsMock as Img } from "@/utils/mockup";
 
 export const Sidebar = () => {
   const router = useRouter();
@@ -62,8 +63,8 @@ export const Sidebar = () => {
 
   // Categories and Tags data
   const Category = [
-    { name: "Fresh Fruit", number: 134 },
-    { name: "Fresh Vegetables", number: 150 },
+    { name: "Fruit", number: 134 },
+    { name: "Vegetables", number: 150 },
     { name: "Cooking", number: 54 },
     { name: "Beverages", number: 43 },
     { name: "Snacks", number: 47 },
@@ -79,36 +80,7 @@ export const Sidebar = () => {
     "Snack",
     "Tiffin",
     "Meat",
-    "Launch",
-  ];
-
-  const ImagesBlog = [
-    "/images/blog-vegetable.avif",
-    "/images/blog-brocoli.png",
-    "/images/blog-salad.avif",
-    "/images/blog-chilli.jpg",
-    "/images/blog-carrot.jpg",
-    "/images/blog-pea.webp",
-    "/images/blog-orange.png",
-    "/images/blog-cucumber.jpg",
-  ];
-
-  const Recent = [
-    {
-      src: "/images/blog-mango.png",
-      title: "Curabitur porttitor orci eget nequ accumsan.",
-      date: "Apr 25, 2021",
-    },
-    {
-      src: "/images/blog-orange.png",
-      title: "Donec mattis arcu faucibus suscipit viverra.",
-      date: "Apr 25, 2021",
-    },
-    {
-      src: "/images/blog-black-berry.png",
-      title: "Quisque posuere tempus rutrum. Integer velit ex.",
-      date: "Apr 25, 2021",
-    },
+    "Food",
   ];
 
   const activeFilters = useMemo(() => {
@@ -168,11 +140,14 @@ export const Sidebar = () => {
     </Link>
   );
 
-  const renderImageBlog = (src: string, index: number) => (
-    <Link href={`/blog/${index}`} key={index}>
+  const renderImageBlog = (
+    blog: { id: string; src: string },
+    index: number
+  ) => (
+    <Link href={`/blog/${blog.id}`} key={blog.id}>
       <Image
         className="object-cover w-[100px] h-[100px] rounded-sm"
-        src={src}
+        src={blog.src}
         alt={`Blog image ${index}`}
         width={100}
         height={100}
@@ -181,11 +156,11 @@ export const Sidebar = () => {
   );
 
   const renderRecentPost = (
-    item: { src: string; title: string; date: string },
+    item: { src: string; title: string; date: string; id: string },
     index: number
   ) => (
     <Link
-      href={`/blog/${index}`}
+      href={`/blog/${item.id}`}
       key={index}
       className="flex cursor-pointer items-center gap-x-3"
     >
@@ -197,7 +172,7 @@ export const Sidebar = () => {
         height={70}
       />
       <div className="space-y-1">
-        <p className="text-gray-900 text-base font-medium leading-[150%]">
+        <p className="text-gray-900 text-base font-medium leading-[150%] line-clamp-2">
           {item.title}
         </p>
         <div className="flex gap-x-2 items-center">
@@ -297,7 +272,10 @@ export const Sidebar = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        {ImagesBlog.map(renderImageBlog)}
+        {Img.map((blog) => ({
+          id: blog.id,
+          src: blog.src,
+        })).map(renderImageBlog)}
       </motion.div>
 
       {/* Recent Posts Section */}
@@ -310,7 +288,16 @@ export const Sidebar = () => {
         <p className="pb-4 text-gray-900 text-lg font-medium leading-7">
           Recently Added
         </p>
-        <div className="space-y-4">{Recent.map(renderRecentPost)}</div>
+        <div className="space-y-4">
+          {Img.map((blog) => ({
+            id: blog.id,
+            src: blog.src,
+            title: blog.title,
+            date: `${blog.date.month.slice(0,3)} ${blog.date.day}, ${blog.date.year}`,
+          }))
+            .slice(0, 3)
+            .map(renderRecentPost)}
+        </div>
       </motion.div>
     </motion.div>
   );

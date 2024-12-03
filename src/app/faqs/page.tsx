@@ -44,7 +44,9 @@ export default function page() {
     <>
       <div className="flex min-h-[600px] mx-auto justify-center">
         <section className="w-[648] h-[592] relative mr-[5.5rem] mt-[7rem]">
-          <h1 className="text-4xl font-bold mb-4">FAQs</h1>
+          <h1 className="text-4xl font-bold mb-4">
+            Welcome, Let’s Talk About Our EcoFresh
+          </h1>
           <Accordion type="single" collapsible className="space-y-3">
             {items.map(({ value, title, content }) => (
               <AccordionItem

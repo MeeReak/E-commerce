@@ -145,7 +145,7 @@ export const Navigation = () => {
         <div className="flex items-center gap-x-2">
           <PhoneCallIcon className="size-7" />
           <p className="text-gray-800 text-sm font-medium leading-[21px]">
-            (219) 555-0114
+            (+855) 555-048-72
           </p>
         </div>
       </div>
