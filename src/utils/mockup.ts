@@ -1,5 +1,4 @@
 // import { v4 as idv4 } from "id";
-
 export const productDescription = {
   describe:
     "Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas auctor tortor lacus, nec laoreet nisi porttitor vel. Etiam tincidunt metus vel dui interdum sollicitudin. Mauris sem ante, vestibulum nec orci vitae, aliquam mollis lacus. Sed et condimentum arcu, id molestie tellus. Nulla facilisi. Nam scelerisque vitae justo a convallis. Morbi urna ipsum, placerat quis commodo quis, egestas elementum leo. Donec convallis mollis enim. Aliquam id mi quam. Phasellus nec fringilla elit. Nulla mauris tellus, feugiat quis pharetra sed, gravida ac dui. Sed iaculis, metus faucibus elementum tincidunt, turpis mi viverra velit, pellentesque tristique neque mi eget nulla. Proin luctus elementum neque et pharetra.",
@@ -424,7 +423,17 @@ export const optionsConfig = [
   {
     query: "category",
     placeholder: "Select Category",
-    items: ["All", "Vegetable", "Fruit", "Meat", "Fish", "Bread & Bakery", "Beverages", "Snacks", "Cooking"],
+    items: [
+      "All",
+      "Vegetable",
+      "Fruit",
+      "Meat",
+      "Fish",
+      "Bread & Bakery",
+      "Beverages",
+      "Snacks",
+      "Cooking",
+    ],
   },
   {
     query: "price",
@@ -2081,7 +2090,6 @@ export const Product = [
 ];
 
 export const SingleBlogMock = {
-  id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0d2",
   src: "",
   tag: "Food",
   by: "Admin",
@@ -2089,18 +2097,39 @@ export const SingleBlogMock = {
   category: "Fruits",
   title: "Oranges: A Burst of Citrus Goodness",
   user: {
-    name: "Cameron Williamson",
+    name: "Admin",
     avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
     date: "1 Dec 2024",
   },
   des1: "Oranges are a popular citrus fruit known for their juicy, refreshing flavor. Packed with vitamin C, they are an immunity booster and a natural way to keep colds at bay.",
   des2: "In addition to vitamin C, oranges provide potassium, which helps regulate blood pressure, and fiber for better digestion. They are hydrating and low in calories, making them a great choice for those looking to stay fit and energized.",
   des3: "Oranges are incredibly versatile. Enjoy them as a snack, in fresh juice, or as zest in baked goods. Their tangy-sweet flavor also complements savory dishes and salads. Add oranges to your diet for a burst of nutrition and sunshine in every bite.",
-  images: [
-    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-1.jpg",
-    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-4.jpg",
-  ],
+  images: ["/images/Oranges.png", "/images/Mangos.png"],
   comments: [
+    {
+      name: "Mia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+      comment: "Freshly squeezed orange juice is my morning ritual!",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Oliver",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+      comment: "I love adding orange slices to my salads for a tangy twist.",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Sophia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+      comment: "Candied orange peels are my favorite holiday treat.",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Liam",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+      comment: "Oranges are a lifesaver during flu season!",
+      date: "1 Dec 2024",
+    },
     {
       name: "Mia",
       avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
@@ -2195,11 +2224,10 @@ export const BlogsMock = [
     comment: "30 comments",
     category: "Vegetables",
     date: {
-      "day": 22,
-      "month": "June",
-      "year": 2024
-    }
-    ,
+      day: 22,
+      month: "June",
+      year: 2024,
+    },
     title:
       "Tomatoes: The Tangy Secret to Enhancing Your Meals While Providing a Rich Source of Vitamins, Antioxidants, and Flavor",
     user: {
@@ -2304,11 +2332,10 @@ export const BlogsMock = [
     comment: "50 comments",
     category: "Fruit",
     date: {
-      "day": 15,
-      "month": "August",
-      "year": 2024
-    }
-    ,
+      day: 15,
+      month: "August",
+      year: 2024,
+    },
     title:
       "Apples: The Everyday Fruit That Combines Health Benefits, Versatile Uses, and Delicious Flavors for Every Mea",
     user: {
@@ -2359,12 +2386,11 @@ export const BlogsMock = [
     by: "Admin",
     comment: "65 comments",
     category: "Fruit",
-    date:{
-      "day": 7,
-      "month": "November",
-      "year": 2024
-    }
-    ,
+    date: {
+      day: 7,
+      month: "November",
+      year: 2024,
+    },
     title:
       "What Is the Difference Between Fruits and Vegetables? Exploring Botanical and Culinary Classifications Alongside Their Unique Health Benefits",
     user: {
@@ -2418,11 +2444,10 @@ export const BlogsMock = [
     comment: "65 comments",
     category: "Meat",
     date: {
-      "day": 11,
-      "month": "February",
-      "year": 2024
-    }
-    ,
+      day: 11,
+      month: "February",
+      year: 2024,
+    },
     title:
       "Understanding Different Types of Meat: A Detailed Look at Red, White, and Processed Meats with Insights into Their Nutritional Profiles and Health Impacts",
     user: {
@@ -2476,11 +2501,10 @@ export const BlogsMock = [
     comment: "65 comments",
     category: "Vegetables",
     date: {
-      "day": 29,
-      "month": "July",
-      "year": 2024
-    }
-    ,
+      day: 29,
+      month: "July",
+      year: 2024,
+    },
     title:
       "Vegetables Demystified: Exploring Various Types Such as Leafy Greens, Root Vegetables, and Cruciferous Varieties Along with Their Health Advantages",
     user: {
@@ -2534,11 +2558,10 @@ export const BlogsMock = [
     comment: "55 comments",
     category: "Vegetables",
     date: {
-      "day": 3,
-      "month": "October",
-      "year": 2024
-    }
-    ,
+      day: 3,
+      month: "October",
+      year: 2024,
+    },
     title:
       "Carrots: A Versatile and Nutrient-Packed Vegetable That Promotes Vision, Skin Health, and Overall Wellness",
     user: {
@@ -2583,5 +2606,38 @@ export const BlogsMock = [
         date: "3 Dec 2024",
       },
     ],
+  },
+];
+
+export const AboutMock = [
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Organic food",
+    description: "100% healthy & Fresh food.",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Customer Feedback",
+    description: "Our happy customer",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Free Shipping",
+    description: "Free shipping with discount",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Great Support 24/7",
+    description: "Instant access to Contact",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Sucure Payment",
+    description: "We ensure your money is save",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Organic Food",
+    description: "100% healthy & Fresh food.",
   },
 ];
