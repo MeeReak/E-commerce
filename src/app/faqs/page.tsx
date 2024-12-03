@@ -42,22 +42,22 @@ export default function page() {
 
   return (
     <>
-      <div className="flex min-h-[600px] mx-auto justify-center">
+      <div className="flex min-h-[600px] items-center mx-auto justify-center">
         <section className="w-[648] h-[592] relative mr-[5.5rem] mt-[7rem]">
-          <h1 className="text-4xl font-bold mb-4">
-            Welcome, Let’s Talk About Our EcoFresh
+          <h1 className="text-[rgb(26,26,26)]  text-[48px] font-semibold pb-5 leading-[120%]">
+            Welcome, Let&rsquo;s Talk About Our EcoFresh
           </h1>
           <Accordion type="single" collapsible className="space-y-3">
             {items.map(({ value, title, content }) => (
               <AccordionItem
                 value={value}
                 key={value}
-                className="bg-gray-50 rounded-md pl-4 grid grid-cols-1"
+                className="bg-[#F2F2F2] rounded-md pl-4 grid grid-cols-1"
               >
-                <AccordionTrigger className="font-bold hover:no-underline hover:text-green-600">
+                <AccordionTrigger className=" hover:no-underline hover:text-green-600 text-[#1A1A1A]  text-base font-medium leading-[150%]">
                   {title}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-400 transition-all duration-300 ease-in-out ">
+                <AccordionContent className="text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out ">
                   {content}
                 </AccordionContent>
               </AccordionItem>
@@ -66,8 +66,8 @@ export default function page() {
         </section>
         <section className="justify-center items-center relative mt-16">
           <Image
-            width={700}
-            height={700}
+            width={500}
+            height={500}
             src="https://www.claretschool.edu.ph/images/FAQs.png"
             alt="image-here"
           />

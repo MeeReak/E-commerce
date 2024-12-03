@@ -90,7 +90,7 @@ import { ProductCardY } from "@/app/components/atoms/ProductCardY"; // Ensure co
 import { Button } from "./ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
-export const RelateProduct = () => {
+export const RelateProduct = ({ id }: { id: string }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const ITEM_WIDTH = 200;
 
@@ -113,6 +113,9 @@ export const RelateProduct = () => {
       }
     }
   };
+
+  const filteredProducts = Items.filter((item) => item.id == id);
+  console.log("this is", filteredProducts);
 
   return (
     <div>
@@ -143,7 +146,9 @@ export const RelateProduct = () => {
         ref={scrollRef}
         className="flex py-5 px-3 overflow-x-scroll space-x-5 hide-scrollbar"
       >
-        {Items.map((product) => (
+        {Items.filter((item) => {
+          return item.category == filteredProducts[0].category && item.id != id;
+        }).map((product) => (
           <div key={product.id} className="flex-shrink-0">
             <ProductCardY
               id={product.id}

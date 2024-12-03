@@ -103,14 +103,14 @@ export const feature = [
 export const shoppingCart = [
   {
     id: 1,
-    src: "https://img.freepik.com/free-vector/food-cartoon-illustration_52683-135634.jpg?semt=ais_hybrid",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
     name: "Fresh Indian Orange",
     qty: "1",
     price: "12.00",
   },
   {
     id: 2,
-    src: "https://img.freepik.com/premium-photo/picture-green-vegetable-with-face-drawn-it_1308157-373698.jpg",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Strawberry/white-strawberry-2.jpg",
     name: "Chinese Cabbage",
     qty: "4",
     price: "15.00",

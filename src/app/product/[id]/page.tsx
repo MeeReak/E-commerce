@@ -38,7 +38,7 @@ export default async function Page({
       <div className=" w-[1320px] mx-auto mb-12">
         <OverView id={id} />
         <ProductDetail id={id}/>
-        <RelateProduct />
+        <RelateProduct id={id}/>
       </div>
     </>
   );

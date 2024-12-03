@@ -38,7 +38,7 @@ export const Navigation = () => {
         <div className="flex items-center gap-x-1">
           <MapPinIcon className="text-gray-400 size-5" />
           <p className="text-gray-400 text-sm">
-            Location: Lincoln-344, Illinois, Chicago, USA
+            Location: Phnom Penh, Cambodia
           </p>
         </div>
 
@@ -78,7 +78,7 @@ export const Navigation = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/svg/logo.svg" alt="logo" width={32} height={32} />
-          <h1 className="text-[#002603] dancing-script font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
+          <h1 className="text-[#002603] font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
             EcoFresh
           </h1>
         </Link>
