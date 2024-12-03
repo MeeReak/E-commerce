@@ -13,11 +13,16 @@ import React from "react";
 interface CardIconTextProps {
   Icon: LucideIcon;
   text: string;
+  className?: string;
 }
 
-const CardIconText: React.FC<CardIconTextProps> = ({ Icon, text }) => (
-  <div className="flex gap-x-2 items-center">
-    <Icon className="text-[#B3B3B3] stroke-1" />
+export const CardIconText: React.FC<CardIconTextProps> = ({
+  Icon,
+  text,
+  className = "text-[#B3B3B3]",
+}) => (
+  <div className={`flex gap-x-2 items-center`}>
+    <Icon className={` ${className}  stroke-[1.5px]`} />
     <p className="text-gray-700 text-sm font-normal leading-[21px]">{text}</p>
   </div>
 );
@@ -30,7 +35,7 @@ interface BlogCardProps {
   comment: string;
   title: string;
   day: number;
-  month: string
+  month: string;
   // blog: string;
 }
 
@@ -55,10 +60,10 @@ export const BlogCard: React.FC<BlogCardProps> = ({
       />
       <span className=" absolute top-[47%] left-[20px] bg-white rounded-md py-[10px] px-4">
         <p className="text-[#1A1A1A] text-center text-[20px] font-medium leading-[30px]">
-         {day}
+          {day}
         </p>
         <p className="text-[#808080] text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase">
-          {month.slice(0,3)}
+          {month.slice(0, 3)}
         </p>
       </span>
       <div className="flex flex-col gap-y-3 p-5 shadow-sm">
@@ -66,7 +71,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
           <div className="flex items-center gap-x-5">
             <CardIconText Icon={TagIcon} text={tag} />
             <div className="flex gap-x-2 items-center">
-              <UserIcon className="text-[#B3B3B3] stroke-1" />
+              <UserIcon className="text-[#B3B3B3]  stroke-1" />
               <span className="text-[#4D4D4D] text-sm font-normal leading-[21px]">
                 By
               </span>
@@ -76,9 +81,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({
             </div>
             <CardIconText Icon={MessageSquareIcon} text={comment.toString()} />
           </div>
-          {/* <p className="text-[#002603] text-[18px] font-medium leading-[27px]">
-            {blog}
-          </p> */}
           <p className="w-[376px] text-black text-[14px] font-medium leading-[27px] group-hover:text-[#2C742F]">
             {title}
           </p>

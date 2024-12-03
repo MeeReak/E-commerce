@@ -17,6 +17,7 @@ export const Navigation = () => {
   useEffect(() => {
     setHydratedPathname(pathname);
   }, [pathname]);
+
   const languages = ["EN", "KM"];
   const currencies = ["USD", "KHR"];
   const menuItems = [
@@ -25,9 +26,11 @@ export const Navigation = () => {
     { href: "/blog-list/1", label: "Blog" },
     { href: "/about-us", label: "About Us" },
     { href: "/contact-us", label: "Contact Us" },
+    { href: "/faqs", label: "FAQs" },
   ];
 
   return (
+    // <nav className="sticky top-0 z-50 bg-white shadow-sm">
     <nav>
       {/* Top Bar */}
       <div className="flex bg-[#333333] items-center justify-around">
@@ -70,7 +73,6 @@ export const Navigation = () => {
           </div>
         </div>
       </div>
-
       {/* Logo and Search Bar */}
       <div className="flex justify-around py-5 border-b-[1px] border-[#CCCCCC]">
         {/* Logo */}
@@ -113,7 +115,6 @@ export const Navigation = () => {
           <ShoppingCart />
         </div>
       </div>
-
       {/* Main Navigation */}
       <div className="flex justify-around items-center py-4 border-b-[1px] border-[#CCCCCC]">
         {/* Menu Items */}
@@ -148,7 +149,6 @@ export const Navigation = () => {
           </p>
         </div>
       </div>
-
       {/* Breadcrumb Section */}
       {/* <div
         style={{

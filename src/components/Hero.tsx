@@ -24,7 +24,7 @@ export const Hero = () => {
   }, []);
 
   return (
-    <Link href={`/shop/1`} className="relative">
+    <div className="relative">
       <motion.div
         key={selected} // This triggers re-mounting on every change of `selected`
         initial={{ opacity: 0, scale: 0.95 }}
@@ -71,12 +71,14 @@ export const Hero = () => {
         <p className="pb-8 text-[#a6a6a6] text-[14px] font-normal leading-[21px]">
           Free shipping on all your order. we deliver, you enjoy
         </p>
-        <Button
-          className="rounded-full py-4 px-10 text-[16px] font-semibold leading-[19.2px]"
-          rightIcon={<MoveRightIcon />}
-        >
-          Shop Now
-        </Button>
+        <Link href="/shop/1">
+          <Button
+            className="rounded-full py-4 px-10 text-[16px] font-semibold leading-[19.2px]"
+            rightIcon={<MoveRightIcon />}
+          >
+            Shop Now
+          </Button>
+        </Link>
       </motion.div>
 
       {/* Image selector buttons */}
@@ -100,9 +102,9 @@ export const Hero = () => {
               stiffness: 300,
               damping: 20,
             }}
-          ></motion.div>
+          />
         ))}
       </div>
-    </Link>
+    </div>
   );
 };
