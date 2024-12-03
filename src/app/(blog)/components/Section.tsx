@@ -156,7 +156,7 @@ const Section = () => {
               className="rounded-lg"
               src={img}
               alt={`Image ${index + 1}`}
-              width={440}
+              width={425}
               height={356}
             />
           ))}
