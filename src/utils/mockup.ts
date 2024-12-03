@@ -1,5 +1,4 @@
 // import { v4 as idv4 } from "id";
-
 export const productDescription = {
   describe:
     "Sed commodo aliquam dui ac porta. Fusce ipsum felis, imperdiet at posuere ac, viverra at mauris. Maecenas tincidunt ligula a sem vestibulum pharetra. Maecenas auctor tortor lacus, nec laoreet nisi porttitor vel. Etiam tincidunt metus vel dui interdum sollicitudin. Mauris sem ante, vestibulum nec orci vitae, aliquam mollis lacus. Sed et condimentum arcu, id molestie tellus. Nulla facilisi. Nam scelerisque vitae justo a convallis. Morbi urna ipsum, placerat quis commodo quis, egestas elementum leo. Donec convallis mollis enim. Aliquam id mi quam. Phasellus nec fringilla elit. Nulla mauris tellus, feugiat quis pharetra sed, gravida ac dui. Sed iaculis, metus faucibus elementum tincidunt, turpis mi viverra velit, pellentesque tristique neque mi eget nulla. Proin luctus elementum neque et pharetra.",
@@ -424,7 +423,17 @@ export const optionsConfig = [
   {
     query: "category",
     placeholder: "Select Category",
-    items: ["All", "Vegetable", "Fruit", "Meat", "Fish", "Egg", "Milk"],
+    items: [
+      "All",
+      "Vegetable",
+      "Fruit",
+      "Meat",
+      "Fish",
+      "Bread & Bakery",
+      "Beverages",
+      "Snacks",
+      "Cooking",
+    ],
   },
   {
     query: "price",
@@ -2081,7 +2090,6 @@ export const Product = [
 ];
 
 export const SingleBlogMock = {
-  id: "b1e50a5f-8d7a-4c61-b7de-3e5d6be7c0d2",
   src: "",
   tag: "Food",
   by: "Admin",
@@ -2089,18 +2097,39 @@ export const SingleBlogMock = {
   category: "Fruits",
   title: "Oranges: A Burst of Citrus Goodness",
   user: {
-    name: "Cameron Williamson",
+    name: "Admin",
     avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
     date: "1 Dec 2024",
   },
   des1: "Oranges are a popular citrus fruit known for their juicy, refreshing flavor. Packed with vitamin C, they are an immunity booster and a natural way to keep colds at bay.",
   des2: "In addition to vitamin C, oranges provide potassium, which helps regulate blood pressure, and fiber for better digestion. They are hydrating and low in calories, making them a great choice for those looking to stay fit and energized.",
   des3: "Oranges are incredibly versatile. Enjoy them as a snack, in fresh juice, or as zest in baked goods. Their tangy-sweet flavor also complements savory dishes and salads. Add oranges to your diet for a burst of nutrition and sunshine in every bite.",
-  images: [
-    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-1.jpg",
-    "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-4.jpg",
-  ],
+  images: ["/images/Oranges.png", "/images/Mangos.png"],
   comments: [
+    {
+      name: "Mia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+      comment: "Freshly squeezed orange juice is my morning ritual!",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Oliver",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+      comment: "I love adding orange slices to my salads for a tangy twist.",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Sophia",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+      comment: "Candied orange peels are my favorite holiday treat.",
+      date: "1 Dec 2024",
+    },
+    {
+      name: "Liam",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+      comment: "Oranges are a lifesaver during flu season!",
+      date: "1 Dec 2024",
+    },
     {
       name: "Mia",
       avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
@@ -2127,3 +2156,488 @@ export const SingleBlogMock = {
     },
   ],
 };
+
+export const BlogsMock = [
+  {
+    id: "9b8d2e7d-9b02-4f62-b22b-7cc93a90b16f",
+    src: "https://images-prod.healthline.com/hlcmsresource/images/AN_images/broccoli-1296x728-feature.jpg",
+    tag: "Food",
+    by: "Admin",
+    comment: "45 comments",
+    category: "Vegetables",
+    date: {
+      day: 4,
+      month: "March",
+      year: 2024,
+    },
+    title:
+      "Broccoli: A Nutritional Powerhouse That Boosts Your Immunity, Promotes Healthy Bones, and Supports Overall Wellness",
+    user: {
+      name: "Kinean",
+      avatar:
+        "https://img.freepik.com/free-psd/3d-render-avatar-character_23-2150611731.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986",
+      date: "1 Dec 2024",
+    },
+    des1: "Broccoli is one of the most nutrient-rich vegetables available. Packed with vitamins A, C, and K, it plays a crucial role in strengthening the immune system, maintaining healthy bones, and promoting overall wellness. This green vegetable is also an excellent source of dietary fiber, which helps in improving digestion and maintaining gut health.",
+    des2: "What sets broccoli apart is its high concentration of antioxidants like sulforaphane, which has been studied for its potential to reduce inflammation and combat oxidative stress. Regular consumption of broccoli has been linked to a lower risk of chronic diseases such as diabetes, heart disease, and even certain types of cancer. It’s not only nutritious but also incredibly versatile in the kitchen.",
+    des3: "Broccoli can be prepared in numerous ways to suit your taste. Steam it lightly to retain its nutrients, or roast it for a delicious caramelized flavor. You can also toss it into stir-fries, blend it into soups, or even enjoy it raw with dips for a crunchy snack. Whether you’re looking to eat healthier or add variety to your meals, broccoli is an excellent choice.",
+    images: [
+      "https://cdn-prod.medicalnewstoday.com/content/images/articles/266/266765/a-bowl-with-broccoli-in-it.jpg",
+      "https://images-prod.healthline.com/hlcmsresource/images/AN_images/health-benefits-of-broccoli-1296x728-feature.jpg",
+    ],
+    comments: [
+      {
+        name: "Sophia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        comment:
+          "I absolutely love adding broccoli to my smoothies for an extra nutrient boost! Not only does it enhance the flavor, but it also gives me that extra burst of energy, especially in the mornings. I try to blend it with some fruits like banana and apple, which balance out the taste perfectly!",
+        date: "17 Nov 2024",
+      },
+      {
+        name: "Liam",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        comment:
+          "Grilled broccoli with garlic is honestly my go-to snack! I toss the florets in olive oil, sprinkle a bit of salt, and roast them with garlic until they’re crispy and caramelized. It’s simple, but the flavor is incredible, and I get a good dose of vitamins with every bite.",
+        date: "22 Oct 2024",
+      },
+      {
+        name: "Isabella",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+        comment:
+          "Broccoli soup is without a doubt my favorite comfort food during the colder months. There’s something about the creamy texture combined with the earthy flavor of broccoli that is so soothing. I like to blend it with a little bit of cheese and some spices to make it even more flavorful and warming.",
+        date: "5 Nov 2024",
+      },
+      {
+        name: "James",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+        comment:
+          "I started incorporating more broccoli into my diet after reading up on its amazing health benefits. It’s packed with fiber, vitamins, and antioxidants that are great for boosting immunity and supporting heart health. I’m now trying to eat it in different forms, whether it’s steamed, roasted, or even raw in salads!",
+        date: "10 Oct 2024",
+      },
+    ],
+  },
+  {
+    id: "c1f29e6d-5d7b-429d-91cc-7e58e5dce631",
+    src: "https://static.wixstatic.com/media/932241edcad04ff180cacc6033d156b8.jpg/v1/fill/w_1203,h_801,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/932241edcad04ff180cacc6033d156b8.jpg",
+    tag: "Food",
+    by: "Admin",
+    comment: "30 comments",
+    category: "Vegetables",
+    date: {
+      day: 22,
+      month: "June",
+      year: 2024,
+    },
+    title:
+      "Tomatoes: The Tangy Secret to Enhancing Your Meals While Providing a Rich Source of Vitamins, Antioxidants, and Flavor",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Dec 2024",
+    },
+    des1: "Tomatoes are not just a staple ingredient in kitchens worldwide, but they are also a powerhouse of nutrition. Rich in vitamin C, potassium, folate, and lycopene, they support immunity, promote skin health, and help in managing blood pressure.",
+    des2: "One of the key nutrients in tomatoes is lycopene, an antioxidant known for its potential to lower the risk of heart disease and certain types of cancer. They are low in calories, making them a perfect addition to a balanced diet. Whether you eat them raw, cooked, or juiced, tomatoes provide a tangy burst of flavor and health benefits.",
+    des3: "From classic pasta sauces to fresh salsas, tomatoes can elevate any dish. They are versatile and can be enjoyed in soups, salads, or even as a simple snack with a sprinkle of salt. Make tomatoes a regular part of your meals to enjoy their nutritional goodness and incredible taste.",
+    images: [
+      "https://media.istockphoto.com/id/1147319588/photo/mixed-tomato-salad-with-mozzarella-cheese-and-basil-leaves-mediterranean-cuisine.jpg?s=612x612&w=0&k=20&c=JQA-zbnPQtfHxjexzaiSGufdrgBrY3G8QCao1P4UkqQ=",
+      "https://www.favfamilyrecipes.com/wp-content/uploads/2021/04/Canned-Tomato-Juice-2.jpg",
+    ],
+    comments: [
+      {
+        name: "Emma",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/6.jpg",
+        comment:
+          "Tomato and mozzarella salad is a must-have at my dinner table!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Noah",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/7.jpg",
+        comment: "Fresh tomatoes from my garden make the best sauces!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Olivia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/8.jpg",
+        comment:
+          "I’ve started drinking tomato juice daily, and I feel so refreshed!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Ethan",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/9.jpg",
+        comment: "Roasted tomatoes with herbs are my favorite side dish!",
+        date: "1 Dec 2024",
+      },
+    ],
+  },
+  {
+    id: "2b9f9de4-13b9-4b77-a7fa-1a9f290d2b32",
+    src: "https://media.istockphoto.com/id/618848774/photo/orange-isolated-on-wood-background.jpg?s=612x612&w=0&k=20&c=r0i6ls_En1dHGhgkvdX3PYX1Kz9ir432q0FyrqaSWxY=",
+    tag: "Food",
+    by: "Admin",
+    comment: "70 comments",
+    category: "Fruits",
+    date: {
+      day: 17,
+      month: "September",
+      year: 2024,
+    },
+    title:
+      "Oranges: A Zesty, Nutrient-Packed Citrus Fruit That Offers Immunity Boosting Benefits and Refreshing Taste",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Dec 2024",
+    },
+    des1: "Oranges are a popular citrus fruit known for their juicy, refreshing flavor. Packed with vitamin C, they are an immunity booster and a natural way to keep colds at bay.",
+    des2: "In addition to vitamin C, oranges provide potassium, which helps regulate blood pressure, and fiber for better digestion. They are hydrating and low in calories, making them a great choice for those looking to stay fit and energized.",
+    des3: "Oranges are incredibly versatile. Enjoy them as a snack, in fresh juice, or as zest in baked goods. Their tangy-sweet flavor also complements savory dishes and salads. Add oranges to your diet for a burst of nutrition and sunshine in every bite.",
+    images: [
+      "https://images-prod.healthline.com/hlcmsresource/images/AN_images/orange-juice-1296x728-feature.jpg",
+      "https://post.healthline.com/wp-content/uploads/2021/11/female-carrying-basket-of-oranges-1296-728-header.jpg",
+    ],
+    comments: [
+      {
+        name: "Mia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+        comment: "Freshly squeezed orange juice is my morning ritual!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Oliver",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+        comment: "I love adding orange slices to my salads for a tangy twist.",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Sophia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+        comment: "Candied orange peels are my favorite holiday treat.",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Liam",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+        comment: "Oranges are a lifesaver during flu season!",
+        date: "1 Dec 2024",
+      },
+    ],
+  },
+  {
+    id: "70eafc88-cb8f-4506-bbe9-bae8c7e97307",
+    src: "https://cdn-prod.medicalnewstoday.com/content/images/articles/319/319884/green-and-red-apples-in-a-bowl-and-on-a-wooden-table.jpg",
+    tag: "Food",
+    by: "Admin",
+    comment: "50 comments",
+    category: "Fruit",
+    date: {
+      day: 15,
+      month: "August",
+      year: 2024,
+    },
+    title:
+      "Apples: The Everyday Fruit That Combines Health Benefits, Versatile Uses, and Delicious Flavors for Every Mea",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Dec 2024",
+    },
+    des1: "Apples are a universally loved fruit, known for their crisp texture and sweet-tart flavor. Packed with fiber, vitamin C, and antioxidants, they make a healthy and convenient snack for all ages.",
+    des2: "The pectin fiber in apples is excellent for digestion and promotes gut health. They also help in managing cholesterol levels, making them heart-friendly. Additionally, apples have natural compounds that contribute to better brain function and a reduced risk of chronic diseases like diabetes.",
+    des3: "Enjoy apples raw, sliced with peanut butter, or baked into pies and crisps. You can also use them in smoothies, salads, or even savory dishes for a delightful contrast of flavors. No matter how you eat them, apples are a delicious way to stay healthy.",
+    images: [
+      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2022/07/what_to_know_apples_green_red_1296x728_header-1024x575.jpg",
+      "https://media.post.rvohealth.io/wp-content/uploads/sites/3/2024/02/Green-apples-on-a-table-header-1024x575.jpg",
+    ],
+    comments: [
+      {
+        name: "Ava",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/10.jpg",
+        comment:
+          "Baked apples with a sprinkle of cinnamon are my go-to dessert!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Lucas",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/11.jpg",
+        comment:
+          "I always carry an apple to work for a quick and healthy snack.",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Sophia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/12.jpg",
+        comment: "Green apples are perfect for my morning smoothies!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "James",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/13.jpg",
+        comment: "Apple pie is my family's favorite holiday treat!",
+        date: "1 Dec 2024",
+      },
+    ],
+  },
+  {
+    id: "70eafc88-cb8f-4m06-bbe9-bae8c7e97307",
+    src: "https://post.healthline.com/wp-content/uploads/2021/03/Veggie_Bowl_Overhead_1296x728-header-1296x729.jpg",
+    tag: "Fruit",
+    by: "Admin",
+    comment: "65 comments",
+    category: "Fruit",
+    date: {
+      day: 7,
+      month: "November",
+      year: 2024,
+    },
+    title:
+      "What Is the Difference Between Fruits and Vegetables? Exploring Botanical and Culinary Classifications Alongside Their Unique Health Benefits",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Jan 2020",
+    },
+    des1: "Fruits and vegetables are classified from both a botanical and culinary standpoint. The botanical classification is based on the plant’s physiological characteristics, like its structure, function and organisation.1 A botanical fruit has at least one seed and grows from the flower of the plant. Examples of botanical fruits include apples, strawberries, peaches, but also tomatoes, cucumbers and peppers. A botanical vegetable, on the other hand, does not have a set definition but is more of a general term encompassing all other edible aspects of the plant, the roots, the stems and the leaves. Examples include foods such as spinach, broccoli and carrots.",
+    des2: "The culinary classification is based on the way the plants are used and their flavour profiles. Culinary fruits have a softer texture, tend to be either sweet or tart and are often enjoyed raw or in desserts or jams. In contrast, a culinary vegetable usually has a tougher texture, blander taste and often requires cooking. The culinary classification may be more useful in our day-to-day lives as foods from the same botanical family may not have the same nutritional composition. For example, cantaloupe melons, watermelons, butternut squash, cucumbers and pumpkins all belong to the same botanical family but have different nutritional values.",
+    des3: "Eating a lot of fruits and vegetables is strongly associated with a lower risk of premature deaths and non-communicable diseases; particularly, cardiovascular diseases, such as coronary heart disease and stroke, and certain cancers i.e., of the mouth, pharynx, larynx, oesophagus and colorectum.6-8 A meta-analysis looking at 95 prospective studies found that each additional 200 grams of fruits and vegetables per day was associated with an 8% lower risk of coronary heart disease, 16% lower risk of stroke, 8% lower risk of cardiovascular disease, 3% lower risk of cancer and 10% lower risk of premature death.9",
+    images: [
+      "https://images-prod.healthline.com/hlcmsresource/images/AN_images/is-avocado-a-fruit-or-a-vegetable-1296x728-feature.jpg",
+      "https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/variety-of-vegetables-on-chopping-board-11296x728.jpg?w=1575",
+    ],
+    comments: [
+      {
+        name: "Srey Chantha",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        comment:
+          "I love fruit in general, but my favorite is banana.  It is sweet and a quick pick up me snack.  I also eat it for the potassium.  My next favorite would be raspberries which I love in my oatmeal in the mornings.",
+        date: "1 Jan 2020",
+      },
+      {
+        name: "Vannak Sokha ",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        comment:
+          "oh dear! I couldn't choose just one even if I tried...i love to mix all kinds of berries in smoothies (and add spinach to them to get my veggies in while I'm at it)",
+        date: "1 Jan 2020",
+      },
+      {
+        name: "Tep Dara ",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        comment:
+          "i can not name just one fruit as i like a lot of fruits due to their great tastes and nutritional values but my most favourite are mangoes because of their yummy taste and here they are only available during summer season for about 5 months like from April to August so these days winter season has set in so they are not available anymore so i miss them a lot (lol). but in summer season we use them in multiple styles like eating raw, using them in form of mango delight, mango custard trifle, mango pudding, mango pie, mango milk shake, mango souffle, mango chutney, mango pickle, mango sorbet and many others.",
+        date: "1 Jan 2020",
+      },
+      {
+        name: "Sokha Vannak ",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+        comment:
+          "I like Mangoes and Grapes! I like both of them because there are rich in vitamins and are potential sources of great taste wines. I'm starting my wine-making business this year so, yeap, love this fruits and their",
+        date: "1 Jan 2020",
+      },
+    ],
+  },
+  {
+    id: "700afc88-cb8f-4m06-bbe9-bae8c7e97307",
+    src: "https://post.healthline.com/wp-content/uploads/2022/03/sliced-beef-red-meat-1296-728-header.jpg",
+    tag: "Meat",
+    by: "Admin",
+    comment: "65 comments",
+    category: "Meat",
+    date: {
+      day: 11,
+      month: "February",
+      year: 2024,
+    },
+    title:
+      "Understanding Different Types of Meat: A Detailed Look at Red, White, and Processed Meats with Insights into Their Nutritional Profiles and Health Impacts",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Jan 2024",
+    },
+    des1: "Meat can be classified into various types based on its origin, texture, and preparation. The main categories of meat include red meat, white meat, and processed meat. Red meat, such as beef, lamb, and pork, comes from the muscles of mammals and is known for its rich flavor and darker color. White meat includes poultry, like chicken and turkey, which is lighter in color and generally lower in fat compared to red meat. Processed meats, such as bacon, sausages, and ham, are those that have been preserved or altered through smoking, curing, or other methods for enhanced flavor and longevity. These classifications play a significant role in dietary choices and nutritional values.",
+    des2: "The nutritional content of meat varies based on its type and preparation method. Red meat is a good source of protein, iron, and vitamins like B12 but can be high in saturated fats, which should be consumed in moderation. White meat is generally lower in fat and calories, making it a preferred option for those looking to maintain a leaner diet. Processed meats often contain added preservatives, sodium, and nitrates, which have been linked to health concerns when consumed in high quantities. Knowing the nutritional differences can help individuals make informed decisions that align with their health goals and dietary preferences.",
+    des3: "Including a balanced amount of meat in one's diet is associated with various health benefits, such as supporting muscle growth, providing essential nutrients, and aiding in overall bodily functions. However, it’s important to choose lean cuts and limit processed meat intake to reduce health risks. Studies have shown that a diet rich in lean meats, combined with vegetables and whole grains, can contribute to a reduced risk of chronic diseases, such as heart disease and diabetes. For example, poultry and fish, which are considered white meats, offer protein with less saturated fat, promoting heart health and improving energy levels.",
+    images: [
+      "https://post.healthline.com/wp-content/uploads/2020/06/pork-chop-dinner-1296x728-header.jpg",
+      "https://post.healthline.com/wp-content/uploads/2021/08/steak-grill-1296x728-header.jpg",
+    ],
+    comments: [
+      {
+        name: "Sophorn Chea",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        comment:
+          "I love meat in all its varieties, but steak is definitely my top choice! It's rich and hearty, perfect for any occasion. I also enjoy making grilled chicken for a lighter but equally satisfying meal. Meat is essential in my diet for its flavor and nutritional value.",
+        date: "5 Nov 2024",
+      },
+      {
+        name: "Rattanak Vann",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        comment:
+          "Choosing one type of meat is tough! I adore pork in all its forms, especially in barbecue and stir-fry dishes. Adding different marinades and spices makes every dish unique and flavorful.",
+        date: "30 Nov 2024",
+      },
+      {
+        name: "Sovathana Tep",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+        comment:
+          "I enjoy so many types of meat due to their rich flavors and versatility. Lamb is particularly my favorite when slow-cooked or grilled. Meat adds so much taste and excitement to every meal!",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Malis Sokha",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+        comment:
+          "Beef and pork are my favorites! Both are packed with protein and essential vitamins. I love preparing stews and barbecued dishes that showcase their delicious flavors. Meat truly is a kitchen staple.",
+        date: "1 Dec 2024",
+      },
+    ],
+  },
+  {
+    id: "70eafc88-cb8f-4m06-bbe9-bae8c7e9730c",
+    src: "https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/BigBead/cruciferous_vegetables_benefits_nutrition_preparation_bigbead/1800x1200_cruciferous_vegetables_benefits_nutrition_preparation_bigbead.jpg",
+    tag: "Vegetable",
+    by: "Admin",
+    comment: "65 comments",
+    category: "Vegetables",
+    date: {
+      day: 29,
+      month: "July",
+      year: 2024,
+    },
+    title:
+      "Vegetables Demystified: Exploring Various Types Such as Leafy Greens, Root Vegetables, and Cruciferous Varieties Along with Their Health Advantages",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "1 Jan 2024",
+    },
+    des1: "Vegetables can be classified into different types based on their part of the plant and nutritional composition. The main categories include leafy greens, root vegetables, cruciferous vegetables, and legumes. Leafy greens like spinach, kale, and lettuce are rich in vitamins and minerals. Root vegetables, such as carrots, beets, and potatoes, are known for their carbohydrate content and are often a source of energy. Cruciferous vegetables, like broccoli, cauliflower, and cabbage, are packed with fiber and compounds that have health-promoting properties. Legumes, including peas and beans, are rich in protein and fiber, making them a great meat alternative in plant-based diets.",
+    des2: "The nutritional value of vegetables varies depending on their type and preparation method. Leafy greens are high in vitamins A, C, and K, and are known for their antioxidant properties. Root vegetables provide important nutrients like potassium and vitamin C, and they are also a good source of dietary fiber. Cruciferous vegetables are known for their potential anti-cancer properties due to compounds like glucosinolates. Legumes provide a plant-based source of protein and are also rich in iron and magnesium. Understanding the nutritional differences can help people create a balanced diet that meets their dietary needs.",
+    des3: "Including a wide range of vegetables in one's diet is associated with numerous health benefits, such as improving digestive health, reducing the risk of chronic diseases, and promoting healthy weight management. Vegetables provide essential vitamins and minerals that support the immune system and overall bodily functions. Studies have shown that a diet rich in vegetables is linked to lower risks of heart disease, diabetes, and certain types of cancer. To maximize nutritional intake, it is beneficial to consume a variety of vegetables in different colors and forms, whether raw, steamed, or lightly cooked.",
+    images: [
+      "https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/articles/prediabetes_diet_slideshow/1800ss_getty_rf_oven_roasted_vegetables.jpg",
+      "https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/12/GettyImages-1247033916_header-1024x575.jpg",
+    ],
+    comments: [
+      {
+        name: "Lina Rith",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        comment:
+          "I absolutely love vegetables, especially leafy greens! Kale and spinach are staples in my diet due to their high nutritional value. I add them to salads, smoothies, and even omelets for a health boost.",
+        date: "5 Nov 2024",
+      },
+      {
+        name: "Bora Chheang",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        comment:
+          "Root vegetables like sweet potatoes and carrots are my go-to for a hearty meal. Roasted or mashed, they add so much flavor and are perfect for a cozy dinner.",
+        date: "30 Nov 2024",
+      },
+      {
+        name: "Sreypov Meng",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+        comment:
+          "I enjoy incorporating cruciferous vegetables into my meals, particularly broccoli and cauliflower. They’re great for stir-fries, and I love making a creamy cauliflower soup during the colder months.",
+        date: "1 Dec 2024",
+      },
+      {
+        name: "Samnang Vann",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+        comment:
+          "Legumes are a major part of my diet, especially chickpeas and lentils. They’re so versatile and can be used in soups, salads, and even as a protein base in various dishes.",
+        date: "1 Dec 2024",
+      },
+    ],
+  },
+  {
+    id: "p0eafc88-cb8f-4m06-bbe9-bae8c7e9730c",
+    src: "https://cdn-prod.medicalnewstoday.com/content/images/articles/320/320297/carrot-juice-in-glasses-next-to-raw-carrots-on-chopping-board.jpg",
+    tag: "Vegetable",
+    by: "Admin",
+    comment: "55 comments",
+    category: "Vegetables",
+    date: {
+      day: 3,
+      month: "October",
+      year: 2024,
+    },
+    title:
+      "Carrots: A Versatile and Nutrient-Packed Vegetable That Promotes Vision, Skin Health, and Overall Wellness",
+    user: {
+      name: "Admin",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+      date: "3 Dec 2024",
+    },
+    des1: "Carrots are one of the most popular root vegetables, known for their bright orange color and sweet, crunchy texture. Packed with essential nutrients like beta-carotene (which the body converts to vitamin A), fiber, and antioxidants, carrots contribute to a variety of health benefits. They are often recommended for improving eye health due to their high beta-carotene content, but their nutritional value extends far beyond that. Carrots are a great source of vitamins and minerals, supporting the immune system, promoting healthy skin, and improving digestive health.",
+    des2: "The antioxidants found in carrots, including beta-carotene, lutein, and zeaxanthin, help fight oxidative stress, which can reduce the risk of chronic diseases such as heart disease and cancer. Carrots are also rich in dietary fiber, which aids in digestion, promotes gut health, and helps in managing blood sugar levels. Regular consumption of carrots has been linked to a lower risk of stroke and heart disease, making them an excellent choice for anyone looking to maintain a balanced diet and a healthy lifestyle.",
+    des3: "Carrots are incredibly versatile and can be consumed in various ways to suit different tastes and meal preferences. You can enjoy them raw as a crunchy snack, blend them into smoothies, or add them to soups, salads, and stir-fries. Carrots can also be roasted, baked into cakes, or made into juice for a refreshing beverage. Whether you're looking to improve your vision, enhance your skin health, or boost your immune system, carrots are a delicious and nutritious addition to any meal plan.",
+    images: [
+      "https://images-prod.healthline.com/hlcmsresource/images/topic_centers/2020-3/Purple_Carrots_1296x728-header.jpg",
+      "https://images-prod.healthline.com/hlcmsresource/images/AN_images/carrots-1296x728-feature.jpg",
+    ],
+    comments: [
+      {
+        name: "Emily",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
+        comment:
+          "I love adding carrots to my salads! They give such a nice crunch and are super healthy.",
+        date: "3 Dec 2024",
+      },
+      {
+        name: "James",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
+        comment:
+          "Carrot juice is my go-to drink for boosting my skin health. It works wonders!",
+        date: "3 Dec 2024",
+      },
+      {
+        name: "Sophia",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
+        comment:
+          "I’ve started using carrots in my smoothies. The taste is perfect, and I love the health benefits!",
+        date: "3 Dec 2024",
+      },
+      {
+        name: "Liam",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
+        comment:
+          "Carrot soup is a great winter dish. It's comforting and full of vitamins!",
+        date: "3 Dec 2024",
+      },
+    ],
+  },
+];
+
+export const AboutMock = [
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Organic food",
+    description: "100% healthy & Fresh food.",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Customer Feedback",
+    description: "Our happy customer",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Free Shipping",
+    description: "Free shipping with discount",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "Great Support 24/7",
+    description: "Instant access to Contact",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Sucure Payment",
+    description: "We ensure your money is save",
+  },
+  {
+    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    name: "100% Organic Food",
+    description: "100% healthy & Fresh food.",
+  },
+];
