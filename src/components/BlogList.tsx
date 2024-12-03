@@ -2,11 +2,10 @@
 
 import React, { useMemo } from "react";
 import { SelectDemo } from "./Select";
-import { Blogs as data } from "@/utils/mockup";
+import { BlogsMock as data } from "@/utils/mockup";
 import { BlogCard } from "./BlogCard";
 import { PaginationDemo } from "./Pagination";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 
 export const BlogList = ({ id }: { id: string }) => {
   const router = useRouter();
@@ -51,7 +50,8 @@ export const BlogList = ({ id }: { id: string }) => {
     // Filter by tag
     if (tag) {
       filtered = filtered.filter((item) =>
-        item.tag.toLowerCase().includes(tag)
+        // item.tag.toLowerCase().includes(tag)
+        tag.includes(item.tag.toLowerCase())
       );
     }
 
@@ -87,18 +87,18 @@ export const BlogList = ({ id }: { id: string }) => {
 
     return filteredItems.slice(0, 8).map((item, index) => (
       <div key={index} className="flex">
-        <Link key={index} href={`/blog/${item.id}`}>
-          <BlogCard
-            id={index.toString()}
-            comment={item.comment.toString()}
-            day={item.date.day}
-            month={item.date.month}
-            src={item.src}
-            tag={item.tag}
-            title={item.title}
-            user={item.by}
-          />
-        </Link>
+        {/* <Link key={index} href={`/blog/${item.id}`}> */}
+        <BlogCard
+          id={item.id}
+          comment={item.comment.toString()}
+          day={item.date.day}
+          month={item.date.month}
+          src={item.src}
+          tag={item.tag}
+          title={item.title}
+          user={item.by}
+        />
+        {/* </Link> */}
       </div>
     ));
   };
