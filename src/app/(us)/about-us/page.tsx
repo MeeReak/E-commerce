@@ -56,7 +56,7 @@ export default function page() {
               a mi. Nulla eu eros consequat tortor tincidunt feugiat.{" "}
             </p>
           </header>
-          
+
           <div className="grid grid-cols-2 gap-6">
             {AboutMock.map((item, index) => (
               <div key={index} className="flex items-center gap-x-3">
