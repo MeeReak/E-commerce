@@ -12,14 +12,14 @@ export default function page() {
       <div className="flex justify-center space-x-8 mt-10">
         <section className="w-full max-w-[312px] p-8 rounded-lg shadow-lg border border-gray-200 space-y-6">
           <div className="flex flex-col items-center space-y-2 w-full border-b-[1px] pb-4">
-            <MapPin className="text-green-700 w-12 h-12" />
+            <MapPin className="text-green-700 w-10 h-10" />
             <h3 className="text-[16px] text-gray-800 font-medium text-center">
               Russian Federation Blvd (110), Phnom Penh, Cambodia
             </h3>
           </div>
 
           <div className="flex flex-col items-center space-y-2 w-full border-b-[1px] pb-4">
-            <Mail className="text-green-700 w-12 h-12" />
+            <Mail className="text-green-700 w-10 h-10" />
             <h3 className="text-[16px] text-gray-800 font-medium text-center">
               echofresh@echofresh.com <br />
               help.echofress@echofresh.com
@@ -27,7 +27,7 @@ export default function page() {
           </div>
 
           <div className="flex flex-col items-center space-y-2 w-full">
-            <PhoneCall className="text-green-700 w-12 h-12" />
+            <PhoneCall className="text-green-700 w-10 h-10" />
             <h3 className="text-[16px] text-gray-800 font-medium text-center">
               (+855) 555-048-72 <br />
               (+855) 333-048-72
@@ -44,8 +44,8 @@ export default function page() {
               project and you need my help? Feel free to contact me.
             </p>
             <div className="flex space-x-4">
-              <Input placeholder="Template Cookie" />
-              <Input placeholder="example@email.com" />
+              <Input placeholder="Template Cookie" className="w-[444px]" />
+              <Input placeholder="example@email.com" className="w-[444px]" />
             </div>
             <Input />
             <Input placeholder="Subjects" className="h-[98px]" />
