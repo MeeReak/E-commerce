@@ -7,7 +7,7 @@ export default function page() {
   return (
     <>
       <div className="flex w-[1320px] mx-auto justify-center space-x-8 mt-10">
-        <section className="w-full max-w-[312px] p-8 rounded-lg shadow-sm border border-gray-200 space-y-6">
+        <section className="max-w-[312px] p-8 rounded-lg shadow-sm border border-gray-200 space-y-6">
           <div className="flex flex-col items-center space-y-2 w-full border-b-[1px] pb-4">
             <MapPinIcon className="text-green-700 h-12 w-12 stroke-[1px]" />
             <h3 className="text-gray-800 text-center text-base font-normal leading-[170%]">
@@ -32,8 +32,8 @@ export default function page() {
           </div>
         </section>
 
-        <section className="rounded-lg shadow-sm border border-gray-200">
-          <div className="w-[984] h-[507] bg-white space-y-4 p-10 rounded-lg">
+        <section className="rounded-lg w-full shadow-sm border border-gray-200">
+          <div className=" bg-white space-y-4 p-10 rounded-lg">
             <h1 className="text-gray-900 text-2xl font-semibold leading-[150%]">
               Just Say Hello!
             </h1>
@@ -42,13 +42,13 @@ export default function page() {
               <br />
               project and you need my help? Feel free to contact me.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex justify-between space-x-4 w-full">
               <Input
-                className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[130%]"
+                className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[130%] w-[434px]"
                 placeholder="Template Cookie"
               />
               <Input
-                className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[130%]"
+                className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[130%] w-[434px]"
                 placeholder="example@email.com"
               />
             </div>

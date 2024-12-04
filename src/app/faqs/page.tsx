@@ -56,7 +56,7 @@ export default function page() {
                 <AccordionTrigger className="px-5 hover:no-underline focus:text-[#00B207] text-[#1A1A1A]  text-base font-medium leading-[150%] focus:border focus:rounded-t-sm focus:border-[#84D187] ">
                   {title}
                 </AccordionTrigger>
-                <AccordionContent className="px-5 pt-3 text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out border rounded-b-sm border-[#84D187] border-t-0">
+                <AccordionContent className="px-5 pt-3 text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out border rounded-b-sm border-[#84D187] border-t-0 max-w-[1000px]">
                   {content}
                 </AccordionContent>
               </AccordionItem>
