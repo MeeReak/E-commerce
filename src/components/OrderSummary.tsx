@@ -54,17 +54,15 @@ const OrderSummary = ({
     setTotal(newTotal);
   }, [price, qty, ship]); // Re-run when these values change
 
-  // Handle change when a checkbox is clicked
-  const handleCheckboxChange = (method: string) => {
-    // If the clicked checkbox is already selected, uncheck it
-    setSelectedMethod((prevMethod) => (prevMethod === method ? null : method));
+  const handleRadioChange = (method: string) => {
+    setSelectedMethod(method); // Directly set the selected method
   };
 
   return (
     <>
       <Card className="w-[424px] h-[580px]">
         <CardHeader>
-          <CardTitle className="font-semibold text-[20px] text-[#1A1A1A]">
+          <CardTitle className="text-gray-900 text-xl font-medium leading-relaxed">
             Order Summary
           </CardTitle>
         </CardHeader>
@@ -72,43 +70,64 @@ const OrderSummary = ({
           <div className="flex justify-between items-center">
             <div className="flex justify-center items-center gap-2">
               <Image src={imageUrl} alt="item image" width={60} height={60} />
-              <p>{name}</p>
-              <p>x{qty}</p>
+              <p className="text-gray-900 text-base font-normal leading-relaxed">
+                {name}
+              </p>
+              <p className="text-gray-900 text-base font-normal leading-relaxed">
+                x{qty}
+              </p>
             </div>
-            <div className="font-medium text-[14px]">${price.toFixed(2)}</div>
+            <div className="text-gray-900 text-base font-medium leading-relaxed">
+              ${price.toFixed(2)}
+            </div>
           </div>
         </CardContent>
         <CardContent className="space-y-5">
           {/* Subtotal row */}
           <div className="flex justify-between items-center pb-4 border-b-2">
-            <p className="font-normal text-[14px] text-[#4D4D4D]">Subtotal:</p>
-            <p className="font-medium text-[14px]">${subtotal.toFixed(2)}</p>
+            <p className="text-gray-700 text-base font-normal leading-relaxed">
+              Subtotal:
+            </p>
+            <p className="text-gray-900 text-base font-medium leading-relaxed">
+              ${subtotal.toFixed(2)}
+            </p>
           </div>
 
           {/* Shipping row */}
           <div className="flex justify-between items-center pb-4 border-b-2">
-            <p className="font-normal text-[14px] text-[#4D4D4D]">Shipping:</p>
-            <p className="font-medium text-[14px]">{ship}</p>
+            <p className="text-gray-700 text-base font-normal leading-relaxed">
+              Shipping:
+            </p>
+            <p className="text-gray-900 text-base font-medium leading-relaxed">
+              {ship}
+            </p>
           </div>
 
           {/* Total row */}
           <div className="flex justify-between items-center">
-            <p className="font-normal text-[14px] text-[#4D4D4D]">Total:</p>
-            <p className="font-semibold text-[16px]">${total.toFixed(2)}</p>
+            <p className="text-gray-700 text-base font-normal leading-relaxed">
+              Total:
+            </p>
+            <p className="text-gray-900 text-lg font-semibold leading-[120%]">
+              ${total.toFixed(2)}
+            </p>
           </div>
         </CardContent>
         <CardContent className="space-y-4">
-          <h1 className="font-semibold text-[20px] text-[#1A1A1A]">
+          <h1 className="text-gray-900 text-xl font-medium leading-relaxed">
             Payment Method
           </h1>
           {paymentMethods.map((item) => (
-            <div key={item.method} className="flex space-x-5">
+            <div key={item.method} className="flex items-center space-x-3">
               <input
-                type="checkbox"
-                checked={selectedMethod === item.method}
-                onChange={() => handleCheckboxChange(item.method)}
+                className="h-5 w-5 cursor-pointer"
+                type="radio"
+                name="payment-method" 
+                value={item.method} 
+                checked={selectedMethod === item.method} 
+                onChange={() => handleRadioChange(item.method)} 
               />
-              <p className="font-normal text-[14px] text-[#4D4D4D]">
+              <p className="text-gray-700 text-sm font-normal leading-relaxed">
                 {item.method}
               </p>
             </div>

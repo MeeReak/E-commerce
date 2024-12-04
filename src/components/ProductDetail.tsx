@@ -40,7 +40,7 @@
 
 //   const renderDescription = () => (
 //     <div>
-//       <p className="text-gray-500 font-poppins text-sm font-normal leading-[1.6]">
+//       <p className="text-gray-500   text-sm font-normal leading-[1.6]">
 //         {productDescription.describe}
 //       </p>
 //       <ul className="pt-4 space-y-2">
@@ -326,7 +326,7 @@ export const ProductDetail = ({ id }: { id: string }) => {
 
   const renderDescription = () => (
     <div>
-      <p className="text-gray-500 font-poppins text-sm font-normal leading-[1.6]">
+      <p className="text-gray-500   text-sm font-normal leading-[1.6]">
         {selectedData?.description}
       </p>
       <ul className="pt-4 space-y-2">

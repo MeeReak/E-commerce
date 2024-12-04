@@ -42,9 +42,9 @@ export default function page() {
 
   return (
     <>
-      <div className="flex min-h-[600px] items-center mx-auto justify-center">
-        <section className="w-[648] h-[592] relative mr-[5.5rem] mt-[7rem]">
-          <h1 className="text-[rgb(26,26,26)]  text-[48px] font-semibold pb-5 leading-[120%]">
+      <div className="flex items-start mx-auto justify-center">
+        <section className="w-[648] h-[592] relative mr-[5.5rem] mt-10">
+          <h1 className="text-[rgb(26,26,26)] text-[48px] font-semibold pb-5 leading-[120%]">
             Welcome, Let&rsquo;s Talk About Our EcoFresh
           </h1>
           <Accordion type="single" collapsible className="space-y-3">
@@ -52,12 +52,12 @@ export default function page() {
               <AccordionItem
                 value={value}
                 key={value}
-                className="bg-[#F2F2F2] rounded-md pl-4 grid grid-cols-1"
+                className="bg-[#F2F2F2] rounded-md grid grid-cols-1 "
               >
-                <AccordionTrigger className=" hover:no-underline hover:text-green-600 text-[#1A1A1A]  text-base font-medium leading-[150%]">
+                <AccordionTrigger className="px-5 hover:no-underline focus:text-[#00B207] text-[#1A1A1A]  text-base font-medium leading-[150%] focus:border focus:rounded-t-sm focus:border-[#84D187] ">
                   {title}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out ">
+                <AccordionContent className="px-5 pt-3 text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out border rounded-b-sm border-[#84D187] border-t-0">
                   {content}
                 </AccordionContent>
               </AccordionItem>

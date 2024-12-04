@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { renderStars } from "./RenderStar";
 import Link from "next/link";
+import { DialogDemo } from "@/components/Dialog";
 
 type ProductCardYProps = {
   id: string;
@@ -76,7 +77,12 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
         />
 
         {isHovered && (
-          <div className=" absolute top-2 space-y-2 right-2">
+          <div
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            className=" absolute top-2 space-y-2 right-2"
+          >
             <Button
               variant="custom"
               className="p-[10px] text-black border-2 bg-[#F2F2F2] border-[#F2F2F2] transition-colors duration-300 hover:bg-[#00B207] hover:text-white"
@@ -97,31 +103,7 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
                 />
               </svg>
             </Button>
-            <Button
-              variant="custom"
-              className="p-[10px] text-black border-2 bg-[#F2F2F2] border-[#F2F2F2] transition-colors duration-300 hover:bg-[#00B207] hover:text-white"
-              size="icon"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-            </Button>
+            <DialogDemo id={id} setIsHovered={setIsHovered} />
           </div>
         )}
         <div className="flex items-center justify-between px-4 py-3">
@@ -129,7 +111,7 @@ export const ProductCardY: React.FC<ProductCardYProps> = ({
             <header className="text-[#4D4D4D] text-sm font-normal line-clamp-1 leading-[1.5]">
               {title}
             </header>
-            <p className="text-[#1A1A1A] font-poppins text-base font-medium leading-[1.5]">
+            <p className="text-[#1A1A1A]   text-base font-medium leading-[1.5]">
               ${price.toFixed(2)}
             </p>
             <div className="flex">{renderStars({ rating })}</div>

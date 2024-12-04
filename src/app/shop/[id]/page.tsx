@@ -12,7 +12,7 @@ export default async function page({
 }) {
   const id = (await params).id;//
   return (
-    <div className="flex flex-col items-center space-y-5 pb-5">
+    <div className="flex flex-col items-center pb-10 space-y-5">
       {/* discount banner */}
       <BannerDiscount />
       {/* Filter Option */}

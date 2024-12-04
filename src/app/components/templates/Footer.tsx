@@ -73,10 +73,10 @@ const Footer = () => {
           <FooterContact />
 
           {/* Spacer */}
-          <span className="w-[10px]" />
+          <p className="" />
 
           {/* Footer Sections */}
-          <div className="flex items-center gap-x-16">
+          <div className="flex items-center gap-x-10">
             <FooterSection title="My Account" items={accountItems} />
             <FooterSection title="Help" items={helpItems} />
             <FooterSection title="Proxy" items={proxyItems} />
@@ -90,7 +90,7 @@ const Footer = () => {
             EcoFresh eCommerce © 2024. All Rights Reserved
             </p>
           </div>
-          <span className="w-[250px]"></span>
+          <span className="w-[180px]"></span>
           <div className="flex items-center gap-x-3">
             <div className="border border-gray-700 px-[11px] py-[13px] rounded-lg">
               <svg

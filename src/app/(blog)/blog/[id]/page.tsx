@@ -9,7 +9,7 @@ export default async function Page({
   const id = (await params).id;
   return (
     <>
-      <div className="w-[1320px] mx-auto space-y-5 ">
+      <div className="w-[1320px] mx-auto pb-10 space-y-5 ">
         {/* <header className="text-center mt-5 text-2xl font-bold">
           Blog {id}
         </header> */}

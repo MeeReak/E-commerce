@@ -2108,49 +2108,49 @@ export const SingleBlogMock = {
   comments: [
     {
       name: "Mia",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
       comment: "Freshly squeezed orange juice is my morning ritual!",
       date: "1 Dec 2024",
     },
     {
       name: "Oliver",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
       comment: "I love adding orange slices to my salads for a tangy twist.",
       date: "1 Dec 2024",
     },
     {
       name: "Sophia",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
       comment: "Candied orange peels are my favorite holiday treat.",
       date: "1 Dec 2024",
     },
     {
       name: "Liam",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
       comment: "Oranges are a lifesaver during flu season!",
       date: "1 Dec 2024",
     },
     {
       name: "Mia",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
       comment: "Freshly squeezed orange juice is my morning ritual!",
       date: "1 Dec 2024",
     },
     {
       name: "Oliver",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
       comment: "I love adding orange slices to my salads for a tangy twist.",
       date: "1 Dec 2024",
     },
     {
       name: "Sophia",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
       comment: "Candied orange peels are my favorite holiday treat.",
       date: "1 Dec 2024",
     },
     {
       name: "Liam",
-      avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+      avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
       comment: "Oranges are a lifesaver during flu season!",
       date: "1 Dec 2024",
     },
@@ -2245,27 +2245,27 @@ export const BlogsMock = [
     comments: [
       {
         name: "Emma",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/6.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         comment:
           "Tomato and mozzarella salad is a must-have at my dinner table!",
         date: "1 Dec 2024",
       },
       {
         name: "Noah",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/7.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
         comment: "Fresh tomatoes from my garden make the best sauces!",
         date: "1 Dec 2024",
       },
       {
         name: "Olivia",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/8.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
         comment:
           "I’ve started drinking tomato juice daily, and I feel so refreshed!",
         date: "1 Dec 2024",
       },
       {
         name: "Ethan",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/9.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
         comment: "Roasted tomatoes with herbs are my favorite side dish!",
         date: "1 Dec 2024",
       },
@@ -2300,25 +2300,25 @@ export const BlogsMock = [
     comments: [
       {
         name: "Mia",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/14.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
         comment: "Freshly squeezed orange juice is my morning ritual!",
         date: "1 Dec 2024",
       },
       {
         name: "Oliver",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/15.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
         comment: "I love adding orange slices to my salads for a tangy twist.",
         date: "1 Dec 2024",
       },
       {
         name: "Sophia",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/16.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
         comment: "Candied orange peels are my favorite holiday treat.",
         date: "1 Dec 2024",
       },
       {
         name: "Liam",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/17.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         comment: "Oranges are a lifesaver during flu season!",
         date: "1 Dec 2024",
       },
@@ -2353,27 +2353,27 @@ export const BlogsMock = [
     comments: [
       {
         name: "Ava",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/10.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/4.jpg",
         comment:
           "Baked apples with a sprinkle of cinnamon are my go-to dessert!",
         date: "1 Dec 2024",
       },
       {
         name: "Lucas",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/11.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/2.jpg",
         comment:
           "I always carry an apple to work for a quick and healthy snack.",
         date: "1 Dec 2024",
       },
       {
         name: "Sophia",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/12.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/3.jpg",
         comment: "Green apples are perfect for my morning smoothies!",
         date: "1 Dec 2024",
       },
       {
         name: "James",
-        avatar: "https://cdn.vuetifyjs.com/images/lists/13.jpg",
+        avatar: "https://cdn.vuetifyjs.com/images/lists/5.jpg",
         comment: "Apple pie is my family's favorite holiday treat!",
         date: "1 Dec 2024",
       },

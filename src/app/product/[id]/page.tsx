@@ -35,7 +35,7 @@ export default async function Page({
   return (
     <>
       {/* <p>Product page: {id}</p> */}
-      <div className=" w-[1320px] mx-auto mb-12">
+      <div className=" w-[1320px] mx-auto mb-10">
         <OverView id={id} />
         <ProductDetail id={id}/>
         <RelateProduct id={id}/>
