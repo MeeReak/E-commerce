@@ -75,7 +75,9 @@ export function BillingInformation() {
               name="firstName"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Fist name</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Fist name
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Your first name" {...field} />
                   </FormControl>
@@ -88,7 +90,9 @@ export function BillingInformation() {
               name="lastName"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Last name</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Last name
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Your last name" {...field} />
                   </FormControl>
@@ -101,9 +105,9 @@ export function BillingInformation() {
               name="companyName"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
                     Company Name{" "}
-                    <span className="text-slate-500">(Optional)</span>
+                    <span className="text-slate-500 ">(Optional)</span>
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="Company name" {...field} />
@@ -118,7 +122,9 @@ export function BillingInformation() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Street Address</FormLabel>
+                <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                  Street Address
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Street address" {...field} />
                 </FormControl>
@@ -132,7 +138,9 @@ export function BillingInformation() {
               name="country"
               render={({ field }) => (
                 <FormItem className="w-1/3">
-                  <FormLabel>Country / Region</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Country / Region
+                  </FormLabel>
                   <FormControl>
                     <Select>
                       <SelectTrigger>
@@ -140,12 +148,12 @@ export function BillingInformation() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Fruits</SelectLabel>
-                          <SelectItem value="apple">Apple</SelectItem>
-                          <SelectItem value="banana">Banana</SelectItem>
-                          <SelectItem value="blueberry">Blueberry</SelectItem>
-                          <SelectItem value="grapes">Grapes</SelectItem>
-                          <SelectItem value="pineapple">Pineapple</SelectItem>
+                          <SelectLabel>Country</SelectLabel>
+                          <SelectItem value="japan">Japan</SelectItem>
+                          <SelectItem value="italy">Italy</SelectItem>
+                          <SelectItem value="australia">Australia</SelectItem>
+                          <SelectItem value="france">France</SelectItem>
+                          <SelectItem value="cambodia">Cambodia</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -159,7 +167,9 @@ export function BillingInformation() {
               name="state"
               render={({ field }) => (
                 <FormItem className="w-1/6">
-                  <FormLabel>States</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    States
+                  </FormLabel>
                   <FormControl>
                     <Select>
                       <SelectTrigger>
@@ -167,12 +177,12 @@ export function BillingInformation() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectLabel>Fruits</SelectLabel>
-                          <SelectItem value="apple">Apple</SelectItem>
-                          <SelectItem value="banana">Banana</SelectItem>
-                          <SelectItem value="blueberry">Blueberry</SelectItem>
-                          <SelectItem value="grapes">Grapes</SelectItem>
-                          <SelectItem value="pineapple">Pineapple</SelectItem>
+                          <SelectLabel>State</SelectLabel>
+                          <SelectItem value="california">California</SelectItem>
+                          <SelectItem value="new_york">New York</SelectItem>
+                          <SelectItem value="florida">Florida</SelectItem>
+                          <SelectItem value="texas">Texas</SelectItem>
+                          <SelectItem value="hawaii">Hawaii</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
@@ -186,7 +196,9 @@ export function BillingInformation() {
               name="zipCode"
               render={({ field }) => (
                 <FormItem className="w-[10%]">
-                  <FormLabel>Zip Code</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Zip Code
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Zip Code" {...field} />
                   </FormControl>
@@ -201,7 +213,9 @@ export function BillingInformation() {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Email
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Email Address" {...field} />
                   </FormControl>
@@ -214,7 +228,9 @@ export function BillingInformation() {
               name="phoneNumber"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
+                    Phone
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="Phone number" {...field} />
                   </FormControl>
@@ -227,19 +243,23 @@ export function BillingInformation() {
             <Checkbox id="terms" />
             <label
               htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              className="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#4D4D4D]  text-sm font-normal leading-[150%]"
             >
               Ship to a different address
             </label>
           </div>
           <div className="space-y-5">
             <header>
-              <h1 className="text-2xl font-semibold">Additional Info</h1>
+              <h1 className="text-gray-900  text-2xl font-medium leading-[150%]">
+                Additional Info
+              </h1>
             </header>
             <div className="space-y-2">
-              <p className="text-[14px] font-normal">Order Notes (Optional)</p>
+              <p className="text-gray-900 text-sm font-normal leading-[150%]">
+                Order Notes (Optional)
+              </p>
               <Textarea
-                className="h-[100px]"
+                className="h-[100px] text-[#999] text-base font-normal leading-[130%]"
                 placeholder="Notes about your order, e.g. special notes for delivery"
               />
             </div>

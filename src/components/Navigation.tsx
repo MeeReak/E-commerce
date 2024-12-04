@@ -38,12 +38,12 @@ export const Navigation = () => {
         <div className="flex items-center gap-x-1">
           <MapPinIcon className="text-gray-400 size-5" />
           <p className="text-gray-400 text-sm">
-            Location: Lincoln-344, Illinois, Chicago, USA
+            Location: Phnom Penh, Cambodia
           </p>
         </div>
 
         {/* Spacer */}
-        <span className="w-[220px]"></span>
+        <span className="w-[300px]"></span>
 
         {/* Language, Currency, and Authentication Links */}
         <div className="flex items-center">
@@ -78,13 +78,13 @@ export const Navigation = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/svg/logo.svg" alt="logo" width={32} height={32} />
-          <h1 className="text-[#002603] dancing-script font-poppins text-2xl font-medium leading-[38px] tracking-[-0.96px]">
+          <h1 className="text-[#002603]   text-2xl font-medium leading-[38px] tracking-[-0.96px]">
             EcoFresh
           </h1>
         </Link>
 
         {/* Search Bar */}
-        {pathname === "blog-list" ? (
+        {pathname === "blogList" ? (
           <Search />
         ) : (
           <div className=" w-[424px]"></div>
@@ -92,21 +92,23 @@ export const Navigation = () => {
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">
-          <svg
-            onClick={() => (window.location.href = "/wishlist")}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-8 cursor-pointer"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-            />
-          </svg>
+          <Link href={`/wishlist`}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-8"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+              />
+            </svg>
+          </Link>
+
           <UserRoundIcon
             onClick={() => (window.location.href = "/account")}
             className=" cursor-pointer size-8 stroke-[1.5px]"
@@ -118,7 +120,7 @@ export const Navigation = () => {
       {/* Main Navigation */}
       <div className="flex justify-around items-center py-4 border-b-[1px] border-[#CCCCCC]">
         {/* Menu Items */}
-        <ul className="flex gap-x-8">
+        <ul className="flex gap-x-5">
           {menuItems.map(({ href, label }) => {
             const isActive =
               href === "/"
@@ -139,11 +141,11 @@ export const Navigation = () => {
         </ul>
 
         {/* Spacer */}
-        <span className="w-[330px]"></span>
+        <span className="w-[280px]"></span>
 
         {/* Contact Info */}
         <div className="flex items-center gap-x-2">
-          <PhoneCallIcon className="size-7" />
+          <PhoneCallIcon className="size-7 stroke-[1.5px]" />
           <p className="text-gray-800 text-sm font-medium leading-[21px]">
             (+855) 555-048-72
           </p>

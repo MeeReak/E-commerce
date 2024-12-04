@@ -69,11 +69,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </header>
             {isHovered ? (
               <motion.div
+                onClick={(e) => e.stopPropagation()}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <ActionProduct />
+                <ActionProduct id={id} setIsHovered={setIsHovered} />
               </motion.div>
             ) : (
               renderPriceAndRating()

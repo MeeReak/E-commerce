@@ -36,7 +36,7 @@ const AuthorProfile = ({
   avatar,
   name,
   date,
-  cate
+  cate,
 }: {
   avatar: string;
   name: string;
@@ -118,7 +118,7 @@ const Banner = () => (
         <p className="text-orange-500 text-center text-2xl font-semibold">
           56%
         </p>
-        <p className="text-[rgba(255,255,255,0.80)] text-center font-poppins text-sm font-medium leading-[100%] tracking-[0.42px] uppercase">
+        <p className="text-[rgba(255,255,255,0.80)] text-center   text-sm font-medium leading-[100%] tracking-[0.42px] uppercase">
           OFF
         </p>
       </span>
@@ -159,7 +159,7 @@ const Section = ({ id }: { id: string }) => {
         {/* Blog Tag, Author Info, and Comments */}
         <div className="flex items-center gap-x-5 pt-8 pb-2">
           <BlogTag tag={tag} />
-          <AuthorInfo author={by} date={user.date}/>
+          <AuthorInfo author={by} date={user.date} />
           <CardIconText
             className="text-[#00B207]"
             Icon={MessageSquareIcon}
@@ -171,7 +171,12 @@ const Section = ({ id }: { id: string }) => {
         </section>
 
         {/* Author Profile */}
-        <AuthorProfile avatar={user.avatar} name={user.name} date={user.date} cate={category} />
+        <AuthorProfile
+          avatar={user.avatar}
+          name={user.name}
+          date={user.date}
+          cate={category}
+        />
 
         {/* Blog Description */}
         <section className="py-6 space-y-3 text-lg text-[#808080]">

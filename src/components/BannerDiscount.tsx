@@ -32,7 +32,7 @@ export const BannerDiscount = () => {
         <p className="text-white text-center text-xl font-semibold leading-[150%]">
           56%
         </p>
-        <p className="text-[rgba(255,255,255,0.80)] text-center font-poppins text-sm font-medium leading-[100%] tracking-[0.42px] uppercase">
+        <p className="text-[rgba(255,255,255,0.80)] text-center   text-sm font-medium leading-[100%] tracking-[0.42px] uppercase">
           OFF
         </p>
       </span>

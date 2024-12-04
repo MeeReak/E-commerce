@@ -74,7 +74,7 @@ export const ProductFilter = () => {
 
   // Render products
   return (
-    <div>
+    <div className="pb-5">
       {filteredItems.length > 0 ? (
         <div className="grid grid-cols-5 gap-4">
           {filteredItems.map((item, index) => (
@@ -90,7 +90,7 @@ export const ProductFilter = () => {
         </div>
       ) : (
         <div className="text-center py-10">
-          <p className="text-gray-500 font-poppins text-lg">
+          <p className="text-gray-500   text-lg">
             No products match the selected filters.
           </p>
         </div>

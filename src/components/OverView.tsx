@@ -28,7 +28,7 @@
 //       <p className="text-gray-900 text-3xl font-semibold leading-[120%]">
 //         {name}
 //       </p>
-//       <span className="text-[#2C742F] font-poppins text-sm font-normal leading-[150%] rounded-sm bg-[rgba(32,181,38,0.2)] px-3 py-2">
+//       <span className="text-[#2C742F]   text-sm font-normal leading-[150%] rounded-sm bg-[rgba(32,181,38,0.2)] px-3 py-2">
 //         In Stock
 //       </span>
 //     </div>
@@ -44,7 +44,7 @@
 //       </span>
 //       <div className="flex items-center gap-x-1">
 //         <p className="text-gray-800 text-sm font-medium leading-[150%]">SKU:</p>
-//         <p className="text-[var(--Gray-Scale-Gray-600,#666)] font-poppins text-sm font-normal leading-[150%]">
+//         <p className="text-[var(--Gray-Scale-Gray-600,#666)]   text-sm font-normal leading-[150%]">
 //           {id}
 //         </p>
 //       </div>
@@ -258,22 +258,24 @@ const ProductTitleStatus = ({
   name = " Chinese Cabbage",
   review = 4,
   id = "2,51,594",
+  stockStatus = "In Stock",
 }: {
   name?: string;
   review?: number;
   id?: string;
+  stockStatus?: string;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, ease: "easeOut" }}
   >
-    <div className="flex gap-x-2 items-center pb-3">
+    <div className="flex gap-x-4 items-center pb-3">
       <p className="text-gray-900 text-3xl font-semibold leading-[120%]">
         {name}
       </p>
-      <span className="text-[#2C742F] font-poppins text-sm font-normal leading-[150%] rounded-sm bg-[rgba(32,181,38,0.2)] px-3 py-2">
-        In Stock
+      <span className="text-[#2C742F]   text-sm font-normal leading-[21px] rounded-sm bg-[rgba(32,181,38,0.2)] px-3 py-2">
+        {stockStatus}
       </span>
     </div>
     <div className="flex gap-x-2 items-center">
@@ -288,7 +290,7 @@ const ProductTitleStatus = ({
       </span>
       <div className="flex items-center gap-x-1">
         <p className="text-gray-800 text-sm font-medium leading-[150%]">SKU:</p>
-        <p className="text-[var(--Gray-Scale-Gray-600,#666)] font-poppins text-sm font-normal leading-[150%]">
+        <p className="text-[var(--Gray-Scale-Gray-600,#666)]   text-sm font-normal leading-[150%]">
           {id}
         </p>
       </div>
@@ -480,6 +482,7 @@ export const OverView = ({ id }: { id: string }) => {
           id={selectedData?.id}
           name={selectedData?.name}
           review={selectedData?.review}
+          stockStatus={selectedData?.stockStatus}
         />
         <PriceSection
           discount={selectedData?.discount}

@@ -9,7 +9,7 @@ export default async function page({
 }) {
   const id = (await params).id;
   return (
-    <div className="w-[1320px] pb-10 flex justify-between items-start mx-auto space-y-10 ">
+    <div className="w-[1320px] pb-20 flex justify-between items-start mx-auto space-y-10 ">
       <Sidebar />
       <BlogList id={id} />
     </div>

@@ -110,20 +110,38 @@ export const Sidebar = () => {
     router.push(`?${updatedParams.toString()}`);
   };
 
-  const renderCategory = (item: { name: string; number: number }) => (
-    <div
-      key={item.name}
-      onClick={() => handleSelectChange("category", item.name)}
-      className="flex cursor-pointer justify-between items-center py-1"
-    >
-      <p className="text-gray-800 hover:text-gray-950 text-sm font-normal leading-6">
-        {item.name}
-      </p>
-      <p className="text-gray-500 text-sm font-normal leading-6">
-        ({item.number})
-      </p>
-    </div>
-  );
+  const renderCategory = (item: { name: string; number: number }) => {
+    return (
+      <div
+        key={item.name}
+        onClick={() => handleSelectChange("category", item.name)}
+        className="group flex cursor-pointer justify-between items-center py-1"
+      >
+        <p
+          className={`text-sm font-normal leading-6 group-hover:underline group-hover:decoration-[#00B207] decoration-2 group-hover:text-gray-950 
+            ${
+              searchParams.get("category")?.toLocaleLowerCase() ===
+              item.name.toLocaleLowerCase()
+                ? "text-[#00B207]"
+                : "text-gray-800"
+            }`}
+        >
+          {item.name}
+        </p>
+        <p
+          className={`text-sm font-normal leading-6 group-hover:underline group-hover:decoration-[#00B207] decoration-2 
+          ${
+            searchParams.get("category")?.toLocaleLowerCase() ===
+            item.name.toLocaleLowerCase()
+              ? "text-[#00B207]"
+              : "text-gray-500"
+          }`}
+        >
+          ({item.number})
+        </p>
+      </div>
+    );
+  };
 
   const renderTag = (tag: string) => (
     <Link
@@ -131,7 +149,7 @@ export const Sidebar = () => {
       key={tag}
       onClick={() => handleSelectChange("tag", tag)}
       className={
-        searchParams.get("tag") === tag.toLocaleLowerCase()
+        searchParams.get("tag")?.toLocaleLowerCase() === tag.toLocaleLowerCase()
           ? ` cursor-pointer bg-[#00B207] m-1 ml-0 text-white px-4 py-1 rounded-full text-sm font-normal leading-6 hover:bg-gray-200`
           : `cursor-pointer bg-[#F2F2F2] m-1 ml-0 text-gray-900 px-4 py-1 rounded-full text-sm font-normal leading-6 hover:bg-gray-200`
       }
@@ -293,7 +311,9 @@ export const Sidebar = () => {
             id: blog.id,
             src: blog.src,
             title: blog.title,
-            date: `${blog.date.month.slice(0,3)} ${blog.date.day}, ${blog.date.year}`,
+            date: `${blog.date.month.slice(0, 3)} ${blog.date.day}, ${
+              blog.date.year
+            }`,
           }))
             .slice(0, 3)
             .map(renderRecentPost)}

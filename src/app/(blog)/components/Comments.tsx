@@ -33,17 +33,17 @@ const Comments = () => {
   });
   return (
     <>
-      <h1 className="text-gray-900  text-[24px] font-medium leading-[36px]">
+      <h1 className="text-gray-900 pb-4 text-[24px] font-medium leading-[36px]">
         Leave a Comment
       </h1>
       <Form {...form}>
         <form className="space-y-5">
-          <div className="w-full flex gap-5">
+          <div className="w-full flex items-center gap-5">
             <FormField
               control={form.control}
               name="fullName"
               render={({ field }) => (
-                <FormItem className="w-full pt-4">
+                <FormItem className="w-full">
                   <FormLabel className="text-gray-900 text-sm  font-normal leading-6">
                     Full Name
                   </FormLabel>
