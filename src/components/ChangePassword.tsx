@@ -39,7 +39,7 @@ export function ChangePassword() {
   return (
     <>
       <div className="border rounded-lg">
-        <header className="p-5 border text-xl font-medium">
+        <header className="p-5 border-b text-xl font-medium">
           Change Password
         </header>
         <div className="p-5">
@@ -53,9 +53,15 @@ export function ChangePassword() {
                 name="currentPassword"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Current Password</FormLabel>
+                    <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                      Current Password
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="Current Password" {...field} />
+                      <Input
+                        className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                        placeholder="Current Password"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -67,9 +73,15 @@ export function ChangePassword() {
                   name="newPassword"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>New Password</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        New Password
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="New Password" {...field} />
+                        <Input
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="New Password"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -80,16 +92,24 @@ export function ChangePassword() {
                   name="newPassword"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>New Password</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        New Password
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="New Password" {...field} />
+                        <Input
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="New Password"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <Button className="rounded-full">Changes Password</Button>
+              <Button className="rounded-full text-white text-sm font-semibold leading-[16.8px]">
+                Changes Password
+              </Button>
             </form>
           </Form>
         </div>

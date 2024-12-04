@@ -109,10 +109,9 @@ export const Navigation = () => {
             </svg>
           </Link>
 
-          <UserRoundIcon
-            onClick={() => (window.location.href = "/account")}
-            className=" cursor-pointer size-8 stroke-[1.5px]"
-          />
+          <Link href={`/setting`}>
+            <UserRoundIcon className=" cursor-pointer size-8 stroke-[1.5px]" />
+          </Link>
           <span className="h-7 w-[1.5px] bg-[#CCCCCC]"></span>
           <ShoppingCart />
         </div>

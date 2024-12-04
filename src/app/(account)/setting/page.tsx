@@ -5,7 +5,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="w-[1320px] mx-auto space-y-5 h-[1000vh]">
+    <div className="w-[1320px] mx-auto space-y-5 pb-20">
       <AccountSetting />
       <BillingAddress />
       <ChangePassword />
