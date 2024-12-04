@@ -43,8 +43,8 @@ export function AccountSetting() {
 
   return (
     <>
-      <div className="border rounded-lg mt-5">
-        <header className=" p-5 border text-xl font-medium">
+      <div className="border rounded-lg mt-10">
+        <header className=" p-5 border-b text-xl font-medium">
           Account Settings
         </header>
         <div className="flex p-5">
@@ -60,9 +60,16 @@ export function AccountSetting() {
                   name="firstName"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>First name</FormLabel>
+                      <FormLabel className="text-gray-900 text-sm font-normal leading-[21px]">
+                        First name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your first name" {...field} />
+                        <Input
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          //defaultValue={""}
+                          placeholder="Your first name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -73,9 +80,16 @@ export function AccountSetting() {
                   name="lastName"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Last name</FormLabel>
+                      <FormLabel className="text-gray-900 text-sm font-normal leading-[21px]">
+                        Last name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your last name" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Your last name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -87,9 +101,16 @@ export function AccountSetting() {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-gray-900 text-sm font-normal leading-[21px]">
+                        Email
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Email Address" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Email Address"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -100,15 +121,24 @@ export function AccountSetting() {
                   name="phoneNumber"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Phone Number</FormLabel>
+                      <FormLabel className="text-gray-900 text-sm font-normal leading-[21px]">
+                        Phone Number
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Phone number" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Phone number"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button className="rounded-full">Save Changes</Button>
+                <Button className="rounded-full text-white text-sm font-semibold leading-[16.8px]">
+                  Save Changes
+                </Button>
               </form>
             </Form>
           </div>
@@ -120,7 +150,10 @@ export function AccountSetting() {
               width={224}
               height={224}
             />
-            <Button className="rounded-full" variant={"outline"}>
+            <Button
+              className="rounded-full text-[#00b207] text-sm font-semibold leading-[16.8px]"
+              variant={"outline"}
+            >
               Chose Image
             </Button>
           </div>

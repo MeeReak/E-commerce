@@ -64,7 +64,7 @@ export function BillingAddress() {
   return (
     <>
       <div className="border rounded-lg">
-        <header className="p-5 border text-xl font-medium">
+        <header className="p-5 border-b text-xl font-medium">
           Billing Address
         </header>
         <div className="p-5">
@@ -79,9 +79,16 @@ export function BillingAddress() {
                   name="firstName"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Fist name</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Fist name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your first name" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Your first name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -92,9 +99,16 @@ export function BillingAddress() {
                   name="lastName"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Last name</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Last name
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Your last name" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Your last name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -105,12 +119,17 @@ export function BillingAddress() {
                   name="companyName"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
                         Company Name{" "}
                         <span className="text-slate-500">(Optional)</span>
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder="Company name" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Company name"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -122,9 +141,16 @@ export function BillingAddress() {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Street Address</FormLabel>
+                    <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                      Street Address
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="Street address" {...field} />
+                      <Input
+                        //defaultValue={""}
+                        className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                        placeholder="Street address"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -136,7 +162,9 @@ export function BillingAddress() {
                   name="country"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Country / Region</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Country / Region
+                      </FormLabel>
                       <FormControl>
                         <Select>
                           <SelectTrigger>
@@ -159,7 +187,9 @@ export function BillingAddress() {
                   name="state"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Province</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Province
+                      </FormLabel>
                       <FormControl>
                         <Select>
                           <SelectTrigger>
@@ -186,9 +216,16 @@ export function BillingAddress() {
                   name="zipCode"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Zip Code</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Zip Code
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Zip Code" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Zip Code"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -201,9 +238,16 @@ export function BillingAddress() {
                   name="email"
                   render={({ field }) => (
                     <FormItem className="w-full">
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel className="text-gray-900 font-poppins text-sm font-normal leading-[21px]">
+                        Email
+                      </FormLabel>
                       <FormControl>
-                        <Input placeholder="Email Address" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Email Address"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -216,14 +260,21 @@ export function BillingAddress() {
                     <FormItem className="w-full">
                       <FormLabel>Phone</FormLabel>
                       <FormControl>
-                        <Input placeholder="Phone number" {...field} />
+                        <Input
+                          //defaultValue={""}
+                          className="placeholder:text-gray-600 placeholder:text-sm placeholder:font-normal placeholder:leading-[20.8px]"
+                          placeholder="Phone number"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <Button className="rounded-full">Save Changes</Button>
+              <Button className="rounded-full text-white text-sm font-semibold leading-[16.8px]">
+                Save Changes
+              </Button>
             </form>
           </Form>
         </div>
