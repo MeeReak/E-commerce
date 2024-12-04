@@ -39,7 +39,6 @@ export default function page() {
         " You can reach us via email, live chat on our website, or by calling our customer support hotline. ",
     },
   ];
-
   return (
     <>
       <div className="flex items-start mx-auto justify-center">
