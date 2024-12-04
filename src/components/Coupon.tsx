@@ -9,10 +9,13 @@ const CouponCode = () => {
       <div className="flex w-full">
         <Input
           type="text"
-          placeholder="Your email address"
+          placeholder="Enter code"
           className="rounded-full w-[640px] px-6 py-6"
         />
-        <Button variant={"custom"} className="rounded-full px-10 bg-[#333333] -ml-32 z-10">
+        <Button
+          variant={"custom"}
+          className="rounded-full px-10 bg-[#333333] -ml-32 z-10 text-white   text-base font-semibold leading-[1.25]"
+        >
           Apply Coupon
         </Button>
       </div>

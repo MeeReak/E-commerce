@@ -24,7 +24,7 @@ export const Products = () => {
             title="75% off"
           />
         </div>
-        {Items.slice(0,4).map((x, index) => (
+        {Items.slice(0, 4).map((x, index) => (
           <div key={index}>
             <ProductCardY
               id={x.id}
@@ -38,7 +38,7 @@ export const Products = () => {
       </div>
       <div className=" flex items-end justify-between">
         <div className=" space-y-4">
-          <p className="text-gray-900 mt-6 font-poppins font-medium text-lg leading-relaxed uppercase">
+          <p className="text-gray-900 mt-6   font-medium text-lg leading-relaxed uppercase">
             Hot Deals
           </p>
           {Items.filter((item) => item.type == "hot deal").map((x, index) => (
@@ -54,7 +54,7 @@ export const Products = () => {
           ))}
         </div>
         <div className=" space-y-4">
-          <p className="text-gray-900 mt-6 font-poppins font-medium text-lg leading-relaxed uppercase">
+          <p className="text-gray-900 mt-6   font-medium text-lg leading-relaxed uppercase">
             Best Seller
           </p>
           {Items.filter((item) => item.type == "best seller").map(
@@ -72,7 +72,7 @@ export const Products = () => {
           )}
         </div>
         <div className=" space-y-4">
-          <p className="text-gray-900 mt-6 font-poppins font-medium text-lg leading-relaxed uppercase">
+          <p className="text-gray-900 mt-6   font-medium text-lg leading-relaxed uppercase">
             Top Rated
           </p>
           {Items.filter((item) => item.type == "top rate").map((x, index) => (

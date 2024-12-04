@@ -11,7 +11,7 @@ export const BlogList = ({ id }: { id: string }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const SortBy = ["Latest", "Newest"];
+  const SortBy = ["Newest", "Latest"];
 
   // Helper function to get query parameters with fallback values
   const getQueryParams = () => ({

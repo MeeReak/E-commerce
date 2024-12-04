@@ -115,7 +115,7 @@ const ShoppingCartSVG: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
-    strokeWidth="1.5"
+    strokeWidth="1"
     stroke="currentColor"
     className="size-8"
   >
@@ -204,10 +204,10 @@ const CartFooter: React.FC<CartFooterProps> = ({
 }) => (
   <div className="pb-10 px-4">
     <div className="flex justify-between pb-5">
-      <p className="text-[#1A1A1A] font-poppins font-medium text-[16px] leading-[1.2]">
+      <p className="text-[#1A1A1A]   font-medium text-[16px] leading-[1.2]">
         {itemCount} Product{itemCount > 1 && "s"}
       </p>
-      <p className="text-[#1A1A1A] font-poppins font-semibold text-[16px] leading-[1.2]">
+      <p className="text-[#1A1A1A]   font-semibold text-[16px] leading-[1.2]">
         ${totalPrice}
       </p>
     </div>
@@ -217,7 +217,7 @@ const CartFooter: React.FC<CartFooterProps> = ({
           onClick={() => {
             setIsOpen(false);
           }}
-          href="/shopping-cart"
+          href="/checkout"
         >
           Checkout
         </Link>
@@ -226,7 +226,7 @@ const CartFooter: React.FC<CartFooterProps> = ({
         className="border-none rounded-full py-4 font-semibold text-[16px] leading-[1.2]"
         variant="ghost"
       >
-        <Link href="/product">View Cart</Link>
+        <Link href="/shopping-cart">View Cart</Link>
       </Button>
     </div>
   </div>

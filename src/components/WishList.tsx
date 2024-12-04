@@ -34,9 +34,15 @@ const WishList = () => {
         <CardHeader className="p-0 flex">
           <CardTitle>
             <div className="grid grid-cols-3 items-center font-normal text-[14px] text-[#808080] uppercase p-5 pb-4 border-b-2">
-              <span className="pl-5">Product</span>
-              <span>Price</span>
-              <span>Stock Status</span>
+              <span className="pl-5 text-gray-500 text-sm font-medium leading-none tracking-[0.42px] uppercase">
+                Product
+              </span>
+              <span className="text-gray-500 text-sm font-medium leading-none tracking-[0.42px] uppercase">
+                Price
+              </span>
+              <span className="text-gray-500 text-sm font-medium leading-none tracking-[0.42px] uppercase">
+                Stock Status
+              </span>
             </div>
           </CardTitle>
         </CardHeader>
@@ -53,16 +59,18 @@ const WishList = () => {
                   width={100}
                   height={100}
                 />
-                <p className="ml-4">{product.name}</p>
+                <p className="ml-4 text-gray-900 text-base font-normal leading-[150%]">
+                  {product.name}
+                </p>
               </div>
               <div className="col-span-2">${product.price}</div>
               <div>
                 {product.qty > 0 ? (
-                  <span className="text-[#2C742F] bg-green-300 px-2 py-1 rounded">
+                  <span className="text-[#2C742F] bg-[#20B52633] px-2 py-1 rounded text-sm font-normal leading-[150%]">
                     In Stock
                   </span>
                 ) : (
-                  <span className="text-[#EA4B48] bg-red-300 px-2 py-1 rounded">
+                  <span className="text-[#EA4B48] bg-[#EA4B4833] px-2 py-1 rounded">
                     Out of Stock
                   </span>
                 )}
