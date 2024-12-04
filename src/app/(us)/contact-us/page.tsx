@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 
 export default function page() {
   return (
-    <div>
-      <div className="flex justify-center space-x-8 mt-10">
+    <>
+      <div className="flex w-[1320px] mx-auto justify-center space-x-8 mt-10">
         <section className="w-full max-w-[312px] p-8 rounded-lg shadow-sm border border-gray-200 space-y-6">
           <div className="flex flex-col items-center space-y-2 w-full border-b-[1px] pb-4">
             <MapPinIcon className="text-green-700 h-12 w-12 stroke-[1px]" />
@@ -73,6 +73,6 @@ export default function page() {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
       ></iframe>
-    </div>
+    </>
   );
 }

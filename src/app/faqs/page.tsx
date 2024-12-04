@@ -40,7 +40,7 @@ export default function page() {
     },
   ];
   return (
-    <>
+    <div className=" w-[1320px] mx-auto ">
       <div className="flex items-start mx-auto justify-center">
         <section className="w-[648] h-[592] relative mr-[5.5rem] mt-10">
           <h1 className="text-[rgb(26,26,26)] text-[48px] font-semibold pb-5 leading-[120%]">
@@ -72,6 +72,6 @@ export default function page() {
           />
         </section>
       </div>
-    </>
+    </div>
   );
 }
