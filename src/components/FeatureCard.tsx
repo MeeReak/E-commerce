@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
@@ -44,10 +44,10 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ image, title, detail }) => {
     >
       <Image src={image} width={40} height={40} alt={title} />
       <div className="space-y-2">
-        <p className="text-gray-900 text-[16px] font-semibold leading-[120%]">
+        <p className="text-[#1A1A1A] text-lg font-semibold leading-[27px]">
           {title}
         </p>
-        <p className="text-gray-400 text-[14px] font-normal leading-[150%]">
+        <p className="text-[#999] text-sm font-normal leading-[21px]">
           {detail}
         </p>
       </div>

@@ -144,8 +144,8 @@ export function AccountSetting() {
           </div>
           <div className="w-full flex-col flex justify-center items-center gap-y-5">
             <Image
-              className="bg-black rounded-full"
-              src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
+              className="bg-black rounded-full border-none"
+              src="https://img.freepik.com/premium-psd/3d-render-avatar-character_23-2150611774.jpg?uid=R25760465&ga=GA1.1.328256508.1700589986"
               alt=""
               width={224}
               height={224}

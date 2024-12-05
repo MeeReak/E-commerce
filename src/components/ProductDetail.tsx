@@ -386,7 +386,7 @@ export const ProductDetail = ({ id }: { id: string }) => {
           comment={review.comment}
         />
       ))}
-      {visibleReviews < reviews.length && (
+      {visibleReviews < reviews.length - 2  && (
         <Button
           variant={"custom"}
           className="border-none mt-[5.5px] rounded-full bg-[#56AC591A] hover:text-white  hover:bg-[#36a139] text-[#00B207] text-sm font-semibold leading-[16.8px]"

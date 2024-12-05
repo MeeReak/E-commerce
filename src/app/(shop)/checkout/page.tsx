@@ -9,7 +9,7 @@ export default function page() {
       <div className="flex justify-between gap-5">
         <BillingInformation />
         <OrderSummary
-          imageUrl="/images/Apple.png"
+          imageUrl="https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Apple/white-apple-1.jpg"
           name="Apple"
           price={10}
           qty={10}

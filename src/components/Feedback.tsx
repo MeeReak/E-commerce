@@ -32,7 +32,7 @@ const FeedbackHeader = ({
 );
 
 const Feedback = ({ comment, name, rating, time }: IFeedbackProps) => (
-  <div className="border-b border-[#E6E6E6]">
+  <div className="border-b border-[#E6E6E6] mb-4">
     <FeedbackHeader name={name} rating={rating} time={time} />
     <p className="text-[rgb(128,128,128)] text-sm font-normal leading-[21px] pt-3 pb-4 max-w-[760px]">
       {comment}

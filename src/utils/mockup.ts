@@ -104,14 +104,14 @@ export const shoppingCart = [
   {
     id: 1,
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
-    name: "Fresh Indian Orange",
+    name: "Beef",
     qty: "1",
     price: "12.00",
   },
   {
     id: 2,
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Strawberry/white-strawberry-2.jpg",
-    name: "Chinese Cabbage",
+    name: "Strawberry",
     qty: "4",
     price: "15.00",
   },
@@ -227,6 +227,18 @@ export const category = [
   },
   {
     image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-meat.png",
+    title: "Meat & Fish",
+    category: "meat",
+  },
+  {
+    image:
+      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-spices.png",
+    title: "Ingredients",
+    category: "ingredients",
+  },
+  {
+    image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-bakery.png",
     title: "Bread & Bakery",
     category: "bakery",
@@ -236,12 +248,6 @@ export const category = [
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-beverages.png",
     title: "Beverages",
     category: "berages",
-  },
-  {
-    image:
-      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-meat.png",
-    title: "Meat & Fish",
-    category: "meat",
   },
   {
     image:
@@ -260,12 +266,6 @@ export const category = [
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-snacks.png",
     title: "Snacks",
     category: "snacks",
-  },
-  {
-    image:
-      "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-spices.png",
-    title: "Cooking",
-    category: "ingredients",
   },
   {
     image:
@@ -384,35 +384,36 @@ export const blogInfo = [
       "Savor the vibrant tastes of a tropical fruit mix! With juicy pineapples, tangy pomegranates, and sweet grapes, it’s a healthful treat that excites the senses.",
   },
 ];
+
 export const WishListProduct = [
   {
     id: 1,
-    name: "Fresh Broccoli",
-    src: "/images/fresh-broccoli.png",
+    name: "Broccoli",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Broccoli/broccoli-2.jpg",
     type: "top rate",
     price: 19,
     qty: 10,
   },
   {
     id: 2,
-    name: "Fresh Broccoli",
-    src: "/images/fresh-broccoli.png",
+    name: "Beef",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
     type: "top rate",
     price: 14.5,
     qty: 0,
   },
   {
     id: 3,
-    name: "Fresh Broccoli",
-    src: "/images/fresh-broccoli.png",
+    name: "Banana",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Banana/banana-2.jpg",
     type: "top rate",
     price: 10.5,
     qty: 1,
   },
   {
     id: 4,
-    name: "Fresh Broccoli",
-    src: "/images/fresh-broccoli.png",
+    name: "Strawberry",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Strawberry/white-strawberry-2.jpg",
     type: "top rate",
     price: 4.5,
     qty: 0,
@@ -676,107 +677,6 @@ export const Product = [
       },
     ],
     dateAdded: "2023-07-15T08:45:00Z",
-  },
-  {
-    id: "4d2cbe71-ea41-4d8e-89a7-df8928be33b6",
-    name: "Cabbage",
-    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-1.jpg",
-    images: [
-      {
-        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-1.jpg",
-        id: 1,
-        alt: "Image 1",
-      },
-      {
-        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-3.jpg",
-        id: 2,
-        alt: "Image 2",
-      },
-      {
-        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-2.jpg",
-        id: 3,
-        alt: "Image 3",
-      },
-      {
-        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-4.jpg",
-        id: 4,
-        alt: "Image 4",
-      },
-    ],
-    price: 2.5,
-    afterDiscount: 2.2,
-    discount: 1,
-    type: "discount",
-    star: 5,
-    review: 6,
-    stockStatus: "In Stock",
-    sku: "CA309201",
-    brand: "EcoFresh",
-    category: "Vegetable",
-    tags: ["Healthy", "Organic"],
-    description:
-      "Fresh, green cabbage with a delightful crunch and mild flavor, perfect for salads, stir-fries, or soups. Rich in fiber and vitamins C and K, cabbage supports digestive health and boosts the immune system. This nutrient-packed vegetable is versatile and adds a refreshing touch to a variety of dishes. Our cabbages are carefully grown and harvested to ensure the highest quality and taste.",
-    keyPoints: [
-      "High in fiber, promoting a healthy digestive system.",
-      "Rich in antioxidants for a strong immune system.",
-      "Versatile ingredient for salads, soups, and stir-fries.",
-      "Cultivated using eco-friendly farming methods.",
-    ],
-    note: "Fresh stock just arrived.",
-    additionalInfo: {
-      weight: "500g",
-      color: "Green",
-      type: "Vegetable",
-      category: "Vegetable",
-      stockStatus: "In Stock",
-      tags: ["Healthy", "Organic"],
-    },
-    comments: [
-      {
-        id: "5aec1ef6-d762-44f9-80c1-384e6f48bae1",
-        name: "Kanika Son",
-        rating: 5,
-        date: "1 day ago",
-        comment: "Loved the crispiness of this cabbage. Highly recommend!",
-      },
-      {
-        id: "a97304d4-58ff-4918-9f88-ad080b53446b",
-        name: "Nary L.",
-        rating: 4,
-        date: "2 days ago",
-        comment:
-          "Fresh and great quality, though slightly smaller than expected.",
-      },
-      {
-        id: "39e8824a-6e19-41e4-b6ce-82469345bd2a",
-        name: "Chanroeun K.",
-        rating: 5,
-        date: "3 days ago",
-        comment: "This cabbage made my soup so flavorful!",
-      },
-      {
-        id: "e1232d6c-5ae0-432f-aa37-168bae30ff84",
-        name: "Sreyneang Phat",
-        rating: 5,
-        date: "1 day ago",
-        comment: "Perfectly fresh. Great for making coleslaw.",
-      },
-      {
-        id: "aab31ff6-cd22-43a2-87ee-20b1e76a3569",
-        name: "Pich Nun",
-        rating: 4,
-        date: "2 days ago",
-        comment: "Tasty and crisp, but delivery was slightly late.",
-      },
-      {
-        id: "0ed25191-1789-4f06-80b1-217038c73780",
-        name: "Sophea Chan",
-        rating: 5,
-        date: "3 days ago",
-        comment: "Freshest cabbage I've bought in a while. Amazing!",
-      },
-    ],
-    dateAdded: "2024-01-20T14:30:00Z",
   },
   {
     id: "95fcde71-d4f2-4ec3-bc3c-fb021f91b341",
@@ -1108,7 +1008,7 @@ export const Product = [
     price: 10.0,
     afterDiscount: 8.0,
     discount: 20,
-    type: "hot deal",
+    type: "discount",
     star: 5,
     review: 26,
     stockStatus: "In Stock",
@@ -1180,6 +1080,108 @@ export const Product = [
     ],
     dateAdded: "2024-03-13T11:05:00Z",
   },
+  {
+    id: "4d2cbe71-ea41-4d8e-89a7-df8928be33b6",
+    name: "Cabbage",
+    src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-1.jpg",
+    images: [
+      {
+        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-1.jpg",
+        id: 1,
+        alt: "Image 1",
+      },
+      {
+        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-3.jpg",
+        id: 2,
+        alt: "Image 2",
+      },
+      {
+        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-2.jpg",
+        id: 3,
+        alt: "Image 3",
+      },
+      {
+        src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-4.jpg",
+        id: 4,
+        alt: "Image 4",
+      },
+    ],
+    price: 2.5,
+    afterDiscount: 2.2,
+    discount: 1,
+    type: "discount",
+    star: 5,
+    review: 6,
+    stockStatus: "In Stock",
+    sku: "CA309201",
+    brand: "EcoFresh",
+    category: "Vegetable",
+    tags: ["Healthy", "Organic"],
+    description:
+      "Fresh, green cabbage with a delightful crunch and mild flavor, perfect for salads, stir-fries, or soups. Rich in fiber and vitamins C and K, cabbage supports digestive health and boosts the immune system. This nutrient-packed vegetable is versatile and adds a refreshing touch to a variety of dishes. Our cabbages are carefully grown and harvested to ensure the highest quality and taste.",
+    keyPoints: [
+      "High in fiber, promoting a healthy digestive system.",
+      "Rich in antioxidants for a strong immune system.",
+      "Versatile ingredient for salads, soups, and stir-fries.",
+      "Cultivated using eco-friendly farming methods.",
+    ],
+    note: "Fresh stock just arrived.",
+    additionalInfo: {
+      weight: "500g",
+      color: "Green",
+      type: "Vegetable",
+      category: "Vegetable",
+      stockStatus: "In Stock",
+      tags: ["Healthy", "Organic"],
+    },
+    comments: [
+      {
+        id: "5aec1ef6-d762-44f9-80c1-384e6f48bae1",
+        name: "Kanika Son",
+        rating: 5,
+        date: "1 day ago",
+        comment: "Loved the crispiness of this cabbage. Highly recommend!",
+      },
+      {
+        id: "a97304d4-58ff-4918-9f88-ad080b53446b",
+        name: "Nary L.",
+        rating: 4,
+        date: "2 days ago",
+        comment:
+          "Fresh and great quality, though slightly smaller than expected.",
+      },
+      {
+        id: "39e8824a-6e19-41e4-b6ce-82469345bd2a",
+        name: "Chanroeun K.",
+        rating: 5,
+        date: "3 days ago",
+        comment: "This cabbage made my soup so flavorful!",
+      },
+      {
+        id: "e1232d6c-5ae0-432f-aa37-168bae30ff84",
+        name: "Sreyneang Phat",
+        rating: 5,
+        date: "1 day ago",
+        comment: "Perfectly fresh. Great for making coleslaw.",
+      },
+      {
+        id: "aab31ff6-cd22-43a2-87ee-20b1e76a3569",
+        name: "Pich Nun",
+        rating: 4,
+        date: "2 days ago",
+        comment: "Tasty and crisp, but delivery was slightly late.",
+      },
+      {
+        id: "0ed25191-1789-4f06-80b1-217038c73780",
+        name: "Sophea Chan",
+        rating: 5,
+        date: "3 days ago",
+        comment: "Freshest cabbage I've bought in a while. Amazing!",
+      },
+    ],
+    dateAdded: "2024-01-20T14:30:00Z",
+  },
+
   {
     id: "4d7d8bf0-a987-456b-9bfa-3c156f0eabcf",
     name: "Pork",
@@ -1916,7 +1918,7 @@ export const Product = [
     price: 4.0,
     afterDiscount: 3.2,
     discount: 20,
-    type: "discount",
+    type: "hot deal",
     star: 4,
     review: 50,
     stockStatus: "Limited Stock",

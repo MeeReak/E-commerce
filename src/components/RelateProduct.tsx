@@ -115,7 +115,7 @@ export const RelateProduct = ({ id }: { id: string }) => {
   };
 
   const filteredProducts = Items.filter((item) => item.id == id);
-  console.log("this is", filteredProducts);
+  // console.log("this is", filteredProducts);
 
   return (
     <div>

@@ -9,6 +9,7 @@ import {
   InstagramIcon,
   TwitterIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 interface TeamCardProps {
   image: string;
@@ -35,20 +36,19 @@ export const TeamCard = ({ name, image, role }: TeamCardProps) => {
       {isHovered && (
         <div className="absolute h-[280px] inset-0 bg-black bg-opacity-40 flex justify-center items-center space-x-2">
           {socialIcons.map((social, index) => (
-            <Button
-              onClick={() =>
-                window.location.assign(
-                  "https://www.facebook.com/profile.php?id=100024190094545"
-                )
-              }
+            <Link
               key={index}
-              size="icon"
-              variant="custom"
-              className="p-3 hover:bg-[#00B207]"
-              aria-label={social.label}
+              href={"https://www.facebook.com/profile.php?id=100024190094545"}
             >
-              {social.icon}
-            </Button>
+              <Button
+                size="icon"
+                variant="custom"
+                className="p-3 hover:bg-[#00B207]"
+                aria-label={social.label}
+              >
+                {social.icon}
+              </Button>
+            </Link>
           ))}
         </div>
       )}

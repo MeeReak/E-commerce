@@ -29,21 +29,21 @@ export const Navigation = () => {
     { href: "/faqs", label: "FAQs" },
   ];
 
+  // console.log("this is pathname", pathname);
+
   return (
     // <nav className="sticky top-0 z-50 bg-white shadow-sm">
     <nav>
       {/* Top Bar */}
-      <div className="flex bg-[#333333] items-center justify-around">
+      <div className="flex bg-[#333333] text-white p-2 italic items-center justify-around">
         {/* Location */}
         <div className="flex items-center gap-x-1">
-          <MapPinIcon className="text-gray-400 size-5" />
-          <p className="text-gray-400 text-sm">
-            Location: Phnom Penh, Cambodia
-          </p>
+          <MapPinIcon className="text-white size-5" />
+          <p className="text-white text-sm">Location: Phnom Penh, Cambodia</p>
         </div>
 
         {/* Spacer */}
-        <span className="w-[300px]"></span>
+        <span className="w-[380px]"></span>
 
         {/* Language, Currency, and Authentication Links */}
         <div className="flex items-center">
@@ -55,18 +55,18 @@ export const Navigation = () => {
             item={currencies}
             className="border-none w-auto space-x-2 text-white"
           />
-          <span className="text-gray-400 pr-4">|</span>
+          <span className="text-white pr-4">|</span>
           <div className="flex items-center gap-x-2">
             <Link
               href="/sign-in"
-              className="text-gray-400 text-sm font-normal leading-[1.3] hover:text-white"
+              className="text-white text-sm font-normal leading-[1.3] hover:text-white"
             >
               Sign In
             </Link>
-            <span className="text-gray-400">/</span>
+            <span className="text-white">/</span>
             <Link
               href="/sign-up"
-              className="text-gray-400 text-sm font-normal leading-[1.3] hover:text-white"
+              className="text-white text-sm font-normal leading-[1.3] hover:text-white"
             >
               Sign Up
             </Link>
@@ -74,21 +74,22 @@ export const Navigation = () => {
         </div>
       </div>
       {/* Logo and Search Bar */}
-      <div className="flex justify-around py-5 border-b-[1px] border-[#CCCCCC]">
+      <div className="flex justify-around py-5 border-b border-[#CCCCCC]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image src="/svg/logo.svg" alt="logo" width={32} height={32} />
-          <h1 className="text-[#002603]   text-2xl font-medium leading-[38px] tracking-[-0.96px]">
+          <h1 className="text-[#002603] text-2xl font-medium leading-[38px] tracking-[-0.96px]">
             EcoFresh
           </h1>
         </Link>
 
+        <Search />
         {/* Search Bar */}
-        {pathname === "blogList" ? (
-          <Search />
+        {/* {pathname === "blogList" ? (
+          
         ) : (
-          <div className=" w-[424px]"></div>
-        )}
+          <div className=" w-[500px]"></div>
+        )} */}
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">
@@ -130,22 +131,27 @@ export const Navigation = () => {
               <li
                 key={href}
                 className={`text-sm font-medium leading-[21px] hover:text-[#00B207] ${
-                  isActive ? "text-[#00B207]" : "text-gray-600"
+                  isActive ? "text-[#008f07]" : "text-gray-600"
                 }`}
               >
-                <Link href={href}>{label}</Link>
+                <Link
+                  href={href}
+                  className=" text-sm font-medium leading-[21px]"
+                >
+                  {label}
+                </Link>
               </li>
             );
           })}
         </ul>
 
         {/* Spacer */}
-        <span className="w-[280px]"></span>
+        <span className="w-[330px]"></span>
 
         {/* Contact Info */}
-        <div className="flex items-center gap-x-2">
+        <div className="flex items-center gap-x-4">
           <PhoneCallIcon className="size-7 stroke-[1.5px]" />
-          <p className="text-gray-800 text-sm font-medium leading-[21px]">
+          <p className="text-[#1A1A1A] text-sm font-medium leading-[21px]">
             (+855) 555-048-72
           </p>
         </div>
