@@ -33,6 +33,7 @@ const products = [
   "Fruits",
   "Can Food",
   "Sea Food",
+  "Beef"
 ];
 
 // Custom hook for debouncing input
