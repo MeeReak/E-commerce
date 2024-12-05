@@ -29,7 +29,7 @@ export const Navigation = () => {
     { href: "/faqs", label: "FAQs" },
   ];
 
-  // console.log("this is pathname", pathname);
+  const regex = /^\/blog-list\/\d+$/;
 
   return (
     // <nav className="sticky top-0 z-50 bg-white shadow-sm">
@@ -83,13 +83,12 @@ export const Navigation = () => {
           </h1>
         </Link>
 
-        <Search />
         {/* Search Bar */}
-        {/* {pathname === "blogList" ? (
-          
+        {regex.test(pathname) ? (
+          <div className="w-[500px]"></div>
         ) : (
-          <div className=" w-[500px]"></div>
-        )} */}
+          <Search />
+        )}
 
         {/* Icons Section */}
         <div className="flex items-center gap-x-4">

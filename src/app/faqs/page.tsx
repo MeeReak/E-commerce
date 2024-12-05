@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
+
 export default function page() {
   const items = [
     {
@@ -39,10 +40,12 @@ export default function page() {
         " You can reach us via email, live chat on our website, or by calling our customer support hotline. ",
     },
   ];
+
   return (
-    <div className=" w-[1320px] mx-auto pb-20">
-      <div className="flex items-start justify-center ">
-        <section className="w-[648px] h-[592px] relative mr-[5.5rem] mt-10">
+    <div className="w-full max-w-screen-xl mx-auto pb-10 px-4">
+      <div className="flex flex-col md:flex-row items-start gap-5 justify-center">
+        {/* Accordion Section */}
+        <section className="flex-1 md:w-[648px] md:h-[592px] relative mt-10 mb-10 md:mb-0">
           <h1 className="text-[rgb(26,26,26)] text-[48px] font-semibold pb-5 leading-[120%]">
             Welcome, Let&rsquo;s Talk About Our EcoFresh
           </h1>
@@ -51,24 +54,26 @@ export default function page() {
               <AccordionItem
                 value={value}
                 key={value}
-                className="bg-[#F2F2F2] rounded-md grid grid-cols-1 "
+                className="bg-[#F2F2F2] rounded-md"
               >
-                <AccordionTrigger className="px-5 hover:no-underline focus:text-[#00B207] text-[#1A1A1A]  text-base font-medium leading-[150%] focus:border focus:rounded-t-sm focus:border-[#84D187] w-[1000px]">
+                <AccordionTrigger className="px-5 hover:no-underline focus:text-[#00B207] text-[#1A1A1A] text-base font-medium leading-[150%] focus:border focus:rounded-t-sm focus:border-[#84D187]">
                   {title}
                 </AccordionTrigger>
-                <AccordionContent className="px-5 pt-3 text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out border rounded-b-sm border-[#84D187] border-t-0 w-[1000px]">
+                <AccordionContent className="px-5 pt-3 text-gray-600 text-base font-medium leading-[150%] transition-all duration-300 ease-in-out border rounded-b-sm border-[#84D187] border-t-0">
                   {content}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </section>
-        <section className="justify-center items-center relative mt-16">
+
+        {/* Image Section */}
+        <section className="justify-center items-center relative md:mt-16">
           <Image
             width={500}
             height={500}
             src="/svg/undraw_faq_re_31cw.svg"
-            alt="image-here"
+            alt="FAQ illustration"
           />
         </section>
       </div>
