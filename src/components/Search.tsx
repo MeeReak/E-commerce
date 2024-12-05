@@ -4,6 +4,7 @@ import { SearchIcon } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 // Sample list of products
 const products = [
@@ -79,12 +80,6 @@ export const Search = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      handleSearchClick();
-    }
-  };
-
-  const handleSearchClick = () => {
-    if (query.trim()) {
       window.location.href = `/shop/1?q=${query}`;
     }
   };
@@ -103,17 +98,19 @@ export const Search = () => {
           onKeyDown={handleKeyDown} // Listen for the Enter key press
           leftIcon={<SearchIcon className=" text-gray-900 stroke-[1.5px]" />}
         />
-        <Button
-          onClick={handleSearchClick}
-          className="py-3 px-6 rounded-tl-none rounded-bl-none"
-        >
-          Search
-        </Button>
+        <Link href={`/shop/1?q=${query.trim()}`}>
+          <Button
+            // onClick={handleSearchClick}
+            className="py-3 px-6 rounded-tl-none rounded-bl-none"
+          >
+            Search
+          </Button>
+        </Link>
       </div>
 
       {/* Display search results dynamically */}
       {query && (
-        <div className="absolute w-[400px] mt-2 bg-white shadow-md rounded-lg z-10">
+        <div className="absolute w-[490px]  bg-white shadow-md rounded-lg z-10">
           {loading ? (
             <div className="py-3 px-4 text-gray-500">Loading...</div>
           ) : (
@@ -121,27 +118,32 @@ export const Search = () => {
               {/* Show results if query is non-empty */}
               {query && results.length > 0 && (
                 <>
-                  <div className="py-2 px-4 text-gray-600 font-semibold">
+                  <div className="py-2 px-4 text-gray-600 text-base font-semibold">
                     Results
                   </div>
                   {results.map((result, index) => (
-                    <div
+                    <Link
+                      onClick={() => {
+                        setQuery("");
+                      }}
+                      href={`/shop/1?q=${result}`}
                       key={index}
-                      onClick={() =>
-                        (window.location.href = `/shop/1?q=${result}`)
-                      }
-                      className="py-1 px-4 flex items-center gap-x-4 hover:bg-gray-200 cursor-pointer"
+                      className={`py-2 px-4 flex items-center gap-x-4 hover:bg-gray-200 text-sm cursor-pointer ${
+                        index === results.length - 1 && "hover:rounded-b-lg"
+                      }`}
                     >
                       <SearchIcon className="stroke-[1.5px] size-5 text-gray-500" />
                       <p className="text-gray-600">{result}</p>
-                    </div>
+                    </Link>
                   ))}
                 </>
               )}
 
               {/* If no results, show a "no results" message */}
               {query && results.length === 0 && (
-                <div className="py-3 px-4 text-gray-500">No results found</div>
+                <div className="py-3 px-4 text-base text-gray-500">
+                  No results found
+                </div>
               )}
             </>
           )}

@@ -226,7 +226,14 @@ const CartFooter: React.FC<CartFooterProps> = ({
         className="border-none rounded-full py-4 font-semibold text-[16px] leading-[1.2]"
         variant="ghost"
       >
-        <Link href="/shopping-cart">View Cart</Link>
+        <Link
+          href="/shopping-cart"
+          onClick={() => {
+            setIsOpen(false);
+          }}
+        >
+          View Cart
+        </Link>
       </Button>
     </div>
   </div>

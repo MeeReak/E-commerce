@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import Image from "next/image";
-import { SingleBlogMock } from "@/utils/mockup";
 
 const CommentsDetail = ({
   comment,
@@ -22,7 +21,7 @@ const CommentsDetail = ({
         {comment.slice(0, visibleReviews).map((data, index) => (
           <div key={index} className="flex gap-x-5 border-b py-6">
             <Image
-              className="bg-black rounded-full w-10 h-10"
+              className="bg-black rounded-full w-10 h-10 border-none"
               src={data.avatar}
               alt={data.name ? `${data.name}'s avatar` : "Avatar"} // Meaningful alt text
               width={40}
@@ -47,7 +46,7 @@ const CommentsDetail = ({
           </div>
         ))}
       </div>
-      {visibleReviews < SingleBlogMock.comments.length && (
+      {visibleReviews < comment.length && (
         <Button
           variant={"custom"}
           className="border-none mt-[5.5px] rounded-full bg-[#56AC591A] hover:text-white  hover:bg-[#36a139] text-[#00B207] text-sm font-semibold leading-[16.8px]"

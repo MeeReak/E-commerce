@@ -24,7 +24,7 @@ export const Products = () => {
             title="75% off"
           />
         </div>
-        {Items.slice(0, 4).map((x, index) => (
+        {Items.slice(0, 5).filter(item=>item.type == "discount").map((x, index) => (
           <div key={index}>
             <ProductCardY
               id={x.id}

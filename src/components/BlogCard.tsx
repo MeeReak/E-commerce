@@ -74,7 +74,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
             <div className="flex items-center gap-x-5">
               <CardIconText Icon={TagIcon} text={tag} />
               <div className="flex gap-x-2 items-center">
-                <UserIcon className="text-[#B3B3B3] stroke-1" />
+                <UserIcon className="text-[#B3B3B3] stroke-[1.5px]" />
                 <span className="text-[#4D4D4D] text-sm font-normal leading-[21px]">
                   By
                 </span>

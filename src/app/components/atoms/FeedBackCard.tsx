@@ -34,7 +34,9 @@ const FeedBackCard = ({
             />
           </svg>
         </header>
-        <p className="text-[14px] text-[#4D4D4D] line-clamp-4">{content}</p>
+        <p className="text-[#4D4D4D] line-clamp-4 text-sm font-normal leading-[21px]">
+          {content}
+        </p>
         <div className="flex justify-between">
           <div className="flex space-x-3">
             <Profile profile={profile} />
