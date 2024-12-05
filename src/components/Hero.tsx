@@ -34,7 +34,7 @@ export const Hero = () => {
         className="w-full h-full"
       >
         <Image
-          className="object-cover w-[1320px] h-[600px]"
+          className="object-cover w-[1320px] h-[580px]"
           src={images}
           alt="hero"
           width={1320}

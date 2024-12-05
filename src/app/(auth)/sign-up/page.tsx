@@ -76,7 +76,7 @@ export default function CreateAccountPage() {
             Already have account?{" "}
             <Link
               href="/sign-in"
-              className="text-gray-900 font-poppins text-base font-semibold leading-[21px] hover:underline "
+              className="text-gray-900   text-base font-semibold leading-[21px] hover:underline "
             >
               Login
             </Link>

@@ -9,6 +9,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "../../../../components/ui/button";
+import Link from "next/link";
 
 type CartTotalProps = {
   ship: string; // Shipping cost, e.g., "$10.00"
@@ -48,13 +49,12 @@ const CartTotal = ({ price, ship }: CartTotalProps) => {
           </div>
         </CardContent>
 
-        <CardFooter>
-          <Button
-            onClick={() => (window.location.href = "/checkout")}
-            className="w-full rounded-full py-4 text-white text-base font-semibold leading-[1.2]"
-          >
-            Proceed to checkout
-          </Button>
+        <CardFooter className=" justify-center">
+          <Link href="/checkout">
+            <Button className="w-full rounded-full py-4 text-white text-base font-semibold leading-[1.2]">
+              Proceed to checkout
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>
