@@ -60,13 +60,15 @@ export default function page() {
           <div className="grid grid-cols-2 gap-6">
             {AboutMock.map((item, index) => (
               <div key={index} className="flex items-center gap-x-3">
+                <div className="w-[72px] h-[72px] flex items-center justify-center bg-green-100 rounded-full ">
                 <Image
-                  className="bg-black rounded-full"
                   src={item.src}
                   alt={item.name}
-                  width={72}
-                  height={72}
+                  width={42}
+                  height={42}
                 />
+                </div>
+              
                 <div>
                   <p className="text-lg font-semibold">{item.name}</p>
                   <span>{item.description}</span>

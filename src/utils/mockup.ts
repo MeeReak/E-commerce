@@ -2613,32 +2613,32 @@ export const BlogsMock = [
 
 export const AboutMock = [
   {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    src: "/svg/leef.svg",
     name: "100% Organic food",
     description: "100% healthy & Fresh food.",
   },
   {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-    name: "Customer Feedback",
-    description: "Our happy customer",
-  },
-  {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
-    name: "Free Shipping",
-    description: "Free shipping with discount",
-  },
-  {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    src: "/svg/headphones.svg",
     name: "Great Support 24/7",
     description: "Instant access to Contact",
   },
   {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    src: "/svg/stars.svg",
+    name: "Customer Feedback",
+    description: "Our happy customer",
+  },
+  {
+    src: "/svg/bag.svg",
     name: "100% Sucure Payment",
     description: "We ensure your money is save",
   },
   {
-    src: "https://cdn.vuetifyjs.com/images/lists/1.jpg",
+    src: "/svg/truck.svg",
+    name: "Free Shipping",
+    description: "Free shipping with discount",
+  },
+  {
+    src: "/svg/box.svg",
     name: "100% Organic Food",
     description: "100% healthy & Fresh food.",
   },
