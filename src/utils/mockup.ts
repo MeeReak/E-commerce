@@ -2613,12 +2613,12 @@ export const BlogsMock = [
 
 export const AboutMock = [
   {
-    src: "/svg/leef.svg",
+    src: "/svg/leaf.svg",
     name: "100% Organic food",
     description: "100% healthy & Fresh food.",
   },
   {
-    src: "/svg/headphones.svg",
+    src: "/svg/headphone.svg",
     name: "Great Support 24/7",
     description: "Instant access to Contact",
   },
@@ -2633,7 +2633,7 @@ export const AboutMock = [
     description: "We ensure your money is save",
   },
   {
-    src: "/svg/truck.svg",
+    src: "/svg/car.svg",
     name: "Free Shipping",
     description: "Free shipping with discount",
   },

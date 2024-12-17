@@ -33,7 +33,7 @@ const products = [
   "Fruits",
   "Can Food",
   "Sea Food",
-  "Beef"
+  "Beef",
 ];
 
 // Custom hook for debouncing input
@@ -101,6 +101,7 @@ export const Search = () => {
         />
         <Link href={`/shop/1?q=${query.trim()}`}>
           <Button
+            onClick={() => setQuery("")}
             // onClick={handleSearchClick}
             className="py-3 px-6 rounded-tl-none rounded-bl-none"
           >
