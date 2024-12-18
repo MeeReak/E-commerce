@@ -10,26 +10,58 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
+// NavigationItem Component for reusability
+const NavigationItem = ({
+  label,
+  icon,
+  path,
+  isActive,
+}: {
+  label: string;
+  icon: React.ReactNode;
+  path: string;
+  isActive: boolean;
+}) => (
+  <Link
+    href={path}
+    className={`flex gap-x-3 py-4 px-5 hover:bg-gray-100 group ${
+      isActive
+        ? "hover:bg-[#edf2ee] bg-[#edf2ee] border-l-4 border-l-[#20B526]"
+        : ""
+    }`}
+    aria-current={isActive ? "page" : undefined}
+  >
+    <div className={isActive ? "text-gray-900" : "text-gray-400"}>{icon}</div>
+    <p
+      className={`w-full text-base font-normal leading-6 ${
+        isActive ? "text-gray-900" : "text-gray-600"
+      }`}
+    >
+      {label}
+    </p>
+  </Link>
+);
+
 export const NaviDash = () => {
   const pathname = usePathname();
 
-  // Define your navigation items and corresponding paths
-  const navItem = [
+  // Navigation items definition
+  const navItems = [
     {
       label: "Dashboard",
       icon: (
         <LayoutDashboardIcon
-          className={`${
-            pathname == "/dashboard" ? "fill-gray-900" : "fill-gray-200 "
+          className={`stroke-[1.5px] ${
+            pathname === "/dashboard" ? "fill-gray-900" : "fill-gray-200"
           }`}
         />
       ),
-      path: "/dashboard", // Add the path for comparison
+      path: "/dashboard",
     },
     {
       label: "Order History",
-      icon: <RefreshCwIcon className="text-gray-200" />,
-      path: "/orders", // Add the path for comparison
+      icon: <RefreshCwIcon className="stroke-[1.5px]" />,
+      path: "/orders",
     },
     {
       label: "Wishlist",
@@ -40,7 +72,7 @@ export const NaviDash = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="size-6 text-gray-200"
+          className="size-6"
         >
           <path
             strokeLinecap="round"
@@ -49,17 +81,17 @@ export const NaviDash = () => {
           />
         </svg>
       ),
-      path: "/wishlist", // Add the path for comparison
+      path: "/wishlist",
     },
     {
       label: "Shopping Cart",
-      icon: <ShoppingBagIcon className="text-gray-200" />,
-      path: "/shopping-cart", // Add the path for comparison
+      icon: <ShoppingBagIcon className="stroke-[1.5px]" />,
+      path: "/shopping-cart",
     },
     {
       label: "Setting",
-      icon: <SettingsIcon />,
-      path: "/setting", // Add the path for comparison
+      icon: <SettingsIcon className="stroke-[1.5px]" />,
+      path: "/setting",
     },
     {
       label: "Log-out",
@@ -70,7 +102,7 @@ export const NaviDash = () => {
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="size-6 "
+          className="size-6"
         >
           <path
             strokeLinecap="round"
@@ -79,39 +111,30 @@ export const NaviDash = () => {
           />
         </svg>
       ),
-      path: "/logout", // Add the path for comparison
+      path: "/logout",
     },
   ];
 
   return (
-    <div className="border-2 h-fit mt-10 sticky top-0 border-gray-200 w-[312px] rounded-md">
+    <nav
+      className="border h-fit mt-10 sticky top-0 border-gray-200 w-[312px] rounded-md"
+      aria-label="Sidebar Navigation"
+    >
       <p className="pt-6 pb-4 pl-5 text-gray-900 text-xl font-medium leading-7">
         Navigation
       </p>
-      {navItem.map(({ label, icon, path }, index) => (
-        <Link
-          href={path}
-          key={index}
-          className={`flex gap-x-[10px] py-4 px-5 hover:bg-gray-100 group ${
-            pathname === path ? "bg-gray-100" : ""
-          }`}
-        >
-          <div
-            className={`${
-              pathname === path ? "text-gray-900" : "text-gray-200"
-            } `}
-          >
-            {icon}
-          </div>
-          <p
-            className={`w-[238px] text-base font-normal leading-6 ${
-              pathname === path ? "text-gray-900" : "text-gray-600"
-            }`}
-          >
-            {label}
-          </p>
-        </Link>
-      ))}
-    </div>
+      <ul>
+        {navItems.map(({ label, icon, path }, index) => (
+          <li key={index}>
+            <NavigationItem
+              label={label}
+              icon={icon}
+              path={path}
+              isActive={pathname === path}
+            />
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
