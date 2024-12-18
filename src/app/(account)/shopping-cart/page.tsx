@@ -7,7 +7,7 @@ export default function page() {
   return (
     <div className=" flex">
       <NaviDash />
-      <div className="w-[1320px] pb-20 mx-auto space-y-5">
+      <div className="w-[1320px] pb-20 mx-auto space-y-5 mt-10" >
         {/* <header className="text-center mt-5 text-2xl font-bold">
           Shopping Cart
         </header> */}
