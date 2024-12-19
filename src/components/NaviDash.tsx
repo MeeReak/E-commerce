@@ -24,10 +24,10 @@ const NavigationItem = ({
 }) => (
   <Link
     href={path}
-    className={`flex gap-x-3 py-4 px-5 hover:bg-gray-100 group ${
+    className={`flex gap-x-3 py-3 px-5 hover:bg-gray-100 group ${
       isActive
         ? "hover:bg-[#edf2ee] bg-[#edf2ee] border-l-4 border-l-[#20B526]"
-        : ""
+        : " border-l-4  border-l-white hover:border-l-gray-100"
     }`}
     aria-current={isActive ? "page" : undefined}
   >

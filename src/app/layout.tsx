@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
-// import Footer from "./components/templates/Footer";
+import Footer from "./components/templates/Footer";
 import React from "react";
 import { Poppins } from "next/font/google";
 
@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`${poppin.className} antialiased`}>
         <Navigation />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
