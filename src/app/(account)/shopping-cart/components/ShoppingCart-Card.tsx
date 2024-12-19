@@ -55,6 +55,7 @@ export function ShoppingCart({
       return acc + product.price * product.qty;
     }, 0);
     setTotal(total);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -130,7 +130,7 @@ export const NaviDash = () => {
               label={label}
               icon={icon}
               path={path}
-              isActive={pathname === path}
+              isActive={pathname.startsWith(path)}
             />
           </li>
         ))}
