@@ -66,7 +66,7 @@ export function RecentOrder({ showAll }: { showAll?: boolean }) {
           className="text-[#00B207] font-poppins text-base font-medium leading-[1.5]"
           href={`/orders`}
         >
-         {showAll && "View All"}
+          {showAll && "View All"}
         </Link>
       </div>
       <Table>
@@ -92,7 +92,7 @@ export function RecentOrder({ showAll }: { showAll?: boolean }) {
               <TableCell>{invoice.paymentMethod}</TableCell>
               <TableCell>{invoice.totalAmount}</TableCell>
               <TableCell className="w-[120px] text-[#00B207] font-poppins text-sm font-medium leading-[1.5]">
-                <Link href={`/orders`}>View Details</Link>
+                <Link href={`/orders/${invoice.invoice}`}>View Details</Link>
               </TableCell>
             </TableRow>
           ))}
