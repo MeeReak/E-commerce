@@ -55,7 +55,7 @@ export function ShoppingCart({
       return acc + product.price * product.qty;
     }, 0);
     setTotal(total);
-  });
+  }, []);
 
   return (
     <div className=" border border-gray-200 rounded-md">

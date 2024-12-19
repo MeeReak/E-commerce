@@ -5,19 +5,29 @@ export const Quantity = ({
   id,
   qty,
   setQty,
+  setQtys,
 }: {
   id: string;
   qty: number;
-  setQty: (id: string, qty: number) => void;
+  setQty?: (id: string, qty: number) => void;
+  setQtys?: (qty: number) => void;
 }) => {
   const handleDecrease = () => {
     if (qty > 1) {
-      setQty(id, qty - 1);
+      if (setQty) {
+        setQty(id, qty - 1);
+      } else {
+        setQtys!(qty - 1);
+      }
     }
   };
 
   const handleIncrease = () => {
-    setQty(id, qty + 1);
+    if (setQty) {
+      setQty(id, qty + 1);
+    } else {
+      setQtys!(qty + 1);
+    }
   };
 
   const buttonStyles =
