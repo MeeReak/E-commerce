@@ -1,53 +1,72 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 const Footer = () => {
   const accountItems = [
-    "My Account",
-    "Order History",
-    "Shopping Cart",
-    "Wishlist",
+    { label: "My Account", href: "/setting" },
+    { label: "Orders", href: "/orders" },
+    { label: "Wishlist", href: "/wishlist" },
+    { label: "Address", href: "/contact-us" },
   ];
 
-  const helpItems = ["Contact", "Faqs", "Terms & Condition", "Privacy Policy"];
+  const helpItems = [
+    { label: "Contact", href: "/contact-us" },
+    { label: "Faqs", href: "/faqs" },
+    { label: "Terms & Condition", href: "/terms-and-conditions" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+  ];
 
-  const proxyItems = ["About", "Shop", "Product", "Track Order"];
+  const proxyItems = [
+    { label: "About Us", href: "/about-us" },
+    { label: "Our Services", href: "/" },
+    { label: "Our Team", href: "/about-us" },
+    { label: "Our Mission", href: "/about-us" },
+  ];
 
   const categoriesItems = [
-    "Fruit & Vegetables",
-    "Meat & Fish",
-    "Bread & Bakery",
-    "Beauty & Health",
+    { label: "Vegetables", href: "/shop/1?category=vegetable" },
+    { label: "Fruits", href: "/shop/1?category=fruit" },
+    { label: "Meat", href: "/shop/1?category=meat" },
+    { label: "Ingredients", href: "/shop/1?category=ingredients" },
   ];
 
-  const FooterSection: React.FC<{ title: string; items: string[] }> = ({
-    title,
-    items,
-  }) => (
+  const FooterSection: React.FC<{
+    title: string;
+    items: { label: string; href: string }[];
+  }> = ({ title, items }) => (
     <div>
       <h1 className="text-white mb-5 text-base font-medium leading-[24px]">
         {title}
       </h1>
       <span className="space-y-3 text-sm">
-        {items.map((item, index) => (
-          <p
-            key={index}
-            className="text-gray-400 cursor-pointer hover:text-white text-sm font-normal leading-[21px]"
-          >
-            {item}
-          </p>
-        ))}
+        {items.map(
+          (
+            item: {
+              label: string;
+              href: string;
+            },
+            index
+          ) => (
+            <p
+              key={index}
+              className="text-gray-400 cursor-pointer hover:text-white text-sm font-normal leading-[21px]"
+            >
+              <Link href={item.href}> {item.label}</Link>
+            </p>
+          )
+        )}
       </span>
     </div>
   );
 
   const FooterContact = () => (
     <div className="flex flex-col space-y-4">
-      <header className="flex gap-x-2 items-center">
+      <Link href={`/`} className="flex gap-x-2 items-center">
         <Image src="/svg/logo.svg" alt="EcoFresh Logo" width={32} height={32} />
         <h1 className="text-white text-2xl font-medium leading-[38px] tracking-[-0.96px]">
           EcoFresh
         </h1>
-      </header>
+      </Link>
       <p className="text-gray-500 text-sm leading-[21px] max-w-[336px]">
         Your trusted source for natural, organic, and health-conscious products.
         We offer a wide variety of wellness essentials to support your healthy
@@ -87,7 +106,7 @@ const Footer = () => {
         <div className="flex justify-around items-center bg-[#1A1A1A]  text-white py-6">
           <div className="flex items-center ">
             <p className="text-gray-500 text-sm font-normal leading-[21px]">
-            EcoFresh eCommerce © 2024. All Rights Reserved
+              EcoFresh eCommerce © 2024. All Rights Reserved
             </p>
           </div>
           <span className="w-[180px]"></span>

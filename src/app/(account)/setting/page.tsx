@@ -7,9 +7,9 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="flex gap-x-6">
+      <div className="flex gap-x-6 justify-center">
         <NaviDash />
-        <div className="w-[1320px] mx-auto space-y-5 pb-20">
+        <div className="w-[1070px] space-y-6 pb-10">
           <AccountSetting />
           <BillingAddress />
           <ChangePassword />
