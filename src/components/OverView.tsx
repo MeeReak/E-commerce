@@ -247,7 +247,7 @@ import React from "react";
 import Social from "./Social";
 import { ProductDisplay } from "./ProductDisplay";
 import { renderStars } from "@/app/components/atoms/RenderStar";
-// import { Quantity } from "./Quatity";
+import { Quantity } from "./Quatity";
 import { Button } from "./ui/button";
 import { ShoppingBagIcon } from "lucide-react";
 import { motion } from "framer-motion";
@@ -430,20 +430,20 @@ const ProductCategoryAndTags = ({
 );
 
 // Add to Cart and Wishlist Buttons
-const AddToCartSection = () => (
+const AddToCartSection = ({
+  qty,
+  setQty,
+}: {
+  qty: number;
+  setQty: (qty: number) => void;
+}) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, ease: "easeOut" }}
     className="py-4 border-y-[1px] border-[#E6E6E6] flex gap-x-3"
   >
-    {/* <Quantity
-      id={""}
-      qty={0}
-      setQty={function (id: string, qty: number): void {
-        throw new Error("Function not implemented.");
-      }}
-    /> */}
+    <Quantity id={""} qty={qty} setQtys={setQty} />
     <Button
       className="w-full rounded-full text-base font-semibold leading-[120%]"
       rightIcon={<ShoppingBagIcon />}
@@ -475,6 +475,10 @@ const AddToCartSection = () => (
 export const OverView = ({ id }: { id: string }) => {
   const selectedData = data.find((item) => item.id === id);
 
+  const [qty, setQty] = React.useState(1);
+
+  console.log(qty);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -497,7 +501,7 @@ export const OverView = ({ id }: { id: string }) => {
         />
         <BrandAndSocial name={selectedData?.brand} />
         <ProductDescription description={selectedData?.description} />
-        <AddToCartSection />
+        <AddToCartSection qty={qty} setQty={setQty} />
         <ProductCategoryAndTags
           tags={selectedData?.tags}
           category={selectedData?.category}
