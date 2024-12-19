@@ -216,7 +216,7 @@ export const category = [
   {
     image:
       "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/category-vegetable.png",
-    title: "Fresh Vegetables",
+    title: "Vegetables",
     category: "vegetable",
   },
   {

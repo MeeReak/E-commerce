@@ -1,14 +1,24 @@
-"use client";
-
-import React from "react";
-import { Button } from "./ui/button";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import { Button } from "./ui/button";
 
-export const Quantity = () => {
-  const [count, setCount] = React.useState(1);
+export const Quantity = ({
+  id,
+  qty,
+  setQty,
+}: {
+  id: string;
+  qty: number;
+  setQty: (id: string, qty: number) => void;
+}) => {
+  const handleDecrease = () => {
+    if (qty > 1) {
+      setQty(id, qty - 1);
+    }
+  };
 
-  const handleDecrease = () => count > 1 && setCount(count - 1);
-  const handleIncrease = () => setCount(count + 1);
+  const handleIncrease = () => {
+    setQty(id, qty + 1);
+  };
 
   const buttonStyles =
     "bg-[#F2F2F2] text-[#1A1A1A] p-[10px] hover:bg-[#F2F2F2] hover:text-[#666666]";
@@ -23,8 +33,8 @@ export const Quantity = () => {
       >
         <MinusIcon size={14} />
       </Button>
-      <span className="text-[16px] font-normal leading-[1.5] text-[#1A1A1A]">
-        {count}
+      <span className="text-[16px] font-normal pr-2 w-[5px]  leading-[1.5] text-[#1A1A1A]">
+        {qty}
       </span>
       <Button
         onClick={handleIncrease}

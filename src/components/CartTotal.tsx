@@ -8,8 +8,8 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Button } from "../../../../components/ui/button";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 type CartTotalProps = {
   ship: string; // Shipping cost, e.g., "$10.00"

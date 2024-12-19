@@ -247,7 +247,7 @@ import React from "react";
 import Social from "./Social";
 import { ProductDisplay } from "./ProductDisplay";
 import { renderStars } from "@/app/components/atoms/RenderStar";
-import { Quantity } from "./Quatity";
+// import { Quantity } from "./Quatity";
 import { Button } from "./ui/button";
 import { ShoppingBagIcon } from "lucide-react";
 import { motion } from "framer-motion";
@@ -437,7 +437,13 @@ const AddToCartSection = () => (
     transition={{ duration: 0.6, ease: "easeOut" }}
     className="py-4 border-y-[1px] border-[#E6E6E6] flex gap-x-3"
   >
-    <Quantity />
+    {/* <Quantity
+      id={""}
+      qty={0}
+      setQty={function (id: string, qty: number): void {
+        throw new Error("Function not implemented.");
+      }}
+    /> */}
     <Button
       className="w-full rounded-full text-base font-semibold leading-[120%]"
       rightIcon={<ShoppingBagIcon />}
