@@ -580,6 +580,7 @@ export const Blogs = [
 export const Product = [
   {
     id: "5e9cefa0-858d-491a-9c6f-155d05732bec",
+    gty:12,
     name: "Carrot",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Carrot/carrot-1.jpg",
     images: [
@@ -680,6 +681,7 @@ export const Product = [
   },
   {
     id: "95fcde71-d4f2-4ec3-bc3c-fb021f91b341",
+    gty:5,
     name: "Cucumber",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cucumber/cucumber-4.jpg",
     images: [
@@ -780,6 +782,7 @@ export const Product = [
   },
   {
     id: "77d047b5-7577-4392-9f5a-dfedf6328af9",
+    gty:8,
     name: "Broccoli",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Broccoli/broccoli-2.jpg",
     images: [
@@ -880,6 +883,7 @@ export const Product = [
   },
   {
     id: "172a202f-e3b3-4d62-a622-febecd1d9db1",
+    gty:5,
     name: "Tomato",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Tomato/tomato-3.jpg",
     images: [
@@ -981,6 +985,7 @@ export const Product = [
   },
   {
     id: "7f3aeb15-1d45-4e5d-9f8f-a8c5b7a4d02c",
+    gty:16,
     name: "Beef",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
     images: [
@@ -1082,6 +1087,7 @@ export const Product = [
   },
   {
     id: "4d2cbe71-ea41-4d8e-89a7-df8928be33b6",
+    gty:1,
     name: "Cabbage",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Cabbage/cabbage-1.jpg",
     images: [
@@ -1181,9 +1187,9 @@ export const Product = [
     ],
     dateAdded: "2024-01-20T14:30:00Z",
   },
-
   {
     id: "4d7d8bf0-a987-456b-9bfa-3c156f0eabcf",
+    gty:10,
     name: "Pork",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Pork/pork-3.jpg",
     images: [
@@ -1285,6 +1291,7 @@ export const Product = [
   },
   {
     id: "7a9cfad0-858d-491a-9c6f-155d05732bec",
+    gty:5,
     name: "Chicken",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Chicken/chicken-1.jpg",
     images: [
@@ -1386,6 +1393,7 @@ export const Product = [
   },
   {
     id: "2f9dce10-1234-491b-9a12-155d05732bef",
+    gty:3,
     name: "Salmon",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Fish/salmon-2.jpg",
     images: [
@@ -1488,6 +1496,7 @@ export const Product = [
   },
   {
     id: "9d2a4eaf-9e1b-4f9d-a1cf-7f2a3d3e9af1",
+    gty:6,
     name: "Duck",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Duck/duck-1.jpg",
     images: [
@@ -1591,6 +1600,7 @@ export const Product = [
   },
   {
     id: "a1189815-92af-45e1-b567-b148b920a7c9",
+    gty:65,
     name: "Apple",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Apple/white-apple-1.jpg",
     images: [
@@ -1691,6 +1701,7 @@ export const Product = [
   },
   {
     id: "ea7b04c1-a26a-44a2-8dc1-f213abb67ee4",
+    gty:2,
     name: "Banana",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Banana/banana-2.jpg",
     images: [
@@ -1791,6 +1802,7 @@ export const Product = [
   },
   {
     id: "229272df-6aef-44df-9e08-faa2d060b4ca",
+    gty:33,
     name: "Orange",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Orange/white-orange-2.jpg",
     images: [
@@ -1891,6 +1903,7 @@ export const Product = [
   },
   {
     id: "604a772f-a512-41d8-835c-8a1eb1687f26",
+    gty:4,
     name: "Mango",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Mango/white-mango-1.jpg",
     images: [
@@ -1991,6 +2004,7 @@ export const Product = [
   },
   {
     id: "dd900e16-19f5-4348-b996-2a84676095cc",
+    gty:6,
     name: "Strawberry",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Strawberry/white-strawberry-4.jpg",
     images: [

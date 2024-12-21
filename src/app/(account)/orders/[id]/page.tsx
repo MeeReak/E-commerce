@@ -1,5 +1,17 @@
 import { NaviDash } from "@/components/NaviDash";
+import { Tracker } from "@/components/Tracker";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import { CheckIcon } from "lucide-react";
 import Link from "next/link";
+import { Product as products } from "@/utils/mockup";
+import Image from "next/image";
 
 export default async function Page({
   params,
@@ -8,10 +20,46 @@ export default async function Page({
 }) {
   const id = (await params).id;
   console.log(id);
+
+  const process = [1, 2];
+
+  const total = products.reduce((acc, product) => {
+    return acc + product.price * product.gty;
+  }, 0);
+
+  const invoices = [
+    {
+      invoice: "INV001",
+      totalAmount: "Processing",
+    },
+    {
+      invoice: "INV002",
+      totalAmount: "on the way",
+    },
+    {
+      invoice: "INV003",
+      totalAmount: "Completed",
+    },
+    {
+      invoice: "INV004",
+      totalAmount: "Completed",
+    },
+    {
+      invoice: "INV005",
+      totalAmount: "Completed",
+    },
+    {
+      invoice: "INV006",
+      totalAmount: "Completed",
+    },
+  ];
+
+  const status = invoices.find((invoice) => invoice.invoice === id);
+
   return (
-    <div className="flex gap-x-6 justify-center h-[100vh]">
+    <div className="flex gap-x-6 justify-center h-auto mb-10">
       <NaviDash />
-      <div className=" mt-10 w-[1070px] border rounded-md border-gray-200">
+      <div className=" mt-10 w-[1070px] border rounded-md border-gray-200 ">
         <div className=" flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <div className=" flex items-center gap-x-2">
             <p className="text-gray-900 text-[20px] font-medium leading-[30px]">
@@ -23,7 +71,7 @@ export default async function Page({
             </p>
             <span className=" text-gray-700">•</span>
             <p className="text-gray-700 text-[14px] font-normal leading-[21px] ">
-              3 Products
+              {products.slice(0, 5).length} Products
             </p>
           </div>
           <Link
@@ -35,7 +83,7 @@ export default async function Page({
         </div>
 
         {/* address */}
-        <div className=" flex py-6 w-full gap-x-8 justify-center">
+        <div className=" flex py-7 w-full gap-x-8 justify-center">
           <div className="flex">
             <div>
               <p className="text-gray-400 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tl-md border-r-0">
@@ -70,7 +118,7 @@ export default async function Page({
             </div>
             <div>
               <p className="text-gray-400 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tr-md">
-                Billing Address
+                Shipping Address
               </p>
               <div className=" border border-t-[0px]  border-gray-200 rounded-br-md pl-6 pr-6">
                 <div>
@@ -121,13 +169,13 @@ export default async function Page({
                 </div>
               </div>
             </div>
-            <div className=" p-5 border border-t-0 border-gray-200 rounded-md rounded-t-none">
+            <div className="pb-[11px] p-5 border border-t-0 border-gray-200 rounded-md rounded-t-none">
               <div className=" flex justify-between pb-3 border-b border-gray-200">
                 <p className="text-gray-600 text-[14px] font-normal leading-[21px] font-poppins">
                   Subtotal:
                 </p>
                 <p className="text-gray-900 text-[14px] font-medium leading-[21px] font-poppins">
-                  $365.00
+                  ${total.toFixed(2)}
                 </p>
               </div>
               <div className=" flex justify-between py-3 border-b border-gray-200">
@@ -135,7 +183,7 @@ export default async function Page({
                   Discount
                 </p>
                 <p className="text-gray-900 text-[14px] font-medium leading-[21px] font-poppins">
-                  20%
+                  10%
                 </p>
               </div>
               <div className=" flex justify-between py-3 border-b border-gray-200">
@@ -151,13 +199,147 @@ export default async function Page({
                   Total
                 </p>
                 <p className="text-[#2C742F] text-[18px] font-semibold leading-[27px] font-poppins">
-                  $84.00
+                  ${(total - total * 0.1).toFixed(2)}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        {/* Order Summary */}
+
+        <div className="flex w-full gap-x-8 justify-center relative pt-5">
+          <Tracker status={status?.totalAmount} />
+          <div className=" absolute flex justify-between w-[90%] top-1 left-10">
+            <div className=" flex flex-col justify-center items-center">
+              <div className="mb-2 size-10 bg-[#00B207] rounded-full flex items-center justify-center">
+                <CheckIcon className=" text-white" />
+              </div>
+              <p
+                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
+                  process.includes(1) ? "text-[#2C742F]" : "text-white"
+                }`}
+              >
+                Order received
+              </p>
+            </div>
+            <div className=" flex flex-col justify-center items-center">
+              <div className="mb-2 size-10 bg-[#00B207] rounded-full flex items-center justify-center">
+                {status?.totalAmount.toLocaleLowerCase() === "processing" ||
+                status?.totalAmount.toLocaleLowerCase() === "on the way" ||
+                status?.totalAmount.toLocaleLowerCase() === "completed" ? (
+                  <CheckIcon className=" text-white" />
+                ) : (
+                  2
+                )}
+              </div>
+              <p
+                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
+                  status?.totalAmount.toLocaleLowerCase() === "processing" ||
+                  status?.totalAmount.toLocaleLowerCase() === "on the way" ||
+                  status?.totalAmount.toLocaleLowerCase() === "completed"
+                    ? "text-[#2C742F]"
+                    : "text-white"
+                }`}
+              >
+                Processing
+              </p>
+            </div>
+            <div className=" flex flex-col justify-center items-center">
+              <div
+                className={`mb-2 size-10  rounded-full flex items-center justify-center ${
+                  status?.totalAmount.toLocaleLowerCase() === "on the way" ||
+                  status?.totalAmount.toLocaleLowerCase() === "completed"
+                    ? "bg-[#00b207]"
+                    : " bg-white border-2 border-dashed border-[#00b207] text-[#00b207]"
+                }`}
+              >
+                {status?.totalAmount.toLocaleLowerCase() === "on the way" ||
+                status?.totalAmount.toLocaleLowerCase() === "completed" ? (
+                  <CheckIcon className=" text-white" />
+                ) : (
+                  3
+                )}
+              </div>
+              <p
+                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
+                  status?.totalAmount.toLocaleLowerCase() === "on the way" ||
+                  status?.totalAmount.toLocaleLowerCase() === "completed"
+                    ? "text-[#2C742F]"
+                    : "text-gray-800"
+                }`}
+              >
+                On the way
+              </p>
+            </div>
+            <div className=" flex flex-col justify-center items-center">
+              <div
+                className={`mb-2 size-10  rounded-full flex items-center justify-center ${
+                  status?.totalAmount.toLocaleLowerCase() === "completed"
+                    ? "bg-[#00b207]"
+                    : " bg-white border-2 border-dashed border-[#00b207] text-[#00b207]"
+                }`}
+              >
+                {status?.totalAmount.toLocaleLowerCase() === "completed" ? (
+                  <CheckIcon className=" text-white" />
+                ) : (
+                  4
+                )}
+              </div>
+              <p
+                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
+                  status?.totalAmount.toLocaleLowerCase() === "completed"
+                    ? "text-[#2C742F]"
+                    : "text-gray-800"
+                }`}
+              >
+                Delivered
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <Table className=" mt-20">
+          <TableHeader>
+            <TableRow className="hover:bg-gray-100 bg-gray-100 text-gray-500 font-medium text-xs tracking-wider uppercase leading-none">
+              <TableHead className="pl-10">Product</TableHead>
+              <TableHead>price</TableHead>
+              <TableHead>Quantity</TableHead>
+              <TableHead>SubTotal</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {products.slice(0, 5).map((invoice) => (
+              <TableRow
+                key={invoice.id}
+                className="text-[#333333] font-poppins text-sm font-normal leading-[1.5]"
+              >
+                <TableCell className="pl-6 py-3 flex items-center gap-x-5 text-gray-900 font-normal text-base leading-6">
+                  <Image
+                    src={invoice.src}
+                    alt={invoice.name}
+                    width={100}
+                    height={100}
+                  />
+                  {invoice.name}
+                </TableCell>
+                <TableCell className="w-[250px] text-gray-900 font-normal text-base leading-6">
+                  ${invoice.price.toFixed(2)}
+                  <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
+                    {" "}
+                    $
+                    {(
+                      invoice.price -
+                      invoice.price * (invoice.discount / 100)
+                    ).toFixed(2)}
+                  </span>
+                </TableCell>
+                <TableCell>{invoice.gty}</TableCell>
+                <TableCell className=" text-gray-900 font-poppins text-base font-medium leading-6">
+                  ${(invoice.price * invoice.gty).toFixed(2)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

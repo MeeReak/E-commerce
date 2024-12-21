@@ -1,8 +1,8 @@
 import React from "react";
 import { Banner } from "./Banner";
 import { Product as Items } from "@/utils/mockup";
-import { ProductCardY } from "@/app/components/atoms/ProductCardY";
-import ProductCard from "@/app/components/atoms/ProductCardX";
+import { ProductCardY } from "@/app/_components/atoms/ProductCardY";
+import ProductCard from "@/app/_components/atoms/ProductCardX";
 
 export const Products = () => {
   return (
