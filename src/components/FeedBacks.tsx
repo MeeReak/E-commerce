@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { feedbackInfo as data } from "@/utils/mockup";
-import FeedBackCard from "@/app/components/atoms/FeedBackCard";
+import FeedBackCard from "@/app/_components/atoms/FeedBackCard";
 import { motion, useInView } from "framer-motion";
 
 export const FeedBacks = () => {

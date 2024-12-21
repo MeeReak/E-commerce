@@ -246,7 +246,7 @@
 import React from "react";
 import Social from "./Social";
 import { ProductDisplay } from "./ProductDisplay";
-import { renderStars } from "@/app/components/atoms/RenderStar";
+import { renderStars } from "@/app/_components/atoms/RenderStar";
 import { Quantity } from "./Quatity";
 import { Button } from "./ui/button";
 import { ShoppingBagIcon } from "lucide-react";

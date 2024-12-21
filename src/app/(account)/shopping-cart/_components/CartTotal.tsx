@@ -24,9 +24,9 @@ const CartTotal = ({ price, ship }: CartTotalProps) => {
   const formatCurrency = (amount: number) => `$${amount.toFixed(2)}`;
 
   return (
-    <div className=" flex justify-between">
+    <div className="sticky top-0 pt-5 flex justify-between">
       <span className="bg-black"></span>
-      <Card className="w-[424px] rounded-md">
+      <Card className=" rounded-md">
         <CardHeader>
           <CardTitle className="text-gray-900 text-xl font-medium leading-[1.5]">
             Cart Total

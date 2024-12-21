@@ -1,6 +1,6 @@
 import React from "react";
 import { Profile } from "./Profile";
-import { renderStars } from "@/app/components/atoms/RenderStar";
+import { renderStars } from "@/app/_components/atoms/RenderStar";
 
 interface IFeedbackProps {
   rating: number;

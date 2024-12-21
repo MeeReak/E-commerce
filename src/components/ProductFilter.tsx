@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { ProductCardY } from "@/app/components/atoms/ProductCardY";
+import { ProductCardY } from "@/app/_components/atoms/ProductCardY";
 import { Product as Items } from "@/utils/mockup";
 
 export const ProductFilter = () => {

@@ -47,7 +47,6 @@ export function ShoppingCart({
       return acc + product.price * product.qty;
     }, 0);
     setTotal(total);
-    console.log("hi", total);
   };
 
   useEffect(() => {
@@ -55,7 +54,7 @@ export function ShoppingCart({
       return acc + product.price * product.qty;
     }, 0);
     setTotal(total);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -93,25 +92,28 @@ export function ShoppingCart({
               key={invoice.id}
               className="text-[#333333] font-poppins text-sm font-normal leading-[1.5]"
             >
-              <TableCell className="pl-6 py-3 flex items-center gap-x-5 text-gray-900 font-normal text-base leading-6">
-                <Image
-                  src={invoice.src}
-                  alt={invoice.name}
-                  width={100}
-                  height={100}
-                />
-                {invoice.name}
+              <TableCell>
+                <div className="pl-6 py-3 flex items-center gap-x-5 text-gray-900 font-normal text-base leading-6">
+                  <Image
+                    src={invoice.src}
+                    alt={invoice.name}
+                    width={100}
+                    height={100}
+                  />
+                  {invoice.name}
+                </div>
               </TableCell>
-              <TableCell className="w-[250px] text-gray-900 font-normal text-base leading-6">
-                ${invoice.price.toFixed(2)}
-                <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
-                  {" "}
-                  $
-                  {(
-                    invoice.price -
-                    invoice.price * (invoice.discount / 100)
-                  ).toFixed(2)}
-                </span>
+              <TableCell>
+                <div className=" text-gray-900 font-normal text-base leading-6">
+                  ${invoice.price.toFixed(2)}
+                  <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
+                    $
+                    {(
+                      invoice.price -
+                      invoice.price * (invoice.discount / 100)
+                    ).toFixed(2)}
+                  </span>
+                </div>
               </TableCell>
               <TableCell>
                 <div className=" flex ">
