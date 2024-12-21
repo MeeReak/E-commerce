@@ -86,7 +86,7 @@
 
 import React, { useRef } from "react";
 import { Product as Items } from "@/utils/mockup";
-import { ProductCardY } from "@/app/components/atoms/ProductCardY"; // Ensure correct path
+import { ProductCardY } from "@/app/_components/atoms/ProductCardY"; // Ensure correct path
 import { Button } from "./ui/button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
