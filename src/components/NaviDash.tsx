@@ -117,7 +117,7 @@ export const NaviDash = () => {
 
   return (
     <nav
-      className="border h-fit mt-10 sticky top-0 border-gray-200 w-[312px] rounded-md"
+      className="border h-fit mt-10 sticky top-5 border-gray-200 w-[312px] rounded-md"
       aria-label="Sidebar Navigation"
     >
       <p className="pt-6 pb-4 pl-5 text-gray-900 text-xl font-medium leading-7">
