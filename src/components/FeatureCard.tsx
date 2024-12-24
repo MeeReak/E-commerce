@@ -42,7 +42,12 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ image, title, detail }) => {
       ref={cardRef}
       className="flex gap-x-4 w-full opacity-0 animated-slide-in-up"
     >
-      <Image src={image} width={40} height={40} alt={title} />
+      <Image
+        src={image}
+        width={40}
+        height={40}
+        alt={title}
+      />
       <div className="space-y-2">
         <p className="text-[#1A1A1A] text-lg font-semibold leading-[27px]">
           {title}

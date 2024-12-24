@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Comments from "./Comments";
@@ -129,22 +131,12 @@ const Banner = () => (
 const Section = ({ id }: { id: string }) => {
   const selectBlog = blog.find((item) => item.id === id);
 
+  const [comment, setComment] = useState(selectBlog?.comments);
+
   if (!selectBlog) return null;
 
-  const {
-    src,
-    tag,
-    title,
-    category,
-    by,
-    comment,
-    des1,
-    des2,
-    des3,
-    images,
-    user,
-    comments,
-  } = selectBlog;
+  const { src, tag, title, category, by, des1, des2, des3, images, user } =
+    selectBlog;
 
   return (
     <div className="pt-10">
@@ -163,7 +155,7 @@ const Section = ({ id }: { id: string }) => {
           <CardIconText
             className="text-[#00B207]"
             Icon={MessageSquareIcon}
-            text={comment.toString()}
+            text={comment!.length.toString()}
           />
         </div>
         <section>
@@ -203,8 +195,8 @@ const Section = ({ id }: { id: string }) => {
 
         {/* Comments Section */}
         <div className="py-10">
-          <Comments />
-          <CommentsDetail comment={comments} />
+          <Comments setComment={setComment} comment={comment!} />
+          <CommentsDetail comment={comment!} />
         </div>
       </div>
     </div>

@@ -144,7 +144,7 @@ export const RelateProduct = ({ id }: { id: string }) => {
       </div>
       <div
         ref={scrollRef}
-        className="flex py-5 px-3 overflow-x-scroll space-x-5 hide-scrollbar"
+        className="flex py-5 px-4 overflow-x-scroll space-x-5 hide-scrollbar"
       >
         {Items.filter((item) => {
           return item.category == filteredProducts[0].category && item.id != id;
