@@ -144,8 +144,8 @@ export const Sidebar = () => {
   };
 
   const renderTag = (tag: string) => (
-    <Link
-      href={`/blog-list/1?tag=${tag}`}
+    <div
+      // href={`/blog-list/1?tag=${tag}`}
       key={tag}
       onClick={() => handleSelectChange("tag", tag)}
       className={
@@ -155,7 +155,7 @@ export const Sidebar = () => {
       }
     >
       <div>{tag}</div>
-    </Link>
+    </div>
   );
 
   const renderImageBlog = (

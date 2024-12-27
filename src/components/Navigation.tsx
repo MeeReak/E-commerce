@@ -84,7 +84,7 @@ export const Navigation = () => {
         </Link>
 
         {/* Search Bar */}
-        {regex.test(pathname) ? (
+        {regex.test(pathname) || pathname === "faqs" ? (
           <div className="w-[500px]"></div>
         ) : (
           <Search />
@@ -97,7 +97,7 @@ export const Navigation = () => {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth="1.5"
+              strokeWidth="1"
               stroke="currentColor"
               className="size-8"
             >
@@ -110,7 +110,7 @@ export const Navigation = () => {
           </Link>
 
           <Link href={`/setting`}>
-            <UserRoundIcon className=" cursor-pointer size-8 stroke-[1.5px]" />
+            <UserRoundIcon className=" cursor-pointer size-8 stroke-[1px]" />
           </Link>
           <span className="h-7 w-[1.5px] bg-[#CCCCCC]"></span>
           <ShoppingCart />
@@ -149,7 +149,7 @@ export const Navigation = () => {
 
         {/* Contact Info */}
         <div className="flex items-center gap-x-4">
-          <PhoneCallIcon className="size-7 stroke-[1.5px]" />
+          <PhoneCallIcon className="size-7 stroke-[1px]" />
           <p className="text-[#1A1A1A] text-sm font-medium leading-[21px]">
             (+855) 555-048-72
           </p>

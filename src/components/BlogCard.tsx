@@ -22,8 +22,8 @@ export const CardIconText: React.FC<CardIconTextProps> = ({
   className = "text-[#B3B3B3]",
 }) => (
   <div className={`flex gap-x-2 items-center`}>
-    <Icon className={` ${className}  stroke-[1.5px]`} />
-    <p className="text-gray-700 text-sm font-normal leading-[21px]">{text}</p>
+    <Icon className={` ${className} stroke-[1.5px]`} />
+    <p className="text-gray-700 text-sm font-normal leading-[21px]">{text} </p>
   </div>
 );
 

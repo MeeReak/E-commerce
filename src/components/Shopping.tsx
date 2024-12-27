@@ -9,7 +9,6 @@ export const Shopping = () => {
   const [total, setTotal] = React.useState(0);
   const [discount, setDiscount] = React.useState("");
 
-  console.log(discount);
   const afterDiscount = discount === "ecoFresh" ? total - total * 0.2 : total;
 
   return (

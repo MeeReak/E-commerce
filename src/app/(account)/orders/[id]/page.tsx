@@ -1,4 +1,3 @@
-import { NaviDash } from "@/components/NaviDash";
 import { Tracker } from "@/components/Tracker";
 import {
   Table,
@@ -19,7 +18,6 @@ export default async function Page({
   params: Promise<{ id: string }>;
 }) {
   const id = (await params).id;
-  console.log(id);
 
   const process = [1, 2];
 
@@ -57,8 +55,7 @@ export default async function Page({
   const status = invoices.find((invoice) => invoice.invoice === id);
 
   return (
-    <div className="flex gap-x-6 justify-center h-auto mb-10">
-      <NaviDash />
+    <div className=" h-auto mb-10">
       <div className=" mt-10 w-[1070px] border rounded-md border-gray-200 ">
         <div className=" flex items-center justify-between px-6 py-4 border-b border-gray-200">
           <div className=" flex items-center gap-x-2">

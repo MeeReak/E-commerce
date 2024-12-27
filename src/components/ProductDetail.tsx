@@ -305,8 +305,11 @@ type TabOption =
 export const ProductDetail = ({ id }: { id: string }) => {
   const [selectedTab, setSelectedTab] = useState<TabOption>("Descriptions");
   const [visibleReviews, setVisibleReviews] = useState(4); // Start with 5 reviews
-  const [rating, setRating] = useState<number | null>(null); // Rating state
+  const [rating, setRating] = useState<number | null>(0); // Rating state
   const [comment, setComment] = useState(""); // Comment state
+  const selectedData = data.find((item) => item.id === id);
+
+  const [comments, setComments] = useState(selectedData?.comments);
 
   const handleTabSelect = (tabName: TabOption) => {
     setSelectedTab(tabName);
@@ -317,12 +320,20 @@ export const ProductDetail = ({ id }: { id: string }) => {
   };
 
   const handleSubmitFeedback = () => {
-    // console.log({ rating, comment });
-    setRating(null);
-    setComment("");
+    if (rating! < 1 || comment.length < 5) return;
+    setComments((pre = []) => [
+      {
+        id: (pre.length + 1).toString(),
+        name: "Anonymous",
+        rating: rating!,
+        date: new Date().toLocaleDateString(),
+        comment: comment,
+      },
+      ...pre,
+    ]);
+    setRating(0);
+    setComment(" ");
   };
-
-  const selectedData = data.find((item) => item.id === id);
 
   const renderDescription = () => (
     <div>
@@ -377,7 +388,7 @@ export const ProductDetail = ({ id }: { id: string }) => {
 
   const renderCustomerFeedback = () => (
     <div>
-      {selectedData?.comments.slice(0, visibleReviews).map((review, index) => (
+      {comments!.slice(0, visibleReviews).map((review, index) => (
         <Feedback
           key={index}
           name={review.name}
@@ -386,7 +397,7 @@ export const ProductDetail = ({ id }: { id: string }) => {
           comment={review.comment}
         />
       ))}
-      {visibleReviews < reviews.length - 2  && (
+      {visibleReviews < reviews.length - 2 && (
         <Button
           variant={"custom"}
           className="border-none mt-[5.5px] rounded-full bg-[#56AC591A] hover:text-white  hover:bg-[#36a139] text-[#00B207] text-sm font-semibold leading-[16.8px]"

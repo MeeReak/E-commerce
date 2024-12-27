@@ -477,8 +477,6 @@ export const OverView = ({ id }: { id: string }) => {
 
   const [qty, setQty] = React.useState(1);
 
-  console.log(qty);
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
