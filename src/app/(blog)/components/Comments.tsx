@@ -1,5 +1,4 @@
-"use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -33,11 +32,15 @@ const Comments = ({
   >;
   comment: { name: string; avatar: string; comment: string; date: string }[];
 }) => {
+  const [remember, setRemember] = useState(false);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
+    // getValues,
   } = useForm<CommentFormData>({
     resolver: zodResolver(commentSchema),
   });
@@ -47,11 +50,35 @@ const Comments = ({
       ...data,
       avatar:
         "https://media.istockphoto.com/id/588348500/vector/male-avatar-profile-picture-vector.jpg?s=612x612&w=0&k=20&c=tPPah8S9tmcyOXCft1Ct0tCAdpfSaUNhGzJK7kQiQCg=",
-      date: new Date().toDateString(),
+      date: new Intl.DateTimeFormat("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }).format(new Date()),
     };
+
+    // Save name and email if remember is checked
+    if (remember) {
+      localStorage.setItem("name", data.name);
+      localStorage.setItem("email", data.email);
+    } else {
+      localStorage.removeItem("name");
+      localStorage.removeItem("email");
+    }
+
     setComment([...comment, newComment]);
     reset(); // Clear form after successful submit
   };
+
+  // Load saved name and email from localStorage
+  useEffect(() => {
+    const savedName = localStorage.getItem("name");
+    const savedEmail = localStorage.getItem("email");
+
+    if (savedName) setValue("name", savedName);
+    if (savedEmail) setValue("email", savedEmail);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handleFormSubmit]);
 
   return (
     <>
@@ -130,7 +157,12 @@ const Comments = ({
 
         {/* Checkbox for saving name and email */}
         <div className="flex items-center space-x-2">
-          <Checkbox id="terms" className="border-[#CCCCCC] border" />
+          <Checkbox
+            id="terms"
+            className="border-[#CCCCCC] border"
+            checked={remember}
+            onCheckedChange={(checked) => setRemember(!!checked)}
+          />
           <label
             htmlFor="terms"
             className="text-gray-600 text-sm font-normal leading-6 peer-disabled:cursor-not-allowed peer-disabled:opacity-70"

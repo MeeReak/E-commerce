@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Comments from "./Comments";
@@ -39,11 +39,13 @@ const AuthorProfile = ({
   name,
   date,
   cate,
+  handleCopy,
 }: {
   avatar: string;
   name: string;
   date: string;
   cate: string;
+  handleCopy: () => void;
 }) => (
   <div className="py-6 flex justify-between border-b">
     <div className="flex items-center gap-x-5">
@@ -74,10 +76,11 @@ const AuthorProfile = ({
     <div className="flex">
       <Social />
       <Button
+        onClick={() => handleCopy()}
         leftIcon={<Link2Icon className="stroke-[1.5px]" />}
         variant="custom"
         size="icon"
-        className="hover:bg-green-600 text-black hover:text-white p-3"
+        className="hover:bg-[#00B207] text-black hover:text-white p-3"
       />
     </div>
   </div>
@@ -132,11 +135,32 @@ const Section = ({ id }: { id: string }) => {
   const selectBlog = blog.find((item) => item.id === id);
 
   const [comment, setComment] = useState(selectBlog?.comments);
+  const [url, setUrl] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [copied, setCopied] = useState(false);
 
   if (!selectBlog) return null;
 
   const { src, tag, title, category, by, des1, des2, des3, images, user } =
     selectBlog;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    // Log the current URL when the component mounts or the router changes
+    console.log("Current URL:", window.location.pathname);
+    setUrl(window.location.href);
+  }, []);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      console.log("URL copied to clipboard:", url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset the copied state after 2 seconds
+    } catch (error) {
+      console.error("Failed to copy text:", error);
+    }
+  };
 
   return (
     <div className="pt-10">
@@ -155,19 +179,19 @@ const Section = ({ id }: { id: string }) => {
           <CardIconText
             className="text-[#00B207]"
             Icon={MessageSquareIcon}
-            text={comment!.length.toString()}
+            text={`${comment?.length} Comments`}
           />
         </div>
         <section>
           <BlogTitle title={title} />
         </section>
-
         {/* Author Profile */}
         <AuthorProfile
           avatar={user.avatar}
           name={user.name}
           date={user.date}
           cate={category}
+          handleCopy={handleCopy}
         />
 
         {/* Blog Description */}
