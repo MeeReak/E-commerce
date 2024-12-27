@@ -84,7 +84,7 @@ export const Navigation = () => {
         </Link>
 
         {/* Search Bar */}
-        {regex.test(pathname) ? (
+        {regex.test(pathname) || pathname === "faqs" ? (
           <div className="w-[500px]"></div>
         ) : (
           <Search />

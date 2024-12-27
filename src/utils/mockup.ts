@@ -160,9 +160,9 @@ export const shoppingCart = [
 // ];
 
 export const heroImage = [
-  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-2.png",
-  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-1.png",
-  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-6.png",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-1.jpg",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-2.jpg",
+  "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/hero-vegetable-3.jpg",
 ];
 
 export const mainFeature = [
