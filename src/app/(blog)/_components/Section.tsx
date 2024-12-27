@@ -91,11 +91,11 @@ const ImageGallery = ({ images }: { images: string[] }) => (
     {images.map((img, index) => (
       <Image
         key={index}
-        className="rounded-md max-w-[424px] max-h-[356px] object-contain"
+        className="rounded-md max-w-[500px] max-h-[400px] object-contain"
         src={img}
         alt={`Image ${index + 1}`}
-        width={440}
-        height={356}
+        width={500}
+        height={400}
       />
     ))}
   </div>
@@ -147,7 +147,7 @@ const Section = ({ id }: { id: string }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     // Log the current URL when the component mounts or the router changes
-    console.log("Current URL:", window.location.pathname);
+    // console.log("Current URL:", window.location.pathname);
     setUrl(window.location.href);
   }, []);
 
@@ -163,11 +163,11 @@ const Section = ({ id }: { id: string }) => {
   };
 
   return (
-    <div className="pt-10">
+    <div className="pt-10 ">
       <Image
         src={src}
         alt="Blog image"
-        className="rounded-md max-w-[876px] max-h-[600px] object-contain"
+        className="rounded-md w-[1024px] max-h-[600px] object-contain"
         width={876}
         height={600}
       />

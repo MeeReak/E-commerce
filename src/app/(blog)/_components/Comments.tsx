@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getLocalStorage, removeLocalStorage, setLocalStorage } from "@/utils/localStorage";
 
 // Zod schema for validation
 const commentSchema = z.object({
@@ -59,11 +60,13 @@ const Comments = ({
 
     // Save name and email if remember is checked
     if (remember) {
-      localStorage.setItem("name", data.name);
-      localStorage.setItem("email", data.email);
+      // localStorage.setItem("name", data.name);
+      // localStorage.setItem("email", data.email);
+      setLocalStorage("name", data.name);
+      setLocalStorage("email", data.email);
     } else {
-      localStorage.removeItem("name");
-      localStorage.removeItem("email");
+      removeLocalStorage("name");
+      removeLocalStorage("email");
     }
 
     setComment([...comment, newComment]);
@@ -72,8 +75,9 @@ const Comments = ({
 
   // Load saved name and email from localStorage
   useEffect(() => {
-    const savedName = localStorage.getItem("name");
-    const savedEmail = localStorage.getItem("email");
+    // const savedName = localStorage.getItem("name");
+    const savedName = getLocalStorage("name");
+    const savedEmail = getLocalStorage("email");
 
     if (savedName) setValue("name", savedName);
     if (savedEmail) setValue("email", savedEmail);
