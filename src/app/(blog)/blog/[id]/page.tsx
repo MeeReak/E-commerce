@@ -15,7 +15,6 @@ export default async function Page({
         </header> */}
         <div className="flex justify-around gap-5">
           <Section id={id} />
-          {/* <span className="w-[220px]"></span> */}
           <Sidebar />
         </div>
       </div>
