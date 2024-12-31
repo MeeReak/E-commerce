@@ -20,7 +20,6 @@ export default function Home() {
         <Banners />
         {/* Category */}
         <Categories />
-        {/* New Feature Products */}
         <Products />
         {/* Video */}
         <Video />
