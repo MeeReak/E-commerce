@@ -28,6 +28,7 @@ export default function Home() {
         <Blogs />
         {/* Feedback from client */}
         <FeedBacks />
+        {/* Team Card */}
         <Teams />
       </div>
     </>
