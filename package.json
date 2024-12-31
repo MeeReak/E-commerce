@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"yarn dev --prefix frontend\" \"yarn dev --prefix backend\"",
-    "build": "yarn build --prefix frontend",
+    "build": "yarn workspace frontend build",
     "start:frontend": "yarn workspace frontend dev",
     "start:backend": "yarn workspace backend start"
   },
