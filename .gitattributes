@@ -1,0 +1,8 @@
+*.html linguist-detectable=false
+*.rsc linguist-detectable=false
+
+frontend/* linguist-detectable=true
+backend/* linguist-detectable=true
+
+*.json linguist-vendored
+*.yml linguist-vendored
