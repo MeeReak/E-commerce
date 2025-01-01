@@ -3,17 +3,26 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec ts-node index.ts"
+    "start": "nodemon --exec ts-node src/index.ts",
+    "tsoa-spec": "tsoa spec",
+    "tsoa-routes": "tsoa routes",
+    "tsoa-gen": "npm run tsoa-spec && npm run tsoa-routes"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.2"
+    "@types/swagger-ui-express": "^4.1.7",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.3",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.6.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/node": "^22.10.3",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
