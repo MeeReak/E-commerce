@@ -40,8 +40,8 @@ const startServer = async (): Promise<void> => {
     logger.info("Connected to MongoDB successfully");
     // Start the server
     app.listen(config.port, () => {
-      logger.info(`Server is running on localhost:${config.port}`);
-      logger.info(`Swagger is running localhost:${config.port}/docs`);
+      logger.info(`Server: http://localhost:${config.port}`);
+      logger.info(`Swagger: http://localhost:${config.port}/docs`);
     });
   } catch (error) {
     console.error("Failed to start the server:", error);
