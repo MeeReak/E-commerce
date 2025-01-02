@@ -18,7 +18,7 @@ export class UserController {
     try {
       this._userService.createUser(requestBody);
     } catch (error: any) {
-      console.log(error.message);
+      throw error;
     }
   }
 }

@@ -11,7 +11,7 @@ class UserService {
     try {
       this._userRepository.createUser(user);
     } catch (error: any) {
-      console.log(error.message);
+      throw error;
     }
   }
 }
