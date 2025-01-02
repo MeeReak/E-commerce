@@ -5,7 +5,7 @@ interface UserRequestBody {
   name: string;
 }
 
-@Route("v1/user")
+@Route("v1/users")
 export class UserController {
   private _userService: UserService;
 
