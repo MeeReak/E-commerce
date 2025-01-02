@@ -1,0 +1,13 @@
+{
+  "projects": [
+    {
+      "name": "frontend",
+      "src": "frontend/",
+      "ignoreBuild": [
+        {
+          "src": "backend/**/*"
+        }
+      ]
+    }
+  ]
+}
