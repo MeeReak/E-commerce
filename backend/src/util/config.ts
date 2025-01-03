@@ -1,18 +1,16 @@
 import dotenv from "dotenv";
 import path from "path";
+import { logger } from "./logger";
 
 function createConfig(configPath: string) {
   dotenv.config({ path: configPath });
 
   // Validate essential configuration
-  const requiredConfig = [
-    "PORT",
-    "MONGODB_URL",
-  ];
+  const requiredConfig = ["PORT", "MONGODB_URL"];
   const missingConfig = requiredConfig.filter((key) => !process.env[key]);
 
   if (missingConfig.length > 0) {
-    console.log(
+    logger.error(
       `Missing required environment variables: ${missingConfig.join(", ")}`
     );
   }

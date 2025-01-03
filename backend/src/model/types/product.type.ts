@@ -17,8 +17,18 @@ export interface IProduct {
   updateAt?: Date; // Optional
 }
 
-export interface ProductFilter {
+export interface ProductQueryParams {
   page?: number;
   perPage?: number;
   search?: string;
+  price?: boolean;
+  star?: boolean;
+  date?: boolean;
+}
+
+export interface IPaginatedProducts {
+  page: number;
+  perPage: number;
+  totalRecord: number;
+  totalPage: number;
 }
