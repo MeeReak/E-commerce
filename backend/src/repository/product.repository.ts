@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
-import productModel from "../model/product.model";
 import { IProduct } from "../model/types/product.type";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
 import ApiError from "../Error/api-error";
 import { StatusCode } from "../util/consts";
+import productModel from "../model/product";
 
 class ProductRepository {
   private model: Model<IProduct>;
