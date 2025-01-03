@@ -2,12 +2,27 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
     "baseUrl": ".",
+    "outDir": "./build",
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+    "resolveJsonModule": true,
     "paths": {
-      "*": ["./node_modules/*"]
+      "*": ["./node_modules/*"],
+      "src/*": ["src/*"],
+      "tsoa": ["../../node_modules/tsoa"] //use tell where tsoa is cus we use tsconfig-paths/register
     }
   }
 }
