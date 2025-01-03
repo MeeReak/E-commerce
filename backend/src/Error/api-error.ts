@@ -1,4 +1,4 @@
-import { StatusCode } from "src/util/consts/status-code";
+import { StatusCode } from "../util/consts/status-code";
 import { SerializedErrorOutput } from "../Error/@types/serialized-error-output";
 import BaseCustomError from "./base-error";
 

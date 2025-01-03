@@ -1,4 +1,8 @@
-import { IProduct } from "../model/types/product.type";
+import {
+  IPaginatedProducts,
+  IProduct,
+  ProductQueryParams,
+} from "../model/types/product.type";
 import productService from "../service/product.service";
 import {
   Controller,
@@ -9,16 +13,29 @@ import {
   Route,
   Body,
   Path,
+  Queries,
+  Tags,
+  SuccessResponse,
 } from "tsoa";
 
 @Route("v1/products")
+@Tags("Product")
 export class ProductController extends Controller {
   // Get all products
   @Get("/")
+  @SuccessResponse("200", "Successfully fetched all products")
   public async getAllProducts(
-  ): Promise<IProduct[]> {
+    @Queries() queryParams: ProductQueryParams
+  ): Promise<{
+    data: IProduct[];
+    pagination: IPaginatedProducts;
+  }> {
     try {
-      return await productService.getAllProducts();
+      const product = await productService.getAllProducts(queryParams);
+      return {
+        data: product.products,
+        pagination: product.pagination,
+      };
     } catch (error) {
       throw error;
     }
@@ -26,6 +43,7 @@ export class ProductController extends Controller {
 
   // Get a single product by ID
   @Get("/{id}")
+  @SuccessResponse("200", "Successfully fetched product by ID")
   public async getProductById(@Path() id: string): Promise<IProduct | null> {
     try {
       return await productService.getProductById(id);
@@ -36,6 +54,7 @@ export class ProductController extends Controller {
 
   // Create a new product
   @Post("/")
+  @SuccessResponse("201", "Successfully created a new product")
   public async createProduct(@Body() product: IProduct): Promise<IProduct> {
     try {
       return await productService.createProduct(product);
@@ -46,6 +65,7 @@ export class ProductController extends Controller {
 
   // Update a product by ID
   @Put("/{id}")
+  @SuccessResponse("200", "Successfully updated product by ID")
   public async updateProduct(
     @Path() id: string,
     @Body() update: Partial<IProduct>
@@ -59,6 +79,7 @@ export class ProductController extends Controller {
 
   // Delete a product by ID
   @Delete("/{id}")
+  @SuccessResponse("200", "Successfully deleted product by ID")
   public async deleteProduct(@Path() id: string): Promise<IProduct | null> {
     try {
       return await productService.deleteProductById(id);

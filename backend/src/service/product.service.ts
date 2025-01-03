@@ -1,4 +1,8 @@
-import { IProduct } from "../model/types/product.type";
+import {
+  IPaginatedProducts,
+  IProduct,
+  ProductQueryParams,
+} from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
 
 class ProductService {
@@ -21,8 +25,48 @@ class ProductService {
   }
 
   // Get all products with optional filtering
-  async getAllProducts(): Promise<IProduct[]> {
-    return productRepository.getAll();
+  async getAllProducts(filter: ProductQueryParams): Promise<{
+    products: IProduct[];
+    pagination: IPaginatedProducts;
+  }> {
+    let products = await productRepository.getAll();
+
+    const { page = 1, perPage = 10, search, price, star, date } = filter;
+
+    if (search) {
+      products = products.filter((product) => product.name.includes(search));
+    }
+
+    if (price) {
+      products = products.sort((a, b) => a.price - b.price);
+    }
+
+    if (star) {
+      products = products.sort((a, b) => b.star - a.star);
+    }
+
+    if (date) {
+      products = products.sort((a, b) => {
+        if (a.createAt && b.createAt) {
+          return b.createAt.getTime() - a.createAt.getTime();
+        }
+        return 0;
+      });
+    }
+
+    const totalRecord = products.length;
+    const totalPage = Math.ceil(totalRecord / perPage);
+
+    products = products.slice((page - 1) * perPage, page * perPage);
+    return {
+      products,
+      pagination: {
+        page,
+        perPage,
+        totalRecord,
+        totalPage,
+      },
+    };
   }
 
   // Update a product by ID
@@ -39,6 +83,8 @@ class ProductService {
     if (update.price !== undefined && update.price < 0) {
       throw new Error("Price cannot be negative.");
     }
+
+    product.updateAt = new Date();
 
     return productRepository.updateById(id, update);
   }

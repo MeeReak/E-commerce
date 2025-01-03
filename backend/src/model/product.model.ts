@@ -6,6 +6,7 @@ const productSchema = new Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
@@ -30,6 +31,7 @@ const productSchema = new Schema(
     sku: {
       type: String,
       required: true,
+      unique: true,
     },
     brand: {
       type: String,
@@ -65,6 +67,7 @@ const productSchema = new Schema(
     },
     updateAt: {
       type: Date,
+      default: null,
     },
   },
   {

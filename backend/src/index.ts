@@ -36,7 +36,7 @@ app.use(errorHandler);
 const startServer = async (): Promise<void> => {
   try {
     // Connect to MongoDB
-    await mongoose.connect(config.mongoUrl as string);
+    await mongoose.connect(config.mongoUrl as string, { autoIndex: true });
     logger.info("Connected to MongoDB successfully");
     // Start the server
     app.listen(config.port, () => {
