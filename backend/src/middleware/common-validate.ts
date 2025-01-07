@@ -7,6 +7,7 @@ export const validateSchemaMiddleware = (
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const data = req[source]; // Get data from params, body, or query
+
     const { error } = schema.validate(data);
 
     if (error) {

@@ -1,9 +1,11 @@
-import Joi from 'joi';
-import JoiObjectId from 'joi-objectid';
-
-// Extend Joi to include the ObjectId validation
-Joi.objectId = JoiObjectId(Joi);
+import Joi from "joi";
 
 export const idParamSchema = Joi.object({
-  id: Joi.objectId().required().label('Param'),
-}).options({ allowUnknown: true });
+  id: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
+    .required()
+    .messages({
+      "string.pattern.base": '"id" must be a valid MongoDB ObjectID',
+      "any.required": '"id" is required',
+    }),
+});
