@@ -73,8 +73,6 @@ const productSchema = new Schema(
   {
     toJSON: {
       transform(_doc, ret: any) {
-        // delete ret.password;
-        delete ret.googleId;
         delete ret.__v;
       },
     },
