@@ -78,7 +78,7 @@ class ProductRepository {
   }
 
   // Delete a product by ID
-  async deleteById(id: string): Promise<IProduct | null> {
+  async deleteById(id: string): Promise<{ message: string; status: number }> {
     try {
       const response = await this.model.findByIdAndDelete(id).exec();
 
@@ -89,7 +89,10 @@ class ProductRepository {
         );
       }
 
-      return response;
+      return {
+        message: `Product with ID ${id} deleted.`,
+        status: StatusCode.NoContent,
+      };
     } catch (error: any | unknown) {
       throw new Error(`Error deleting product with ID ${id}: ${error.message}`);
     }

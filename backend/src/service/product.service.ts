@@ -6,6 +6,7 @@ import {
 } from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
 import APIError from "../Error/api-error";
+import commentRepository from "../repository/comment.repository";
 
 class ProductService {
   // Create a new product
@@ -121,7 +122,10 @@ class ProductService {
   }
 
   // Delete a product by ID
-  async delete(id: string): Promise<IProduct | null> {
+  async delete(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const product = await productRepository.getById(id);
       if (!product) {
@@ -136,7 +140,11 @@ class ProductService {
       await categoryRepository.updateById(product.categoryId, {
         productId: category.productId?.filter((pid) => pid !== id),
       });
-      
+
+      product.commentId?.map(async (commentId) => {
+        await commentRepository.deleteById(commentId);
+      });
+
       return productRepository.deleteById(id);
     } catch (error: unknown | any) {
       throw error;

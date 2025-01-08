@@ -3,6 +3,7 @@ import { ICategory, IUpdateCategory } from "../model/types/category.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
 import { IFilter, IPaginated } from "../model/types/common.type";
+import productRepository from "../repository/product.repository";
 
 class CategoryService {
   // Create a new category
@@ -94,12 +95,19 @@ class CategoryService {
   }
 
   // Delete a category by ID
-  async delete(id: string): Promise<ICategory | null> {
+  async delete(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const response = await categoryRepository.getById(id);
       if (!response) {
         throw new Error(`Category with ID ${id} not found.`);
       }
+
+      response.productId?.map(async (productId) => {
+        await productRepository.deleteById(productId);
+      });
 
       return categoryRepository.deleteById(id);
     } catch (error: unknown | any) {

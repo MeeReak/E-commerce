@@ -17,7 +17,10 @@ import {
 import { IFilter, IPaginated } from "../model/types/common.type";
 import { IComment, IUpdateComment } from "../model/types/comment.type";
 import commentService from "../service/comment.service";
-import { commentSchema, updateCommentSchema } from "../constant/comment/comment.validator";
+import {
+  commentSchema,
+  updateCommentSchema,
+} from "../constant/comment/comment.validator";
 
 @Route("v1/comments")
 @Tags("Comment")
@@ -83,7 +86,10 @@ export class CommentController extends Controller {
   @Delete("/{id}")
   @SuccessResponse("200", "Successfully deleted comment by ID")
   @Middlewares(validateSchemaMiddleware(idParamSchema, "params"))
-  public async deleteComment(@Path() id: string): Promise<IComment | null> {
+  public async deleteComment(@Path() id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       return await commentService.delete(id);
     } catch (error) {

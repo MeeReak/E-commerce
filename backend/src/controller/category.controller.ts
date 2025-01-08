@@ -87,7 +87,10 @@ export class CategoryController extends Controller {
   @Delete("/{id}")
   @SuccessResponse("200", "Successfully deleted category by ID")
   @Middlewares(validateSchemaMiddleware(idParamSchema, "params"))
-  public async deleteCategory(@Path() id: string): Promise<ICategory | null> {
+  public async deleteCategory(@Path() id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       return await categoryService.delete(id);
     } catch (error) {
