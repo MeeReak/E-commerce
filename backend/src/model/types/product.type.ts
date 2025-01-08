@@ -1,4 +1,5 @@
 export interface IProduct {
+  _id?: string;
   name: string;
   description: string;
   price: number;
@@ -16,6 +17,8 @@ export interface IProduct {
   createAt?: Date; // Optional as it has a default value
   updateAt?: Date; // Optional
 }
+
+export interface IUpdateProduct extends Partial<IProduct> {}
 
 export interface ProductQueryParams {
   page?: number;

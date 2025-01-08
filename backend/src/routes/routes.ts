@@ -9,6 +9,8 @@ import { ProductController } from './../controller/product.controller';
 import { HealthController } from './../controller/health.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CommentController } from './../controller/comment.controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { CategoryController } from './../controller/category.controller';
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
 
@@ -103,7 +105,23 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_IUpdateComment_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"star":{"dataType":"double"},"comment":{"dataType":"string"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"productId":{"dataType":"string"},"comment":{"dataType":"string"},"name":{"dataType":"string"},"star":{"dataType":"double"},"createAt":{"dataType":"datetime"},"updateAt":{"dataType":"datetime"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ICategory": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "productId": {"dataType":"array","array":{"dataType":"string"}},
+            "createAt": {"dataType":"datetime"},
+            "updateAt": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_IUpdateCategory_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"},"productId":{"dataType":"array","array":{"dataType":"string"}}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -276,7 +294,7 @@ export function RegisterRoutes(app: Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsHealthController_getHealth: Record<string, TsoaRoute.ParameterSchema> = {
         };
-        app.get('/v1/users/health',
+        app.get('/v1/health',
             ...(fetchMiddlewares<RequestHandler>(HealthController)),
             ...(fetchMiddlewares<RequestHandler>(HealthController.prototype.getHealth)),
 
@@ -443,6 +461,157 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'deleteComment',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCategoryController_getAllCategories: Record<string, TsoaRoute.ParameterSchema> = {
+                queryParams: {"in":"queries","name":"queryParams","required":true,"ref":"IFilter"},
+        };
+        app.get('/v1/categorys',
+            ...(fetchMiddlewares<RequestHandler>(CategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(CategoryController.prototype.getAllCategories)),
+
+            async function CategoryController_getAllCategories(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCategoryController_getAllCategories, request, response });
+
+                const controller = new CategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'getAllCategories',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCategoryController_getCategoryById: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.get('/v1/categorys/:id',
+            ...(fetchMiddlewares<RequestHandler>(CategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(CategoryController.prototype.getCategoryById)),
+
+            async function CategoryController_getCategoryById(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCategoryController_getCategoryById, request, response });
+
+                const controller = new CategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'getCategoryById',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCategoryController_createCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                data: {"in":"body","name":"data","required":true,"ref":"ICategory"},
+        };
+        app.post('/v1/categorys',
+            ...(fetchMiddlewares<RequestHandler>(CategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(CategoryController.prototype.createCategory)),
+
+            async function CategoryController_createCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCategoryController_createCategory, request, response });
+
+                const controller = new CategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'createCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCategoryController_updateCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                data: {"in":"body","name":"data","required":true,"ref":"Partial_IUpdateCategory_"},
+        };
+        app.put('/v1/categorys/:id',
+            ...(fetchMiddlewares<RequestHandler>(CategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(CategoryController.prototype.updateCategory)),
+
+            async function CategoryController_updateCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCategoryController_updateCategory, request, response });
+
+                const controller = new CategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'updateCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCategoryController_deleteCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/v1/categorys/:id',
+            ...(fetchMiddlewares<RequestHandler>(CategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(CategoryController.prototype.deleteCategory)),
+
+            async function CategoryController_deleteCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCategoryController_deleteCategory, request, response });
+
+                const controller = new CategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteCategory',
                 controller,
                 response,
                 next,

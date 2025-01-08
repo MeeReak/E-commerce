@@ -27,7 +27,6 @@ import {
 @Tags("Product")
 export class ProductController extends Controller {
   // Get all products
-
   @Get("/")
   @SuccessResponse("200", "Successfully fetched all products")
   public async getAllProducts(
@@ -37,7 +36,7 @@ export class ProductController extends Controller {
     pagination: IPaginatedProducts;
   }> {
     try {
-      const product = await productService.getAllProducts(queryParams);
+      const product = await productService.getAll(queryParams);
       return {
         data: product.products,
         pagination: product.pagination,
@@ -53,14 +52,7 @@ export class ProductController extends Controller {
   @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
   public async getProductById(@Path() id: string): Promise<IProduct | null> {
     try {
-      const { error } = idParamSchema.validate(id);
-      if (error) {
-        throw new Error(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
-        );
-      }
-
-      return await productService.getProductById(id);
+      return await productService.getById(id);
     } catch (error) {
       throw error;
     }
@@ -72,7 +64,7 @@ export class ProductController extends Controller {
   @Middlewares([validateSchemaMiddleware(productSchema, "body")])
   public async createProduct(@Body() product: IProduct): Promise<IProduct> {
     try {
-      return await productService.createProduct(product);
+      return await productService.create(product);
     } catch (error) {
       throw error;
     }
@@ -87,7 +79,7 @@ export class ProductController extends Controller {
     @Body() update: Partial<IProduct>
   ): Promise<IProduct | null> {
     try {
-      return await productService.updateProductById(id, update);
+      return await productService.update(id, update);
     } catch (error) {
       throw error;
     }
@@ -96,16 +88,10 @@ export class ProductController extends Controller {
   // Delete a product by ID
   @Delete("/{id}")
   @SuccessResponse("200", "Successfully deleted product by ID")
+  @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
   public async deleteProduct(@Path() id: string): Promise<IProduct | null> {
     try {
-      const { error } = idParamSchema.validate(id);
-      if (error) {
-        throw new Error(
-          `Validation error: ${error.details.map((x) => x.message).join(", ")}`
-        );
-      }
-
-      return await productService.deleteProductById(id);
+      return await productService.delete(id);
     } catch (error) {
       throw error;
     }

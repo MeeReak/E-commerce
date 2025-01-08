@@ -1,4 +1,5 @@
-export interface IComment {
+interface IComment {
+  _id?: string;
   productId: string;
   comment: string;
   name: string;
@@ -7,7 +8,6 @@ export interface IComment {
   updateAt?: Date;
 }
 
-export interface IUpdateComment{
-  star: number;
-  comment: string;
-}
+interface IUpdateComment extends Partial<IComment> {}
+
+export { IComment, IUpdateComment };
