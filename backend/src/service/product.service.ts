@@ -1,25 +1,45 @@
+import categoryRepository from "../repository/category.repository";
 import {
   IPaginatedProducts,
   IProduct,
   ProductQueryParams,
 } from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
+import APIError from "../Error/api-error";
 
 class ProductService {
   // Create a new product
-  async createProduct(product: IProduct): Promise<IProduct> {
+  async create(product: IProduct): Promise<IProduct> {
     try {
       if (product.price < 0) {
-        throw new Error("Price cannot be negative.");
+        throw new APIError("Price cannot be negative.");
       }
-      return productRepository.create(product);
+
+      if (product.stockQuantity < 0) {
+        throw new APIError("Stock quantity cannot be negative.");
+      }
+
+      const category = await categoryRepository.getById(product.categoryId);
+      if (!category) {
+        throw new APIError(`Category with ID ${product.categoryId} not found.`);
+      }
+      const response = await productRepository.create(product);
+
+      await categoryRepository.updateById(product.categoryId, {
+        productId: [...(category.productId || []), response._id!],
+      });
+      return response;
     } catch (error: unknown | any) {
+      if (error instanceof APIError) {
+        throw error;
+      }
+
       throw error;
     }
   }
 
   // Get a product by ID
-  async getProductById(id: string): Promise<IProduct | null> {
+  async getById(id: string): Promise<IProduct | null> {
     try {
       const product = await productRepository.getById(id);
       if (!product) {
@@ -32,7 +52,7 @@ class ProductService {
   }
 
   // Get all products with optional filtering
-  async getAllProducts(filter: ProductQueryParams): Promise<{
+  async getAll(filter: ProductQueryParams): Promise<{
     products: IProduct[];
     pagination: IPaginatedProducts;
   }> {
@@ -81,7 +101,7 @@ class ProductService {
   }
 
   // Update a product by ID
-  async updateProductById(
+  async update(
     id: string,
     update: Partial<IProduct>
   ): Promise<IProduct | null> {
@@ -101,12 +121,22 @@ class ProductService {
   }
 
   // Delete a product by ID
-  async deleteProductById(id: string): Promise<IProduct | null> {
+  async delete(id: string): Promise<IProduct | null> {
     try {
       const product = await productRepository.getById(id);
       if (!product) {
         throw new Error(`Product with ID ${id} not found.`);
       }
+
+      const category = await categoryRepository.getById(product.categoryId);
+      if (!category) {
+        throw new Error(`Category with ID ${product.categoryId} not found.`);
+      }
+
+      await categoryRepository.updateById(product.categoryId, {
+        productId: category.productId?.filter((pid) => pid !== id),
+      });
+      
       return productRepository.deleteById(id);
     } catch (error: unknown | any) {
       throw error;

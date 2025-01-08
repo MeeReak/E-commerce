@@ -22,7 +22,7 @@ const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
 
   // Default to internal server error
   res.status(StatusCode.InternalServerError).json({
-    errors: [{ message: err.message || "Something went wrong" }],
+    errors: [{ message: err.message || `Something went wrong ${err}` }],
   });
 };
 
