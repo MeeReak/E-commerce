@@ -1,5 +1,5 @@
-import commentRepository from "../repository/comment.repository";
-import { IComment, IUpdateComment } from "../model/types/comment.type";
+import commentRepository from "../repository/comment-product.repository";
+import { IComment, IUpdateComment } from "../model/types/comment-product.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
 import { IFilter, IPaginated } from "../model/types/common.type";
@@ -118,7 +118,9 @@ class CommentService {
         throw new Error(`Product with ID ${id} not found.`);
       }
 
-      const existingProduct = await productRepository.getById(response.productId);
+      const existingProduct = await productRepository.getById(
+        response.productId
+      );
 
       await productRepository.updateById(response.productId, {
         commentId: (existingProduct?.commentId || []).filter(

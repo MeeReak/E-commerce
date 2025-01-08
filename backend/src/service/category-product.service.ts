@@ -1,4 +1,4 @@
-import categoryRepository from "../repository/category.repository";
+import categoryRepository from "../repository/category-product.repository";
 import { ICategory, IUpdateCategory } from "../model/types/category.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";

@@ -1,4 +1,4 @@
-import categoryRepository from "../repository/category.repository";
+import categoryRepository from "../repository/category-product.repository";
 import {
   IPaginatedProducts,
   IProduct,
@@ -6,7 +6,7 @@ import {
 } from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
 import APIError from "../Error/api-error";
-import commentRepository from "../repository/comment.repository";
+import commentRepository from "../repository/comment-product.repository";
 
 class ProductService {
   // Create a new product

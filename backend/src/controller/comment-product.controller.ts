@@ -15,8 +15,8 @@ import {
   Middlewares,
 } from "tsoa";
 import { IFilter, IPaginated } from "../model/types/common.type";
-import { IComment, IUpdateComment } from "../model/types/comment.type";
-import commentService from "../service/comment.service";
+import { IComment, IUpdateComment } from "../model/types/comment-product.type";
+import commentService from "../service/comment-product.service";
 import {
   commentSchema,
   updateCommentSchema,
