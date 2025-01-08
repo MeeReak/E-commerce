@@ -89,7 +89,9 @@ export class ProductController extends Controller {
   @Delete("/{id}")
   @SuccessResponse("200", "Successfully deleted product by ID")
   @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
-  public async deleteProduct(@Path() id: string): Promise<IProduct | null> {
+  public async deleteProduct(
+    @Path() id: string
+  ): Promise<{ message: string; status: number }> {
     try {
       return await productService.delete(id);
     } catch (error) {

@@ -78,7 +78,10 @@ class CommentRepository {
   }
 
   // Delete a product by ID
-  async deleteById(id: string): Promise<IComment | null> {
+  async deleteById(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const response = await this.model.findByIdAndDelete(id).exec();
 
@@ -89,7 +92,10 @@ class CommentRepository {
         );
       }
 
-      return response;
+      return {
+        message: `Comment with ID ${id} deleted successfully.`,
+        status: StatusCode.NoContent,
+      };
     } catch (error: any | unknown) {
       throw new Error(`Error deleting comment with ID ${id}: ${error.message}`);
     }

@@ -3,6 +3,7 @@ import { IComment, IUpdateComment } from "../model/types/comment.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
 import { IFilter, IPaginated } from "../model/types/common.type";
+import productRepository from "../repository/product.repository";
 
 class CommentService {
   // Create a new product
@@ -11,6 +12,15 @@ class CommentService {
       if (data.star < 0 || data.star > 5 || data.comment == "") {
         throw new APIError("Invalid data", 400);
       }
+
+      const existingProduct = await productRepository.getById(data.productId);
+      if (!existingProduct) {
+        throw new APIError(`Product with ID ${data.productId} not found.`);
+      }
+
+      await productRepository.updateById(data.productId, {
+        commentId: [...(existingProduct.commentId || []), data._id!],
+      });
 
       return await commentRepository.create(data);
     } catch (error: any | unknown) {
@@ -67,21 +77,21 @@ class CommentService {
   // Update a product by ID
   async update(
     id: string,
-    update: Partial<IUpdateComment>
+    data: Partial<IUpdateComment>
   ): Promise<IComment | null> {
     try {
-      const response = await commentRepository.getById(id);
+      const response = await commentRepository.updateById(id, data);
       if (!response) {
         throw new Error(`Comment with ID ${id} not found.`);
       }
 
-      if (update.star) {
-        if (update.star < 0 || update.star > 5) {
+      if (data.star) {
+        if (data.star < 0 || data.star > 5) {
           throw new APIError("Invalid data", 400);
         }
       }
 
-      if (update.comment == "") {
+      if (data.comment == "") {
         throw new APIError("Invalid data", 400);
       }
 
@@ -98,12 +108,23 @@ class CommentService {
   }
 
   // Delete a product by ID
-  async delete(id: string): Promise<IComment | null> {
+  async delete(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const response = await commentRepository.getById(id);
       if (!response) {
         throw new Error(`Product with ID ${id} not found.`);
       }
+
+      const existingProduct = await productRepository.getById(response.productId);
+
+      await productRepository.updateById(response.productId, {
+        commentId: (existingProduct?.commentId || []).filter(
+          (commentId) => commentId !== id
+        ),
+      });
 
       return commentRepository.deleteById(id);
     } catch (error: unknown | any) {

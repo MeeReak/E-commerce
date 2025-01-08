@@ -41,7 +41,9 @@ class CategoryRepository {
       }
       return response;
     } catch (error: any | unknown) {
-      throw new Error(`Error fetching Category with ID ${id}: ${error.message}`);
+      throw new Error(
+        `Error fetching Category with ID ${id}: ${error.message}`
+      );
     }
   }
 
@@ -78,7 +80,10 @@ class CategoryRepository {
   }
 
   // Delete a product by ID
-  async deleteById(id: string): Promise<ICategory | null> {
+  async deleteById(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const response = await this.model.findByIdAndDelete(id).exec();
 
@@ -89,9 +94,14 @@ class CategoryRepository {
         );
       }
 
-      return response;
+      return {
+        message: `Category with ID ${id} deleted successfully`,
+        status: StatusCode.NoContent,
+      };
     } catch (error: any | unknown) {
-      throw new Error(`Error deleting category with ID ${id}: ${error.message}`);
+      throw new Error(
+        `Error deleting category with ID ${id}: ${error.message}`
+      );
     }
   }
 }
