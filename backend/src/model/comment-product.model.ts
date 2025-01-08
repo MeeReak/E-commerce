@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { IComment } from "./types/comment.type";
+import { IComment } from "./types/comment-product.type";
 
 const commentSchema = new Schema(
   {

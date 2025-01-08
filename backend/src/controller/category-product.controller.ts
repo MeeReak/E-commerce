@@ -16,7 +16,7 @@ import {
 } from "tsoa";
 import { IFilter, IPaginated } from "../model/types/common.type";
 import { ICategory, IUpdateCategory } from "../model/types/category.type";
-import categoryService from "../service/category.service";
+import categoryService from "../service/category-product.service";
 import {
   categorySchema,
   updateCategorySchema,
