@@ -1,76 +1,107 @@
+import categoryRepository from "../repository/category.repository";
 import {
   IPaginatedProducts,
   IProduct,
   ProductQueryParams,
 } from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
+import APIError from "../Error/api-error";
 
 class ProductService {
   // Create a new product
-  async createProduct(product: IProduct): Promise<IProduct> {
-    // Example of business logic: Ensure the price is not negative
-    if (product.price < 0) {
-      throw new Error("Price cannot be negative.");
+  async create(product: IProduct): Promise<IProduct> {
+    try {
+      if (product.price < 0) {
+        throw new APIError("Price cannot be negative.");
+      }
+
+      if (product.stockQuantity < 0) {
+        throw new APIError("Stock quantity cannot be negative.");
+      }
+
+      const category = await categoryRepository.getById(product.categoryId);
+      if (!category) {
+        throw new APIError(`Category with ID ${product.categoryId} not found.`);
+      }
+      const response = await productRepository.create(product);
+
+      await categoryRepository.updateById(product.categoryId, {
+        productId: [...(category.productId || []), response._id!],
+      });
+      return response;
+    } catch (error: unknown | any) {
+      if (error instanceof APIError) {
+        throw error;
+      }
+
+      throw error;
     }
-    return productRepository.create(product);
   }
 
   // Get a product by ID
-  async getProductById(id: string): Promise<IProduct | null> {
-    const product = await productRepository.getById(id);
-    if (!product) {
-      throw new Error(`Product with ID ${id} not found.`);
+  async getById(id: string): Promise<IProduct | null> {
+    try {
+      const product = await productRepository.getById(id);
+      if (!product) {
+        throw new Error(`Product with ID ${id} not found.`);
+      }
+      return product;
+    } catch (error: unknown | any) {
+      throw error;
     }
-    return product;
   }
 
   // Get all products with optional filtering
-  async getAllProducts(filter: ProductQueryParams): Promise<{
+  async getAll(filter: ProductQueryParams): Promise<{
     products: IProduct[];
     pagination: IPaginatedProducts;
   }> {
-    let products = await productRepository.getAll();
+    try {
+      let products = await productRepository.getAll();
 
-    const { page = 1, perPage = 10, search, price, star, date } = filter;
+      const { page = 1, perPage = 10, search, price, star, date } = filter;
 
-    if (search) {
-      products = products.filter((product) => product.name.includes(search));
+      if (search) {
+        products = products.filter((product) => product.name.includes(search));
+      }
+
+      if (price) {
+        products = products.sort((a, b) => a.price - b.price);
+      }
+
+      if (star) {
+        products = products.sort((a, b) => b.star - a.star);
+      }
+
+      if (date) {
+        products = products.sort((a, b) => {
+          if (a.createAt && b.createAt) {
+            return b.createAt.getTime() - a.createAt.getTime();
+          }
+          return 0;
+        });
+      }
+
+      const totalRecord = products.length;
+      const totalPage = Math.ceil(totalRecord / perPage);
+
+      products = products.slice((page - 1) * perPage, page * perPage);
+      return {
+        products,
+        pagination: {
+          page,
+          perPage,
+          totalRecord,
+          totalPage,
+        },
+      };
+    } catch (error: unknown | any) {
+      throw error;
     }
-
-    if (price) {
-      products = products.sort((a, b) => a.price - b.price);
-    }
-
-    if (star) {
-      products = products.sort((a, b) => b.star - a.star);
-    }
-
-    if (date) {
-      products = products.sort((a, b) => {
-        if (a.createAt && b.createAt) {
-          return b.createAt.getTime() - a.createAt.getTime();
-        }
-        return 0;
-      });
-    }
-
-    const totalRecord = products.length;
-    const totalPage = Math.ceil(totalRecord / perPage);
-
-    products = products.slice((page - 1) * perPage, page * perPage);
-    return {
-      products,
-      pagination: {
-        page,
-        perPage,
-        totalRecord,
-        totalPage,
-      },
-    };
   }
 
   // Update a product by ID
-  async updateProductById(
+  async update(
     id: string,
     update: Partial<IProduct>
   ): Promise<IProduct | null> {
@@ -90,12 +121,26 @@ class ProductService {
   }
 
   // Delete a product by ID
-  async deleteProductById(id: string): Promise<IProduct | null> {
-    const product = await productRepository.getById(id);
-    if (!product) {
-      throw new Error(`Product with ID ${id} not found.`);
+  async delete(id: string): Promise<IProduct | null> {
+    try {
+      const product = await productRepository.getById(id);
+      if (!product) {
+        throw new Error(`Product with ID ${id} not found.`);
+      }
+
+      const category = await categoryRepository.getById(product.categoryId);
+      if (!category) {
+        throw new Error(`Category with ID ${product.categoryId} not found.`);
+      }
+
+      await categoryRepository.updateById(product.categoryId, {
+        productId: category.productId?.filter((pid) => pid !== id),
+      });
+      
+      return productRepository.deleteById(id);
+    } catch (error: unknown | any) {
+      throw error;
     }
-    return productRepository.deleteById(id);
   }
 }
 
