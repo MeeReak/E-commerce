@@ -18,11 +18,12 @@ class CommentService {
         throw new APIError(`Product with ID ${data.productId} not found.`);
       }
 
+      const response = await commentRepository.create(data);
       await productRepository.updateById(data.productId, {
-        commentId: [...(existingProduct.commentId || []), data._id!],
+        commentId: [...(existingProduct.commentId || []), response._id!],
       });
 
-      return await commentRepository.create(data);
+      return response;
     } catch (error: any | unknown) {
       if (error.name === "MongoServerError") {
         const fieldName = Object.keys(error.keyValue)[0]; // Get the field name causing the error

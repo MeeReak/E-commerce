@@ -10,6 +10,8 @@ import { HealthController } from './../controller/health.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CommentController } from './../controller/comment-product.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { CommentBlogController } from './../controller/comment-blog.controller';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CategoryProductController } from './../controller/category-product.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { CategoryBlogController } from './../controller/category-blog.controller';
@@ -113,6 +115,25 @@ const models: TsoaRoute.Models = {
     "Partial_IUpdateComment_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"_id":{"dataType":"string"},"productId":{"dataType":"string"},"comment":{"dataType":"string"},"name":{"dataType":"string"},"star":{"dataType":"double"},"createAt":{"dataType":"datetime"},"updateAt":{"dataType":"datetime"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ICommentBlog": {
+        "dataType": "refObject",
+        "properties": {
+            "_id": {"dataType":"string"},
+            "blogId": {"dataType":"string","required":true},
+            "message": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
+            "createAt": {"dataType":"datetime"},
+            "updateAt": {"dataType":"datetime"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_IUpdateCommentBlog_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"_id":{"dataType":"string"},"blogId":{"dataType":"string"},"message":{"dataType":"string"},"name":{"dataType":"string"},"email":{"dataType":"string"},"createAt":{"dataType":"datetime"},"updateAt":{"dataType":"datetime"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ICategoryProduct": {
@@ -373,7 +394,7 @@ export function RegisterRoutes(app: Router) {
         const argsCommentController_getAllComment: Record<string, TsoaRoute.ParameterSchema> = {
                 queryParams: {"in":"queries","name":"queryParams","required":true,"ref":"IFilter"},
         };
-        app.get('/v1/comments',
+        app.get('/v1/comment-products',
             ...(fetchMiddlewares<RequestHandler>(CommentController)),
             ...(fetchMiddlewares<RequestHandler>(CommentController.prototype.getAllComment)),
 
@@ -403,7 +424,7 @@ export function RegisterRoutes(app: Router) {
         const argsCommentController_getCommentById: Record<string, TsoaRoute.ParameterSchema> = {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
-        app.get('/v1/comments/:id',
+        app.get('/v1/comment-products/:id',
             ...(fetchMiddlewares<RequestHandler>(CommentController)),
             ...(fetchMiddlewares<RequestHandler>(CommentController.prototype.getCommentById)),
 
@@ -433,7 +454,7 @@ export function RegisterRoutes(app: Router) {
         const argsCommentController_createComment: Record<string, TsoaRoute.ParameterSchema> = {
                 data: {"in":"body","name":"data","required":true,"ref":"IComment"},
         };
-        app.post('/v1/comments',
+        app.post('/v1/comment-products',
             ...(fetchMiddlewares<RequestHandler>(CommentController)),
             ...(fetchMiddlewares<RequestHandler>(CommentController.prototype.createComment)),
 
@@ -464,7 +485,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
                 data: {"in":"body","name":"data","required":true,"ref":"Partial_IUpdateComment_"},
         };
-        app.put('/v1/comments/:id',
+        app.put('/v1/comment-products/:id',
             ...(fetchMiddlewares<RequestHandler>(CommentController)),
             ...(fetchMiddlewares<RequestHandler>(CommentController.prototype.updateComment)),
 
@@ -494,7 +515,7 @@ export function RegisterRoutes(app: Router) {
         const argsCommentController_deleteComment: Record<string, TsoaRoute.ParameterSchema> = {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
-        app.delete('/v1/comments/:id',
+        app.delete('/v1/comment-products/:id',
             ...(fetchMiddlewares<RequestHandler>(CommentController)),
             ...(fetchMiddlewares<RequestHandler>(CommentController.prototype.deleteComment)),
 
@@ -507,6 +528,157 @@ export function RegisterRoutes(app: Router) {
                 validatedArgs = templateService.getValidatedArgs({ args: argsCommentController_deleteComment, request, response });
 
                 const controller = new CommentController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteComment',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCommentBlogController_getAllComment: Record<string, TsoaRoute.ParameterSchema> = {
+                queryParams: {"in":"queries","name":"queryParams","required":true,"ref":"IFilter"},
+        };
+        app.get('/v1/comment-blogs',
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController)),
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController.prototype.getAllComment)),
+
+            async function CommentBlogController_getAllComment(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCommentBlogController_getAllComment, request, response });
+
+                const controller = new CommentBlogController();
+
+              await templateService.apiHandler({
+                methodName: 'getAllComment',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCommentBlogController_getCommentById: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.get('/v1/comment-blogs/:id',
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController)),
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController.prototype.getCommentById)),
+
+            async function CommentBlogController_getCommentById(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCommentBlogController_getCommentById, request, response });
+
+                const controller = new CommentBlogController();
+
+              await templateService.apiHandler({
+                methodName: 'getCommentById',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCommentBlogController_createComment: Record<string, TsoaRoute.ParameterSchema> = {
+                data: {"in":"body","name":"data","required":true,"ref":"ICommentBlog"},
+        };
+        app.post('/v1/comment-blogs',
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController)),
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController.prototype.createComment)),
+
+            async function CommentBlogController_createComment(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCommentBlogController_createComment, request, response });
+
+                const controller = new CommentBlogController();
+
+              await templateService.apiHandler({
+                methodName: 'createComment',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCommentBlogController_updateComment: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                data: {"in":"body","name":"data","required":true,"ref":"Partial_IUpdateCommentBlog_"},
+        };
+        app.put('/v1/comment-blogs/:id',
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController)),
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController.prototype.updateComment)),
+
+            async function CommentBlogController_updateComment(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCommentBlogController_updateComment, request, response });
+
+                const controller = new CommentBlogController();
+
+              await templateService.apiHandler({
+                methodName: 'updateComment',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsCommentBlogController_deleteComment: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/v1/comment-blogs/:id',
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController)),
+            ...(fetchMiddlewares<RequestHandler>(CommentBlogController.prototype.deleteComment)),
+
+            async function CommentBlogController_deleteComment(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsCommentBlogController_deleteComment, request, response });
+
+                const controller = new CommentBlogController();
 
               await templateService.apiHandler({
                 methodName: 'deleteComment',
