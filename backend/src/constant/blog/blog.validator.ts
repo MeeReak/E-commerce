@@ -9,6 +9,7 @@ export const blogSchema = Joi.object({
   tags: Joi.array().items(Joi.string()).required(), // Array of tags
   userId: Joi.string().required(), // ID of the user who created the blog
   commentId: Joi.array().items(Joi.string()), // Array of comment IDs
+  categoryId: Joi.string().required(),
 });
 
 export const updateBlogSchema = Joi.object({
@@ -18,6 +19,7 @@ export const updateBlogSchema = Joi.object({
   description3: Joi.string(), // Description of the blog
   images: Joi.array().items(Joi.string()), // Array of image URLs
   tags: Joi.array().items(Joi.string()), // Array of tags
-  userId: Joi.string(), // ID of the user who created the blog
   commentId: Joi.array().items(Joi.string()), // Array of comment IDs
+  userId: Joi.string(), // ID of the user who created the blog
+  categoryId: Joi.string(), // Array of comment IDs
 });

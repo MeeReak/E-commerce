@@ -16,26 +16,26 @@ import {
 } from "tsoa";
 import { IFilter, IPaginated } from "../model/types/common.type";
 import {
-  ICategoryProduct,
-  IUpdateCategoryProduct,
-} from "../model/types/category-product.type";
-import categoryProductService from "../service/category-product.service";
+  ICategoryBlog,
+  IUpdateCategoryBlog,
+} from "../model/types/category-blog.type";
+import categoryBlogService from "../service/category-blog.service";
 import {
   categorySchema,
-  updateCategorySchema,
-} from "../constant/category-product/category-product.validator";
+  // updateCategorySchema,
+} from "../constant/category-blog/category-blog.validator";
 
-@Route("v1/category-products")
-@Tags("Category Product")
-export class CategoryProductController extends Controller {
+@Route("v1/category-blogs")
+@Tags("Category Blog")
+export class CategoryBlogController extends Controller {
   @Get("/")
-  @SuccessResponse("200", "Successfully fetched all categories")
+  @SuccessResponse("200", "Successfully fetched all categories of blog")
   public async getAllCategories(@Queries() queryParams: IFilter): Promise<{
-    data: ICategoryProduct[];
+    data: ICategoryBlog[];
     pagination: IPaginated;
   }> {
     try {
-      const response = await categoryProductService.getAll(queryParams);
+      const response = await categoryBlogService.getAll(queryParams);
       return {
         data: response.data,
         pagination: response.pagination,
@@ -47,13 +47,13 @@ export class CategoryProductController extends Controller {
 
   // Get a single category by ID
   @Get("/{id}")
-  @SuccessResponse("200", "Successfully fetched category by ID")
+  @SuccessResponse("200", "Successfully fetched category of blog by ID")
   @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
   public async getCategoryById(
     @Path() id: string
-  ): Promise<ICategoryProduct | null> {
+  ): Promise<ICategoryBlog | null> {
     try {
-      return await categoryProductService.getOne(id);
+      return await categoryBlogService.getOne(id);
     } catch (error) {
       throw error;
     }
@@ -61,13 +61,13 @@ export class CategoryProductController extends Controller {
 
   // Create a new category
   @Post("/")
-  @SuccessResponse("201", "Successfully created a new category")
+  @SuccessResponse("201", "Successfully created a new category of blog")
   @Middlewares([validateSchemaMiddleware(categorySchema, "body")])
   public async createCategory(
-    @Body() data: ICategoryProduct
-  ): Promise<ICategoryProduct> {
+    @Body() data: ICategoryBlog
+  ): Promise<ICategoryBlog> {
     try {
-      return await categoryProductService.create(data);
+      return await categoryBlogService.create(data);
     } catch (error) {
       console.log(error);
       throw error;
@@ -76,15 +76,15 @@ export class CategoryProductController extends Controller {
 
   // Update a category by ID
   @Put("/{id}")
-  @SuccessResponse("200", "Successfully updated category by ID")
+  @SuccessResponse("200", "Successfully updated category of blog by ID")
   @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
-  @Middlewares([validateSchemaMiddleware(updateCategorySchema, "body")])
+  // @Middlewares([validateSchemaMiddleware(updateCategorySchema, "body")])
   public async updateCategory(
     @Path() id: string,
-    @Body() data: Partial<IUpdateCategoryProduct>
-  ): Promise<ICategoryProduct | null> {
+    @Body() data: Partial<IUpdateCategoryBlog>
+  ): Promise<ICategoryBlog | null> {
     try {
-      return await categoryProductService.update(id, data);
+      return await categoryBlogService.update(id, data);
     } catch (error) {
       throw error;
     }
@@ -92,14 +92,14 @@ export class CategoryProductController extends Controller {
 
   // Delete a category by ID
   @Delete("/{id}")
-  @SuccessResponse("200", "Successfully deleted category by ID")
+  @SuccessResponse("200", "Successfully deleted category of blog by ID")
   @Middlewares(validateSchemaMiddleware(idParamSchema, "params"))
   public async deleteCategory(@Path() id: string): Promise<{
     message: string;
     status: number;
   }> {
     try {
-      return await categoryProductService.delete(id);
+      return await categoryBlogService.delete(id);
     } catch (error) {
       throw error;
     }

@@ -35,6 +35,10 @@ const blogSchema = new Schema(
       type: Array,
       required: true,
     },
+    categoryId:{
+      type: Schema.Types.ObjectId,
+      ref: "CategoryBlog",
+    },
     createAt: {
       type: Date,
       default: Date.now,

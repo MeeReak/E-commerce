@@ -112,7 +112,7 @@ class ProductService {
     }
 
     // Example of business logic: Validate updated fields
-    if (update.price !== undefined && update.price < 0) {
+    if (update.price != undefined && update.price < 0) {
       throw new Error("Price cannot be negative.");
     }
 
@@ -138,7 +138,7 @@ class ProductService {
       }
 
       await categoryRepository.updateById(product.categoryId, {
-        productId: category.productId?.filter((pid) => pid !== id),
+        productId: category.productId?.filter((pid) => pid != id),
       });
 
       product.commentId?.map(async (commentId) => {

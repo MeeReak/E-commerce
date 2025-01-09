@@ -1,4 +1,4 @@
-interface ICategory {
+interface ICategoryProduct {
   _id?: string;
   name: string;
   productId?: string[];
@@ -6,9 +6,9 @@ interface ICategory {
   updateAt?: Date;
 }
 
-interface IUpdateCategory {
+interface IUpdateCategoryProduct {
   name?: string;
   productId?: string[];
 }
 
-export { ICategory, IUpdateCategory };
+export { ICategoryProduct, IUpdateCategoryProduct };

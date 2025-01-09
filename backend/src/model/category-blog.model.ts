@@ -1,16 +1,16 @@
 import mongoose, { Schema } from "mongoose";
-import { ICategoryProduct } from "./types/category-product.type";
+import { ICategoryBlog } from "./types/category-blog.type";
 
-const categoryProductSchema = new Schema(
+const categoryBlogSchema = new Schema(
   {
     name: {
       type: String,
       required: true,
     },
-    productId: [
+    blogId: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Product",
+        ref: "Blog",
       },
     ],
     createAt: {
@@ -31,9 +31,6 @@ const categoryProductSchema = new Schema(
   }
 );
 
-const categoryProductModel = mongoose.model<ICategoryProduct>(
-  "CategoryProduct",
-  categoryProductSchema
-);
+const categoryBlogModel = mongoose.model<ICategoryBlog>("CategoryBlog", categoryBlogSchema);
 
-export default categoryProductModel;
+export default categoryBlogModel;

@@ -8,6 +8,7 @@ interface IBlog {
   tags: string[];
   userId: string;
   commentId?: string[];
+  categoryId?: string;
   createAt?: Date;
   updateAt?: Date;
 }

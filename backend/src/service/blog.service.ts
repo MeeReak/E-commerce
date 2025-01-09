@@ -7,6 +7,7 @@ import {
 } from "../model/types/blog.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
+import categoryBlogRepository from "../repository/category-blog.repository";
 
 class BlogService {
   // Create a new blog
@@ -16,9 +17,22 @@ class BlogService {
         throw new APIError("Blog title is required", 400);
       }
 
-      
+      const exitedCategory = await categoryBlogRepository.getById(
+        data.categoryId!
+      );
+      if (!exitedCategory) {
+        throw new APIError(
+          `Category with ID ${data.categoryId} not found.`,
+          404
+        );
+      }
+      const response = await blogRepository.create(data);
 
-      return await blogRepository.create(data);
+      await categoryBlogRepository.updateById(response.categoryId!, {
+        blogId: [...(exitedCategory.blogId || []), response._id!],
+      });
+
+      return response;
     } catch (error: any | unknown) {
       if (error.name === "MongoServerError") {
         const fieldName = Object.keys(error.keyValue)[0];
@@ -52,36 +66,40 @@ class BlogService {
     data: IBlog[];
     pagination: IPaginatedBlog;
   }> {
-    let response = await blogRepository.getAll();
+    try {
+      let response = await blogRepository.getAll();
 
-    const { page = 1, perPage = 10, date, search } = filter;
+      const { page = 1, perPage = 10, date, search } = filter;
 
-    if (search) {
-      response = response.filter((res) => res.title.includes(search));
+      if (search) {
+        response = response.filter((res) => res.title.includes(search));
+      }
+
+      if (date) {
+        response = response.sort((a, b) => {
+          if (a.createAt && b.createAt) {
+            return b.createAt.getTime() - a.createAt.getTime();
+          }
+          return 0;
+        });
+      }
+
+      const totalRecord = response.length;
+      const totalPage = Math.ceil(totalRecord / perPage);
+
+      response = response.slice((page - 1) * perPage, page * perPage);
+      return {
+        data: response,
+        pagination: {
+          page,
+          perPage,
+          totalRecord,
+          totalPage,
+        },
+      };
+    } catch (error: any | unknown) {
+      throw error;
     }
-
-    if (date) {
-      response = response.sort((a, b) => {
-        if (a.createAt && b.createAt) {
-          return b.createAt.getTime() - a.createAt.getTime();
-        }
-        return 0;
-      });
-    }
-
-    const totalRecord = response.length;
-    const totalPage = Math.ceil(totalRecord / perPage);
-
-    response = response.slice((page - 1) * perPage, page * perPage);
-    return {
-      data: response,
-      pagination: {
-        page,
-        perPage,
-        totalRecord,
-        totalPage,
-      },
-    };
   }
 
   // Update a blog by ID
@@ -94,6 +112,28 @@ class BlogService {
 
       if (data.title && data.title.trim() === "") {
         throw new APIError("Blog title cannot be empty", 400);
+      }
+
+      const exitedCategory = await categoryBlogRepository.getById(
+        data.categoryId!
+      );
+      if (!exitedCategory) {
+        throw new APIError(
+          `Category with ID ${data.categoryId} not found.`,
+          404
+        );
+      }
+
+      if (response.categoryId !== data.categoryId) {
+        await categoryBlogRepository.updateById(data.categoryId!, {
+          blogId: [...(exitedCategory.blogId || []), response._id!],
+        });
+
+        await categoryBlogRepository.updateById(response.categoryId!, {
+          blogId: (exitedCategory.blogId || []).filter(
+            (id) => id != response._id
+          ),
+        });
       }
 
       data.updateAt = new Date();
@@ -119,7 +159,25 @@ class BlogService {
         throw new APIError(`Blog with ID ${id} not found.`, 404);
       }
 
-      return blogRepository.deleteById(id);
+      const category = await categoryBlogRepository.getById(
+        response.categoryId!
+      );
+      if (!category) {
+        throw new APIError(
+          `Category with ID ${response.categoryId} not found.`,
+          404
+        );
+      }
+
+      await categoryBlogRepository.updateById(response.categoryId!, {
+        blogId: (category.blogId || []).filter((blogId) => blogId != id),
+      });
+
+      await blogRepository.deleteById(id);
+      return {
+        message: `Blog with ID ${id} deleted successfully.`,
+        status: 200,
+      };
     } catch (error: unknown | any) {
       throw error;
     }
