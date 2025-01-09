@@ -1,19 +1,22 @@
-import categoryRepository from "../repository/category-product.repository";
-import { ICategory, IUpdateCategory } from "../model/types/category.type";
+import categoryProductRepository from "../repository/category-product.repository";
+import {
+  ICategoryProduct,
+  IUpdateCategoryProduct,
+} from "../model/types/category-product.type";
 import APIError from "../Error/api-error";
 import { MongoDuplicateKeyError } from "../Error/mongo-error";
 import { IFilter, IPaginated } from "../model/types/common.type";
 import productRepository from "../repository/product.repository";
 
-class CategoryService {
+class CategoryProductService {
   // Create a new category
-  async create(data: ICategory): Promise<ICategory> {
+  async create(data: ICategoryProduct): Promise<ICategoryProduct> {
     try {
       if (!data.name || data.name.trim() === "") {
         throw new APIError("Category name is required", 400);
       }
 
-      return await categoryRepository.create(data);
+      return await categoryProductRepository.create(data);
     } catch (error: any | unknown) {
       if (error.name === "MongoServerError") {
         const fieldName = Object.keys(error.keyValue)[0];
@@ -21,16 +24,16 @@ class CategoryService {
         throw new MongoDuplicateKeyError(fieldName, fieldValue);
       }
 
-      throw new Error(`Error creating category: ${error.message}`);
+      throw new Error(`Error creating category of product: ${error.message}`);
     }
   }
 
   // Get a category by ID
-  async getOne(id: string): Promise<ICategory | null> {
+  async getOne(id: string): Promise<ICategoryProduct | null> {
     try {
-      const response = await categoryRepository.getById(id);
+      const response = await categoryProductRepository.getById(id);
       if (!response) {
-        throw new APIError(`Category with ID ${id} not found.`);
+        throw new APIError(`Category of product with ID ${id} not found.`);
       }
       return response;
     } catch (error: any | unknown) {
@@ -39,52 +42,59 @@ class CategoryService {
       }
 
       throw new Error(
-        `Error fetching category with ID ${id}: ${error.message}`
+        `Error fetching category of product with ID ${id}: ${error.message}`
       );
     }
   }
 
   // Get all categories with optional filtering
   async getAll(filter: IFilter): Promise<{
-    data: ICategory[];
+    data: ICategoryProduct[];
     pagination: IPaginated;
   }> {
-    let response = await categoryRepository.getAll();
+    try {
+      let response = await categoryProductRepository.getAll();
 
-    const { page = 1, perPage = 10 } = filter;
-    const totalRecord = response.length;
-    const totalPage = Math.ceil(totalRecord / perPage);
+      const { page = 1, perPage = 10 } = filter;
+      const totalRecord = response.length;
+      const totalPage = Math.ceil(totalRecord / perPage);
 
-    response = response.slice((page - 1) * perPage, page * perPage);
-    return {
-      data: response,
-      pagination: {
-        page,
-        perPage,
-        totalRecord,
-        totalPage,
-      },
-    };
+      response = response.slice((page - 1) * perPage, page * perPage);
+      return {
+        data: response,
+        pagination: {
+          page,
+          perPage,
+          totalRecord,
+          totalPage,
+        },
+      };
+    } catch (error: any | unknown) {
+      throw error;
+    }
   }
 
   // Update a category by ID
   async update(
     id: string,
-    update: Partial<IUpdateCategory>
-  ): Promise<ICategory | null> {
+    update: Partial<IUpdateCategoryProduct>
+  ): Promise<ICategoryProduct | null> {
     try {
-      const response = await categoryRepository.getById(id);
+      const response = await categoryProductRepository.getById(id);
       if (!response) {
-        throw new Error(`Category with ID ${id} not found.`);
+        throw new Error(`Category of product with ID ${id} not found.`);
       }
 
       if (update.name && update.name.trim() === "") {
-        throw new APIError("Category name cannot be empty", 400);
+        throw new APIError("Category of product name cannot be empty", 400);
       }
 
       response.updateAt = new Date();
 
-      return categoryRepository.updateById(id, { ...response, ...update });
+      return categoryProductRepository.updateById(id, {
+        ...response,
+        ...update,
+      });
     } catch (error: unknown | any) {
       if (error instanceof APIError) {
         throw error;
@@ -100,20 +110,23 @@ class CategoryService {
     status: number;
   }> {
     try {
-      const response = await categoryRepository.getById(id);
+      const response = await categoryProductRepository.getById(id);
       if (!response) {
-        throw new Error(`Category with ID ${id} not found.`);
+        throw new APIError(`Category of product with ID ${id} not found.`, 404);
       }
 
       response.productId?.map(async (productId) => {
         await productRepository.deleteById(productId);
       });
 
-      return categoryRepository.deleteById(id);
+      return categoryProductRepository.deleteById(id);
     } catch (error: unknown | any) {
+      if (error instanceof APIError) {
+        throw error;
+      }
       throw error;
     }
   }
 }
 
-export default new CategoryService();
+export default new CategoryProductService();

@@ -124,7 +124,7 @@ class CommentService {
 
       await productRepository.updateById(response.productId, {
         commentId: (existingProduct?.commentId || []).filter(
-          (commentId) => commentId !== id
+          (commentId) => commentId != id
         ),
       });
 
