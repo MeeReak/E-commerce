@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
-import { ICategory } from "./types/category.type";
+import { ICategoryProduct } from "./types/category-product.type";
 
-const categorySchema = new Schema(
+const categoryProductSchema = new Schema(
   {
     name: {
       type: String,
@@ -31,6 +31,9 @@ const categorySchema = new Schema(
   }
 );
 
-const categoryModel = mongoose.model<ICategory>("Category", categorySchema);
+const categoryProductModel = mongoose.model<ICategoryProduct>(
+  "CategoryProduct",
+  categoryProductSchema
+);
 
-export default categoryModel;
+export default categoryProductModel;

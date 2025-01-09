@@ -1,21 +1,18 @@
 import mongoose, { Schema } from "mongoose";
-import { IComment } from "./types/comment.type";
+import { ICommentBlog } from "./types/comment-blog.type";
 
-const commentSchema = new Schema(
+const commentBlogSchema = new Schema(
   {
-    productId: {
+    blogId: {
       type: Schema.Types.ObjectId,
-      ref: "Product",
+      ref: "Blog",
     },
     name: {
       type: String,
       required: true,
     },
-    star: {
-      type: Number,
-      required: true,
-    },
-    comment: {
+    email: { type: String, required: true },
+    message: {
       type: String,
       required: true,
     },
@@ -37,6 +34,9 @@ const commentSchema = new Schema(
   }
 );
 
-const commentModel = mongoose.model<IComment>("Comment", commentSchema);
+const commentBlogModel = mongoose.model<ICommentBlog>(
+  "CommentBlog",
+  commentBlogSchema
+);
 
-export default commentModel;
+export default commentBlogModel;

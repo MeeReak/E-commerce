@@ -61,6 +61,10 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    commentId:{
+      type: Array,
+      required: true,
+    },
     createAt: {
       type: Date,
       default: Date.now,

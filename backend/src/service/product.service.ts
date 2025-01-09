@@ -1,4 +1,4 @@
-import categoryRepository from "../repository/category.repository";
+import categoryRepository from "../repository/category-product.repository";
 import {
   IPaginatedProducts,
   IProduct,
@@ -6,6 +6,7 @@ import {
 } from "../model/types/product.type";
 import productRepository from "../repository/product.repository";
 import APIError from "../Error/api-error";
+import commentRepository from "../repository/comment-product.repository";
 
 class ProductService {
   // Create a new product
@@ -111,7 +112,7 @@ class ProductService {
     }
 
     // Example of business logic: Validate updated fields
-    if (update.price !== undefined && update.price < 0) {
+    if (update.price != undefined && update.price < 0) {
       throw new Error("Price cannot be negative.");
     }
 
@@ -121,7 +122,10 @@ class ProductService {
   }
 
   // Delete a product by ID
-  async delete(id: string): Promise<IProduct | null> {
+  async delete(id: string): Promise<{
+    message: string;
+    status: number;
+  }> {
     try {
       const product = await productRepository.getById(id);
       if (!product) {
@@ -134,9 +138,13 @@ class ProductService {
       }
 
       await categoryRepository.updateById(product.categoryId, {
-        productId: category.productId?.filter((pid) => pid !== id),
+        productId: category.productId?.filter((pid) => pid != id),
       });
-      
+
+      product.commentId?.map(async (commentId) => {
+        await commentRepository.deleteById(commentId);
+      });
+
       return productRepository.deleteById(id);
     } catch (error: unknown | any) {
       throw error;

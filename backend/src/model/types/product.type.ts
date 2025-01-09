@@ -14,6 +14,7 @@ export interface IProduct {
   tag: string[]; // Array of strings
   additionalInfo: string[]; // Array of strings
   categoryId: string;
+  commentId?: string[]; // Optional as it has a default value
   createAt?: Date; // Optional as it has a default value
   updateAt?: Date; // Optional
 }
