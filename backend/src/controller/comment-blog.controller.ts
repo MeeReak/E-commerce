@@ -15,24 +15,27 @@ import {
   Middlewares,
 } from "tsoa";
 import { IFilter, IPaginated } from "../model/types/common.type";
-import { IComment, IUpdateComment } from "../model/types/comment-product.type";
-import commentService from "../service/comment-product.service";
+import {
+  ICommentBlog,
+  IUpdateCommentBlog,
+} from "../model/types/comment-blog.type";
 import {
   commentSchema,
   updateCommentSchema,
-} from "../constant/comment-product/comment.validator";
+} from "../constant/comment-blog/comment.validator";
+import commentBlogService from "../service/comment-blog.service";
 
-@Route("v1/comment-products")
-@Tags("Comment Products")
-export class CommentController extends Controller {
+@Route("v1/comment-blogs")
+@Tags("Comment Blogs")
+export class CommentBlogController extends Controller {
   @Get("/")
   @SuccessResponse("200", "Successfully fetched all comment")
   public async getAllComment(@Queries() queryParams: IFilter): Promise<{
-    data: IComment[];
+    data: ICommentBlog[];
     pagination: IPaginated;
   }> {
     try {
-      const response = await commentService.getAll(queryParams);
+      const response = await commentBlogService.getAll(queryParams);
       return {
         data: response.data,
         pagination: response.pagination,
@@ -46,9 +49,11 @@ export class CommentController extends Controller {
   @Get("/{id}")
   @SuccessResponse("200", "Successfully fetched Comment by ID")
   @Middlewares([validateSchemaMiddleware(idParamSchema, "params")])
-  public async getCommentById(@Path() id: string): Promise<IComment | null> {
+  public async getCommentById(
+    @Path() id: string
+  ): Promise<ICommentBlog | null> {
     try {
-      return await commentService.getOne(id);
+      return await commentBlogService.getOne(id);
     } catch (error) {
       throw error;
     }
@@ -58,9 +63,11 @@ export class CommentController extends Controller {
   @Post("/")
   @SuccessResponse("201", "Successfully created a new comment")
   @Middlewares([validateSchemaMiddleware(commentSchema, "body")])
-  public async createComment(@Body() data: IComment): Promise<IComment> {
+  public async createComment(
+    @Body() data: ICommentBlog
+  ): Promise<ICommentBlog> {
     try {
-      return await commentService.create(data);
+      return await commentBlogService.create(data);
     } catch (error) {
       throw error;
     }
@@ -73,10 +80,10 @@ export class CommentController extends Controller {
   @Middlewares([validateSchemaMiddleware(updateCommentSchema, "body")])
   public async updateComment(
     @Path() id: string,
-    @Body() data: Partial<IUpdateComment>
-  ): Promise<IComment | null> {
+    @Body() data: Partial<IUpdateCommentBlog>
+  ): Promise<ICommentBlog | null> {
     try {
-      return await commentService.update(id, data);
+      return await commentBlogService.update(id, data);
     } catch (error) {
       throw error;
     }
@@ -91,7 +98,7 @@ export class CommentController extends Controller {
     status: number;
   }> {
     try {
-      return await commentService.delete(id);
+      return await commentBlogService.delete(id);
     } catch (error) {
       throw error;
     }
