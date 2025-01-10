@@ -6,9 +6,6 @@ interface ICategoryBlog {
   updateAt?: Date;
 }
 
-interface IUpdateCategoryBlog {
-  name?: string;
-  blogId?: string[];
-}
+interface IUpdateCategoryBlog extends Partial<ICategoryBlog> {}
 
 export { ICategoryBlog, IUpdateCategoryBlog };
