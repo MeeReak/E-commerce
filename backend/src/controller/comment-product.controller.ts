@@ -23,7 +23,7 @@ import {
 } from "../constant/comment-product/comment.validator";
 
 @Route("v1/comment-products")
-@Tags("Comment Products")
+@Tags("Comment Product")
 export class CommentController extends Controller {
   @Get("/")
   @SuccessResponse("200", "Successfully fetched all comment")
