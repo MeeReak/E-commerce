@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <div className=" w-[420px] sm:w-[1320px] mx-auto space-y-5">
-        {/* Hero Sectionn */}
+        {/* Hero Section */}
         <Hero />
         {/* Featured Card */}
         <Featured />
