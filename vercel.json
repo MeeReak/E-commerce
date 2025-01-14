@@ -1,13 +1,12 @@
 {
-  "projects": [
+  "rewrites": [
     {
-      "name": "frontend",
-      "src": "frontend/",
-      "ignoreBuild": [
-        {
-          "src": "backend/**/*"
-        }
-      ]
+      "source": "/dashboard/(.*)",
+      "destination": "/dashboard/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
     }
   ]
 }
