@@ -12,7 +12,7 @@
     "build": "yarn workspace frontend build",
     "start:frontend": "yarn workspace frontend dev",
     "start:backend": "yarn workspace backend start",
-    "start:dashboard": "yarn workspace dashboard start"
+    "start:dashboard": "yarn workspace dashboard dev"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.726.0",
+    "@radix-ui/react-separator": "^1.1.1",
     "@types/multer-s3": "^3.0.3",
     "@types/on-headers": "^1.0.3",
     "joi": "^17.13.3",
