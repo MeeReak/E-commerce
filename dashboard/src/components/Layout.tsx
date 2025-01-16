@@ -1,6 +1,8 @@
 "use client";
 
 import React, { ReactNode, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import {
   ClipboardListIcon,
   LayoutDashboardIcon,
@@ -8,8 +10,6 @@ import {
   ShoppingCartIcon,
   UsersIcon,
 } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 const SidebarItem = ({
   href,
@@ -28,7 +28,7 @@ const SidebarItem = ({
       className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
     >
       <Icon className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-      <span className={isOpen ? "ms-3 whitespace-nowrap" : "hidden"}>
+      <span className={isOpen ? "ms-3 whitespace-nowrap text-gray-200 group-hover:text-gray-900" : "hidden "}>
         {label}
       </span>
     </Link>
@@ -66,21 +66,21 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <UsersIcon className=" flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
       ),
       label: "User",
-    }
+    },
   ];
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
       <aside
         onClick={() => setIsOpen(true)}
         id="logo-sidebar"
-        className={`fixed top-0 left-0 z-40 h-screen transition-all duration-300 ${
+        className={`fixed  top-0 left-0 z-40 h-screen transition-all duration-300 ${
           isOpen ? "w-64" : "w-[70px]"
         }`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-black">
           <div
             className={
               isOpen
@@ -98,7 +98,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               <span
                 className={
                   isOpen
-                    ? "self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+                    ? "self-center text-xl font-semibold whitespace-nowrap text-white"
                     : "hidden"
                 }
               >
