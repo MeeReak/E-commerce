@@ -43,7 +43,7 @@ const productSchema = new Schema(
     },
     discount: {
       type: Number,
-      required: true,
+      // required: true,
     },
     note: {
       type: String,
@@ -59,11 +59,10 @@ const productSchema = new Schema(
     },
     categoryId: {
       type: String,
-      required: true,
+      // required: true,
     },
-    commentId:{
+    commentId: {
       type: Array,
-      required: true,
     },
     createAt: {
       type: Date,
