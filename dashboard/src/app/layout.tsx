@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import Layout from "../components/Layout";
+import Sidebar from "../components/Layout";
 import { Poppins } from "next/font/google";
 
 const poppin = Poppins({
@@ -16,15 +16,16 @@ export const metadata: Metadata = {
   icons: "/svg/logo.svg",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={`${poppin.className} antialiased`}>
-        <Layout>{children}</Layout>
+        <Sidebar>{children}</Sidebar>
       </body>
     </html>
   );
