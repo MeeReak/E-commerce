@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { Poppins } from "next/font/google";
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   icons: "/svg/logo.svg",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${poppin.className} antialiased`}>
