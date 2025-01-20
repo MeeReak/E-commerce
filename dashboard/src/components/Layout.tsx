@@ -62,7 +62,7 @@ const SidebarItem = ({
   );
 };
 
-const Sidebar = ({
+const SidebarCom = ({
   isOpen,
   toggleSidebar,
 }: {
@@ -129,14 +129,14 @@ const Sidebar = ({
   );
 };
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Sidebar = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const toggleSidebar = () => setIsOpen((prev) => !prev);
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      <SidebarCom isOpen={isOpen} toggleSidebar={toggleSidebar} />
       <main
         className={`flex-1 transition-all duration-300 ${
           isOpen ? "ml-64" : "ml-[70px]"
@@ -148,4 +148,4 @@ const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Layout;
+export default Sidebar;
