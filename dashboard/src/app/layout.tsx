@@ -1,7 +1,8 @@
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
-import Layout from "../components/Layout";
 import { Poppins } from "next/font/google";
+import Sidebar from "@/components/Layout";
 
 const poppin = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -15,15 +16,15 @@ export const metadata: Metadata = {
   icons: "/svg/logo.svg",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+interface RootLayoutProps {
+  children: React.ReactNode; // Ensure consistent type
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={`${poppin.className} antialiased`}>
-        <Layout>{children}</Layout>
+        <Sidebar>{children}</Sidebar>
       </body>
     </html>
   );
