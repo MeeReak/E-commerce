@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Poppins } from "next/font/google";
+import { Layout } from "lucide-react";
 
 const poppin = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -18,11 +19,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppin.className} antialiased`}>{children}</body>
+      <body className={`${poppin.className} antialiased`}>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
