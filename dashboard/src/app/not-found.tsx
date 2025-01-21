@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="flex flex-col items-center py-10 justify-center">
       <Image
         className="w-[590px] h-[360px] "
-        src={"svg/not-found.svg"}
+        src={"/svg/not-found.svg"}
         alt={"wellness-not-found"}
         width={20}
         height={20}

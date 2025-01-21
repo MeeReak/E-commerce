@@ -93,7 +93,7 @@ const SidebarCom = ({
           }`}
         >
           <div className="flex gap-x-2 flex-1">
-            <Image alt="ecoFresh" src="svg/logo.svg" width={30} height={30} />
+            <Image alt="ecoFresh" src="/svg/logo.svg" width={30} height={30} />
             {isOpen && (
               <span className="self-center text-xl font-semibold whitespace-nowrap text-white">
                 ecoBoard
