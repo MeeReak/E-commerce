@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FileUpload, UploadedFile } from "./FileUpload";
-import { ProductDetails } from "./ProductDetail";
+import { ProductDetails } from "./ProductForm";
 
 export function DialogDemo(): JSX.Element {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);

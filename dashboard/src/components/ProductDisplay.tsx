@@ -8,9 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { EyeIcon } from "lucide-react";
+import { EditIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { AlertDialogDemo } from "./Confirm";
+import { DialogDemo } from "./DisplayForm";
 
 export const Product = [
   {
@@ -539,7 +541,7 @@ export function TableDemo() {
       <TableBody>
         {Product.map((product, index) => (
           <TableRow key={product.id}>
-            <TableCell>{index+1}</TableCell>
+            <TableCell>{index + 1}</TableCell>
             <TableCell>
               <Image
                 src={product.src}
@@ -553,9 +555,13 @@ export function TableDemo() {
             <TableCell className=" pl-8">{product.gty}</TableCell>
             <TableCell>{product.category}</TableCell>
             <TableCell>
-              <Link href={`/product/${product.id}`}>
-                <EyeIcon className=" stroke-[1.5px] size-5 ml-3 text-blue-600" />
-              </Link>
+              <div className=" flex items-center gap-x-2">
+                <DialogDemo />
+                <Link href={`/product/${product.id}`}>
+                  <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm" />
+                </Link>
+                <AlertDialogDemo itemName={product.name} />
+              </div>
             </TableCell>
           </TableRow>
         ))}

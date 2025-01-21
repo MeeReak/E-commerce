@@ -29,8 +29,8 @@ export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
           </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete
-            <strong>{itemName}</strong>
-            from your data.
+            <strong className=" mx-2 text-red-600">{itemName}</strong>
+            from your product.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
