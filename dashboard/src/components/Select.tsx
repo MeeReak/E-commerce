@@ -21,7 +21,7 @@ export function SelectDemo({
   className?: string;
   placeHolder?: string;
   selectedValue?: string; // Controlled value
-  onSelectChange: (value: string) => void; // Callback to notify parent
+  onSelectChange?: (value: string) => void; // Callback to notify parent
 }) {
   return (
     <Select
