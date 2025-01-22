@@ -1,7 +1,5 @@
-import { DialogDemo } from "@/components/CreateForm";
-import { TableDemo } from "@/components/ProductDisplay";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Header } from "@/components/ProductHeader";
+import { TableDemo } from "@/components/Table";
 import React from "react";
 // async function fetchData() {
 //   try {
@@ -25,13 +23,7 @@ export default async function page() {
 
   return (
     <div>
-      <div className="px-5 flex h-20 items-center justify-between gap-x-5 text-black">
-        <div className=" flex gap-x-4">
-          <Input className=" w-fit placeholder:text-white" />
-          <Button>Filter</Button>
-        </div>
-        <DialogDemo />
-      </div>
+      <Header />
       <div className="px-5 flex items-center">
         <TableDemo />
       </div>

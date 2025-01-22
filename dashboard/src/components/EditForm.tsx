@@ -17,7 +17,13 @@ import { EditIcon } from "lucide-react";
 import { Product } from "./ProductDetail";
 
 export function EditForm({ product }: { product: Product }): JSX.Element {
-  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
+    product.images.map((image) => ({
+      url: image.src,
+      name: image.alt,
+      size: image.id,
+    }))
+  );
   const [formData, setFormData] = useState({
     name: product.name,
     sku: product.sku,

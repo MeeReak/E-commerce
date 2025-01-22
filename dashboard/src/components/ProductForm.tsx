@@ -179,12 +179,12 @@ function InputField({
   className?: string;
 }): JSX.Element {
   return (
-    <div className="w-1/2 space-y-1">
+    <div className={`w-1/2 space-y-1 ${className}`}>
       <Label htmlFor={id}>{label}</Label>
       <Input
-        className={`${className}`}
         id={id}
         type="text"
+        className="text-gray-500"
         name={id}
         value={value}
         onChange={onChange}
@@ -210,7 +210,7 @@ function TextareaField({
       <Textarea
         id={id}
         name={id}
-        className="min-h-[150px]"
+        className="min-h-[150px] text-gray-500"
         value={value}
         onChange={onChange}
       />
