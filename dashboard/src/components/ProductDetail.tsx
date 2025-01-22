@@ -1,4 +1,3 @@
-import { SelectDemo } from "./Select";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
@@ -42,7 +41,6 @@ interface Product {
   sku: string;
   brand: string;
   category: string;
-  tags: string[];
   description: string;
   keyPoints: string[];
   note: string;
@@ -52,17 +50,16 @@ interface Product {
 }
 
 export function ProductDetails({ product }: { product: Product }): JSX.Element {
-  const languages = ["EN", "KM"];
-
   return (
     <div className="space-y-4">
       <div className="flex w-full gap-x-5 justify-between">
         <InputField id="name" label="Name" value={product.name} />
         <InputField id="sku" label="SKU" value={product.sku} />
-        <div className="w-1/3 space-y-1">
-          <Label htmlFor="category">Category</Label>
-          <SelectDemo item={languages} placeHolder={product.category} />
-        </div>
+        <InputField
+          id="category"
+          label="Category"
+          value={`${product.category}`}
+        />
       </div>
 
       <div className="flex w-full gap-x-5 justify-between">
@@ -85,19 +82,33 @@ export function ProductDetails({ product }: { product: Product }): JSX.Element {
 
       <div className="flex w-full gap-x-5 justify-between">
         <InputField id="brand" label="Brand" value={product.brand} />
-        <InputField id="tag" label="Tag" value={product.tags[0]} />
-        <InputField id="type" label="Type" value={product.type}/>
+        <InputField id="type" label="Type" value={product.type} />
+        <InputField id="weight" label="Weight" value="" />
       </div>
 
-      <div className="flex w-full gap-x-5 justify-between">
-        <InputField id="weight" label="Weight" value="" />
-        <InputField id="color" label="Color" value="" />
-        <InputField id="note" label="Note" value="" />
+      <div className="flex w-full gap-x-5">
+        <InputField id="color" className=" w-[220px]" label="Color" value="" />
+        <InputField id="note" label="Note" className=" w-[460px]" value="" />
+      </div>
+
+      <div className="flex w-full flex-wrap gap-y-2 gap-x-5 justify-between">
+        {product.keyPoints.map((point, index) => (
+          <InputField
+            key={index}
+            id={`point-${index}`}
+            label={`Point ${index + 1}`}
+            value={point}
+            className="w-full"
+          />
+        ))}
       </div>
 
       <div className="flex w-full flex-col gap-x-5 justify-between">
-        <TextareaField id="description" label="Description" value={product.description} />
-        <TextareaField id="goodPoint" label="Good Point" value="" />
+        <TextareaField
+          id="description"
+          label="Description"
+          value={product.description}
+        />
       </div>
     </div>
   );
@@ -107,15 +118,24 @@ function InputField({
   id,
   label,
   value,
+  className,
 }: {
   id: string;
   label: string;
   value: string;
+  className?: string;
 }): JSX.Element {
   return (
-    <div className="w-1/2 space-y-1">
+    <div className={`w-1/2 space-y-1 ${className}`}>
       <Label htmlFor={id}>{label}</Label>
-      <Input id={id} type="text" placeholder="" readOnly value={value} />
+      <Input
+        id={id}
+        type="text"
+        className="text-gray-500"
+        placeholder=""
+        readOnly
+        value={value}
+      />
     </div>
   );
 }
@@ -135,7 +155,7 @@ function TextareaField({
       <Textarea
         id={id}
         readOnly
-        className="h-[200px]"
+        className="h-[200px] text-gray-500"
         placeholder=""
         value={value}
       />

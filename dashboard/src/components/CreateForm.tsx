@@ -16,20 +16,20 @@ import { ProductDetails } from "./ProductForm";
 
 export function DialogDemo(): JSX.Element {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
-  const [formData, setFormData] = useState<Record<string, string>>({
+  const [formData, setFormData] = useState({
     name: "",
     sku: "",
+    category: "",
     price: "",
     quantity: "",
     discount: "",
     brand: "",
-    tag: "",
     type: "",
     weight: "",
     color: "",
     note: "",
     description: "",
-    goodPoint: "",
+    goodPoints: [] as string[],
   });
 
   const handleFileChange = (
@@ -51,15 +51,12 @@ export function DialogDemo(): JSX.Element {
     setUploadedFiles(updatedFiles);
   };
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
-    const { id, value } = event.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
+  const handleInputChange = (key: string, value: string | string[]): void => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleSelectChange = (id: string, value: string): void => {
-    setFormData((prev) => ({ ...prev, [id]: value }));
+  const handleSelectChange = (key: string, value: string): void => {
+    setFormData((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleSubmit = (): void => {
@@ -81,7 +78,7 @@ export function DialogDemo(): JSX.Element {
         <ProductDetails
           handleSelectChange={handleSelectChange}
           formData={formData}
-          handleChange={handleChange}
+          onInputChange={handleInputChange}
         />
 
         <FileUpload
