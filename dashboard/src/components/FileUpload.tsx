@@ -45,7 +45,7 @@ export function FileUpload({
         {uploadedFiles.map((file, index) => (
           <div
             key={index}
-            className="flex items-center justify-between bg-blue-50 border border-[#d9e5ff] rounded-lg p-3 mt-1"
+            className="flex items-center justify-between  border border-blue-200 rounded-lg p-3 mt-1"
           >
             <div className="flex items-center gap-3">
               <Image
