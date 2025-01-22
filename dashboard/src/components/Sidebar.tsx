@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   ClipboardListIcon,
   LayoutDashboardIcon,
+  Newspaper,
   PanelRightIcon,
   ShoppingCartIcon,
   UsersIcon,
@@ -72,6 +73,7 @@ const SidebarCom = ({
   const menuItems = [
     { href: "/", Icon: LayoutDashboardIcon, label: "Overview" },
     { href: "/product", Icon: ShoppingCartIcon, label: "Product" },
+    { href: "/blog", Icon: Newspaper, label: "Blog" },
     { href: "/order", Icon: ClipboardListIcon, label: "Orders" },
     { href: "/user", Icon: UsersIcon, label: "User" },
   ];
