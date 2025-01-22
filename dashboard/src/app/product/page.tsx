@@ -1,6 +1,6 @@
 import { Header } from "@/components/ProductHeader";
 import { TableDemo } from "@/components/Table";
-import React from "react";
+import React, { Suspense } from "react";
 // async function fetchData() {
 //   try {
 //     const apiUrl = process.env.API_URL || "http://localhost:3001/v1/products";
@@ -22,11 +22,11 @@ export default async function page() {
   // console.log(response);
 
   return (
-    <div>
+    <Suspense>
       <Header />
       <div className="px-5 flex items-center">
         <TableDemo />
       </div>
-    </div>
+    </Suspense>
   );
 }
