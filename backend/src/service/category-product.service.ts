@@ -49,7 +49,7 @@ class CategoryProductService {
 
   // Get all categories with optional filtering
   async getAll(filter: IFilter): Promise<{
-    data: ICategoryProduct[];
+    data: string[];
     pagination: IPaginated;
   }> {
     try {
@@ -60,8 +60,11 @@ class CategoryProductService {
       const totalPage = Math.ceil(totalRecord / perPage);
 
       response = response.slice((page - 1) * perPage, page * perPage);
+
+      const data = response.map((item) => item.name);
+
       return {
-        data: response,
+        data: data,
         pagination: {
           page,
           perPage,

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -8,11 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { EditIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { AlertDialogDemo } from "./Confirm";
 import { DialogDemo } from "./DisplayForm";
+import { EditForm } from "./EditForm";
+import { useSearchParams } from "next/navigation";
 
 export const Product = [
   {
@@ -322,7 +324,7 @@ export const Product = [
   },
   {
     id: "a1189815-92af-45e1-b567-b148b920a7c9",
-    gty: 65,
+    gty: 5,
     name: "Apple",
     src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Apple/white-apple-1.jpg",
     images: [
@@ -525,6 +527,15 @@ export const Product = [
 ];
 
 export function TableDemo() {
+  const searchParams = useSearchParams();
+  const q = searchParams.get("search");
+
+  const filteredProducts = Product.filter(
+    (product) =>
+      product.name.toLowerCase().includes(q?.toLocaleLowerCase() || "") ||
+      product.category.toLowerCase().includes(q?.toLocaleLowerCase() ||"")
+  );
+
   return (
     <Table>
       <TableHeader>
@@ -539,7 +550,7 @@ export function TableDemo() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Product.map((product, index) => (
+        {filteredProducts.map((product, index) => (
           <TableRow key={product.id}>
             <TableCell>{index + 1}</TableCell>
             <TableCell>
@@ -557,9 +568,7 @@ export function TableDemo() {
             <TableCell>
               <div className=" flex items-center gap-x-2">
                 <DialogDemo />
-                <Link href={`/product/${product.id}`}>
-                  <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm" />
-                </Link>
+                <EditForm product={product} />
                 <AlertDialogDemo itemName={product.name} />
               </div>
             </TableCell>

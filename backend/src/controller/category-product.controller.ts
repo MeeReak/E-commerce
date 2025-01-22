@@ -31,7 +31,7 @@ export class CategoryProductController extends Controller {
   @Get("/")
   @SuccessResponse("200", "Successfully fetched all categories")
   public async getAllCategories(@Queries() queryParams: IFilter): Promise<{
-    data: ICategoryProduct[];
+    data: string[];
     pagination: IPaginated;
   }> {
     try {
