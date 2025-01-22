@@ -44,11 +44,13 @@ export function ProductDetails({
         <InputField
           id="name"
           label="Name"
+          value={formData.name}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
         <InputField
           id="sku"
           label="SKU"
+          value={formData.sku}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
         <div className="w-1/2 space-y-1">
@@ -66,16 +68,19 @@ export function ProductDetails({
         <InputField
           id="price"
           label="Product Price"
+          value={formData.price}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
         <InputField
           id="quantity"
           label="Quantity"
+          value={formData.quantity}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
         <InputField
           id="discount"
           label="Discount"
+          value={formData.discount}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
       </div>
@@ -84,16 +89,19 @@ export function ProductDetails({
         <InputField
           id="brand"
           label="Brand"
+          value={formData.brand}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
         <InputField
           id="type"
           label="Type"
+          value={formData.type}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />{" "}
         <InputField
           id="weight"
           label="Weight"
+          value={formData.weight}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
       </div>
@@ -104,12 +112,14 @@ export function ProductDetails({
             id="color"
             className="w-[220px]"
             label="Color"
+            value={formData.color}
             onChange={(e) => onInputChange(e.target.name, e.target.value)}
           />
         </div>
         <InputField
           id="note"
           label="Note"
+          className="w-[290px]"
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />{" "}
         <Button
@@ -147,6 +157,7 @@ export function ProductDetails({
         <TextareaField
           id="description"
           label="Description"
+          value={formData.description}
           onChange={(e) => onInputChange(e.target.name, e.target.value)}
         />
       </div>

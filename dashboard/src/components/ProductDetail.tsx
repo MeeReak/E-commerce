@@ -25,7 +25,7 @@ interface AdditionalInfo {
   tags: string[];
 }
 
-interface Product {
+export interface Product {
   id: string;
   gty: number;
   name: string;
