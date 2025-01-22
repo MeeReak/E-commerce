@@ -20,10 +20,10 @@ export function Header() {
   }, [searchQuery]);
 
   return (
-    <div className="flex h-20 items-center justify-between gap-x-5 text-black">
+    <div className="flex  mx-5 h-20 items-center justify-between gap-x-5 text-black">
       <div className="flex gap-x-4">
         <Input
-          className="w-[250px] ml-6 placeholder:text-white"
+          className="w-[250px] placeholder:text-white"
           placeholder="Search"
           value={searchQuery}
           onChange={handleInputChange} // Update searchQuery on input change
