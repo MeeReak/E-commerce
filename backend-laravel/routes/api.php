@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,4 +11,9 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/health', function () {
     return response()->json(['message' => 'API is healthy']);
+});
+
+Route::prefix('v1')->group(function () {
+    Route::apiResource('products', ProductController::class);
+    Route::apiResource('categories', CategoryController::class);
 });

@@ -1,66 +1,181 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel REST API Project Guidelines
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a RESTful API built with Laravel for managing products and categories. It features CRUD operations, UUID-based keys, global error handling, and automatic data seeding during migration. Follow these guidelines to set up, run, and use the project effectively.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prerequisites
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP >= 8.1
+- Composer
+- MySQL (or another supported database)
+- Laravel CLI (optional)
+- Postman or cURL (for testing)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Setup Instructions
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Clone the Project:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git clone https://github.com/MeeReak/E-commerce.git
+cd backend-laravel
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Install Dependencies:
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Configure Environment:
 
-### Premium Partners
+#### Copy `.env.example` to `.env`:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+cp .env.example .env
+```
 
-## Contributing
+#### Edit `.env` with your database details:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Code of Conduct
+### 4. Generate Application Key:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+### 5. Database Setup
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### Run Migrations and Seed Data:
 
-## License
+This creates `categories` and `products` tables and seeds initial data (3 categories, 6 products):
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan migrate --seed
+```
+
+#### Database Structure:
+
+- **categories**: Stores categories with UUID primary keys.
+- **products**: Stores products with UUID keys and a foreign key to categories.
+
+---
+
+## Running the API
+
+### Start the Server:
+
+```bash
+php artisan serve
+```
+
+API will be available at: `http://127.0.0.1:8000`
+
+---
+
+## API Endpoints
+
+**Base URL:** `/api/v1`
+
+### Products:
+- `GET /products` - List products (paginated)
+- `GET /products/{uuid}` - Show a product
+- `POST /products` - Create a product
+- `PUT /products/{uuid}` - Update a product
+- `DELETE /products/{uuid}` - Delete a product
+
+### Categorys:
+- `GET /categories` - List categories (paginated)
+- `GET /categories/{uuid}` - Show a categories
+- `POST /categories` - Create a categories
+- `PUT /categories/{uuid}` - Update a categories
+- `DELETE /categories/{uuid}` - Delete a categories
+
+---
+
+## Key Features
+
+- **UUID Keys:** Both categories and products use UUIDs instead of auto-incrementing integers.
+- **Relationships:** One-to-many between categories and products.
+- **Global Error Handling:** Consistent JSON error responses (e.g., 404, 422, 500).
+- **Seeding:** Initial data (3 categories, 6 products) is added during migration.
+
+---
+
+## Testing the API
+
+### Verify Initial Data:
+
+After running `php artisan migrate --seed`, check the database:
+
+```sql
+SELECT * FROM categories;  -- 3 records
+SELECT * FROM products;    -- 6 records
+```
+
+### Example POST Request:
+
+Use Postman or cURL:
+
+```bash
+POST http://127.0.0.1:8000/api/v1/products
+Content-Type: application/json
+
+{
+    "name": "Carrot",
+    "images": ["https://example.com/carrot.jpg"],
+    "sku": "CR-001",
+    "price": 1.99,
+    "quantity": 100,
+    "type": "perishable",
+    "color": "Orange",
+    "goodpoints": ["Fresh", "Organic"],
+    "description": "Fresh carrots.",
+    "weight": 0.2,
+    "category_id": "<uuid-from-categories>"
+}
+```
+
+### Expected Responses:
+
+- **Success:** `201 Created` with product data
+- **Error:** JSON with `success: false` and a message (e.g., `422` for validation errors)
+
+---
+
+## Troubleshooting
+
+### Migration Fails:
+- Check `.env` database settings.
+- Reset and retry:
+
+  ```bash
+  php artisan migrate:reset && php artisan migrate --seed
+  ```
+
+### Data Not Saving:
+- Ensure `category_id` matches an existing UUID.
+- Check logs: `storage/logs/laravel.log`
+
+### 404 Errors:
+- Verify UUIDs in requests match database records.
+
+---
+
+## Notes
+
+- **Logs:** Debug info is logged to `storage/logs/laravel.log`.
+- **Customization:** Modify `CategoryProductSeeder.php` to change initial data.
+
+Follow these steps to get started, and enjoy building with this API!
+
