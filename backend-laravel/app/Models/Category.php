@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
+    protected $table = 'categories';
+
     public $incrementing = false; // UUIDs are not auto-incrementing
 
     protected $keyType = 'string'; // Primary key is a string (UUID)

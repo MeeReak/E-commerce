@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class Product extends Model
 {
+    protected $table = 'products';
+
     public $incrementing = false; // UUIDs are not auto-incrementing
 
     protected $keyType = 'string'; // Primary key is a string (UUID)
