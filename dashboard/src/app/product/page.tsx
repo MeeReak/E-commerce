@@ -1,5 +1,5 @@
-import { Header } from "@/components/ProductHeader";
-import { TableDemo } from "@/components/Table";
+import { Header } from "@/components/product/ProductHeader";
+import { TableDemo } from "@/components/product/Table";
 import React, { Suspense } from "react";
 // async function fetchData() {
 //   try {
@@ -17,16 +17,16 @@ import React, { Suspense } from "react";
 //   }
 // }
 export default async function page() {
-  // const response = await fetchData();
+    // const response = await fetchData();
 
-  // console.log(response);
+    // console.log(response);
 
-  return (
-    <Suspense>
-      <Header />
-      <div className="px-5 flex items-center">
-        <TableDemo />
-      </div>
-    </Suspense>
-  );
+    return (
+        <Suspense>
+            <Header />
+            <div className="px-5 flex items-center">
+                <TableDemo />
+            </div>
+        </Suspense>
+    );
 }
