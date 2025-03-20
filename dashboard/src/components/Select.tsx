@@ -10,38 +10,46 @@ import {
     SelectValue
 } from "@/components/ui/select";
 
-export function SelectDemo({
-    item,
+interface SelectDemoProps {
+    items: string[];
+    query?: string;
+    className?: string;
+    placeholder?: string;
+    selectedValue?: string;
+    onSelectChange?: (query: string, value: string) => void;
+    readOnly?: boolean;
+}
+
+export const SelectDemo: React.FC<SelectDemoProps> = ({
+    items,
+    query = "",
     className = "",
-    placeHolder,
+    placeholder,
     selectedValue,
     onSelectChange,
-    readOnly = false // New prop to make the component readonly
-}: {
-    item: string[];
-    className?: string;
-    placeHolder?: string;
-    selectedValue?: string; // Controlled value
-    onSelectChange?: (value: string) => void; // Callback to notify parent
-    readOnly?: boolean; // Prop to toggle readonly mode
-}) {
+    readOnly = false
+}) => {
+    const handleValueChange = (value: string) => {
+        if (!readOnly && onSelectChange) {
+            onSelectChange(query, value);
+        }
+    };
+
     return (
         <Select
-            value={selectedValue} // Bind to the controlled value
-            onValueChange={!readOnly ? onSelectChange : undefined} // Disable interaction if readonly
+            value={selectedValue}
+            onValueChange={!readOnly ? handleValueChange : undefined}
         >
             <SelectTrigger
-                className={`${className} ${
-                    readOnly ? "cursor-not-allowed opacity-50" : ""
-                }`} // Add visual cue for readonly
-                disabled={readOnly} // Disable trigger interaction
+                className={`${className} ${readOnly ? "cursor-not-allowed" : ""}`}
+                disabled={readOnly}
             >
-                <SelectValue placeholder={placeHolder || "Select an option"} />
+                <SelectValue placeholder={placeholder || "Select an option"} />
             </SelectTrigger>
             {!readOnly && (
                 <SelectContent>
                     <SelectGroup>
-                        {item.map((option, index) => (
+                        {items.map((option, index) => (
                             <SelectItem
                                 className="cursor-pointer"
                                 key={index}
@@ -55,4 +63,4 @@ export function SelectDemo({
             )}
         </Select>
     );
-}
+};

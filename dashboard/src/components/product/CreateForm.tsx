@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { FileUpload, UploadedFile } from "../FileUpload";
 import { ProductDetails } from "./ProductForm";
+import { PlusIcon } from "lucide-react";
 
 export function DialogDemo(): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -67,7 +68,9 @@ export function DialogDemo(): JSX.Element {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="outline">Add New</Button>
+                <Button className=" text-gray-600" variant="outline">
+                    <PlusIcon /> Add New
+                </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>

@@ -543,7 +543,7 @@ export function TableDemo() {
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead>No</TableHead>
+                    <TableHead className=" pl-5">No</TableHead>
                     <TableHead>Image</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Price</TableHead>
@@ -555,7 +555,7 @@ export function TableDemo() {
             <TableBody>
                 {filteredProducts.map((product, index) => (
                     <TableRow key={product.id}>
-                        <TableCell>{index + 1}</TableCell>
+                        <TableCell className=" pl-6">{index + 1}</TableCell>
                         <TableCell>
                             <Image
                                 src={product.src}
