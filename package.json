@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"yarn workspace frontend dev\" \"yarn workspace backend start\"",
-    "build": "yarn workspace frontend build",
+    "build:dashboard": "yarn workspace dashboard build:local",
     "start:frontend": "yarn workspace frontend dev",
     "start:backend": "yarn workspace backend start",
     "start:dashboard": "yarn workspace dashboard dev"

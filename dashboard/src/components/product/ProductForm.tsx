@@ -38,6 +38,12 @@ export function ProductDetails({
         onInputChange("goodPoints", updatedGoodPoints);
     };
 
+    const releaseOptions = {
+        query: "release",
+        placeholder: "Select Release",
+        items: ["All", "New", "Old"]
+    };
+
     return (
         <div className="space-y-4">
             <div className="flex w-full gap-x-5 justify-between">
@@ -60,12 +66,12 @@ export function ProductDetails({
                 <div className="w-1/2 space-y-1">
                     <Label htmlFor="category">Category</Label>
                     <SelectDemo
-                        item={languages}
+                        items={releaseOptions.items}
                         selectedValue={formData.category} // Bind the current value
                         onSelectChange={(value) =>
                             handleSelectChange("category", value)
                         } // Update formData
-                        placeHolder="Select Category"
+                        placeholder={releaseOptions.placeholder}
                     />
                 </div>
             </div>
