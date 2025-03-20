@@ -2,57 +2,65 @@
 
 import * as React from "react";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
 } from "@/components/ui/select";
 
-export function SelectDemo({
-  item,
-  className = "",
-  placeHolder,
-  selectedValue,
-  onSelectChange,
-  readOnly = false, // New prop to make the component readonly
-}: {
-  item: string[];
-  className?: string;
-  placeHolder?: string;
-  selectedValue?: string; // Controlled value
-  onSelectChange?: (value: string) => void; // Callback to notify parent
-  readOnly?: boolean; // Prop to toggle readonly mode
-}) {
-  return (
-    <Select
-      value={selectedValue} // Bind to the controlled value
-      onValueChange={!readOnly ? onSelectChange : undefined} // Disable interaction if readonly
-    >
-      <SelectTrigger
-        className={`${className} ${
-          readOnly ? "cursor-not-allowed opacity-50" : ""
-        }`} // Add visual cue for readonly
-        disabled={readOnly} // Disable trigger interaction
-      >
-        <SelectValue placeholder={placeHolder || "Select an option"} />
-      </SelectTrigger>
-      {!readOnly && (
-        <SelectContent>
-          <SelectGroup>
-            {item.map((option, index) => (
-              <SelectItem
-                className="cursor-pointer"
-                key={index}
-                value={option.toLowerCase()}
-              >
-                {option}
-              </SelectItem>
-            ))}
-          </SelectGroup>
-        </SelectContent>
-      )}
-    </Select>
-  );
+interface SelectDemoProps {
+    items: string[];
+    query?: string;
+    className?: string;
+    placeholder?: string;
+    selectedValue?: string;
+    onSelectChange?: (query: string, value: string) => void;
+    readOnly?: boolean;
 }
+
+export const SelectDemo: React.FC<SelectDemoProps> = ({
+    items,
+    query = "",
+    className = "",
+    placeholder,
+    selectedValue,
+    onSelectChange,
+    readOnly = false
+}) => {
+    const handleValueChange = (value: string) => {
+        if (!readOnly && onSelectChange) {
+            onSelectChange(query, value);
+        }
+    };
+
+    return (
+        <Select
+            value={selectedValue}
+            onValueChange={!readOnly ? handleValueChange : undefined}
+        >
+            <SelectTrigger
+                className={`${className} ${readOnly ? "cursor-not-allowed" : ""}`}
+                disabled={readOnly}
+            >
+                <SelectValue placeholder={placeholder || "Select an option"} />
+            </SelectTrigger>
+            {!readOnly && (
+                <SelectContent>
+                    <SelectGroup>
+                        {items.map((option, index) => (
+                            <SelectItem
+                                className="cursor-pointer"
+                                key={index}
+                                value={option.toLowerCase()}
+                            >
+                                {option}
+                            </SelectItem>
+                        ))}
+                    </SelectGroup>
+                </SelectContent>
+            )}
+        </Select>
+    );
+};
