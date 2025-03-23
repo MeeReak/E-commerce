@@ -46,7 +46,7 @@ export function Header({
                         />
                     </div>
                 )}
-                <Option />
+                {/* <Option /> */}
                 {showAddButton && <DialogDemo />}
             </div>
         </div>

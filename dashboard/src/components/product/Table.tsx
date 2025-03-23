@@ -531,12 +531,12 @@ export function TableDemo() {
     const searchParams = useSearchParams();
     const q = searchParams.get("search");
 
-    const filteredProducts = Product.filter(
+    const filtered = Product.filter(
         (product) =>
-            product.name.toLowerCase().includes(q?.toLocaleLowerCase() || "") ||
-            product.category
-                .toLowerCase()
-                .includes(q?.toLocaleLowerCase() || "")
+            product.name.toLowerCase().includes(q?.toLocaleLowerCase() || "")
+        // product.category
+        // .toLowerCase()
+        // .includes(q?.toLocaleLowerCase() || "")
     );
 
     return (
@@ -553,7 +553,7 @@ export function TableDemo() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {filteredProducts.map((product, index) => (
+                {filtered.map((product, index) => (
                     <TableRow key={product.id}>
                         <TableCell className=" pl-6">{index + 1}</TableCell>
                         <TableCell>

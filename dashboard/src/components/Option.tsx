@@ -30,7 +30,7 @@ export const Option = () => {
     const releaseOptions = {
         query: "release",
         placeholder: "Select Release",
-        items: ["All", "New", "Old"]
+        items: ["New", "Old"]
     };
 
     return (
