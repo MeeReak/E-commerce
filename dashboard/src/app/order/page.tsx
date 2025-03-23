@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import { TableDemo } from "@/components/product/Table";
+import { TableDemo } from "@/components/order/Table";
 import React, { Suspense } from "react";
 // async function fetchData() {
 //   try {
@@ -23,7 +23,7 @@ export default async function page() {
 
     return (
         <Suspense>
-            <Header enableSearch title="Orders" />
+            <Header enableSearch title="Orders"  />
             <div className=" flex items-center">
                 <TableDemo />
             </div>
