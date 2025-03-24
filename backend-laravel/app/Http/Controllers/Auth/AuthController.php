@@ -22,6 +22,7 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
+            'id' => Str::uuid()->toString(),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Use Hash::make instead of bcrypt

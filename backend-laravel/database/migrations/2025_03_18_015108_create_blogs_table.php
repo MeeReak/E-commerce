@@ -15,6 +15,8 @@ return new class extends Migration
             $table->json('images');
             $table->date('date');
             $table->string('post_by');
+            $table->uuid('user_id');
+            $table->foreign('user_id')->references('id')->on('user_register')->onDelete('cascade');
             $table->enum('tag', ['Healthy', 'Fitness', 'Lifestyle', 'Nutrition', 'Mental Health']);
             $table->json('goodpoints');
             $table->uuid('collection_id');

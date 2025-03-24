@@ -2,55 +2,59 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str; // Add this
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasApiTokens, Notifiable; // Add HasApiTokens here
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $table = 'user_register';
 
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
     protected $fillable = [
+        'id',
+        'first_name',
+        'last_name',
         'name',
+        'gender',
+        'date_of_birth',
         'email',
+        'phone',
+        'address',
         'password',
+        'email_verified_at',
     ];
 
-    public function passwordResets()
-    {
-        return $this->hasMany(PasswordReset::class, 'user_id');
-    }
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'date_of_birth' => 'date',
+    ];
+
+    protected static function boot()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        parent::boot();
+
+        static::creating(function ($model) {
+            if (empty($model->id)) {
+                $model->id = Str::uuid()->toString();
+            }
+        });
+    }
+
+    // Add this method to inform Sanctum of the tokenable ID type
+    public function getKeyType()
+    {
+        return 'string'; // Ensure Sanctum knows the key is a string
     }
 }
