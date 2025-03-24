@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('password_reset', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('user_register')->onDelete('cascade');
-            $table->string('reset_token')->unique();
-            $table->timestamp('expires_at');
-            $table->timestamps();
-            $table->boolean('used')->default(false);
-        });
+        // Schema::create('password_reset', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained('user_register')->onDelete('cascade');
+        //     $table->string('reset_token')->unique();
+        //     $table->timestamp('expires_at');
+        //     $table->timestamps();
+        //     $table->boolean('used')->default(false);
+        // });
     }
 
     /**
