@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CollectionController;
@@ -16,6 +17,12 @@ Route::get('/health', function () {
     return response()->json(['message' => 'API is healthy']);
 });
 
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('forgot-password', [AuthController::class, 'sendResetLink']);
+    Route::post('reset-password', [AuthController::class, 'resetPassword']);
+    Route::post('login', [AuthController::class, 'login']);
+});
 Route::prefix('v1')->group(function () {
     Route::apiResource('products', ProductController::class);
     Route::apiResource('categories', CategoryController::class);
