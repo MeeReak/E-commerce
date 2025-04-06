@@ -84,7 +84,7 @@ const SidebarCom = ({
                 if (!isOpen) toggleSidebar();
             }}
             className={`fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-black ${
-                isOpen ? "w-64" : "w-[70px]"
+                isOpen ? "w-[220px]" : "w-[70px]"
             }`}
             aria-label="Sidebar"
         >
@@ -146,7 +146,7 @@ const Sidebar = ({ children }: { children: ReactNode }) => {
             <SidebarCom isOpen={isOpen} toggleSidebar={toggleSidebar} />
             <main
                 className={`flex-1 transition-all duration-300 ${
-                    isOpen ? "ml-64" : "ml-[70px]"
+                    isOpen ? "ml-[220px]" : "ml-[70px]"
                 }`}
             >
                 {children}
