@@ -10,10 +10,9 @@ import {
     TableHeader,
     TableRow
 } from "@/components/ui/table";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { DialogDemo } from "./DisplayForm";
 import { AlertDialogDemo } from "./Confirm";
+import { DialogDemo } from "./DisplayForm";
 
 export const Orders = [
     {
@@ -73,8 +72,7 @@ export function TableDemo() {
     const q = searchParams.get("search");
 
     const filtered = Orders.filter(
-        (item) =>
-            item.name.toLowerCase().includes(q?.toLocaleLowerCase() || "")
+        (item) => item.name.toLowerCase().includes(q?.toLocaleLowerCase() || "")
         // item.category
         // .toLowerCase()
         // .includes(q?.toLocaleLowerCase() || "")
@@ -110,7 +108,6 @@ export function TableDemo() {
                         <TableCell>
                             <div className=" flex items-center gap-x-2">
                                 <DialogDemo />
-                                {/* <EditForm item={item} /> */}
                                 <AlertDialogDemo itemName={item.name} />
                             </div>
                         </TableCell>

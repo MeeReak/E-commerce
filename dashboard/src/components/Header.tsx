@@ -33,7 +33,9 @@ export function Header({
 
     return (
         <div className="flex items-center justify-between">
-            <h1 className=" pl-5 text-lg text-gray-600 ">{title}</h1>
+            <h1 className=" pl-5 text-2xl font-medium text-gray-600 ">
+                {title}
+            </h1>
             <div className="flex mx-5 h-20 items-center justify-end gap-x-5 text-black">
                 {enableSearch && (
                     <div className="flex items-center">

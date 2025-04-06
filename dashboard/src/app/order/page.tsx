@@ -23,7 +23,7 @@ export default async function page() {
 
     return (
         <Suspense>
-            <Header enableSearch title="Orders"  />
+            <Header enableSearch title="Orders" />
             <div className=" flex items-center">
                 <TableDemo />
             </div>
