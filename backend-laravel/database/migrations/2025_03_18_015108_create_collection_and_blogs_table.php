@@ -9,16 +9,22 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::create('collections', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('blogs', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name');
             $table->json('images');
             $table->date('date');
             $table->string('post_by');
+            $table->foreignId('user_id')->constrained('user_register', 'id');
             $table->enum('tag', ['Healthy', 'Fitness', 'Lifestyle', 'Nutrition', 'Mental Health']);
-            $table->json('goodpoints');
-            $table->uuid('collection_id');
-            $table->foreign('collection_id')->references('id')->on('collections')->onDelete('cascade');
+            $table->json('good_points');
+            $table->foreignId('collection_id')->constrained('collections', 'id');
             $table->timestamps();
         });
     }
@@ -26,5 +32,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('blogs');
+        Schema::dropIfExists('collections');
     }
 };

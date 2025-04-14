@@ -15,9 +15,11 @@ class BlogResource extends JsonResource
             'date' => $this->date->toDateString(),
             'post_by' => $this->post_by,
             'tag' => $this->tag,
-            'goodpoints' => $this->goodpoints,
+            'good_points' => $this->goodpoints,
+            'user_id' => $this->user_id,
             'collection' => new CollectionResource($this->whenLoaded('collection')),
             'created_at' => $this->created_at->toDateTimeString(),
+
         ];
     }
 }

@@ -51,6 +51,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         try {
+
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'images' => 'required|array',
@@ -64,6 +65,8 @@ class BlogController extends Controller
             ]);
 
             Log::info('Creating blog with validated data:', $validated);
+
+            $validated['user_id'] = auth()->id();
 
             $blog = Blog::create($validated);
 

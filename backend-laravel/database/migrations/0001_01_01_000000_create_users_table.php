@@ -12,12 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_register', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Uses auto-increment integer
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('phone_number')->nullable();
+            $table->string('profile')->nullable();
             $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('billing_address', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('village');
+            $table->string('sangkat');
+            $table->string('district');
+            $table->string('state');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->foreignId('user_id')->constrained('user_register', 'id');
             $table->timestamps();
         });
 
@@ -28,8 +43,8 @@ return new class extends Migration
         });
 
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->id(); // Primary key for sessions table
+            $table->foreignId('user_id')->constrained('user_register', 'id');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -42,8 +57,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_register');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('billing_address');
+        Schema::dropIfExists('user_register');
     }
 };

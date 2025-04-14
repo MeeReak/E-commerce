@@ -6,17 +6,17 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-// use App\Models\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class OrderSeeder extends Seeder
 {
     public function run(): void
     {
-        // $user = User::firstOrCreate(['email' => 'customer@example.com'], [
-        //     'name' => 'Test Customer',
-        //     'password' => bcrypt('password'),
-        // ]);
+        $user = User::firstOrCreate(['email' => 'customer@example.com'], [
+            'name' => 'Test Customer',
+            'password' => bcrypt('password'),
+        ]);
         if (Category::count() === 0) {
             $this->call(CategoryProductSeeder::class);
         }
@@ -33,14 +33,15 @@ class OrderSeeder extends Seeder
             'quantity' => 10,
             'type' => 'non-perishable',
             'color' => 'Black',
-            'goodpoints' => ['High performance'],
+            'good_points' => ['High performance'],
             'description' => 'A powerful laptop.',
             'weight' => 2.5,
             'category_id' => $category->id, // Use the UUID from the category
+            'user_id' => $user->id,
         ]);
 
         $order = Order::create([
-            // 'user_id' => $user->id,
+            'user_id' => $user->id,
             'total' => 1499.99,
             'status' => 'pending',
         ]);
