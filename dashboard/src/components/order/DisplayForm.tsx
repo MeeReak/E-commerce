@@ -11,8 +11,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { EyeIcon } from "lucide-react";
-import { ProductDetails } from "./ProductDetail";
-import { CarouselDemo } from "../ImageDemo";
+import { OrderDetail } from "./OrderDetail";
 
 export function DialogDemo(): JSX.Element {
     const Product = {
@@ -123,15 +122,26 @@ export function DialogDemo(): JSX.Element {
             <DialogTrigger asChild>
                 <EyeIcon className=" cursor-pointer stroke-[1.5px] p-1 bg-blue-100 text-blue-600 rounded-sm" />
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
+            <DialogContent className="sm:max-w-[1120px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>{Product.name}</DialogTitle>
+                    <DialogTitle>
+                        <div className=" flex items-center gap-x-2">
+                            <p className="text-gray-900 text-[20px] font-medium leading-[30px]">
+                                Order Details
+                            </p>
+                            <span className=" text-gray-700">•</span>
+                            <p className="text-gray-700 text-[14px] font-normal leading-[21px] ">
+                                April 24, 2021
+                            </p>
+                            <span className=" text-gray-700">•</span>
+                            <p className="text-gray-700 text-[14px] font-normal leading-[21px] ">
+                                5 Products
+                            </p>
+                        </div>
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
-                <div className=" flex items-center justify-center">
-                    <CarouselDemo images={Product.images} />
-                </div>
-                <ProductDetails product={Product} />
+                <OrderDetail />
                 <DialogFooter>
                     {/* <Button type="button">Save changes</Button> */}
                 </DialogFooter>

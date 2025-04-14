@@ -1,5 +1,18 @@
-import React from "react";
+import { Header } from "@/components/Header";
+import { TableDemo } from "@/components/user/Table";
+import React, { Suspense } from "react";
 
-export default function page() {
-    return <div>This is user page</div>;
+export default async function page() {
+    // const response = await fetchData();
+
+    // console.log(response);
+
+    return (
+        <Suspense>
+            <Header enableSearch title="Users" />
+            <div className=" flex items-center">
+                <TableDemo />
+            </div>
+        </Suspense>
+    );
 }
