@@ -58,6 +58,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         try {
+
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'images' => 'required|array',
@@ -69,12 +70,14 @@ class ProductController extends Controller
                 'type' => 'required|in:perishable,non-perishable',
                 'color' => 'required|string|max:255',
                 'noted' => 'nullable|string',
-                'goodpoints' => 'required|array',
-                'goodpoints.*' => 'string',
+                'good_points' => 'required|array',
+                'good_points.*' => 'string',
                 'description' => 'required|string',
                 'weight' => 'required|numeric|min:0',
                 'category_id' => 'required|exists:categories,id',
             ]);
+
+            $validated['user_id'] = auth()->id();
 
             Log::info('Creating product with validated data:', $validated);
 

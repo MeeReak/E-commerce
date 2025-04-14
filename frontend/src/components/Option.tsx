@@ -29,7 +29,7 @@ export const Option = () => {
   }, [searchParams]);
 
   // Render Select components
-  const renderSelects = (optionsSlice: typeof options) =>
+  const renderSelects = (optionsSlice: typeof options) => 
     optionsSlice.map(({ query, placeholder, items }) => (
       <SelectDemo
         key={query}

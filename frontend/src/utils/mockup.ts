@@ -450,12 +450,7 @@ export const optionsConfig = [
     query: "release",
     placeholder: "Select Release",
     items: ["All", "New", "Old"],
-  },
-  // {
-  //   query: "show",
-  //   placeholder: "Select Show",
-  //   items: ["All", "10", "20", "30", "40", "50"],
-  // },
+  }
 ];
 
 export const Blogs = [

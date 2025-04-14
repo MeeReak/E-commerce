@@ -9,8 +9,14 @@ return new class extends Migration
 {
     public function up(): void
     {
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('products', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name');
             $table->json('images');
             $table->string('sku')->unique();
@@ -20,11 +26,11 @@ return new class extends Migration
             $table->enum('type', ['perishable', 'non-perishable']);
             $table->string('color');
             $table->string('noted')->nullable();
-            $table->json('goodpoints');
+            $table->json('good_points');
             $table->text('description');
             $table->decimal('weight', 8, 2);
-            $table->uuid('category_id'); // Changed to uuid
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('user_register', 'id');
+            $table->foreignId('category_id')->constrained('categories', 'id');
             $table->timestamps();
         });
     }
@@ -32,5 +38,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('products');
+        Schema::dropIfExists('categories');
+
     }
 };

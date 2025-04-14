@@ -14,27 +14,10 @@ class OrderSeeder extends Seeder
 {
     public function run(): void
     {
-        // Create or get a user with a UUID
-        $user = User::firstOrCreate(
-            [
-                'email' => 'customer@example.com', // Unique field to check existence
-            ],
-            [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
-                'first_name' => 'John',
-                'last_name' => 'Doe',
-                'name' => 'John Doe',
-                'gender' => 'Male',
-                'phone' => '1234567890',
-                'date_of_birth' => '1990-01-01',
-                'address' => '123 Main St, Springfield, IL',
-                'email_verified_at' => now(),
-                'email' => 'customer@example.com',
-                'password' => bcrypt('password'),
-            ]
-        );
-
-        // Ensure categories exist
+        $user = User::firstOrCreate(['email' => 'customer@example.com'], [
+            'name' => 'Test Customer',
+            'password' => bcrypt('password'),
+        ]);
         if (Category::count() === 0) {
             $this->call(CategoryProductSeeder::class);
         }
@@ -44,27 +27,22 @@ class OrderSeeder extends Seeder
             throw new \Exception('Electronics category not found. Run CategoryProductSeeder first.');
         }
 
-        // Create or get a product with a UUID
-        $product = Product::firstOrCreate(
-            ['sku' => 'GL-001'],
-            [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
-                'name' => 'Gaming Laptop',
-                'images' => ['https://example.com/img1.jpg'],
-                'price' => 1499.99,
-                'quantity' => 10,
-                'type' => 'non-perishable',
-                'color' => 'Black',
-                'goodpoints' => ['High performance'],
-                'description' => 'A powerful laptop.',
-                'weight' => 2.5,
-                'category_id' => $category->id, // Use the UUID from the category
-            ]
-        );
+        $product = Product::firstOrCreate(['sku' => 'GL-001'], [
+            'name' => 'Gaming Laptop',
+            'images' => ['https://example.com/img1.jpg'],
+            'price' => 1499.99,
+            'quantity' => 10,
+            'type' => 'non-perishable',
+            'color' => 'Black',
+            'good_points' => ['High performance'],
+            'description' => 'A powerful laptop.',
+            'weight' => 2.5,
+            'category_id' => $category->id, // Use the UUID from the category
+            'user_id' => $user->id,
+        ]);
 
         // Create an order with a UUID
         $order = Order::create([
-            'id' => Str::uuid()->toString(), // Explicitly set UUID
             'user_id' => $user->id,
             'total' => 1499.99,
             'status' => 'pending',
