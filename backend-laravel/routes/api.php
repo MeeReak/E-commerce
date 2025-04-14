@@ -35,3 +35,5 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/orders/{order}/items/{itemId}', [OrderController::class, 'removeItem'])->name('orders.items.destroy');
     });
 });
+
+
