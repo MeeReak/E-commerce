@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('user_register', function (Blueprint $table) {
             $table->id(); // Uses auto-increment integer
             $table->string('name');
+            $table->string('gender')->nullable();
+            $table->date('date_of_birth')->nullable();
             $table->string('email')->unique();
+            $table->string('phone', 20)->nullable();
+            $table->string('address', 255)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone_number')->nullable();

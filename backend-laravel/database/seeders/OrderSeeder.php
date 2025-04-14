@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class OrderSeeder extends Seeder
 {
@@ -40,13 +41,16 @@ class OrderSeeder extends Seeder
             'user_id' => $user->id,
         ]);
 
+        // Create an order with a UUID
         $order = Order::create([
             'user_id' => $user->id,
             'total' => 1499.99,
             'status' => 'pending',
         ]);
 
+        // Create an order item with a UUID
         OrderItem::create([
+            'id' => Str::uuid()->toString(), // Explicitly set UUID
             'order_id' => $order->id,
             'product_id' => $product->id,
             'quantity' => 1,
