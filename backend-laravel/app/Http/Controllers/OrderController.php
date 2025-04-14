@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            $orders = Order::with('items.product')->paginate(10);
+            $orders = Order::with(['items.product', 'user'])->get();
 
             return OrderResource::collection($orders);
         } catch (\Exception $e) {
