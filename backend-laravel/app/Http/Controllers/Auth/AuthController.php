@@ -26,13 +26,14 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password), // Use Hash::make instead of bcrypt
         ]);
-
+        // dd($user);
         $accessToken = $user->createToken('authToken')->plainTextToken;
 
         return response()->json([
             'message' => 'User registered successfully',
             'user' => $user,
             'access_token' => $accessToken,
+            'token_type' => 'Bearer',
         ], 201);
     }
 
