@@ -124,7 +124,7 @@ export function ProductDetails({ product }: { product: Product }): JSX.Element {
     );
 }
 
-function InputField({
+export function InputField({
     id,
     label,
     value,
