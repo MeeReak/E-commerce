@@ -1,22 +1,13 @@
-import React, { Suspense } from "react";
-// async function fetchData() {
-//   try {
-//     const apiUrl = process.env.API_URL || "http://localhost:3001/v1/products";
-//     const api = `${apiUrl}/products`;
-//     const response = await fetch(api, {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     return await response.json();
-//   } catch (error: unknown) {
-//     console.error("Error in fetch data", error);
-//   }
-// }
-export default async function page() {
-    // const response = await fetchData();
+import { BlogTable } from "@/components/blog/features";
+import React from "react";
 
-    // console.log(response);
-    return <div>This is order page</div>;
-}
+const page = () => {
+    return (
+        <div className="p-5">
+            <h1>This is blog page</h1>
+            <BlogTable />
+        </div>
+    );
+};
+
+export default page;
