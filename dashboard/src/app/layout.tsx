@@ -24,7 +24,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en">
-            <body className={`${poppin.className} antialiased bg-[#fafcff]`}>
+            <body className={`${poppin.className} antialiased bg-[#eef2f8]`}>
                 <Sidebar>{children}</Sidebar>
             </body>
         </html>

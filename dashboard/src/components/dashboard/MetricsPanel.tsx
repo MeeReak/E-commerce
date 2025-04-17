@@ -1,6 +1,13 @@
 // components/MetricsPanel.jsx
 import React from "react";
-import { DollarSign, Users, CreditCard, Activity } from "lucide-react";
+import {
+    DollarSign,
+    Users,
+    CreditCard,
+    Activity,
+    Newspaper,
+    ClipboardListIcon
+} from "lucide-react";
 
 interface MetricCardProps {
     title: string;
@@ -22,16 +29,18 @@ const MetricCard = ({
     const isPositive = change.startsWith("+");
 
     return (
-        <div className=" w-full bg-black rounded-lg p-6 flex flex-col">
-            <div className="flex justify-between items-center mb-2 gap-x-40">
-                <span className="text-gray-400 font-medium test-md">
+        <div className=" w-full bg-[#ffffff] shadow-sm rounded-lg p-6 flex flex-col">
+            <div className="flex justify-between items-center mb-2">
+                <span className="text-gray-400 font-medium text-lg">
                     {title}
                 </span>
                 <div className={`p-2 rounded-full ${iconBg}`}>{icon}</div>
             </div>
 
             <div className="mt-1">
-                <h2 className="text-white text-3xl font-bold mb-1">{value}</h2>
+                <h2 className="text-gray-800 text-3xl font-bold mb-1">
+                    {value}
+                </h2>
                 <p className="text-sm">
                     <span
                         className={`${isPositive ? "text-green-500" : "text-red-500"}`}
@@ -60,8 +69,8 @@ const MetricsPanel = () => {
             value: "2350",
             change: "32",
             period: "pending",
-            icon: <CreditCard size={20} className="text-white" />,
-            iconBg: "bg-gray-700"
+            icon: <ClipboardListIcon size={20} className="text-white" />,
+            iconBg: "bg-[#ff0f7e]"
         },
         {
             title: "Customers",
@@ -69,15 +78,15 @@ const MetricsPanel = () => {
             change: "+5%",
             period: "new customers",
             icon: <Users size={20} className="text-white" />,
-            iconBg: "bg-gray-700"
+            iconBg: "bg-[#32b24a]"
         },
         {
             title: "Blogs",
             value: "100",
             change: "+7",
             period: "since last week",
-            icon: <Activity size={20} className="text-white" />,
-            iconBg: "bg-gray-700"
+            icon: <Newspaper size={20} className="text-white" />,
+            iconBg: "bg-[#0387d2]"
         }
     ];
 

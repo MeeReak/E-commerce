@@ -35,9 +35,11 @@ const RevenueOverview = () => {
     };
 
     return (
-        <Card className=" w-[65%] bg-black border-gray-800">
+        <Card className=" w-[65%] bg-[#ffffff] shadow-sm">
             <CardHeader className="pb-4">
-                <CardTitle className="text-white text-xl">Overview</CardTitle>
+                <CardTitle className="text-gray-400 text-xl">
+                    Overview
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="h-80">
