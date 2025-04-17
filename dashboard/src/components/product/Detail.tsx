@@ -38,12 +38,6 @@ export function ProductDetails({
         onInputChange("goodPoints", updatedGoodPoints);
     };
 
-    const releaseOptions = {
-        query: "release",
-        placeholder: "Select Release",
-        items: ["All", "New", "Old"]
-    };
-
     return (
         <div className="space-y-4">
             <div className="flex w-full gap-x-5 justify-between">
@@ -64,14 +58,18 @@ export function ProductDetails({
                     }
                 />
                 <div className="w-1/2 space-y-1">
-                    <Label htmlFor="category">Category</Label>
+                    <Label
+                        className=" text-sm text-gray-500"
+                        htmlFor="category"
+                    >
+                        Category
+                    </Label>
                     <SelectDemo
-                        items={releaseOptions.items}
-                        selectedValue={formData.category} // Bind the current value
                         onSelectChange={(value) =>
                             handleSelectChange("category", value)
                         } // Update formData
-                        placeholder={releaseOptions.placeholder}
+                        className="text-[#4D4D4D] w-full"
+                        items={["Clothing", "Vegetables", "Electronics"]}
                     />
                 </div>
             </div>
@@ -79,7 +77,7 @@ export function ProductDetails({
             <div className="flex w-full gap-x-5 justify-between">
                 <InputField
                     id="price"
-                    label="Product Price"
+                    label="Price"
                     value={formData.price}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
@@ -119,7 +117,7 @@ export function ProductDetails({
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
-                />{" "}
+                />
                 <InputField
                     id="weight"
                     label="Weight"
@@ -149,7 +147,7 @@ export function ProductDetails({
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
-                />{" "}
+                />
                 <Button
                     type="button"
                     variant="outline"
@@ -212,11 +210,13 @@ function InputField({
 }): JSX.Element {
     return (
         <div className={`w-1/2 space-y-1 ${className}`}>
-            <Label htmlFor={id}>{label}</Label>
+            <Label className=" text-sm text-gray-500" htmlFor={id}>
+                {label}
+            </Label>
             <Input
                 id={id}
                 type="text"
-                className="text-gray-500"
+                className="text-gray-800"
                 name={id}
                 value={value}
                 onChange={onChange}

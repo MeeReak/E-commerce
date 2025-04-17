@@ -106,7 +106,7 @@ export function BillingInformation() {
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel className="text-gray-900 text-sm font-normal leading-[150%]">
-                    Company Name{" "}
+                    Company Name
                     <span className="text-slate-500 ">(Optional)</span>
                   </FormLabel>
                   <FormControl>

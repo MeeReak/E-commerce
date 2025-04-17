@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog";
 import { EditIcon } from "lucide-react";
 import Image from "next/image";
-import { InputField } from "../product/ProductDetail";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 

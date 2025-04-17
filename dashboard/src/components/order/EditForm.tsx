@@ -1637,7 +1637,6 @@ export function EditForm(): JSX.Element {
                 <div className=" w-[100%]">
                     <Process />
                     <div>
-                        {" "}
                         <Table className=" mt-16">
                             <TableHeader>
                                 <TableRow className="hover:bg-gray-100 bg-gray-100 text-gray-500 font-medium text-xs tracking-wider uppercase leading-none">
@@ -1665,7 +1664,6 @@ export function EditForm(): JSX.Element {
                                         <TableCell className=" text-gray-900 font-normal text-base leading-6">
                                             ${invoice.price.toFixed(2)}
                                             <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
-                                                {" "}
                                                 $
                                                 {(
                                                     invoice.price -

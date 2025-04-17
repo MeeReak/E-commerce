@@ -9,16 +9,18 @@ import { Suspense } from "react";
 export default function Home() {
     return (
         <Suspense>
-            <Header title="Dashboard" />
-            <div className=" px-5 pb-5 gap-y-5 flex flex-col">
-                <MetricsPanel />
-                <div className="flex items-start gap-x-4">
-                    <RevenueOverview />
-                    <RecentOrders />
-                </div>
-                <div className="flex items-start gap-x-4">
-                    <TopProducts />
-                    <BlogPosts />
+            <div className="bg-[#eef2f8]">
+                <Header title="Dashboard" />
+                <div className=" px-5 pb-5 gap-y-5 flex flex-col">
+                    <MetricsPanel />
+                    <div className="flex items-start gap-x-4">
+                        <RevenueOverview />
+                        <RecentOrders />
+                    </div>
+                    <div className="flex items-start gap-x-4">
+                        <TopProducts />
+                        <BlogPosts />
+                    </div>
                 </div>
             </div>
         </Suspense>

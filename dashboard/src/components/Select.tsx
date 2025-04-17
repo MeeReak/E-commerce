@@ -16,8 +16,7 @@ interface SelectDemoProps {
     className?: string;
     placeholder?: string;
     selectedValue?: string;
-    onSelectChange?: (query: string, value: string) => void;
-    readOnly?: boolean;
+    onSelectChange: (query: string, value: string) => void;
 }
 
 export const SelectDemo: React.FC<SelectDemoProps> = ({
@@ -26,41 +25,30 @@ export const SelectDemo: React.FC<SelectDemoProps> = ({
     className = "",
     placeholder,
     selectedValue,
-    onSelectChange,
-    readOnly = false
+    onSelectChange
 }) => {
     const handleValueChange = (value: string) => {
-        if (!readOnly && onSelectChange) {
-            onSelectChange(query, value);
-        }
+        onSelectChange(value, query);
     };
 
     return (
-        <Select
-            value={selectedValue}
-            onValueChange={!readOnly ? handleValueChange : undefined}
-        >
-            <SelectTrigger
-                className={`${className} ${readOnly ? "cursor-not-allowed" : ""}`}
-                disabled={readOnly}
-            >
+        <Select value={selectedValue} onValueChange={handleValueChange}>
+            <SelectTrigger className={`${className} `}>
                 <SelectValue placeholder={placeholder || "Select an option"} />
             </SelectTrigger>
-            {!readOnly && (
-                <SelectContent>
-                    <SelectGroup>
-                        {items.map((option, index) => (
-                            <SelectItem
-                                className="cursor-pointer"
-                                key={index}
-                                value={option.toLowerCase()}
-                            >
-                                {option}
-                            </SelectItem>
-                        ))}
-                    </SelectGroup>
-                </SelectContent>
-            )}
+            <SelectContent>
+                <SelectGroup>
+                    {items.map((option, index) => (
+                        <SelectItem
+                            className="cursor-pointer"
+                            key={index}
+                            value={option.toLowerCase()}
+                        >
+                            {option}
+                        </SelectItem>
+                    ))}
+                </SelectGroup>
+            </SelectContent>
         </Select>
     );
 };

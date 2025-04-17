@@ -114,7 +114,7 @@ const RecentOrders = () => {
                                     className={`${getStatusStyle(order.status)} font-normal`}
                                 >
                                     {order.status}
-                                </Badge>{" "}
+                                </Badge>
                                 <p className="text-sm font-medium text-gray-600">
                                     {order.amount}
                                 </p>

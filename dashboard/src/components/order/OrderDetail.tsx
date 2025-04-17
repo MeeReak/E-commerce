@@ -1850,7 +1850,6 @@ export const OrderDetail = () => {
                                 <TableCell className="w-[250px] text-gray-900 font-normal text-base leading-6">
                                     ${invoice.price.toFixed(2)}
                                     <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
-                                        {" "}
                                         $
                                         {(
                                             invoice.price -
