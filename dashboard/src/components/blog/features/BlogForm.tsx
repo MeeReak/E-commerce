@@ -1,11 +1,16 @@
 // import { TrashIcon } from "lucide-react";
-import { SelectDemo } from "../../Select";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { SelectCategory } from "../components/SelectCategory";
 interface BlogFormProps {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    formData: Record<string, any>;
+    formData: {
+        name?: string;
+        postBy?: string;
+        role?: string;
+        category?: string;
+        description?: string;
+    };
     onInputChange: (key: string, value: string | string[]) => void;
     handleSelectChange: (key: string, value: string) => void;
 }
@@ -17,8 +22,8 @@ export function BlogForm({
 }: BlogFormProps): JSX.Element {
     const releaseOptions = {
         query: "release",
-        placeholder: "Select Release",
-        items: ["All", "New", "Old"]
+        placeholder: "Select a category",
+        items: ["Meat", "Fruit", "Vegetable"]
     };
 
     return (
@@ -27,35 +32,35 @@ export function BlogForm({
                 <InputField
                     id="name"
                     label="Name"
-                    value={formData.name}
+                    value={formData.name || ""}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
                 />
                 <InputField
                     id="postBy"
-                    label="postBy"
-                    value={formData.postBy}
+                    label="Post by"
+                    value={formData.postBy || ""}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
                 />
                 <InputField
                     id="role"
-                    label="role"
-                    value={formData.role}
+                    label="Role"
+                    value={formData.role || ""}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
                 />
                 <div className="w-1/2 space-y-1">
                     <Label htmlFor="category">Category</Label>
-                    <SelectDemo
+                    <SelectCategory
                         items={releaseOptions.items}
-                        selectedValue={formData.category} // Bind the current value
+                        selectedValue={formData.category || ""}
                         onSelectChange={(value) =>
                             handleSelectChange("category", value)
-                        } // Update formData
+                        }
                         placeholder={releaseOptions.placeholder}
                     />
                 </div>
@@ -64,7 +69,7 @@ export function BlogForm({
                 <TextareaField
                     id="description"
                     label="Description"
-                    value={formData.description}
+                    value={formData.description || ""}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
@@ -88,7 +93,7 @@ function InputField({
     className?: string;
 }): JSX.Element {
     return (
-        <div className={`w-1/2 space-y-1 ${className}`}>
+        <div className={`w-1/2 space-y-1 ${className || ""}`}>
             <Label htmlFor={id}>{label}</Label>
             <Input
                 id={id}
@@ -101,6 +106,7 @@ function InputField({
         </div>
     );
 }
+
 function TextareaField({
     id,
     label,

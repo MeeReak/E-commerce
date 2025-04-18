@@ -1,13 +1,13 @@
+import React, { Suspense } from "react";
+import { BlogHeader } from "@/components/blog/features/BlogHeader";
 import { BlogTable } from "@/components/blog/features";
-import React from "react";
-
-const page = () => {
+export default async function page() {
     return (
-        <div className="p-5">
-            <h1>This is blog page</h1>
-            <BlogTable />
-        </div>
+        <Suspense>
+            <BlogHeader showAddButton enableSearch title="Blogs" />
+            <div className="flex items-center mx-5">
+                <BlogTable />
+            </div>
+        </Suspense>
     );
-};
-
-export default page;
+}

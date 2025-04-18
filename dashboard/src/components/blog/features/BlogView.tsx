@@ -11,41 +11,43 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { EyeIcon } from "lucide-react";
-import { CarouselDemo } from "../../ImageDemo";
+// import { CarouselDemo } from "../../ImageDemo";
 import { BlogDetails } from "./BlogDetail";
+import Image from "next/image";
 
 export function DialogDisplayBlog(): JSX.Element {
     const Product = {
         id: "7f3aeb15-1d45-4e5d-9f8f-a8c5b7a4d02c",
         name: "Beef",
         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
-        images: [
-            {
-                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
-                id: 1,
-                alt: "Image 1"
-            },
-            {
-                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
-                id: 2,
-                alt: "Image 2"
-            },
-            {
-                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
-                id: 3,
-                alt: "Image 3"
-            },
-            {
-                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
-                id: 4,
-                alt: "Image 4"
-            }
-        ],
-        category: "ksskkskkssk",
-        postBy: "skjsjsjs",
+        // images: [
+        //     {
+        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+        //         id: 1,
+        //         alt: "Image 1"
+        //     },
+        //     {
+        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
+        //         id: 2,
+        //         alt: "Image 2"
+        //     },
+        //     {
+        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
+        //         id: 3,
+        //         alt: "Image 3"
+        //     },
+        //     {
+        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
+        //         id: 4,
+        //         alt: "Image 4"
+        //     }
+        // ],
+        category: "Meat",
+        postBy: "oengzhileang",
         role: "Admin",
-        dateAdded: "2024-03-13T11:05:00Z",
-        description: "sjssj"
+        dateAdded: "18-04-2025",
+        description:
+            "Meat can be classified into various types based on its origin, texture, and preparation. The main categories of meat include red meat, white meat, and processed meat. Red meat, such as beef, lamb, and pork, comes from the muscles of mammals and is known for its rich flavor and darker color. White meat includes poultry, like chicken and turkey, which is lighter in color and generally lower in fat compared to red meat. Processed meats, such as bacon, sausages, and ham, are those that have been preserved or altered through smoking, curing, or other methods for enhanced flavor and longevity. These classifications play a significant role in dietary choices and nutritional values."
     };
 
     return (
@@ -59,7 +61,13 @@ export function DialogDisplayBlog(): JSX.Element {
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div className=" flex items-center justify-center">
-                    <CarouselDemo images={Product.images} />
+                    {/* <CarouselDemo images={Product.images} /> */}
+                    <Image
+                        src={Product.src}
+                        alt="product-image"
+                        width={200}
+                        height={200}
+                    />
                 </div>
                 <BlogDetails product={Product} />
                 <DialogFooter>
