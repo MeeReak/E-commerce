@@ -38,7 +38,7 @@ export default function page() {
               Just Say Hello!
             </h1>
             <p className="text-gray-500 text-sm font-normal leading-[150%]">
-              Do you fancy saying hi to me or you want to get started with your{" "}
+              Do you fancy saying hi to me or you want to get started with your
               <br />
               project and you need my help? Feel free to contact me.
             </p>

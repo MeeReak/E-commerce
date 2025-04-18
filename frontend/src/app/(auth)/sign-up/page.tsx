@@ -183,7 +183,7 @@ export default function CreateAccountPage() {
 
         {/* Login Link */}
         <p className="mt-6 text-gray-600 text-center text-base font-normal leading-[21px]">
-          Already have an account?{" "}
+          Already have an account?
           <Link
             href="/sign-in"
             className="text-gray-900 text-base font-semibold leading-[21px] hover:underline"

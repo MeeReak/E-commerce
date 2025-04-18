@@ -94,7 +94,7 @@ const SidebarCom = ({
                         isOpen ? "justify-between" : "justify-center"
                     }`}
                 >
-                    <div className="flex gap-x-2 flex-1">
+                    <Link href={"/"} className="flex gap-x-2 flex-1">
                         <Image
                             alt="ecoFresh"
                             src="/svg/logo.svg"
@@ -106,7 +106,7 @@ const SidebarCom = ({
                                 ecoBoard
                             </span>
                         )}
-                    </div>
+                    </Link>
 
                     {isOpen && (
                         <button

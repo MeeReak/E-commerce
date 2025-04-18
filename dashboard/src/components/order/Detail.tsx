@@ -1593,7 +1593,7 @@ export const OrderDetail = () => {
                 <div className=" flex py-7 w-full gap-x-5 justify-center">
                     <div className="flex">
                         <div>
-                            <p className="text-gray-400 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tl-md border-r-0">
+                            <p className="text-white bg-green-500 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tl-md border-r-0">
                                 Billing Address
                             </p>
                             <div className=" border border-t-[0px] border-gray-200 rounded-bl-md pl-6 pr-6 border-r-0">
@@ -1601,13 +1601,13 @@ export const OrderDetail = () => {
                                     <p className="text-gray-900 text-[16px] font-normal leading-[24px] font-poppins pt-4">
                                         Dainne Russell
                                     </p>
-                                    <p className="text-gray-600 text-[14px] font-normal leading-[21px] font-poppins pt-2 max-w-[282px]">
+                                    <p className="text-gray-400 text-[14px] font-normal leading-[21px] font-poppins pt-2 max-w-[282px]">
                                         4140 Parker Rd. Allentown, New Mexico
                                         31134
                                     </p>
                                 </div>
                                 <div className="mt-9 mb-3">
-                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase font-poppins pb-1">
+                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] font-poppins pb-1">
                                         Email
                                     </p>
                                     <p className="text-gray-900 text-[14px] font-normal leading-[21px] font-poppins">
@@ -1615,7 +1615,7 @@ export const OrderDetail = () => {
                                     </p>
                                 </div>
                                 <div className="mb-5">
-                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase font-poppins pb-1">
+                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] font-poppins pb-1">
                                         Phone
                                     </p>
                                     <p className="text-gray-900 text-[14px] font-normal leading-[21px] font-poppins">
@@ -1625,7 +1625,7 @@ export const OrderDetail = () => {
                             </div>
                         </div>
                         <div>
-                            <p className="text-gray-400 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tr-md">
+                            <p className="text-white bg-green-500 text-[14px] font-medium leading-[14px] tracking-[0.42px] uppercase py-[18px] pl-6 border border-gray-200 rounded-tr-md">
                                 Shipping Address
                             </p>
                             <div className=" border border-t-[0px]  border-gray-200 rounded-br-md pl-6 pr-6">
@@ -1633,13 +1633,13 @@ export const OrderDetail = () => {
                                     <p className="text-gray-900 text-[16px] font-normal leading-[24px] font-poppins pt-4">
                                         Dainne Russell
                                     </p>
-                                    <p className="text-gray-600 text-[14px] font-normal leading-[21px] font-poppins pt-2 max-w-[282px]">
+                                    <p className="text-gray-400 text-[14px] font-normal leading-[21px] font-poppins pt-2 max-w-[282px]">
                                         4140 Parker Rd. Allentown, New Mexico
                                         31134
                                     </p>
                                 </div>
                                 <div className="mt-9 mb-3">
-                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase font-poppins pb-1">
+                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] font-poppins pb-1">
                                         Email
                                     </p>
                                     <p className="text-gray-900 text-[14px] font-normal leading-[21px] font-poppins">
@@ -1647,7 +1647,7 @@ export const OrderDetail = () => {
                                     </p>
                                 </div>
                                 <div className="mb-5">
-                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] uppercase font-poppins pb-1">
+                                    <p className="text-gray-400 text-[12px] font-medium leading-[12px] tracking-[0.36px] font-poppins pb-1">
                                         Phone
                                     </p>
                                     <p className="text-gray-900 text-[14px] font-normal leading-[21px] font-poppins">
@@ -1825,32 +1825,28 @@ export const OrderDetail = () => {
 
                 <Table className=" mt-20">
                     <TableHeader>
-                        <TableRow className="hover:bg-gray-100 bg-gray-100 text-gray-500 font-medium text-xs tracking-wider uppercase leading-none">
-                            <TableHead className="pl-10">Product</TableHead>
+                        <TableRow className="hover:bg-gray-100 bg-gray-100 text-gray-600 font-medium tracking-wider leading-none">
+                            <TableHead className="pl-10">Id</TableHead>
+                            <TableHead>Product</TableHead>
                             <TableHead>price</TableHead>
+                            <TableHead>Discount</TableHead>
                             <TableHead>Quantity</TableHead>
                             <TableHead>SubTotal</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {products.slice(0, 5).map((invoice) => (
+                        {products.slice(0, 5).map((invoice, index) => (
                             <TableRow
                                 key={invoice.id}
-                                className="text-[#333333] font-poppins text-sm font-normal leading-[1.5]"
+                                // className="text-[#333333] font-poppins text-sm font-normal leading-[1.5]"
                             >
-                                <TableCell className="pl-6 py-3 flex items-center gap-x-5 text-gray-900 font-normal text-base leading-6">
-                                    {/* <Image
-                                        src={invoice.src}
-                                        alt={invoice.name}
-                                        width={100}
-                                        height={100}
-                                    /> */}
-                                    {invoice.name}
+                                <TableCell className=" pl-11">
+                                    {index}
                                 </TableCell>
-                                <TableCell className="w-[250px] text-gray-900 font-normal text-base leading-6">
+                                <TableCell>{invoice.name}</TableCell>
+                                <TableCell>
                                     ${invoice.price.toFixed(2)}
                                     <span className="pl-1 text-gray-400 font-normal text-base leading-6 line-through">
-                                        {" "}
                                         $
                                         {(
                                             invoice.price -
@@ -1860,7 +1856,8 @@ export const OrderDetail = () => {
                                     </span>
                                 </TableCell>
                                 <TableCell>{invoice.gty}</TableCell>
-                                <TableCell className=" text-gray-900 font-poppins text-base font-medium leading-6">
+                                <TableCell>{invoice.gty}</TableCell>
+                                <TableCell>
                                     ${(invoice.price * invoice.gty).toFixed(2)}
                                 </TableCell>
                             </TableRow>

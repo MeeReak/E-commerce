@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SearchIcon } from "lucide-react";
-import { DialogDemo } from "./product/CreateForm";
+import { DialogDemo } from "./product/Create";
 import { Input } from "./ui/input";
 import { Option } from "./Option";
 

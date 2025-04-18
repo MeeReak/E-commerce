@@ -11,26 +11,33 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
+import { EditIcon } from "lucide-react";
 import { FileUpload, UploadedFile } from "../FileUpload";
-import { ProductDetails } from "./ProductForm";
-import { PlusIcon } from "lucide-react";
+import { ProductDetails } from "./Detail";
+import { Product } from "./View";
 
-export function DialogDemo(): JSX.Element {
-    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+export function EditForm({ product }: { product: Product }): JSX.Element {
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
+        product.images.map((image) => ({
+            url: image.src,
+            name: image.alt,
+            size: image.id
+        }))
+    );
     const [formData, setFormData] = useState({
-        name: "",
-        sku: "",
-        category: "",
-        price: "",
-        quantity: "",
-        discount: "",
-        brand: "",
-        type: "",
+        name: product.name,
+        sku: product.sku,
+        category: product.category,
+        price: product.price,
+        quantity: product.gty,
+        discount: product.discount,
+        brand: product.brand,
+        type: product.type,
         weight: "",
         color: "",
-        note: "",
-        description: "",
-        goodPoints: [] as string[]
+        note: product.note,
+        description: product.description,
+        goodPoints: product.keyPoints
     });
 
     const handleFileChange = (
@@ -68,13 +75,13 @@ export function DialogDemo(): JSX.Element {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className=" text-gray-600" variant="outline">
-                    <PlusIcon /> Add New
-                </Button>
+                <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm" />
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Product</DialogTitle>
+                    <DialogTitle className=" text-yellow-500">
+                        Edit Product
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -92,7 +99,7 @@ export function DialogDemo(): JSX.Element {
 
                 <DialogFooter>
                     <Button type="button" onClick={handleSubmit}>
-                        Create
+                        Update
                     </Button>
                 </DialogFooter>
             </DialogContent>

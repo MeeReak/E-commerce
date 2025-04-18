@@ -57,7 +57,6 @@ export const Banner: React.FC<IBannerProps> = ({
 
   return (
     <Link href={`/shop/1?category=${cate}`}>
-      {" "}
       <div
         className={`relative  ${isVisible ? "animate-visible " : ""}`}
         ref={bannerRef}

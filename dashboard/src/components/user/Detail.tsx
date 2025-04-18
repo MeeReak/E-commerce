@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { InputField } from "../product/ProductDetail";
+import { InputField } from "../product/View";
 
 const user = {
     name: "John Doe",

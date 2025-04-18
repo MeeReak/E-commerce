@@ -11,33 +11,26 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
-import { EditIcon } from "lucide-react";
 import { FileUpload, UploadedFile } from "../FileUpload";
-import { Product } from "./ProductDetail";
-import { ProductDetails } from "./ProductForm";
+import { ProductDetails } from "./Detail";
+import { PlusIcon } from "lucide-react";
 
-export function EditForm({ product }: { product: Product }): JSX.Element {
-    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
-        product.images.map((image) => ({
-            url: image.src,
-            name: image.alt,
-            size: image.id
-        }))
-    );
+export function DialogDemo(): JSX.Element {
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
     const [formData, setFormData] = useState({
-        name: product.name,
-        sku: product.sku,
-        category: product.category,
-        price: product.price,
-        quantity: product.gty,
-        discount: product.discount,
-        brand: product.brand,
-        type: product.type,
+        name: "",
+        sku: "",
+        category: "",
+        price: "",
+        quantity: "",
+        discount: "",
+        brand: "",
+        type: "",
         weight: "",
         color: "",
-        note: product.note,
-        description: product.description,
-        goodPoints: product.keyPoints
+        note: "",
+        description: "",
+        goodPoints: [] as string[]
     });
 
     const handleFileChange = (
@@ -72,14 +65,20 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
         console.log("Uploaded Files:", uploadedFiles);
     };
 
+    console.log(formData.category);
+
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm" />
+                <Button className=" text-gray-600" variant="outline">
+                    <PlusIcon /> Create
+                </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Product</DialogTitle>
+                    <DialogTitle className=" text-green-500">
+                        Create Product
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -97,7 +96,7 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
 
                 <DialogFooter>
                     <Button type="button" onClick={handleSubmit}>
-                        Update
+                        Create
                     </Button>
                 </DialogFooter>
             </DialogContent>
