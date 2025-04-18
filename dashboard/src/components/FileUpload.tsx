@@ -20,7 +20,7 @@ export function FileUpload({
 }): JSX.Element {
     return (
         <div className="space-y-1">
-            <Label htmlFor="file-input">Image of Product</Label>
+            <Label htmlFor="file-input">Images</Label>
 
             <div className="border-2 border-dashed border-gray-300 p-6 rounded-lg text-center bg-gray-50">
                 <Input

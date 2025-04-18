@@ -4,18 +4,20 @@ import { useEffect, useState } from "react";
 import { SearchIcon } from "lucide-react";
 import { DialogDemo } from "./product/Create";
 import { Input } from "./ui/input";
-import { Option } from "./Option";
+import { BlogCreate } from "./blog/features/BlogCreate";
 
 interface IHeaderProps {
     showAddButton?: boolean;
     enableSearch?: boolean;
     title?: string;
+    blog?: boolean;
 }
 
 export function Header({
     showAddButton = false,
     enableSearch = false,
-    title = "Header"
+    title = "Header",
+    blog
 }: IHeaderProps) {
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -48,8 +50,9 @@ export function Header({
                         />
                     </div>
                 )}
-                {/* <Option /> */}
-                {showAddButton && <DialogDemo />}
+                {showAddButton && (
+                    <div>{blog ? <BlogCreate /> : <DialogDemo />}</div>
+                )}
             </div>
         </div>
     );

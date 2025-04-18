@@ -48,8 +48,8 @@ export function BlogHeader({
 
     return (
         <div className="space-y-5 m-5">
-            <h1 className="text-2xl font-medium text-green-500">{title}</h1>
             <div className="flex items-center justify-between gap-x-5 text-black">
+                <h1 className="text-2xl font-medium text-green-500">{title}</h1>
                 <div className="flex gap-x-5">
                     {enableSearch && (
                         <div className="flex items-center ml-2">

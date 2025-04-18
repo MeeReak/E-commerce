@@ -11,37 +11,36 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { EyeIcon } from "lucide-react";
-// import { CarouselDemo } from "../../ImageDemo";
 import { BlogDetails } from "./BlogDetail";
-import Image from "next/image";
+import { CarouselDemo } from "@/components/ImageDemo";
 
 export function DialogDisplayBlog(): JSX.Element {
     const Product = {
         id: "7f3aeb15-1d45-4e5d-9f8f-a8c5b7a4d02c",
         name: "Beef",
         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
-        // images: [
-        //     {
-        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
-        //         id: 1,
-        //         alt: "Image 1"
-        //     },
-        //     {
-        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
-        //         id: 2,
-        //         alt: "Image 2"
-        //     },
-        //     {
-        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
-        //         id: 3,
-        //         alt: "Image 3"
-        //     },
-        //     {
-        //         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
-        //         id: 4,
-        //         alt: "Image 4"
-        //     }
-        // ],
+        images: [
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+                id: 1,
+                alt: "Image 1"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
+                id: 2,
+                alt: "Image 2"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
+                id: 3,
+                alt: "Image 3"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
+                id: 4,
+                alt: "Image 4"
+            }
+        ],
         category: "Meat",
         postBy: "oengzhileang",
         role: "Admin",
@@ -57,17 +56,11 @@ export function DialogDisplayBlog(): JSX.Element {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>{Product.name}</DialogTitle>
+                    <DialogTitle className=" text-blue-500">Detail</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <div className=" flex items-center justify-center">
-                    {/* <CarouselDemo images={Product.images} /> */}
-                    <Image
-                        src={Product.src}
-                        alt="product-image"
-                        width={200}
-                        height={200}
-                    />
+                    <CarouselDemo images={Product.images} />
                 </div>
                 <BlogDetails product={Product} />
                 <DialogFooter>

@@ -7,8 +7,6 @@ import { Button } from "../ui/button";
 export const Process = () => {
     const id = "INV003";
 
-    const process = [1, 2];
-
     const total = products.reduce((acc, product) => {
         return acc + product.price * product.gty;
     }, 0);
@@ -43,8 +41,8 @@ export const Process = () => {
     const status = invoices.find((invoice) => invoice.invoice === id);
 
     return (
-        <div>
-            <div className=" px-5 py-3 mb-2 h-[150px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm">
+        <>
+            <div className=" px-5 py-3 h-[150px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm">
                 <h2 className=" text-base">Process</h2>
                 <div className="flex w-full gap-x-8 justify-center relative pt-9">
                     <Tracker status={status?.totalAmount} />
@@ -53,7 +51,7 @@ export const Process = () => {
                             <div className="mb-2 size-10 bg-black rounded-full flex items-center justify-center">
                                 <CheckIcon className=" text-white" />
                             </div>
-                            <p
+                            <span
                                 className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
                                     status?.totalAmount.toLocaleLowerCase() ===
                                     "processing"
@@ -62,7 +60,7 @@ export const Process = () => {
                                 }`}
                             >
                                 Order received
-                            </p>
+                            </span>
                         </div>
                         <div className=" flex flex-col justify-center items-center">
                             <div className="mb-2 size-10 bg-black rounded-full flex items-center justify-center">
@@ -77,7 +75,7 @@ export const Process = () => {
                                     2
                                 )}
                             </div>
-                            <p
+                            <span
                                 className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
                                     status?.totalAmount.toLocaleLowerCase() ===
                                         "processing" ||
@@ -90,7 +88,7 @@ export const Process = () => {
                                 }`}
                             >
                                 Processing
-                            </p>
+                            </span>
                         </div>
                         <div className=" flex flex-col justify-center items-center">
                             <div
@@ -112,7 +110,7 @@ export const Process = () => {
                                     3
                                 )}
                             </div>
-                            <p
+                            <span
                                 className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
                                     status?.totalAmount.toLocaleLowerCase() ===
                                         "on the way" ||
@@ -123,7 +121,7 @@ export const Process = () => {
                                 }`}
                             >
                                 On the way
-                            </p>
+                            </span>
                         </div>
                         <div className=" flex flex-col justify-center items-center">
                             <div
@@ -141,7 +139,7 @@ export const Process = () => {
                                     4
                                 )}
                             </div>
-                            <p
+                            <span
                                 className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
                                     status?.totalAmount.toLocaleLowerCase() ===
                                     "completed"
@@ -150,7 +148,7 @@ export const Process = () => {
                                 }`}
                             >
                                 Delivered
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -158,13 +156,13 @@ export const Process = () => {
             <div className="mb-2 flex items-center justify-between shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm px-4 py-3">
                 <div className=" flex items-center gap-x-2 border border-[#e8e8e8] px-3 py-2 rounded-full text-sm ">
                     <SquareArrowRight className=" size-4 stroke-[1.5px]" />
-                    <p>Estimated shipping date:</p>
-                    <p>Apr 23, 2024</p>
+                    <span>Estimated shipping date:</span>
+                    <span>Apr 23, 2024</span>
                 </div>
-                <Button className=" bg-blue-600 hover:bg-blue-800 border-none">
+                <Button className=" bg-green-600 hover:bg-green-800 border-none">
                     Mark as ready to next
                 </Button>
             </div>
-        </div>
+        </>
     );
 };

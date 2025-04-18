@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -14,6 +15,7 @@ import {
 import { FileUpload, UploadedFile } from "@/components/FileUpload";
 import { BlogForm } from "./BlogForm";
 import { PlusIcon } from "lucide-react";
+import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 
 export function BlogCreate(): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -62,12 +64,14 @@ export function BlogCreate(): JSX.Element {
         <Dialog>
             <DialogTrigger asChild>
                 <Button className=" text-gray-600" variant="outline">
-                    <PlusIcon /> Add New
+                    <PlusIcon /> Create
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[600px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Blog</DialogTitle>
+                    <DialogTitle className=" text-green-500">
+                        Create Blog
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -83,9 +87,14 @@ export function BlogCreate(): JSX.Element {
                     onRemoveFile={handleRemoveFile}
                 />
                 <DialogFooter>
-                    <Button type="button" onClick={handleSubmit}>
-                        Create
-                    </Button>
+                    <>
+                        <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Button type="button" onClick={handleSubmit}>
+                            Create
+                        </Button>
+                    </>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

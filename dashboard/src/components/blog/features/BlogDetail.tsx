@@ -6,8 +6,19 @@ import { Textarea } from "@/components/ui/textarea";
 export function BlogDetails({ product }: { product: BlogTypes }): JSX.Element {
     return (
         <div className="space-y-4">
-            <div className="flex w-full  gap-x-5 justify-between">
-                <InputField id="name" label="Name" value={product.name} />
+            <InputField
+                id="title"
+                label="Title"
+                value={product.name}
+                className=" w-full"
+            />
+
+            <div className="flex gap-x-5">
+                <InputField
+                    id="postBy"
+                    label="Post by"
+                    value={`${product.postBy}`}
+                />
                 <InputField
                     id="category"
                     label="Category"
@@ -15,15 +26,10 @@ export function BlogDetails({ product }: { product: BlogTypes }): JSX.Element {
                 />
             </div>
             <div className="flex gap-x-5">
-                <InputField
-                    id="postBy"
-                    label="Post by"
-                    value={`${product.postBy}`}
-                />
-                <InputField id="role" label="role" value={`${product.role}`} />
+                <InputField id="role" label="Role" value={`${product.role}`} />
                 <InputField
                     id="date"
-                    label="date"
+                    label="Date"
                     value={`${product.dateAdded}`}
                 />
             </div>

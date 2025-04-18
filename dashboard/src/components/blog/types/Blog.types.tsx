@@ -7,6 +7,7 @@ export interface Image {
 export interface BlogTypes {
     id: string;
     src: string;
+    images: Image[];
     name: string;
     postBy: string;
     role: string;
