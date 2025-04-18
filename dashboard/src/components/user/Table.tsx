@@ -11,10 +11,10 @@ import {
     TableRow
 } from "@/components/ui/table";
 import { useSearchParams } from "next/navigation";
-import { AlertDialogDemo } from "./Confirm";
-import { EditForm } from "./EditForm";
+import { AlertDialogDemo } from "./Delete";
+import { EditForm } from "./Edit";
 import Image from "next/image";
-import { DialogDemo } from "./DisplayForm";
+import { DialogDemo } from "./View";
 
 export const Users = [
     {
@@ -66,6 +66,7 @@ export function TableDemo() {
                     <TableHead>Name</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Total Orders</TableHead>
+                    <TableHead>Status</TableHead>
                     <TableHead>Total Spent</TableHead>
                     <TableHead>Last Order</TableHead>
                     <TableHead>Action</TableHead>
@@ -75,24 +76,23 @@ export function TableDemo() {
                 {filtered.map((item, index) => (
                     <TableRow key={index}>
                         <TableCell className=" pl-6">{index + 1}</TableCell>
-                        <TableCell>
-                            <div className=" flex items-center gap-x-2">
-                                <Image
-                                    src={
-                                        "https://avatars.githubusercontent.com/u/124599?v=4"
-                                    }
-                                    alt="avatar"
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full"
-                                />
-                                {item.name}
-                            </div>
+                        <TableCell className=" flex items-center gap-x-2">
+                            <Image
+                                src={
+                                    "https://avatars.githubusercontent.com/u/124599?v=4"
+                                }
+                                alt="avatar"
+                                width={40}
+                                height={40}
+                                className="rounded-full"
+                            />
+                            {item.name}
                         </TableCell>
                         <TableCell>{item.email}</TableCell>
                         <TableCell className=" pl-10">
                             {item.totalOrders}
                         </TableCell>
+                        <TableCell>Active</TableCell>
                         <TableCell className=" pl-5">
                             {item.totalSpent.toFixed(2)}$
                         </TableCell>

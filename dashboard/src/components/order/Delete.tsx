@@ -16,7 +16,7 @@ interface AlertDialogDemoProps {
     // onDelete: () => void; // Callback for delete action
 }
 
-export function AlertDialogDemo() {
+export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -25,13 +25,15 @@ export function AlertDialogDemo() {
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        Are you sure you want to delete this item?
+                        Are you sure you want to delete this order?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently
                         delete
-                        <strong className=" mx-2 text-red-600">John Doe</strong>
-                        from your product.
+                        <strong className=" ml-2 text-red-600">
+                            {itemName}
+                        </strong>
+                        's order.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

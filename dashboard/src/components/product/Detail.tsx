@@ -195,7 +195,7 @@ export function ProductDetails({
     );
 }
 
-function InputField({
+export function InputField({
     id,
     label,
     value,
@@ -225,7 +225,7 @@ function InputField({
     );
 }
 
-function TextareaField({
+export function TextareaField({
     id,
     label,
     value,

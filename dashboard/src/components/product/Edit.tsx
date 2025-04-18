@@ -72,8 +72,6 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
         console.log("Uploaded Files:", uploadedFiles);
     };
 
-    console.log(formData.category);
-
     return (
         <Dialog>
             <DialogTrigger asChild>

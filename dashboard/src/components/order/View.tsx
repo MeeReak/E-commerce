@@ -11,7 +11,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { EyeIcon } from "lucide-react";
-import { OrderDetail } from "./OrderDetail";
+import { OrderDetail } from "./Detail";
 
 export function DialogDemo(): JSX.Element {
     const Product = {
@@ -126,15 +126,15 @@ export function DialogDemo(): JSX.Element {
                 <DialogHeader>
                     <DialogTitle>
                         <div className=" flex items-center gap-x-2">
-                            <p className="text-gray-900 text-[20px] font-medium leading-[30px]">
+                            <p className="text-blue-500 text-xl font-medium leading-[30px]">
                                 Order Details
                             </p>
-                            <span className=" text-gray-700">•</span>
-                            <p className="text-gray-700 text-[14px] font-normal leading-[21px] ">
+                            <span className=" text-gray-400">•</span>
+                            <p className="text-gray-700 text-xs font-normal leading-[21px] ">
                                 April 24, 2021
                             </p>
-                            <span className=" text-gray-700">•</span>
-                            <p className="text-gray-700 text-[14px] font-normal leading-[21px] ">
+                            <span className=" text-gray-400">•</span>
+                            <p className="text-gray-700 text-xs font-normal leading-[21px] ">
                                 5 Products
                             </p>
                         </div>
