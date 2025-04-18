@@ -11,24 +11,19 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
-import { EditIcon } from "lucide-react";
-import { FileUpload, UploadedFile } from "../../FileUpload";
-import { BlogTypes } from "../types/Blog.types";
+import { FileUpload, UploadedFile } from "@/components/FileUpload";
 import { BlogForm } from "./BlogForm";
-export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
-    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>();
-    // (product.images || []).map((image) => ({
-    //     url: image.src,
-    //     name: image.alt,
-    //     size: image.id
-    // }))
+import { PlusIcon } from "lucide-react";
 
+export function BlogCreate(): JSX.Element {
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
     const [formData, setFormData] = useState({
-        name: product.name,
-        category: product.category,
-        postBy: product.postBy,
-        role: product.role,
-        description: product.description
+        name: "",
+        postBy: "",
+        role: "",
+        category: "",
+        dateAdded: "",
+        description: ""
     });
 
     const handleFileChange = (
@@ -41,14 +36,12 @@ export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
                 name: file.name,
                 size: file.size
             }));
-            setUploadedFiles((prev) => [...(prev ?? []), ...fileData]);
+            setUploadedFiles((prev) => [...prev, ...fileData]);
         }
     };
 
     const handleRemoveFile = (index: number): void => {
-        const updatedFiles = (uploadedFiles ?? []).filter(
-            (_, i) => i !== index
-        );
+        const updatedFiles = uploadedFiles.filter((_, i) => i !== index);
         setUploadedFiles(updatedFiles);
     };
 
@@ -68,7 +61,9 @@ export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm cursor-pointer" />
+                <Button className=" text-gray-600" variant="outline">
+                    <PlusIcon /> Add New
+                </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[600px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
@@ -83,14 +78,13 @@ export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
                 />
 
                 <FileUpload
-                    uploadedFiles={uploadedFiles ?? []}
+                    uploadedFiles={uploadedFiles}
                     onFileChange={handleFileChange}
                     onRemoveFile={handleRemoveFile}
                 />
-
                 <DialogFooter>
                     <Button type="button" onClick={handleSubmit}>
-                        Update
+                        Create
                     </Button>
                 </DialogFooter>
             </DialogContent>

@@ -17,7 +17,7 @@ export function BlogDetails({ product }: { product: BlogTypes }): JSX.Element {
             <div className="flex gap-x-5">
                 <InputField
                     id="postBy"
-                    label="postBy"
+                    label="Post by"
                     value={`${product.postBy}`}
                 />
                 <InputField id="role" label="role" value={`${product.role}`} />
