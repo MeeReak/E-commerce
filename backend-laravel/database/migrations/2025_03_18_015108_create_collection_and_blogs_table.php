@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('user_register', 'id');
             $table->enum('tag', ['Healthy', 'Fitness', 'Lifestyle', 'Nutrition', 'Mental Health']);
             $table->json('good_points');
-            $table->foreignId('collection_id')->constrained('collections', 'id');
+            $table->foreignId('collection_id')->constrained('collections', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }

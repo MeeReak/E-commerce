@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/BlogController.php
-
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BlogResource;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthResource;
 use App\Models\Password_reset;
 use App\Models\User;
 use Carbon\Carbon;
@@ -27,15 +28,11 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password), // Use Hash::make instead of bcrypt
         ]);
-        // dd($user);
         $accessToken = $user->createToken('authToken')->plainTextToken;
 
-        return response()->json([
-            'message' => 'User registered successfully',
-            'user' => $user,
+        return new AuthResource($user)->additional([
             'access_token' => $accessToken,
-            'token_type' => 'Bearer',
-        ], 201);
+        ]);
     }
 
     public function sendResetLink(Request $request)

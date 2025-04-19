@@ -4,31 +4,24 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str; // Add this
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable; // Add HasApiTokens here
+    use HasApiTokens, Notifiable;
 
     protected $table = 'user_register';
 
-    protected $keyType = 'string';
-
-    public $incrementing = false;
-
     protected $fillable = [
-        'id',
-        'first_name',
-        'last_name',
         'name',
         'gender',
         'date_of_birth',
         'email',
-        'phone',
         'address',
+        'phone_number',
         'password',
         'email_verified_at',
+        'profile',
     ];
 
     protected $hidden = [
@@ -41,20 +34,14 @@ class User extends Authenticatable
         'date_of_birth' => 'date',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = Str::uuid()->toString();
-            }
-        });
-    }
-
     // Add this method to inform Sanctum of the tokenable ID type
     public function getKeyType()
     {
         return 'string'; // Ensure Sanctum knows the key is a string
+    }
+
+    public function billing_address()
+    {
+        return $this->hasOne(BillingAddress::class, 'user_id');
     }
 }
