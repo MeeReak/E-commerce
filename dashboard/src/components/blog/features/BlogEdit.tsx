@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -16,12 +17,13 @@ import { FileUpload, UploadedFile } from "../../FileUpload";
 import { BlogTypes } from "../types/Blog.types";
 import { BlogForm } from "./BlogForm";
 export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
-    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>();
-    // (product.images || []).map((image) => ({
-    //     url: image.src,
-    //     name: image.alt,
-    //     size: image.id
-    // }))
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
+        product.images.map((image) => ({
+            url: image.src,
+            name: image.alt,
+            size: image.id
+        }))
+    );
 
     const [formData, setFormData] = useState({
         name: product.name,
@@ -72,7 +74,9 @@ export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[600px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Blog</DialogTitle>
+                    <DialogTitle className=" text-yellow-500">
+                        Edit Blog
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -89,9 +93,14 @@ export function BlogEdit({ product }: { product: BlogTypes }): JSX.Element {
                 />
 
                 <DialogFooter>
-                    <Button type="button" onClick={handleSubmit}>
-                        Update
-                    </Button>
+                    <>
+                        <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Button type="button" onClick={handleSubmit}>
+                            Update
+                        </Button>
+                    </>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

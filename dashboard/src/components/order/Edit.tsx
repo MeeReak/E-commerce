@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,28 +23,28 @@ export function EditForm(): JSX.Element {
                 <DialogHeader>
                     <DialogTitle>
                         <div className=" flex items-center gap-x-5">
-                            <p className="text-gray-900 text-[20px] font-medium leading-[30px]">
+                            <span className="text-gray-900 text-[20px] font-medium leading-[30px]">
                                 #ORD-005
-                            </p>
+                            </span>
                             <div className=" flex items-center gap-x-2">
-                                <p className=" bg-green-500 text-white text-xs px-2 py-1 rounded-sm font-normal">
+                                <span className=" bg-green-500 text-white text-xs px-2 py-1 rounded-sm font-normal">
                                     Paid
-                                </p>
-                                <p className=" bg-none text-[#e8c141] border border-[#e8c141] text-xs px-2 py-1 rounded-sm font-medium">
+                                </span>
+                                <span className=" bg-none text-[#e8c141] border border-[#e8c141] text-xs px-2 py-1 rounded-sm font-medium">
                                     On the Way
-                                </p>
+                                </span>
                             </div>
                         </div>
                     </DialogTitle>
                     <DialogDescription>
                         <div className=" flex items-center gap-x-2">
-                            <p className="text-gray-700 text-xs font-normal leading-[21px] ">
+                            <span className="text-gray-700 text-xs font-normal leading-[21px] ">
                                 April 24, 2021
-                            </p>
+                            </span>
                             <span className=" text-gray-700">•</span>
-                            <p className="text-gray-700 text-xs font-normal leading-[21px] ">
+                            <span className="text-gray-700 text-xs font-normal leading-[21px] ">
                                 5 Products
-                            </p>
+                            </span>
                         </div>
                     </DialogDescription>
                 </DialogHeader>

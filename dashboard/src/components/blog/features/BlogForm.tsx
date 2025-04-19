@@ -1,13 +1,12 @@
-// import { TrashIcon } from "lucide-react";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { SelectCategory } from "../components/SelectCategory";
+
 interface BlogFormProps {
     formData: {
         name?: string;
         postBy?: string;
-        role?: string;
         category?: string;
         description?: string;
     };
@@ -28,27 +27,18 @@ export function BlogForm({
 
     return (
         <div className="space-y-4">
+            <InputField
+                id="tile"
+                label="Title"
+                value={formData.name || ""}
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                className=" w-full"
+            />
             <div className="flex w-full gap-x-5 justify-between">
-                <InputField
-                    id="name"
-                    label="Name"
-                    value={formData.name || ""}
-                    onChange={(e) =>
-                        onInputChange(e.target.name, e.target.value)
-                    }
-                />
                 <InputField
                     id="postBy"
                     label="Post by"
                     value={formData.postBy || ""}
-                    onChange={(e) =>
-                        onInputChange(e.target.name, e.target.value)
-                    }
-                />
-                <InputField
-                    id="role"
-                    label="Role"
-                    value={formData.role || ""}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }

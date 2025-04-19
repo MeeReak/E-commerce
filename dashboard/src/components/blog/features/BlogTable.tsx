@@ -21,6 +21,28 @@ const blogData: BlogTypes[] = [
         id: "7f3aeb15-1d45-4e5d-9f8f-a8c5b7a4d02c",
         name: "Beef",
         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+        images: [
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+                id: 1,
+                alt: "Image 1"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
+                id: 2,
+                alt: "Image 2"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
+                id: 3,
+                alt: "Image 3"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
+                id: 4,
+                alt: "Image 4"
+            }
+        ],
         category: "Meat",
         postBy: "oengzhileang",
         role: "Admin",
@@ -32,6 +54,28 @@ const blogData: BlogTypes[] = [
         id: "7f3aeb15-1d45-4e5d-9f8f-a8c5b7a4d0si",
         name: "Apple",
         src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+        images: [
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-1.jpg",
+                id: 1,
+                alt: "Image 1"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-2.jpg",
+                id: 2,
+                alt: "Image 2"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-4.jpg",
+                id: 3,
+                alt: "Image 3"
+            },
+            {
+                src: "https://my-image-storage-bucket-1234.s3.us-east-1.amazonaws.com/Beef/beef-3.jpg",
+                id: 4,
+                alt: "Image 4"
+            }
+        ],
         category: "Fruits",
         postBy: "oengzhileang",
         role: "Admin",
@@ -61,8 +105,7 @@ export function BlogTable() {
             <TableHeader>
                 <TableRow>
                     <TableHead className="pl-5">No</TableHead>
-                    <TableHead>Image</TableHead>
-                    <TableHead>Name</TableHead>
+                    <TableHead>Title</TableHead>
                     <TableHead>Post by</TableHead>
                     <TableHead>Role</TableHead>
                     <TableHead>Category</TableHead>
@@ -74,15 +117,15 @@ export function BlogTable() {
                 {filtered.map((product, index) => (
                     <TableRow key={product.id}>
                         <TableCell className="pl-6">{index + 1}</TableCell>
-                        <TableCell>
+                        <TableCell className="flex items-center gap-x-2">
                             <Image
                                 src={product.src}
                                 alt={product.name}
                                 width={36}
                                 height={36}
                             />
+                            {product.name}
                         </TableCell>
-                        <TableCell>{product.name}</TableCell>
                         <TableCell>{product.postBy}</TableCell>
                         <TableCell>{product.role}</TableCell>
                         <TableCell>{product.category}</TableCell>

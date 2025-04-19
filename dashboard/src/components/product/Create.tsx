@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -95,6 +96,9 @@ export function DialogDemo(): JSX.Element {
                 />
 
                 <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DialogClose>
                     <Button type="button" onClick={handleSubmit}>
                         Create
                     </Button>

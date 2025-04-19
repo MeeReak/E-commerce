@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
-import { BlogHeader } from "@/components/blog/features/BlogHeader";
 import { BlogTable } from "@/components/blog/features";
+import { Header } from "@/components/Header";
 export default async function page() {
     return (
         <Suspense>
-            <BlogHeader showAddButton enableSearch title="Blogs" />
+            <Header title="Blogs" showAddButton enableSearch blog />
             <div className="flex items-center mx-5">
                 <BlogTable />
             </div>
