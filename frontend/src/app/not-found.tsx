@@ -1,17 +1,10 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
     <div className="flex flex-col items-center py-10 justify-center">
-      <Image
-        className="w-[590px] h-[360px]"
-        src={"/svg/not-found.svg"}
-        alt={"wellness-not-found"}
-        width={20}
-        height={20}
-      />
+      <span className=" four_zero_four_bg"></span>
       <h1 className="text-gray-900 text-center text-4xl font-semibold leading-[48px]">
         Oops! Looks like this page is lost.
       </h1>

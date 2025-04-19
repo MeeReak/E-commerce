@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -12,7 +13,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { FileUpload, UploadedFile } from "../FileUpload";
-import { ProductDetails } from "./ProductForm";
+import { ProductDetails } from "./Detail";
 import { PlusIcon } from "lucide-react";
 
 export function DialogDemo(): JSX.Element {
@@ -65,16 +66,20 @@ export function DialogDemo(): JSX.Element {
         console.log("Uploaded Files:", uploadedFiles);
     };
 
+    console.log(formData.category);
+
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <Button className=" text-gray-600" variant="outline">
-                    <PlusIcon /> Add New
+                    <PlusIcon /> Create
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Product</DialogTitle>
+                    <DialogTitle className=" text-green-500">
+                        Create Product
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -91,6 +96,9 @@ export function DialogDemo(): JSX.Element {
                 />
 
                 <DialogFooter>
+                    <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DialogClose>
                     <Button type="button" onClick={handleSubmit}>
                         Create
                     </Button>

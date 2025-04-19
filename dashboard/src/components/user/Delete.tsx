@@ -30,8 +30,8 @@ export function AlertDialogDemo() {
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently
                         delete
-                        <strong className=" mx-2 text-red-600">John Doe</strong>
-                        from your product.
+                        <strong className=" ml-2 text-red-600">John Doe</strong>
+                        .
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

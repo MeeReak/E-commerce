@@ -46,15 +46,15 @@ const TopProducts = () => {
     ];
 
     return (
-        <Card className="w-full bg-black border-gray-800 h-full">
+        <Card className="w-full bg-[#ffffff] shadow-sm h-full">
             <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                    <CardTitle className="text-white text-xl">
+                    <CardTitle className="text-gray-600 text-xl">
                         Top Products
                     </CardTitle>
                     <Link
                         href={"/product"}
-                        className="text-sm text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-black"
                     >
                         See more
                     </Link>
@@ -65,7 +65,7 @@ const TopProducts = () => {
                     {products.map((product, index) => (
                         <div
                             key={index}
-                            className="flex items-center justify-between"
+                            className="flex items-center justify-between "
                         >
                             <div className="flex items-center space-x-4">
                                 <div className="h-12 w-12 rounded-md bg-gray-800 overflow-hidden">
@@ -76,7 +76,7 @@ const TopProducts = () => {
                                     />
                                 </div>
                                 <div>
-                                    <p className="font-medium text-white">
+                                    <p className="font-medium text-gray-600">
                                         {product.name}
                                     </p>
                                     <p className="text-sm text-gray-400">

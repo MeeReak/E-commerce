@@ -48,15 +48,15 @@ const BlogPosts = () => {
     ];
 
     return (
-        <Card className="w-full bg-black border-gray-800 h-full">
+        <Card className="w-full bg-[#ffffff] shadow-sm h-full">
             <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                    <CardTitle className="text-white text-xl">
+                    <CardTitle className="text-gray-400 text-xl">
                         Latest Blog Posts
                     </CardTitle>
                     <Link
                         href={"/blog"}
-                        className="text-sm text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-black"
                     >
                         See more
                     </Link>
@@ -66,7 +66,7 @@ const BlogPosts = () => {
                 <div className="space-y-6 mt-2">
                     {posts.map((post, index) => (
                         <div key={index} className="space-y-2">
-                            <h3 className="font-medium text-white">
+                            <h3 className="font-medium text-gray-600">
                                 {post.title}
                             </h3>
                             {/* <p className="text-sm text-gray-400 line-clamp-2">
@@ -87,16 +87,20 @@ const BlogPosts = () => {
                                 </div>
 
                                 <div className="flex items-center text-xs text-gray-400">
-                                    <CalendarIcon className="h-3 w-3 mr-1" />
-                                    <span>{post.date}</span>
+                                    <CalendarIcon className="h-3 w-3 mr-1 text-green-500" />
+                                    <span className=" text-green-500">
+                                        {post.date}
+                                    </span>
                                     <span className="mx-2">•</span>
-                                    <span>{post.readTime}</span>
+                                    <span className=" text-red-400">
+                                        {post.readTime}
+                                    </span>
                                 </div>
                             </div>
 
                             {index < posts.length - 1 && (
                                 <div className="pt-1">
-                                    <div className="border-t border-gray-800"></div>
+                                    <div className="border-t"></div>
                                 </div>
                             )}
                         </div>

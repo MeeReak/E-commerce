@@ -11,9 +11,9 @@ import {
     TableRow
 } from "@/components/ui/table";
 import { useSearchParams } from "next/navigation";
-import { AlertDialogDemo } from "./Confirm";
-import { DialogDemo } from "./DisplayForm";
-import { EditForm } from "./EditForm";
+import { AlertDialogDemo } from "./Delete";
+import { DialogDemo } from "./View";
+import { EditForm } from "./Edit";
 
 export const Orders = [
     {

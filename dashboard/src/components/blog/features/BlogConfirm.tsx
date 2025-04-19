@@ -16,7 +16,7 @@ interface AlertDialogDemoProps {
     // onDelete: () => void; // Callback for delete action
 }
 
-export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
+export function BlogConfirmDialog({ itemName }: AlertDialogDemoProps) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -33,7 +33,7 @@ export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
                         <strong className=" mx-2 text-red-600">
                             {itemName}
                         </strong>
-                        from your order.
+                        from your product.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

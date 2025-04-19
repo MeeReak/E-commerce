@@ -11,7 +11,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import { EyeIcon } from "lucide-react";
-import { UserDetail } from "./UserDetail";
+import { UserDetail } from "./Detail";
 // import { UserDetail } from "./UserDetail";
 
 export function DialogDemo(): JSX.Element {

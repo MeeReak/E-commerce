@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { AlertDialogDemo } from "./Confirm";
-import { DialogDemo } from "./DisplayForm";
-import { EditForm } from "./EditForm";
+import { AlertDialogDemo } from "./Delete";
+import { DialogDemo } from "./View";
+import { EditForm } from "./Edit";
 
 export const Product = [
     {
@@ -543,32 +543,37 @@ export function TableDemo() {
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead className=" pl-5">No</TableHead>
-                    <TableHead>Image</TableHead>
+                    <TableHead className=" pl-10">No</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Price</TableHead>
+                    <TableHead>Discount</TableHead>
                     <TableHead>Quantity</TableHead>
                     <TableHead>Category</TableHead>
+                    <TableHead>Date of Expired</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {filtered.map((product, index) => (
                     <TableRow key={product.id}>
-                        <TableCell className=" pl-6">{index + 1}</TableCell>
-                        <TableCell>
+                        <TableCell className=" pl-11">{index + 1}</TableCell>
+                        <TableCell className=" flex items-center gap-x-5 ">
                             <Image
                                 src={product.src}
                                 alt={product.name}
                                 width={36}
                                 height={36}
                             />
+                            {product.name}
                         </TableCell>
-                        <TableCell>{product.name}</TableCell>
+                        <TableCell className=" pl-2">
+                            {product.price.toFixed(2)}$
+                        </TableCell>
                         <TableCell className=" pl-2">
                             {product.price.toFixed(2)}$
                         </TableCell>
                         <TableCell className=" pl-8">{product.gty}</TableCell>
+                        <TableCell>{product.category}</TableCell>
                         <TableCell>{product.category}</TableCell>
                         <TableCell>
                             <div className=" flex items-center gap-x-2">

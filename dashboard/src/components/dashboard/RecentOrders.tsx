@@ -64,15 +64,15 @@ const RecentOrders = () => {
     };
 
     return (
-        <Card className=" w-[35%] bg-black border-gray-800">
+        <Card className=" w-[35%] bg-[#ffffff] shadow-sm">
             <CardHeader className="pb-2">
                 <div className=" flex items-center justify-between">
-                    <CardTitle className="text-white text-xl">
+                    <CardTitle className="text-gray-400 text-xl">
                         Recent Orders
                     </CardTitle>
                     <Link
                         href={"/order"}
-                        className="text-sm text-gray-400 hover:text-white"
+                        className="text-sm text-gray-400 hover:text-black"
                     >
                         See more
                     </Link>
@@ -83,7 +83,7 @@ const RecentOrders = () => {
                     {orders.map((order) => (
                         <div
                             key={order.id}
-                            className="flex items-start justify-between gap-x-[80px] bg-gray-900/50 px-2 py-4 rounded-lg"
+                            className="flex items-start justify-between gap-x-[80px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] px-2 py-4 rounded-lg"
                         >
                             <div className="flex items-center space-x-4">
                                 <Avatar className="h-10 w-10 rounded-md bg-gray-800">
@@ -93,7 +93,7 @@ const RecentOrders = () => {
                                     />
                                 </Avatar>
                                 <div>
-                                    <p className="text-sm font-medium text-white">
+                                    <p className="text-sm font-medium text-gray-500">
                                         {order.customer}
                                     </p>
                                     <div className="flex items-center">
@@ -114,8 +114,8 @@ const RecentOrders = () => {
                                     className={`${getStatusStyle(order.status)} font-normal`}
                                 >
                                     {order.status}
-                                </Badge>{" "}
-                                <p className="text-sm font-medium text-white">
+                                </Badge>
+                                <p className="text-sm font-medium text-gray-600">
                                     {order.amount}
                                 </p>
                             </div>

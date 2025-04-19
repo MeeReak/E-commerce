@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -11,33 +12,20 @@ import {
     DialogTitle,
     DialogTrigger
 } from "@/components/ui/dialog";
-import { EditIcon } from "lucide-react";
-import { FileUpload, UploadedFile } from "../FileUpload";
-import { Product } from "./ProductDetail";
-import { ProductDetails } from "./ProductForm";
+import { FileUpload, UploadedFile } from "@/components/FileUpload";
+import { BlogForm } from "./BlogForm";
+import { PlusIcon } from "lucide-react";
+import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 
-export function EditForm({ product }: { product: Product }): JSX.Element {
-    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
-        product.images.map((image) => ({
-            url: image.src,
-            name: image.alt,
-            size: image.id
-        }))
-    );
+export function BlogCreate(): JSX.Element {
+    const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
     const [formData, setFormData] = useState({
-        name: product.name,
-        sku: product.sku,
-        category: product.category,
-        price: product.price,
-        quantity: product.gty,
-        discount: product.discount,
-        brand: product.brand,
-        type: product.type,
-        weight: "",
-        color: "",
-        note: product.note,
-        description: product.description,
-        goodPoints: product.keyPoints
+        name: "",
+        postBy: "",
+        role: "",
+        category: "",
+        dateAdded: "",
+        description: ""
     });
 
     const handleFileChange = (
@@ -75,15 +63,19 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <EditIcon className=" stroke-[1.5px] p-1 bg-yellow-100 text-yellow-600 rounded-sm" />
+                <Button className=" text-gray-600" variant="outline">
+                    <PlusIcon /> Create
+                </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
+            <DialogContent className="sm:max-w-[750px] h-[600px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle>New Product</DialogTitle>
+                    <DialogTitle className=" text-green-500">
+                        Create Blog
+                    </DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
-                <ProductDetails
+                <BlogForm
                     handleSelectChange={handleSelectChange}
                     formData={formData}
                     onInputChange={handleInputChange}
@@ -94,11 +86,15 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
                     onFileChange={handleFileChange}
                     onRemoveFile={handleRemoveFile}
                 />
-
                 <DialogFooter>
-                    <Button type="button" onClick={handleSubmit}>
-                        Update
-                    </Button>
+                    <>
+                        <DialogClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DialogClose>
+                        <Button type="button" onClick={handleSubmit}>
+                            Create
+                        </Button>
+                    </>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
