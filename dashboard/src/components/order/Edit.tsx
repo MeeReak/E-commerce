@@ -36,17 +36,7 @@ export function EditForm(): JSX.Element {
                             </div>
                         </div>
                     </DialogTitle>
-                    <DialogDescription>
-                        <div className=" flex items-center gap-x-2">
-                            <span className="text-gray-700 text-xs font-normal leading-[21px] ">
-                                April 24, 2021
-                            </span>
-                            <span className=" text-gray-700">•</span>
-                            <span className="text-gray-700 text-xs font-normal leading-[21px] ">
-                                5 Products
-                            </span>
-                        </div>
-                    </DialogDescription>
+                    <DialogDescription></DialogDescription>
                 </DialogHeader>
                 <Process />
                 <DialogFooter>

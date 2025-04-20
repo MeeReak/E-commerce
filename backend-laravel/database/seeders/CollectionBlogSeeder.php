@@ -6,7 +6,6 @@ use App\Models\Blog;
 use App\Models\Collection;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class CollectionBlogSeeder extends Seeder
 {
@@ -36,7 +35,6 @@ class CollectionBlogSeeder extends Seeder
                 'email' => 'customer@example.com', // Unique field to check existence
             ],
             [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
                 'first_name' => 'John',
                 'last_name' => 'Doe',
                 'name' => 'John Doe',
@@ -53,7 +51,6 @@ class CollectionBlogSeeder extends Seeder
         // Seed Blogs
         $blogs = [
             [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
                 'user_id' => $user->id,
                 'name' => 'Top 10 Healthy Foods',
                 'images' => ['https://example.com/healthy1.jpg'],
@@ -65,7 +62,6 @@ class CollectionBlogSeeder extends Seeder
                 'user_id' => $user->id,
             ],
             [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
                 'user_id' => $user->id,
                 'name' => 'Beginner Workout Routine',
                 'images' => ['https://example.com/fitness1.jpg'],
@@ -77,7 +73,6 @@ class CollectionBlogSeeder extends Seeder
                 'user_id' => $user->id,
             ],
             [
-                'id' => Str::uuid()->toString(), // Explicitly set UUID
                 'user_id' => $user->id,
                 'name' => 'Minimalist Living Tips',
                 'images' => ['https://example.com/lifestyle1.jpg'],

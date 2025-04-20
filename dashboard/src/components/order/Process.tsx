@@ -43,7 +43,17 @@ export const Process = () => {
     return (
         <>
             <div className=" px-5 py-3 h-[150px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm">
-                <h2 className=" text-base">Process</h2>
+                <div className=" flex items-center gap-x-2 ">
+                    <h2 className=" text-base text-gray-800">Process</h2>
+                    <span className=" text-gray-400">•</span>
+                    <span className="text-gray-500 text-xs font-normal leading-[21px] ">
+                        April 24, 2021
+                    </span>
+                    <span className=" text-gray-400">•</span>
+                    <span className="text-gray-500 text-xs font-normal leading-[21px] ">
+                        5 Products
+                    </span>
+                </div>
                 <div className="flex w-full gap-x-8 justify-center relative pt-9">
                     <Tracker status={status?.totalAmount} />
                     <div className="absolute flex justify-between w-[100%] top-5">

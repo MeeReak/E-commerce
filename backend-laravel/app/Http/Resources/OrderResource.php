@@ -10,7 +10,7 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user' => UserResource::make($this->whenLoaded('user')),
+            'user' => AuthResource::make($this->whenLoaded('user')),
             'total' => number_format($this->total, 2),
             'status' => $this->status,
             'items' => OrderItemResource::collection($this->whenLoaded('items')),
