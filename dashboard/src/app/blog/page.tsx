@@ -5,7 +5,7 @@ export default async function page() {
     return (
         <Suspense>
             <Header title="Blogs" showAddButton enableSearch blog />
-            <div className="flex items-center mx-5">
+            <div className="flex items-center ">
                 <BlogTable />
             </div>
         </Suspense>
