@@ -6,12 +6,10 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of products.
-     */
     public function index()
     {
         try {
@@ -19,20 +17,10 @@ class ProductController extends Controller
 
             return ProductResource::collection($products);
         } catch (\Exception $e) {
-            Log::error('Error fetching products: '.$e->getMessage(), [
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch products: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('fetching products', $e);
         }
     }
 
-    /**
-     * Display a specific product.
-     */
     public function show(Product $product)
     {
         try {
@@ -40,46 +28,19 @@ class ProductController extends Controller
 
             return new ProductResource($product);
         } catch (\Exception $e) {
-            Log::error('Error fetching product: '.$e->getMessage(), [
-                'product_id' => $product->id,
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch product: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('fetching product', $e, ['product_id' => $product->id]);
         }
     }
 
-    /**
-     * Store a newly created product.
-     */
     public function store(Request $request)
     {
         try {
+            $validated = $this->validateProduct($request);
 
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'images' => 'required|array',
-                'images.*' => 'string',
-                'sku' => 'required|string|unique:products,sku',
-                'price' => 'required|numeric|min:0',
-                'quantity' => 'required|integer|min:0',
-                'discount' => 'nullable|numeric|min:0|max:100',
-                'type' => 'required|in:perishable,non-perishable',
-                'color' => 'required|string|max:255',
-                'noted' => 'nullable|string',
-                'good_points' => 'required|array',
-                'good_points.*' => 'string',
-                'description' => 'required|string',
-                'weight' => 'required|numeric|min:0',
-                'category_id' => 'required|exists:categories,id',
-            ]);
-
+            $validated['images'] = $this->uploadImages($request);
             $validated['user_id'] = auth()->id();
 
-            Log::info('Creating product with validated data:', $validated);
+            Log::info('Creating product', $validated);
 
             $product = Product::create($validated);
 
@@ -89,54 +50,26 @@ class ProductController extends Controller
 
             $product->load('category');
 
-            return (new ProductResource($product))
-                ->response()
-                ->setStatusCode(201);
+            return (new ProductResource($product))->response()->setStatusCode(201);
         } catch (\Exception $e) {
-            Log::error('Error creating product: '.$e->getMessage(), [
-                'request' => $request->all(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to create product: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('creating product', $e);
         }
     }
 
-    /**
-     * Update an existing product.
-     */
     public function update(Request $request, Product $product)
     {
         try {
-            $validated = $request->validate([
-                'name' => 'sometimes|string|max:255',
-                'images' => 'sometimes|array',
-                'images.*' => 'string',
-                'sku' => 'sometimes|string|unique:products,sku,'.$product->id,
-                'price' => 'sometimes|numeric|min:0',
-                'quantity' => 'sometimes|integer|min:0',
-                'discount' => 'sometimes|numeric|min:0|max:100',
-                'type' => 'sometimes|in:perishable,non-perishable',
-                'color' => 'sometimes|string|max:255',
-                'noted' => 'sometimes|nullable|string',
-                'goodpoints' => 'sometimes|array',
-                'goodpoints.*' => 'string',
-                'description' => 'sometimes|string',
-                'weight' => 'sometimes|numeric|min:0',
-                'category_id' => 'sometimes|exists:categories,id',
-            ]);
+            $validated = $this->validateProduct($request, $product);
 
-            Log::info('Updating product with validated data:', [
+            $this->deleteImages($product->images);
+            $validated['images'] = $this->uploadImages($request);
+
+            Log::info('Updating product', [
                 'product_id' => $product->id,
                 'data' => $validated,
             ]);
 
-            $updated = $product->update($validated);
-
-            if (! $updated) {
+            if (! $product->update($validated)) {
                 throw new \Exception('Product update failed.');
             }
 
@@ -144,43 +77,99 @@ class ProductController extends Controller
 
             return new ProductResource($product);
         } catch (\Exception $e) {
-            Log::error('Error updating product: '.$e->getMessage(), [
-                'product_id' => $product->id,
-                'request' => $request->all(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to update product: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('updating product', $e, ['product_id' => $product->id]);
         }
     }
 
-    /**
-     * Remove a product.
-     */
     public function destroy(Product $product)
     {
         try {
-            Log::info('Deleting product:', ['product_id' => $product->id]);
-
+            $this->deleteImages($product->images);
             $product->delete();
+
+            Log::info('Deleted product', ['product_id' => $product->id]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Product deleted successfully',
-            ], 200); // Changed from 204 to 200 for consistency with JSON response
-        } catch (\Exception $e) {
-            Log::error('Error deleting product: '.$e->getMessage(), [
-                'product_id' => $product->id,
-                'trace' => $e->getTraceAsString(),
             ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete product: '.$e->getMessage(),
-            ], 500);
+        } catch (\Exception $e) {
+            return $this->handleException('deleting product', $e, ['product_id' => $product->id]);
         }
+    }
+
+    /**
+     * Validate incoming request for storing/updating product.
+     */
+    private function validateProduct(Request $request, ?Product $product = null): array
+    {
+        $rules = [
+            'name' => 'sometimes|required|string|max:255',
+            'sku' => ['sometimes', 'required', 'string', 'unique:products,sku'.($product ? ','.$product->id : '')],
+            'price' => 'sometimes|required|numeric|min:0',
+            'quantity' => 'sometimes|required|integer|min:0',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'type' => 'sometimes|required|in:perishable,non-perishable',
+            'color' => 'sometimes|required|string|max:255',
+            'noted' => 'nullable|string',
+            'description' => 'sometimes|required|string',
+            'weight' => 'sometimes|required|numeric|min:0',
+            'category_id' => 'sometimes|required|exists:categories,id',
+            'images' => $product ? 'sometimes|array' : 'required|array',
+            'images.*' => 'file|image|max:5120',
+            'good_points' => 'sometimes|required|array',
+            'good_points.*' => 'string',
+        ];
+
+        return $request->validate($rules);
+    }
+
+    /**
+     * Upload images to S3 and return their URLs.
+     */
+    private function uploadImages(Request $request): array
+    {
+        $imagePaths = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('products', 's3');
+                $imagePaths[] = Storage::disk('s3')->url($path);
+            }
+        } else {
+            Log::warning('No image files found in request.');
+        }
+
+        return $imagePaths;
+    }
+
+    /**
+     * Delete images from S3.
+     */
+    private function deleteImages(?array $images): void
+    {
+        if (is_array($images)) {
+            foreach ($images as $url) {
+                $path = ltrim(parse_url($url, PHP_URL_PATH), '/');
+                if (Storage::disk('s3')->exists($path)) {
+                    Storage::disk('s3')->delete($path);
+                }
+            }
+        }
+    }
+
+    /**
+     * Centralized error handling and logging.
+     */
+    private function handleException(string $action, \Exception $e, array $context = [])
+    {
+        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
+            'trace' => $e->getTraceAsString(),
+        ]));
+
+        return response()->json([
+            'success' => false,
+            'message' => "Failed to {$action}: ".$e->getMessage(),
+        ], 500);
     }
 }
