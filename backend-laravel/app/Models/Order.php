@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    protected $fillable = ['total', 'status'];
+    protected $fillable = ['total', 'status', 'user_id', 'payment_status', 'payment_method'];
 
     public function items(): HasMany
     {

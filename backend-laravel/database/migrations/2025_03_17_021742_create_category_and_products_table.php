@@ -30,7 +30,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('weight', 8, 2);
             $table->foreignId('user_id')->constrained('user_register', 'id');
-            $table->foreignId('category_id')->constrained('categories', 'id');
+            $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }

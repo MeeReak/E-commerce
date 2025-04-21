@@ -1,13 +1,12 @@
 <?php
 
-// app/Http/Controllers/BlogController.php
-
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -18,14 +17,7 @@ class BlogController extends Controller
 
             return BlogResource::collection($blogs);
         } catch (\Exception $e) {
-            Log::error('Error fetching blogs: '.$e->getMessage(), [
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch blogs: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('fetching blogs', $e);
         }
     }
 
@@ -36,37 +28,19 @@ class BlogController extends Controller
 
             return new BlogResource($blog);
         } catch (\Exception $e) {
-            Log::error('Error fetching blog: '.$e->getMessage(), [
-                'blog_id' => $blog->id,
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to fetch blog: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('fetching blog', $e, ['blog_id' => $blog->id]);
         }
     }
 
     public function store(Request $request)
     {
         try {
+            $validated = $this->validateBlog($request);
 
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'images' => 'required|array',
-                'images.*' => 'string',
-                'date' => 'required|date',
-                'post_by' => 'required|string|max:255',
-                'tag' => 'required|in:Healthy,Fitness,Lifestyle,Nutrition,Mental Health',
-                'goodpoints' => 'required|array',
-                'goodpoints.*' => 'string',
-                'collection_id' => 'required|uuid|exists:collections,id',
-            ]);
-
-            Log::info('Creating blog with validated data:', $validated);
-
+            $validated['images'] = $this->uploadImages($request);
             $validated['user_id'] = auth()->id();
+
+            Log::info('Creating blog', $validated);
 
             $blog = Blog::create($validated);
 
@@ -76,45 +50,26 @@ class BlogController extends Controller
 
             $blog->load('collection');
 
-            return (new BlogResource($blog))
-                ->response()
-                ->setStatusCode(201);
+            return (new BlogResource($blog))->response()->setStatusCode(201);
         } catch (\Exception $e) {
-            Log::error('Error creating blog: '.$e->getMessage(), [
-                'request' => $request->all(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to create blog: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('creating blog', $e);
         }
     }
 
     public function update(Request $request, Blog $blog)
     {
         try {
-            $validated = $request->validate([
-                'name' => 'sometimes|string|max:255',
-                'images' => 'sometimes|array',
-                'images.*' => 'string',
-                'date' => 'sometimes|date',
-                'post_by' => 'sometimes|string|max:255',
-                'tag' => 'sometimes|in:Healthy,Fitness,Lifestyle,Nutrition,Mental Health',
-                'goodpoints' => 'sometimes|array',
-                'goodpoints.*' => 'string',
-                'collection_id' => 'sometimes|uuid|exists:collections,id',
-            ]);
+            $validated = $this->validateBlog($request, $blog);
 
-            Log::info('Updating blog with validated data:', [
+            $this->deleteImages($blog->images ?? []);
+            $validated['images'] = $this->uploadImages($request);
+
+            Log::info('Updating blog', [
                 'blog_id' => $blog->id,
                 'data' => $validated,
             ]);
 
-            $updated = $blog->update($validated);
-
-            if (! $updated) {
+            if (! $blog->update($validated)) {
                 throw new \Exception('Blog update failed.');
             }
 
@@ -122,40 +77,76 @@ class BlogController extends Controller
 
             return new BlogResource($blog);
         } catch (\Exception $e) {
-            Log::error('Error updating blog: '.$e->getMessage(), [
-                'blog_id' => $blog->id,
-                'request' => $request->all(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to update blog: '.$e->getMessage(),
-            ], 500);
+            return $this->handleException('updating blog', $e, ['blog_id' => $blog->id]);
         }
     }
 
     public function destroy(Blog $blog)
     {
         try {
-            Log::info('Deleting blog:', ['blog_id' => $blog->id]);
-
+            $this->deleteImages($blog->images);
             $blog->delete();
+
+            Log::info('Deleted blog', ['blog_id' => $blog->id]);
 
             return response()->json([
                 'success' => true,
                 'message' => 'Blog deleted successfully',
-            ], 200);
-        } catch (\Exception $e) {
-            Log::error('Error deleting blog: '.$e->getMessage(), [
-                'blog_id' => $blog->id,
-                'trace' => $e->getTraceAsString(),
             ]);
-
-            return response()->json([
-                'success' => false,
-                'message' => 'Failed to delete blog: '.$e->getMessage(),
-            ], 500);
+        } catch (\Exception $e) {
+            return $this->handleException('deleting blog', $e, ['blog_id' => $blog->id]);
         }
+    }
+
+    private function validateBlog(Request $request, ?Blog $blog = null): array
+    {
+        return $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'images' => $blog ? 'sometimes|array' : 'required|array',
+            'images.*' => 'file|image|max:5120',
+            'description' => 'sometimes|required|array',
+            'description.*' => 'string',
+            'collection_id' => 'sometimes|required|exists:collections,id',
+        ]);
+    }
+
+    private function uploadImages(Request $request): array
+    {
+        $imagePaths = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('blogs', 's3');
+                $imagePaths[] = Storage::disk('s3')->url($path);
+            }
+        } else {
+            Log::warning('No image files found in blog request.');
+        }
+
+        return $imagePaths;
+    }
+
+    private function deleteImages(?array $images): void
+    {
+        if (is_array($images)) {
+            foreach ($images as $url) {
+                $path = ltrim(parse_url($url, PHP_URL_PATH), '/');
+                if (Storage::disk('s3')->exists($path)) {
+                    Storage::disk('s3')->delete($path);
+                }
+            }
+        }
+    }
+
+    private function handleException(string $action, \Exception $e, array $context = [])
+    {
+        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
+            'trace' => $e->getTraceAsString(),
+        ]));
+
+        return response()->json([
+            'success' => false,
+            'message' => "Failed to {$action}: ".$e->getMessage(),
+        ], 500);
     }
 }

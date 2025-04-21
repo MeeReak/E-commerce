@@ -56,28 +56,13 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         try {
-            $validated = $request->validate([
-                'total' => 'required|numeric|min:0',
-                'items' => 'required|array',
-                'items.*.product_id' => 'required|exists:products,id',
-                'items.*.quantity' => 'required|integer|min:1',
-                'items.*.price' => 'required|numeric|min:0',
-            ]);
-
-            Log::info('Creating order with validated data:', $validated);
 
             $order = Order::create([
-                'total' => $validated['total'],
+                'user_id' => auth()->id(),
+                'total' => 0,
                 'status' => 'pending',
+                'payment_status' => 'unpaid',
             ]);
-
-            foreach ($validated['items'] as $item) {
-                $order->items()->create([
-                    'product_id' => $item['product_id'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                ]);
-            }
 
             if (! $order->exists) {
                 throw new \Exception('Order was not saved to the database.');
@@ -109,6 +94,8 @@ class OrderController extends Controller
         try {
             $validated = $request->validate([
                 'status' => 'sometimes|in:pending,processing,shipped,delivered,cancelled',
+                'payment_status' => 'sometimes|in:paid,unpaid,refund',
+                'payment_method' => 'sometimes|string|max:255',
             ]);
 
             Log::info('Updating order with validated data:', [
@@ -178,26 +165,22 @@ class OrderController extends Controller
                 'price' => 'required|numeric|min:0',
             ]);
 
-            Log::info('Adding item to order:', [
-                'order_id' => $order->id,
-                'data' => $validated,
-            ]);
+            $item = $order->items()->where('product_id', $validated['product_id'])->first();
 
-            $item = $order->items()->create([
-                'product_id' => $validated['product_id'],
-                'quantity' => $validated['quantity'],
-                'price' => $validated['price'],
-            ]);
+            if ($item) {
+                $item->quantity += $validated['quantity'];
+                $item->save();
+            } else {
+                $order->items()->create($validated);
+            }
 
-            // Recalculate and update the order total
-            $order->total = $order->items()->sum(\DB::raw('quantity * price'));
-            $order->save();
+            // Recalculate order total
+            $total = $order->items()->sum(\DB::raw('quantity * price'));
+            $order->update(['total' => $total]);
 
             $order->load('items.product');
 
-            return (new OrderResource($order))
-                ->response()
-                ->setStatusCode(201);
+            return new OrderResource($order);
         } catch (\Exception $e) {
             Log::error('Error adding item to order: '.$e->getMessage(), [
                 'order_id' => $order->id,
@@ -218,18 +201,12 @@ class OrderController extends Controller
     public function removeItem(Order $order, $itemId)
     {
         try {
-            $item = $order->items()->where('id', $itemId)->firstOrFail();
-
-            Log::info('Removing item from order:', [
-                'order_id' => $order->id,
-                'item_id' => $itemId,
-            ]);
-
+            $item = $order->items()->findOrFail($itemId);
             $item->delete();
 
-            // Recalculate and update the order total
-            $order->total = $order->items()->sum(\DB::raw('quantity * price'));
-            $order->save();
+            // Recalculate order total
+            $total = $order->items()->sum(\DB::raw('quantity * price'));
+            $order->update(['total' => $total]);
 
             $order->load('items.product');
 

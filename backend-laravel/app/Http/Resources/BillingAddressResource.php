@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class BillingAddressResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,18 +14,15 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // return parent::toArray($request);
         return [
-            'id' => $this->id,
             'name' => $this->name,
+            'village' => $this->village,
+            'sangkat' => $this->sangkat,
+            'district' => $this->district,
+            'state' => $this->state,
             'email' => $this->email,
             'phone_number' => $this->phone_number,
-            'gender' => $this->gender,
-            'date_of_birth' => $this->date_of_birth,
-            'address' => $this->address,
-            'profile' => $this->profile,
-            'billing_address' => new BillingAddressResource($this->whenLoaded('billing_address')),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }
