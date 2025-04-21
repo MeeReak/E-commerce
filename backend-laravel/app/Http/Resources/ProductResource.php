@@ -25,10 +25,11 @@ class ProductResource extends JsonResource
             'type' => $this->type,
             'color' => $this->color,
             'noted' => $this->noted,
-            'good_points' => $this->goodpoints,
+            'good_points' => $this->good_points,
             'description' => $this->description,
             'user_id' => $this->user_id,
             'weight' => $this->weight,
+            'images' => $this->images,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'created_at' => $this->created_at->toDateTimeString(),
         ];

@@ -6,6 +6,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -62,12 +63,17 @@ class UserController extends Controller
             'date_of_birth' => 'sometimes|date',
             'phone_number' => 'sometimes|string|max:20',
             'address' => 'sometimes|string|max:255',
+            'profiles' => 'sometimes|file|max:5120',
         ]);
 
         if ($request->filled('password')) {
             $request->merge(['password' => Hash::make($request->password)]);
         }
 
+        if ($request->hasFile('profiles')) {
+            $path = $request->file('profiles')->store('users', 's3');
+            $request->merge(['profile' => Storage::disk('s3')->url($path)]);
+        }
         $user->update($request->except(['password_confirmation']));
 
         return new UserResource($user);

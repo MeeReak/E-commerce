@@ -10,14 +10,12 @@ class Blog extends Model
     protected $table = 'blogs';
 
     protected $fillable = [
-        'name', 'images', 'date', 'post_by', 'tag', 'good_points', 'collection_id', 'user_id',
+        'name', 'images', 'collection_id', 'user_id', 'description',
     ];
 
     protected $casts = [
         'images' => 'array',      // Cast JSON to array
-        'good_points' => 'array',  // Cast JSON to array
-        'date' => 'date',         // Cast date to Carbon instance
-        'tag' => 'string',        // Ensure enum is cast as string
+        'description' => 'array', // Cast JSON to array
     ];
 
     public function collection(): BelongsTo

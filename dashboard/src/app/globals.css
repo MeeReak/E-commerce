@@ -79,11 +79,3 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
 }
-
-.four_zero_four_bg {
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
