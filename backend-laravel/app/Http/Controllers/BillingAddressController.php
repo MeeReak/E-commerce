@@ -29,10 +29,13 @@ class BillingAddressController extends Controller
             'state' => 'required|string|max:255',
             'email' => 'required|email',
             'phone_number' => 'required|string|max:25',
+            'user_id' => 'sometimes',
         ]);
 
+        $userId = $request->user_id ?? auth()->id();
+
         $billing = BillingAddress::updateOrCreate(
-            ['user_id' => auth()->id()],
+            ['user_id' => $userId],
             [
                 'name' => $request->name,
                 'village' => $request->village,
@@ -64,6 +67,7 @@ class BillingAddressController extends Controller
             'email' => 'sometimes|email',
             'phone_number' => 'sometimes|string|max:25',
         ]);
+        $request['updated_at'] = now();
 
         $billing->update($request->all());
 

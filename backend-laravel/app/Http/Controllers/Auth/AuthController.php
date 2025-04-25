@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuthResource;
+use App\Models\BillingAddress;
 use App\Models\Password_reset;
 use App\Models\User;
 use Carbon\Carbon;
@@ -17,18 +18,26 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:user_register,email', // Keep user_register table here
+            'email' => 'required|email|unique:users,email', // Keep users table here
             'password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::create([
-            'id' => Str::uuid()->toString(),
-            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Use Hash::make instead of bcrypt
         ]);
         $accessToken = $user->createToken('authToken')->plainTextToken;
+
+        BillingAddress::create([
+            'user_id' => $user->id,
+            'name' => "",
+            'village' => "",
+            'sangkat' => "",
+            'district' => "",
+            'state' => "",
+            'email' => "",
+            'phone_number' => "",
+        ]);
 
         return new AuthResource($user)->additional([
             'access_token' => $accessToken,
@@ -37,7 +46,7 @@ class AuthController extends Controller
 
     public function sendResetLink(Request $request)
     {
-        $request->validate(['email' => 'required|email|exists:user_register,email']); // Keep user_register table here
+        $request->validate(['email' => 'required|email|exists:users,email']); // Keep users table here
 
         $user = User::where('email', $request->email)->first();
 

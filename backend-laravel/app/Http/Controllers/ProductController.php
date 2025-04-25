@@ -61,8 +61,19 @@ class ProductController extends Controller
         try {
             $validated = $this->validateProduct($request, $product);
 
-            $this->deleteImages($product->images);
-            $validated['images'] = $this->uploadImages($request);
+            // Get images to retain
+            $existingImages = $request->input('existing_images', []);
+
+            // Determine which images to delete
+            $imagesToDelete = array_diff($product->images ?? [], $existingImages);
+            $this->deleteImages($imagesToDelete);
+
+            // Upload new images
+            $uploadedImages = $this->uploadImages($request);
+
+            // Merge existing + new
+            $validated['images'] = array_merge($existingImages, $uploadedImages);
+            $validated['updated_at'] = now();
 
             Log::info('Updating product', [
                 'product_id' => $product->id,
@@ -105,7 +116,7 @@ class ProductController extends Controller
     {
         $rules = [
             'name' => 'sometimes|required|string|max:255',
-            'sku' => ['sometimes', 'required', 'string', 'unique:products,sku'.($product ? ','.$product->id : '')],
+            'sku' => ['sometimes', 'required', 'string', 'unique:products,sku' . ($product ? ',' . $product->id : '')],
             'price' => 'sometimes|required|numeric|min:0',
             'quantity' => 'sometimes|required|integer|min:0',
             'discount' => 'nullable|numeric|min:0|max:100',
@@ -117,6 +128,8 @@ class ProductController extends Controller
             'category_id' => 'sometimes|required|exists:categories,id',
             'images' => $product ? 'sometimes|array' : 'required|array',
             'images.*' => 'file|image|max:5120',
+            'existing_images' => 'sometimes|array',
+            'existing_images.*' => 'string|url',
             'good_points' => 'sometimes|required|array',
             'good_points.*' => 'string',
         ];
@@ -163,13 +176,13 @@ class ProductController extends Controller
      */
     private function handleException(string $action, \Exception $e, array $context = [])
     {
-        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
+        Log::error("Error {$action}: " . $e->getMessage(), array_merge($context, [
             'trace' => $e->getTraceAsString(),
         ]));
 
         return response()->json([
             'success' => false,
-            'message' => "Failed to {$action}: ".$e->getMessage(),
+            'message' => "Failed to {$action}: " . $e->getMessage(),
         ], 500);
     }
 }

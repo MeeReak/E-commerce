@@ -13,14 +13,20 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('billing_address')->get();
+        //dont get the uesr with the same id as the logged in user
+        $userId = auth()->user()->id;
+        $users = User::with('billing_address')->where('id', '!=', $userId)->paginate(10);
 
         return UserResource::collection($users);
     }
 
     public function show($id)
     {
-        $user = User::with('billing_address')->find($id);
+        if ($id == 'me') {
+            $user = auth()->user();
+        } else {
+            $user = User::with('billing_address')->find($id);
+        }
         if (! $user) {
             return response()->json(['message' => 'User not found'], 404);
         }
@@ -31,8 +37,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:user_register,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
@@ -57,7 +62,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'sometimes|string|max:255',
-            'email' => ['sometimes', 'email', Rule::unique('user_register')->ignore($user->id)],
+            'email' => ['sometimes', 'email', Rule::unique('users')->ignore($user->id)],
             'password' => 'sometimes|string|min:8|confirmed',
             'gender' => 'sometimes|string|max:10',
             'date_of_birth' => 'sometimes|date',
@@ -65,6 +70,8 @@ class UserController extends Controller
             'address' => 'sometimes|string|max:255',
             'profiles' => 'sometimes|file|max:5120',
         ]);
+        $validated['updated_at'] = now();
+
 
         if ($request->filled('password')) {
             $request->merge(['password' => Hash::make($request->password)]);

@@ -13,7 +13,7 @@ class BlogController extends Controller
     public function index()
     {
         try {
-            $blogs = Blog::with('collection')->paginate(10);
+            $blogs = Blog::with(['collection', 'user'])->paginate(10);
 
             return BlogResource::collection($blogs);
         } catch (\Exception $e) {
@@ -61,8 +61,19 @@ class BlogController extends Controller
         try {
             $validated = $this->validateBlog($request, $blog);
 
-            $this->deleteImages($blog->images ?? []);
-            $validated['images'] = $this->uploadImages($request);
+            // Get images to retain
+            $existingImages = $request->input('existing_images', []);
+
+            // Determine which images to delete
+            $imagesToDelete = array_diff($product->images ?? [], $existingImages);
+            $this->deleteImages($imagesToDelete);
+
+            // Upload new images
+            $uploadedImages = $this->uploadImages($request);
+
+            // Merge existing + new
+            $validated['images'] = array_merge($existingImages, $uploadedImages);
+            $validated['updated_at'] = now();
 
             Log::info('Updating blog', [
                 'blog_id' => $blog->id,
@@ -140,13 +151,13 @@ class BlogController extends Controller
 
     private function handleException(string $action, \Exception $e, array $context = [])
     {
-        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
+        Log::error("Error {$action}: " . $e->getMessage(), array_merge($context, [
             'trace' => $e->getTraceAsString(),
         ]));
 
         return response()->json([
             'success' => false,
-            'message' => "Failed to {$action}: ".$e->getMessage(),
+            'message' => "Failed to {$action}: " . $e->getMessage(),
         ], 500);
     }
 }

@@ -16,6 +16,7 @@ class BillingAddressResource extends JsonResource
     {
         // return parent::toArray($request);
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'village' => $this->village,
             'sangkat' => $this->sangkat,

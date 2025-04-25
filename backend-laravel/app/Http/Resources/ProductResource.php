@@ -14,6 +14,13 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $sales = 100 - $this->quantity;
+
+        // Fake previous sales, just for demonstration purposes
+        $previousSales = 100 - ($this->quantity + rand(-10, 10));
+
+        // Ensure no division by zero
+        $growth = $previousSales > 0 ? (($sales - $previousSales) / $previousSales) * 100 : 0;
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -32,6 +39,8 @@ class ProductResource extends JsonResource
             'images' => $this->images,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'created_at' => $this->created_at->toDateTimeString(),
+            'growth' => round($growth, 2),
+            'positive' => $growth >= 0,
         ];
     }
 }
