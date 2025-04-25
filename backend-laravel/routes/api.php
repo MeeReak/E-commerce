@@ -9,12 +9,8 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
 Route::get('/health', function () {
     return response()->json(['message' => 'API is healthy']);
@@ -38,5 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('billing_address', BillingAddressController::class);
         Route::post('/orders/{order}/items', [OrderController::class, 'addItem'])->name('orders.items.store');
         Route::delete('/orders/{order}/items/{itemId}', [OrderController::class, 'removeItem'])->name('orders.items.destroy');
+        Route::get('/total-spent', [OrderController::class, 'totalSpent'])->name('orders.total_spent');
+        Route::get('/spent/{id}', [OrderController::class, 'spent'])->name('orders.spent');
+        Route::get('/total-order/{id}', [OrderController::class, 'orderCount'])->name('orders.order_count');
     });
 });

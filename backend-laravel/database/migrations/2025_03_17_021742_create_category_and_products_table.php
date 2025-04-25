@@ -29,7 +29,7 @@ return new class extends Migration
             $table->json('good_points');
             $table->text('description');
             $table->decimal('weight', 8, 2);
-            $table->foreignId('user_id')->constrained('user_register', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories', 'id')->onDelete('cascade');
             $table->timestamps();
         });
@@ -39,6 +39,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('products');
         Schema::dropIfExists('categories');
-
     }
 };

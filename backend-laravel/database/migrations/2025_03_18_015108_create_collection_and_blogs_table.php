@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->json('images');
-            $table->foreignId('user_id')->constrained('user_register', 'id');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->json('description');
             $table->foreignId('collection_id')->constrained('collections', 'id')->onDelete('cascade');
             $table->timestamps();

@@ -10,7 +10,11 @@ class Blog extends Model
     protected $table = 'blogs';
 
     protected $fillable = [
-        'name', 'images', 'collection_id', 'user_id', 'description',
+        'name',
+        'images',
+        'collection_id',
+        'user_id',
+        'description',
     ];
 
     protected $casts = [
@@ -21,5 +25,10 @@ class Blog extends Model
     public function collection(): BelongsTo
     {
         return $this->belongsTo(Collection::class, 'collection_id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

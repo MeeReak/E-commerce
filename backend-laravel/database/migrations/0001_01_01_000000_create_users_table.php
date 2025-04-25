@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_register', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('gender')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('email')->unique();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('email');
             $table->string('phone_number');
-            $table->foreignId('user_id')->constrained('user_register', 'id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->timestamps();
         });
 
@@ -47,7 +47,7 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->id(); // Primary key for sessions table
-            $table->foreignId('user_id')->constrained('user_register', 'id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -63,6 +63,6 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('billing_address');
-        Schema::dropIfExists('user_register');
+        Schema::dropIfExists('users');
     }
 };
