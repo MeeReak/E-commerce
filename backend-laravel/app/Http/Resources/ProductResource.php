@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
 
         // Ensure no division by zero
         $growth = $previousSales > 0 ? (($sales - $previousSales) / $previousSales) * 100 : 0;
+
         return [
             'id' => $this->id,
             'name' => $this->name,

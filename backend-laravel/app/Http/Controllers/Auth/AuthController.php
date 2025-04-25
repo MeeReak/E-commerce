@@ -30,13 +30,13 @@ class AuthController extends Controller
 
         BillingAddress::create([
             'user_id' => $user->id,
-            'name' => "",
-            'village' => "",
-            'sangkat' => "",
-            'district' => "",
-            'state' => "",
-            'email' => "",
-            'phone_number' => "",
+            'name' => '',
+            'village' => '',
+            'sangkat' => '',
+            'district' => '',
+            'state' => '',
+            'email' => '',
+            'phone_number' => '',
         ]);
 
         return new AuthResource($user)->additional([

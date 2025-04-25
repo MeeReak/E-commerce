@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        //dont get the uesr with the same id as the logged in user
+        // dont get the uesr with the same id as the logged in user
         $userId = auth()->user()->id;
         $users = User::with('billing_address')->where('id', '!=', $userId)->paginate(10);
 
@@ -71,7 +71,6 @@ class UserController extends Controller
             'profiles' => 'sometimes|file|max:5120',
         ]);
         $validated['updated_at'] = now();
-
 
         if ($request->filled('password')) {
             $request->merge(['password' => Hash::make($request->password)]);

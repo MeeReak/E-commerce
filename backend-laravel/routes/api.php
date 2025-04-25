@@ -11,7 +11,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/health', function () {
     return response()->json(['message' => 'API is healthy']);
 });

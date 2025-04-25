@@ -15,18 +15,17 @@ class OrderController extends Controller
     public function index()
     {
         try {
-            //dont get the uesr with the same id as the logged in user
+            // dont get the uesr with the same id as the logged in user
             $userId = auth()->user()->id;
             $orders = Order::with(['items.product', 'user'])->where('user_id', '!=', $userId)->paginate(10);
 
-
             return OrderResource::collection($orders);
         } catch (\Exception $e) {
-            Log::error('Error fetching orders: ' . $e->getMessage(), ['trace' => $e->getTraceAsString()]);
+            Log::error('Error fetching orders: '.$e->getMessage(), ['trace' => $e->getTraceAsString()]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to fetch orders: ' . $e->getMessage(),
+                'message' => 'Failed to fetch orders: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -39,23 +38,25 @@ class OrderController extends Controller
         try {
             if ($id == 'me') {
                 $order = Order::where('user_id', auth()->id())->get();
-                //send the last order
+                // send the last order
                 $order = $order->last();
+
                 return new OrderResource($order);
             } else {
                 $order = Order::with(['items.product'])->findOrFail($id);
+
                 return new OrderResource($order);
             }
         } catch (\Exception $e) {
             dd($e);
-            Log::error('Error fetching order: ' . $e->getMessage(), [
+            Log::error('Error fetching order: '.$e->getMessage(), [
                 'order_id' => $order->id,
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to fetch order: ' . $e->getMessage(),
+                'message' => 'Failed to fetch order: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -84,14 +85,14 @@ class OrderController extends Controller
                 ->response()
                 ->setStatusCode(201);
         } catch (\Exception $e) {
-            Log::error('Error creating order: ' . $e->getMessage(), [
+            Log::error('Error creating order: '.$e->getMessage(), [
                 'request' => $request->all(),
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to create order: ' . $e->getMessage(),
+                'message' => 'Failed to create order: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -124,7 +125,7 @@ class OrderController extends Controller
 
             return new OrderResource($order);
         } catch (\Exception $e) {
-            Log::error('Error updating order: ' . $e->getMessage(), [
+            Log::error('Error updating order: '.$e->getMessage(), [
                 'order_id' => $order->id,
                 'request' => $request->all(),
                 'trace' => $e->getTraceAsString(),
@@ -132,7 +133,7 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to update order: ' . $e->getMessage(),
+                'message' => 'Failed to update order: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -152,14 +153,14 @@ class OrderController extends Controller
                 'message' => 'Order deleted successfully',
             ], 200);
         } catch (\Exception $e) {
-            Log::error('Error deleting order: ' . $e->getMessage(), [
+            Log::error('Error deleting order: '.$e->getMessage(), [
                 'order_id' => $order->id,
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to delete order: ' . $e->getMessage(),
+                'message' => 'Failed to delete order: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -177,7 +178,7 @@ class OrderController extends Controller
             ]);
             $validated['updated_at'] = now();
 
-            //validate quantity
+            // validate quantity
             $product = \DB::table('products')->where('id', $validated['product_id'])->first();
             if ($product->quantity < $validated['quantity']) {
                 return response()->json([
@@ -186,11 +187,11 @@ class OrderController extends Controller
                 ], 400);
             }
 
-            //calculate price
+            // calculate price
             $price = \DB::table('products')->where('id', $validated['product_id'])->value('price');
             $validated['price'] = $price;
 
-            //update product quantity
+            // update product quantity
             $product->quantity -= $validated['quantity'];
             \DB::table('products')->where('id', $validated['product_id'])->update(['quantity' => $product->quantity]);
 
@@ -211,7 +212,7 @@ class OrderController extends Controller
 
             return new OrderResource($order);
         } catch (\Exception $e) {
-            Log::error('Error adding item to order: ' . $e->getMessage(), [
+            Log::error('Error adding item to order: '.$e->getMessage(), [
                 'order_id' => $order->id,
                 'request' => $request->all(),
                 'trace' => $e->getTraceAsString(),
@@ -219,7 +220,7 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to add item to order: ' . $e->getMessage(),
+                'message' => 'Failed to add item to order: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -242,7 +243,7 @@ class OrderController extends Controller
 
             return new OrderResource($order);
         } catch (\Exception $e) {
-            Log::error('Error removing item from order: ' . $e->getMessage(), [
+            Log::error('Error removing item from order: '.$e->getMessage(), [
                 'order_id' => $order->id,
                 'item_id' => $itemId,
                 'trace' => $e->getTraceAsString(),
@@ -250,16 +251,16 @@ class OrderController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to remove item from order: ' . $e->getMessage(),
+                'message' => 'Failed to remove item from order: '.$e->getMessage(),
             ], $e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException ? 404 : 500);
         }
     }
 
-    //get the total money spent in the website
+    // get the total money spent in the website
     public function totalSpent()
     {
         try {
-            //get all total spent
+            // get all total spent
             // //dont caculate the order that user who is logged in
             $userId = auth()->user()->id;
             $total = Order::where('user_id', '!=', $userId)->sum('total');
@@ -270,14 +271,14 @@ class OrderController extends Controller
                 'total' => $total,
             ]);
         } catch (\Exception $e) {
-            Log::error('Error calculating total spent: ' . $e->getMessage(), [
+            Log::error('Error calculating total spent: '.$e->getMessage(), [
                 'user_id' => auth()->id(),
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to calculate total spent: ' . $e->getMessage(),
+                'message' => 'Failed to calculate total spent: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -285,7 +286,7 @@ class OrderController extends Controller
     public function spent($id)
     {
         try {
-            //get total of user
+            // get total of user
             $total = Order::where('user_id', $id)->sum('total');
 
             return response()->json([
@@ -293,14 +294,14 @@ class OrderController extends Controller
                 'total' => $total,
             ]);
         } catch (\Exception $e) {
-            Log::error('Error calculating total spent: ' . $e->getMessage(), [
+            Log::error('Error calculating total spent: '.$e->getMessage(), [
                 'user_id' => auth()->id(),
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to calculate total spent: ' . $e->getMessage(),
+                'message' => 'Failed to calculate total spent: '.$e->getMessage(),
             ], 500);
         }
     }
@@ -316,14 +317,14 @@ class OrderController extends Controller
                 'total' => $orderCount,
             ]);
         } catch (\Exception $e) {
-            Log::error('Error fetching order count: ' . $e->getMessage(), [
+            Log::error('Error fetching order count: '.$e->getMessage(), [
                 'user_id' => $id,
                 'trace' => $e->getTraceAsString(),
             ]);
 
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to fetch order count: ' . $e->getMessage(),
+                'message' => 'Failed to fetch order count: '.$e->getMessage(),
             ], 500);
         }
     }

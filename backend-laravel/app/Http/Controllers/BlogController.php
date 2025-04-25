@@ -151,13 +151,13 @@ class BlogController extends Controller
 
     private function handleException(string $action, \Exception $e, array $context = [])
     {
-        Log::error("Error {$action}: " . $e->getMessage(), array_merge($context, [
+        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
             'trace' => $e->getTraceAsString(),
         ]));
 
         return response()->json([
             'success' => false,
-            'message' => "Failed to {$action}: " . $e->getMessage(),
+            'message' => "Failed to {$action}: ".$e->getMessage(),
         ], 500);
     }
 }

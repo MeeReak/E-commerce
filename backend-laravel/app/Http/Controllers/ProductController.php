@@ -116,7 +116,7 @@ class ProductController extends Controller
     {
         $rules = [
             'name' => 'sometimes|required|string|max:255',
-            'sku' => ['sometimes', 'required', 'string', 'unique:products,sku' . ($product ? ',' . $product->id : '')],
+            'sku' => ['sometimes', 'required', 'string', 'unique:products,sku'.($product ? ','.$product->id : '')],
             'price' => 'sometimes|required|numeric|min:0',
             'quantity' => 'sometimes|required|integer|min:0',
             'discount' => 'nullable|numeric|min:0|max:100',
@@ -176,13 +176,13 @@ class ProductController extends Controller
      */
     private function handleException(string $action, \Exception $e, array $context = [])
     {
-        Log::error("Error {$action}: " . $e->getMessage(), array_merge($context, [
+        Log::error("Error {$action}: ".$e->getMessage(), array_merge($context, [
             'trace' => $e->getTraceAsString(),
         ]));
 
         return response()->json([
             'success' => false,
-            'message' => "Failed to {$action}: " . $e->getMessage(),
+            'message' => "Failed to {$action}: ".$e->getMessage(),
         ], 500);
     }
 }
