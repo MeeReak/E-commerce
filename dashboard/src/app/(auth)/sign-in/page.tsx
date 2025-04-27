@@ -32,7 +32,7 @@ export default function SignInPage() {
     } = useForm<SignInFormData>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
-            email: "", 
+            email: "",
             password: ""
         }
     });

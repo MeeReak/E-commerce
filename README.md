@@ -1,4 +1,4 @@
-# E-commerce Platform
+# E-commerce Platform - Boilerplate 
 
 Welcome to the E-commerce platform repository! This project is designed to provide a seamless online shopping experience, complete with a feature-rich frontend and a robust backend. The platform aims to deliver an efficient and scalable solution for e-commerce businesses.
 
