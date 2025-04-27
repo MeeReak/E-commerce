@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Cookies from "js-cookie";
 
 // Zod validation schema for the sign-in form
 const signInSchema = z.object({
@@ -28,17 +29,20 @@ export default function SignInPage() {
         control,
         handleSubmit,
         formState: { errors },
-        reset
+        reset,
+        setError
     } = useForm<SignInFormData>({
         resolver: zodResolver(signInSchema),
         defaultValues: {
-            email: "", 
+            email: "",
             password: ""
         }
     });
 
     // State to handle password visibility
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    // State to handle API error messages
+    const [apiError, setApiError] = useState<string | null>(null);
 
     // Toggle password visibility
     const handlePasswordVisibility = () => {
@@ -46,14 +50,48 @@ export default function SignInPage() {
     };
 
     // Handle form submission
-    const onSubmit = (data: SignInFormData) => {
-        // Handle the sign-in logic here, e.g., send data to an API
-        console.log("Form submitted", data);
-        reset(); // Optionally reset the form after submission
+    const onSubmit = async (data: SignInFormData) => {
+        try {
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        password: data.password
+                    })
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Handle API errors
+                setApiError(
+                    result.message || "Login failed. Please try again."
+                );
+                return;
+            }
+
+            // Save token to cookie expires in 10 seconds
+            Cookies.set("auth_token", result.access_token, { expires: 7 }); // Expires in 7 days
+            setApiError(null);
+            reset(); // Reset form after successful login
+
+            // Optionally redirect user to a protected page
+            window.location.href = "/";
+        } catch (error) {
+            setApiError("An error occurred. Please try again later.");
+            console.error("Login error:", error);
+        }
     };
 
     return (
-        <div className="flex flex-col h-[100vh]">
+        <div className="flex flex-col h-[100vh] ">
             {/* Sign-In Section */}
             <div className="flex items-center justify-center flex-grow bg-gray-100">
                 <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
@@ -61,6 +99,13 @@ export default function SignInPage() {
                         Sign In
                     </h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
+                        {/* API Error Message */}
+                        {apiError && (
+                            <p className="text-red-500 text-center text-sm mb-4">
+                                {apiError}
+                            </p>
+                        )}
+
                         {/* Email Input */}
                         <div className="mb-4">
                             <Controller
@@ -144,7 +189,7 @@ export default function SignInPage() {
                         </Button>
                     </form>
 
-                    {/* Register Link */}
+                    {/* Register Link
                     <p className="text-gray-600 text-center text-sm font-normal leading-[21px] mt-6">
                         Don’t have an account?
                         <Link
@@ -153,7 +198,7 @@ export default function SignInPage() {
                         >
                             Register
                         </Link>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>
