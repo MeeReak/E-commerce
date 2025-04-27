@@ -1,8 +1,10 @@
-import React from "react";
-import type { Metadata } from "next";
+import { cookies } from "next/headers";
+import React, { Suspense } from "react";
 import "./globals.css";
+import { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import Loading from "./loading";
 
 const poppin = Poppins({
     weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -17,15 +19,24 @@ export const metadata: Metadata = {
     icons: "/svg/logo.svg"
 };
 
-interface RootLayoutProps {
-    children: React.ReactNode; // Ensure consistent type
-}
+export default async function RootLayout({
+    children
+}: {
+    children: React.ReactNode;
+}) {
+    const token = (await cookies()).get("auth_token")?.value;
+    const isAuthenticated = Boolean(token);
 
-export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en">
             <body className={`${poppin.className} antialiased bg-white`}>
-                <Sidebar>{children}</Sidebar>
+                {isAuthenticated ? (
+                    <Suspense fallback={<Loading />}>
+                        <Sidebar>{children}</Sidebar>
+                    </Suspense>
+                ) : (
+                    children
+                )}
             </body>
         </html>
     );
