@@ -1,15 +1,15 @@
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
-import { BlogTypes } from "../types/Blog.types";
 import { Textarea } from "@/components/ui/textarea";
+import { IBlog } from "./Table";
 
-export function BlogDetails({ product }: { product: BlogTypes }): JSX.Element {
+export function BlogDetails({ product }: { product: IBlog }): JSX.Element {
     return (
         <div className="space-y-4">
             <InputField
-                id="title"
+                id="name"
                 label="Title"
-                value={product.name}
+                value={product.name || "N/A"}
                 className=" w-full"
             />
 
@@ -17,28 +17,41 @@ export function BlogDetails({ product }: { product: BlogTypes }): JSX.Element {
                 <InputField
                     id="postBy"
                     label="Post by"
-                    value={`${product.postBy}`}
+                    value={`${product.user?.name || "N/A"}`}
                 />
                 <InputField
                     id="category"
                     label="Category"
-                    value={`${product.category}`}
+                    value={`${product.collection.name || "N/A"}`}
                 />
-            </div>
-            <div className="flex gap-x-5">
-                <InputField id="role" label="Role" value={`${product.role}`} />
                 <InputField
                     id="date"
                     label="Date"
-                    value={`${product.dateAdded}`}
+                    value={
+                        (() => {
+                            const date = new Date(product.created_at);
+                            date.setMonth(date.getMonth() + 6);
+                            const day = date.toLocaleString("en-US", {
+                                day: "2-digit"
+                            });
+                            const month = date.toLocaleString("en-US", {
+                                month: "short"
+                            });
+                            const year = date.getFullYear();
+                            return `${day} ${month} ${year}`;
+                        })() || "N/A"
+                    }
                 />
             </div>
             <div className="flex w-full flex-col gap-x-5 justify-between">
-                <TextareaField
-                    id="description"
-                    label="Description"
-                    value={`${product.description}`}
-                />
+                {product.description.map((item, index) => (
+                    <TextareaField
+                        key={index}
+                        id={`description-${index}`}
+                        label={`Description ${index + 1}`}
+                        value={item}
+                    />
+                ))}
             </div>
         </div>
     );

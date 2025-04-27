@@ -13,25 +13,19 @@ import {
 } from "@/components/ui/alert-dialog";
 import { TrashIcon } from "lucide-react";
 import Cookies from "js-cookie";
+import { IBlog } from "./Table";
 
-interface AlertDialogDemoProps {
-    orderId: number;
-    orderName?: string;
-}
-
-export function AlertDialogDemo({
-    orderId,
-    orderName = ""
-}: AlertDialogDemoProps) {
+export function AlertDialogDemo({ blog }: { blog: IBlog }) {
     const handleDelete = async () => {
         const token = Cookies.get("auth_token");
 
         try {
             const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/orders/${orderId}`,
+                `http://127.0.0.1:8000/api/v1/blogs/${blog.id}`,
                 {
                     method: "DELETE",
                     headers: {
+                        Accept: "application/json",
                         Authorization: `Bearer ${token}`
                     }
                 }
@@ -40,14 +34,17 @@ export function AlertDialogDemo({
             if (!res.ok) {
                 const error = await res.json();
                 console.error("Delete failed:", error);
-                alert("Failed to delete order.");
+                alert("Failed to delete product.");
                 return;
             }
 
             // You can refresh the list, route away, or show a toast
             window.location.reload();
         } catch (error) {
-            console.error("An error occurred while deleting the order:", error);
+            console.error(
+                "An error occurred while deleting the product:",
+                error
+            );
         }
     };
 
@@ -59,15 +56,15 @@ export function AlertDialogDemo({
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        Are you sure you want to delete this order?
+                        Are you sure you want to delete this item?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently
-                        delete order of
+                        delete
                         <strong className="mx-2 text-red-600">
-                            {orderName || "N/A"}
+                            {blog.name || "N/A"}
                         </strong>
-                        from your order list.
+                        from your product list.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>

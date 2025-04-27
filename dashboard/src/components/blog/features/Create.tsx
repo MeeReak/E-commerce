@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import Cookies from "js-cookie";
 import {
     Dialog,
     DialogClose,
@@ -15,17 +16,15 @@ import {
 import { FileUpload, UploadedFile } from "@/components/FileUpload";
 import { BlogForm } from "./BlogForm";
 import { PlusIcon } from "lucide-react";
-import { AlertDialogCancel } from "@radix-ui/react-alert-dialog";
 
 export function BlogCreate(): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
     const [formData, setFormData] = useState({
         name: "",
-        postBy: "",
-        role: "",
         category: "",
-        dateAdded: "",
-        description: ""
+        description1: "",
+        description2: "",
+        description3: ""
     });
 
     const handleFileChange = (
@@ -33,11 +32,20 @@ export function BlogCreate(): JSX.Element {
     ): void => {
         const files = event.target.files;
         if (files) {
-            const fileData: UploadedFile[] = Array.from(files).map((file) => ({
+            const selectedFiles = Array.from(files);
+
+            // If combined total exceeds 4, reject the upload
+            if (uploadedFiles.length + selectedFiles.length > 4) {
+                alert("You can only upload up to 4 images.");
+                return;
+            }
+
+            const fileData: UploadedFile[] = selectedFiles.map((file) => ({
                 url: URL.createObjectURL(file),
                 name: file.name,
                 size: file.size
             }));
+
             setUploadedFiles((prev) => [...prev, ...fileData]);
         }
     };
@@ -55,9 +63,58 @@ export function BlogCreate(): JSX.Element {
         setFormData((prev) => ({ ...prev, [key]: value }));
     };
 
-    const handleSubmit = (): void => {
-        console.log("Form Data:", formData);
-        console.log("Uploaded Files:", uploadedFiles);
+    const handleSubmit = async (): Promise<void> => {
+        try {
+            const token = Cookies.get("auth_token");
+            const form = new FormData();
+
+            form.append("name", formData.name);
+            form.append("collection_id", formData.category);
+
+            // Add multiple description[]
+            [
+                formData.description1,
+                formData.description2,
+                formData.description3
+            ]
+                .filter((desc) => desc.trim() !== "")
+                .forEach((desc) => form.append("description[]", desc));
+
+            // Append image files (real files, not blob URLs)
+            const fileInputs =
+                document.querySelectorAll<HTMLInputElement>(
+                    'input[type="file"]'
+                );
+
+            fileInputs.forEach((input) => {
+                if (input.files) {
+                    for (let i = 0; i < input.files.length; i++) {
+                        form.append("images[]", input.files[i]);
+                    }
+                }
+            });
+
+            const res = await fetch("http://127.0.0.1:8000/api/v1/blogs", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: form
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.error("Blog creation failed", data);
+                alert("Blog creation failed.");
+            }
+
+            window.location.reload();
+        } catch (error) {
+            console.error("Error creating blog:", error);
+            alert("An error occurred.");
+        }
     };
 
     return (
@@ -82,6 +139,7 @@ export function BlogCreate(): JSX.Element {
                 />
 
                 <FileUpload
+                    length={3}
                     uploadedFiles={uploadedFiles}
                     onFileChange={handleFileChange}
                     onRemoveFile={handleRemoveFile}

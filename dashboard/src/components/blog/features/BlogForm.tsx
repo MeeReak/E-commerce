@@ -1,17 +1,21 @@
-import { Input } from "../../ui/input";
+"use client";
+
 import { Label } from "../../ui/label";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+import { SelectDemo } from "@/components/Select";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { SelectCategory } from "../components/SelectCategory";
 
 interface BlogFormProps {
-    formData: {
-        name?: string;
-        postBy?: string;
-        category?: string;
-        description?: string;
-    };
+    formData: Record<string, any>;
     onInputChange: (key: string, value: string | string[]) => void;
     handleSelectChange: (key: string, value: string) => void;
+}
+
+interface Category {
+    id: string;
+    name: string;
 }
 
 export function BlogForm({
@@ -19,57 +23,73 @@ export function BlogForm({
     onInputChange,
     handleSelectChange
 }: BlogFormProps): JSX.Element {
-    const releaseOptions = {
-        query: "release",
-        placeholder: "Select a category",
-        items: ["Meat", "Fruit", "Vegetable"]
-    };
+    const [categories, setCategories] = useState<Category[]>([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const token = Cookies.get("auth_token");
+            const res = await fetch(
+                "http://127.0.0.1:8000/api/v1/collections",
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+            const data = await res.json();
+            setCategories(data.data);
+        };
+        fetchCategories();
+    }, []);
 
     return (
         <div className="space-y-4">
             <InputField
-                id="tile"
+                id="name"
                 label="Title"
-                value={formData.name || ""}
-                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+                value={formData.name || "N/A"}
+                onChange={(e) =>
+                    onInputChange(e.target.name, e.target.value || "N/A")
+                }
                 className=" w-full"
             />
-            <div className="flex w-full gap-x-5 justify-between">
-                <InputField
-                    id="postBy"
-                    label="Post by"
-                    value={formData.postBy || ""}
-                    onChange={(e) =>
-                        onInputChange(e.target.name, e.target.value)
-                    }
-                />
-                <div className="w-1/2 space-y-1">
-                    <Label htmlFor="category">Category</Label>
-                    <SelectCategory
-                        items={releaseOptions.items}
-                        selectedValue={formData.category || ""}
-                        onSelectChange={(value) =>
-                            handleSelectChange("category", value)
-                        }
-                        placeholder={releaseOptions.placeholder}
-                    />
-                </div>
-            </div>
-            <div className="flex w-full gap-x-5 justify-between">
-                <TextareaField
-                    id="description"
-                    label="Description"
-                    value={formData.description || ""}
-                    onChange={(e) =>
-                        onInputChange(e.target.name, e.target.value)
-                    }
+            <div className="w-1/2 space-y-1">
+                <Label className=" text-sm text-gray-500" htmlFor="category">
+                    Collection
+                </Label>
+                <SelectDemo
+                    key={formData.category}
+                    items={categories}
+                    selectedValue={formData.category}
+                    onSelectChange={(value) =>
+                        handleSelectChange("category", value)
+                    } // Update formData
+                    placeholder={formData.category}
+                    className="text-[#4D4D4D] w-full"
                 />
             </div>
+            <TextareaField
+                id="description1"
+                label="Description 1"
+                value={formData.description1 || "N/A"}
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+            />
+            <TextareaField
+                id="description2"
+                label="Description 2"
+                value={formData.description2 || "N/A"}
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+            />
+            <TextareaField
+                id="description3"
+                label="Description 3"
+                value={formData.description3 || "N/A"}
+                onChange={(e) => onInputChange(e.target.name, e.target.value)}
+            />
         </div>
     );
 }
 
-function InputField({
+export function InputField({
     id,
     label,
     value,
@@ -83,12 +103,14 @@ function InputField({
     className?: string;
 }): JSX.Element {
     return (
-        <div className={`w-1/2 space-y-1 ${className || ""}`}>
-            <Label htmlFor={id}>{label}</Label>
+        <div className={`w-1/2 space-y-1 ${className}`}>
+            <Label className=" text-sm text-gray-500" htmlFor={id}>
+                {label}
+            </Label>
             <Input
                 id={id}
                 type="text"
-                className="text-gray-500"
+                className="text-gray-800"
                 name={id}
                 value={value}
                 onChange={onChange}
@@ -97,7 +119,7 @@ function InputField({
     );
 }
 
-function TextareaField({
+export function TextareaField({
     id,
     label,
     value,
