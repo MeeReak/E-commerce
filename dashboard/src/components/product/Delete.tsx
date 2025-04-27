@@ -1,3 +1,5 @@
+"use client";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -10,13 +12,42 @@ import {
     AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 import { TrashIcon } from "lucide-react";
+import { IProduct } from "./Table";
+import Cookies from "js-cookie";
 
-interface AlertDialogDemoProps {
-    itemName: string; // Name of the item to delete
-    // onDelete: () => void; // Callback for delete action
-}
+export function AlertDialogDemo({ product }: { product: IProduct }) {
+    const handleDelete = async () => {
+        const token = Cookies.get("auth_token");
 
-export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
+        try {
+            const res = await fetch(
+                `http://127.0.0.1:8000/api/v1/products/${product.id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            if (!res.ok) {
+                const error = await res.json();
+                console.error("Delete failed:", error);
+                alert("Failed to delete product.");
+                return;
+            }
+
+            // You can refresh the list, route away, or show a toast
+            window.location.reload();
+        } catch (error) {
+            console.error(
+                "An error occurred while deleting the product:",
+                error
+            );
+        }
+    };
+
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -30,15 +61,17 @@ export function AlertDialogDemo({ itemName }: AlertDialogDemoProps) {
                     <AlertDialogDescription>
                         This action cannot be undone. This will permanently
                         delete
-                        <strong className=" mx-2 text-red-600">
-                            {itemName}
+                        <strong className="mx-2 text-red-600">
+                            {product.name}
                         </strong>
-                        from your product.
+                        from your product list.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Delete</AlertDialogAction>
+                    <AlertDialogAction onClick={handleDelete}>
+                        Delete
+                    </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

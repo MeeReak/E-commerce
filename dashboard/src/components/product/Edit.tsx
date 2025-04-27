@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
@@ -15,14 +15,15 @@ import {
 import { EditIcon } from "lucide-react";
 import { FileUpload, UploadedFile } from "../FileUpload";
 import { ProductDetails } from "./Detail";
-import { Product } from "./View";
+import { IProduct } from "./Table";
+import Cookies from "js-cookie";
 
-export function EditForm({ product }: { product: Product }): JSX.Element {
+export function EditForm({ product }: { product: IProduct }): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
         product.images.map((image) => ({
-            url: image.src,
-            name: image.alt,
-            size: image.id
+            url: image,
+            name: image || "",
+            size: 0
         }))
     );
     const [formData, setFormData] = useState({
@@ -30,15 +31,15 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
         sku: product.sku,
         category: product.category,
         price: product.price,
-        quantity: product.gty,
+        quantity: product.quantity,
         discount: product.discount,
         brand: product.brand,
         type: product.type,
-        weight: "",
-        color: "",
-        note: product.note,
+        weight: product.weight,
+        color: product.color,
+        noted: product.noted,
         description: product.description,
-        goodPoints: product.keyPoints
+        goodPoints: product.good_points
     });
 
     const handleFileChange = (
@@ -47,6 +48,7 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
         const files = event.target.files;
         if (files) {
             const fileData: UploadedFile[] = Array.from(files).map((file) => ({
+                file, // <- store the actual file
                 url: URL.createObjectURL(file),
                 name: file.name,
                 size: file.size
@@ -68,9 +70,66 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
         setFormData((prev) => ({ ...prev, [key]: value }));
     };
 
-    const handleSubmit = (): void => {
-        console.log("Form Data:", formData);
-        console.log("Uploaded Files:", uploadedFiles);
+    const handleSubmit = async (): Promise<void> => {
+        const token = Cookies.get("auth_token");
+        const form = new FormData();
+
+        form.append("_method", "PUT"); // Laravel expects method spoofing
+        form.append("name", formData.name);
+        form.append("sku", formData.sku);
+        form.append("price", String(formData.price));
+        form.append("quantity", String(formData.quantity));
+        form.append(
+            "discount",
+            formData.discount ? String(formData.discount) : "0"
+        );
+        form.append("type", formData.type);
+        form.append("weight", String(formData.weight));
+        form.append("color", formData.color);
+        form.append("noted", formData.noted);
+        form.append("description", formData.description);
+        const randomCategoryId = Math.floor(Math.random() * 3) + 1;
+        form.append("category_id", String(randomCategoryId));
+        formData.goodPoints.forEach((point, index) => {
+            form.append(`good_points[${index}]`, point);
+        });
+
+        // Handle file uploads (skip existing image URLs)
+        uploadedFiles.forEach((fileWrapper) => {
+            if (fileWrapper.file) {
+                form.append("images[]", fileWrapper.file); // new files
+            } else if (fileWrapper.url.startsWith("http")) {
+                form.append("existing_images[]", fileWrapper.url); // existing image URLs
+            }
+        });
+
+        try {
+            const res = await fetch(
+                `http://127.0.0.1:8000/api/v1/products/${product.id}`,
+                {
+                    method: "POST", // Laravel will interpret this as PUT via _method
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: `Bearer ${token}` // Replace dynamically
+                    },
+                    body: form
+                }
+            );
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                console.error("Update failed:", errorData);
+                return;
+            }
+
+            const data = await res.json();
+            //redirect to the product page or show a success message
+
+            // Optional: close modal or trigger UI refresh
+            window.location.reload();
+        } catch (error) {
+            console.error("An error occurred during product update:", error);
+        }
     };
 
     return (
@@ -80,9 +139,7 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[750px] h-[700px] flex flex-col overflow-y-auto hide-scrollbar">
                 <DialogHeader>
-                    <DialogTitle className=" text-yellow-500">
-                        Edit Product
-                    </DialogTitle>
+                    <DialogTitle className=" text-yellow-500">Edit</DialogTitle>
                     <DialogDescription></DialogDescription>
                 </DialogHeader>
 
@@ -93,6 +150,7 @@ export function EditForm({ product }: { product: Product }): JSX.Element {
                 />
 
                 <FileUpload
+                    length={5}
                     uploadedFiles={uploadedFiles}
                     onFileChange={handleFileChange}
                     onRemoveFile={handleRemoveFile}

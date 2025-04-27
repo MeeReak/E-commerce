@@ -1,3 +1,6 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { TrashIcon } from "lucide-react";
 import { SelectDemo } from "../Select";
 import { Button } from "../ui/button";
@@ -12,12 +15,31 @@ interface ProductDetailsProps {
     handleSelectChange: (key: string, value: string) => void;
 }
 
+interface Category {
+    id: string;
+    name: string;
+}
+
 export function ProductDetails({
     formData,
     onInputChange,
     handleSelectChange
 }: ProductDetailsProps): JSX.Element {
-    const languages = ["EN", "KM"];
+    //fetch categories from the API
+    const [categories, setCategories] = useState<Category[]>([]);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const token = Cookies.get("auth_token");
+            const res = await fetch("http://127.0.0.1:8000/api/v1/categories", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            const data = await res.json();
+            setCategories(data.data);
+        };
+        fetchCategories();
+    }, []);
 
     const handleGoodPointChange = (index: number, value: string): void => {
         const updatedGoodPoints = [...formData.goodPoints];
@@ -65,11 +87,13 @@ export function ProductDetails({
                         Category
                     </Label>
                     <SelectDemo
+                        items={categories}
+                        selectedValue={formData.category}
                         onSelectChange={(value) =>
                             handleSelectChange("category", value)
                         } // Update formData
+                        placeholder={formData.category}
                         className="text-[#4D4D4D] w-full"
-                        items={["Clothing", "Vegetables", "Electronics"]}
                     />
                 </div>
             </div>
@@ -105,7 +129,7 @@ export function ProductDetails({
                 <InputField
                     id="brand"
                     label="Brand"
-                    value={formData.brand}
+                    value={"ecoFresh"}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
@@ -129,21 +153,20 @@ export function ProductDetails({
             </div>
 
             <div className="flex w-full gap-x-5 items-center justify-between">
-                <div className="w-[260px]">
-                    <InputField
-                        id="color"
-                        className="w-[220px]"
-                        label="Color"
-                        value={formData.color}
-                        onChange={(e) =>
-                            onInputChange(e.target.name, e.target.value)
-                        }
-                    />
-                </div>
                 <InputField
-                    id="note"
+                    id="color"
+                    className="w-[220px]"
+                    label="Color"
+                    value={formData.color}
+                    onChange={(e) =>
+                        onInputChange(e.target.name, e.target.value)
+                    }
+                />
+                <InputField
+                    id="noted"
                     label="Note"
                     className="w-[290px]"
+                    value={formData.noted}
                     onChange={(e) =>
                         onInputChange(e.target.name, e.target.value)
                     }
