@@ -10,28 +10,21 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-export function CarouselDemo({
-    images
-}: {
-    images: Array<{
-        src: string;
-        id: number;
-        alt: string;
-    }>;
-}) {
+export function CarouselDemo({ images }: { images: Array<string> }) {
     return (
         <Carousel className="w-full max-w-xs">
             <CarouselContent>
-                {images.map((img) => (
-                    <CarouselItem key={img.id}>
+                {images.map((img, index) => (
+                    <CarouselItem key={index}>
                         <div className="p-1">
                             <Card>
-                                <CardContent className="flex aspect-square  items-center justify-center p-6">
+                                <CardContent className="flex aspect-square items-center justify-center p-6">
                                     <Image
-                                        src={img.src}
-                                        alt={img.alt}
-                                        width={300}
-                                        height={300}
+                                        src={img}
+                                        alt={img}
+                                        width={400}
+                                        height={400}
+                                        className="object-cover h-[300px]"
                                     />
                                 </CardContent>
                             </Card>

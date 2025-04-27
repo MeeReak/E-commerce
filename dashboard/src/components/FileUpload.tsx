@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import Image from "next/image";
 
 export interface UploadedFile {
+    file?: File;
     url: string;
     name: string;
     size: number;
@@ -12,11 +13,13 @@ export interface UploadedFile {
 export function FileUpload({
     uploadedFiles,
     onFileChange,
-    onRemoveFile
+    onRemoveFile,
+    length
 }: {
     uploadedFiles: UploadedFile[];
     onFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onRemoveFile: (index: number) => void;
+    length: number;
 }): JSX.Element {
     return (
         <div className="space-y-1">
@@ -30,7 +33,14 @@ export function FileUpload({
                     onChange={onFileChange}
                     className="hidden"
                     id="file-input"
+                    disabled={uploadedFiles.length > length - 1}
                 />
+                {uploadedFiles.length >= length && (
+                    <p className="text-xs text-red-500 mt-1">
+                        Maximum of 4 images allowed.
+                    </p>
+                )}
+
                 <Label
                     htmlFor="file-input"
                     className="cursor-pointer flex flex-col items-center"
@@ -61,7 +71,7 @@ export function FileUpload({
                             />
                             <div className="flex justify-between items-center w-[590px]">
                                 <p className="text-sm font-medium text-gray-800">
-                                    {file.name}
+                                    {file.name.slice(22)}
                                 </p>
                                 <p className="text-sm text-gray-500">
                                     {(file.size / 1024).toFixed(1)} KB

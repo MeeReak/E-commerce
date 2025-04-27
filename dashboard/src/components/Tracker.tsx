@@ -5,22 +5,29 @@ import { Progress } from "./ui/progress";
 
 export function Tracker({ status }: { status?: string }) {
     const [progress, setProgress] = React.useState(0);
-    let loading = 0;
 
-    console.log(status!.toLocaleLowerCase());
-    if (status?.toLocaleLowerCase() == "processing") {
-        loading = 35;
-    } else if (status?.toLocaleLowerCase() == "on the way") {
-        loading = 70;
-    } else {
-        loading = 100;
-    }
+    const progressMap: Record<string, number> = {
+        pending: 0,
+        processing: 35,
+        shipped: 70,
+        delivered: 100,
+        cancelled: 0
+    };
+
+    const statusKey = status?.toLowerCase() ?? "";
+    const targetProgress = progressMap[statusKey] ?? 0;
 
     React.useEffect(() => {
-        const timer = setTimeout(() => setProgress(loading), 500);
+        const timer = setTimeout(() => setProgress(targetProgress), 500);
         return () => clearTimeout(timer);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [targetProgress]);
 
-    return <Progress value={progress} className=" max-w-[90%]" />;
+    return (
+        <Progress
+            value={progress}
+            className={`max-w-[90%]  ${
+                statusKey === "cancelled" ? "bg-red-200" : ""
+            }`}
+        />
+    );
 }

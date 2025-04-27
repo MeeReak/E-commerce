@@ -30,7 +30,10 @@ export const Option = () => {
     const releaseOptions = {
         query: "release",
         placeholder: "Select Release",
-        items: ["New", "Old"]
+        items: [
+            { id: "new", name: "New" },
+            { id: "old", name: "Old" }
+        ]
     };
 
     return (
@@ -42,7 +45,7 @@ export const Option = () => {
                 items={releaseOptions.items}
                 className="text-[#4D4D4D] w-[180px]"
                 onSelectChange={handleSelectChange}
-                selectedValue={selectedValues[releaseOptions.query]}
+                selectedValue={{ id: selectedValues[releaseOptions.query] }}
             />
         </div>
     );

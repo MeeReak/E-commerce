@@ -1,177 +1,165 @@
-import React from "react";
-import { products } from "./Detail";
+import React, { useState } from "react";
 import { CheckIcon, SquareArrowRight } from "lucide-react";
 import { Tracker } from "../Tracker";
 import { Button } from "../ui/button";
+import { IOrder } from "./Table";
+import Cookies from "js-cookie";
 
-export const Process = () => {
-    const id = "INV003";
-
-    const total = products.reduce((acc, product) => {
-        return acc + product.price * product.gty;
-    }, 0);
-
-    const invoices = [
-        {
-            invoice: "INV001",
-            totalAmount: "Processing"
-        },
-        {
-            invoice: "INV002",
-            totalAmount: "on the way"
-        },
-        {
-            invoice: "INV003",
-            totalAmount: "Completed"
-        },
-        {
-            invoice: "INV004",
-            totalAmount: "Completed"
-        },
-        {
-            invoice: "INV005",
-            totalAmount: "Completed"
-        },
-        {
-            invoice: "INV006",
-            totalAmount: "Completed"
-        }
+export const Process = ({ order }: { order: IOrder }) => {
+    const steps = [
+        { label: "Order Received", status: "pending" },
+        { label: "Processing", status: "processing" },
+        { label: "Shipped", status: "shipped" },
+        { label: "Delivered", status: "delivered" }
     ];
 
-    const status = invoices.find((invoice) => invoice.invoice === id);
+    const statusOrder = [
+        "pending",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled"
+    ];
+    const [localStatus, setLocalStatus] = useState(order.status.toLowerCase());
+    const [isChanged, setIsChanged] = useState(false);
+
+    const currentIndex = statusOrder.indexOf(localStatus);
+
+    const handleNextStep = () => {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < steps.length) {
+            setLocalStatus(steps[nextIndex].status);
+            setIsChanged(true);
+        }
+    };
+    //Estimated shipping date + 7 days from created_at
+    const createdAt = new Date(order.created_at);
+    const estimatedShippingDate = new Date(
+        createdAt.getTime() + 7 * 24 * 60 * 60 * 1000
+    ).toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+
+    const handleUpdate = async () => {
+        try {
+            const token = Cookies.get("auth_token");
+            const res = await fetch(
+                `http://127.0.0.1:8000/api/v1/orders/${order.id}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}` // Replace with real token
+                    },
+                    body: JSON.stringify({ status: localStatus })
+                }
+            );
+
+            if (!res.ok) {
+                console.log("Error updating order status:", await res.json());
+            }
+
+            setIsChanged(false); // reset after successful update
+            window.location.reload(); // reload the page to see the changes
+        } catch (err) {
+            console.error("Update error:", err);
+        }
+    };
 
     return (
         <>
-            <div className=" px-5 py-3 h-[150px] shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm">
-                <div className=" flex items-center gap-x-2 ">
-                    <h2 className=" text-base text-gray-800">Process</h2>
-                    <span className=" text-gray-400">•</span>
-                    <span className="text-gray-500 text-xs font-normal leading-[21px] ">
-                        April 24, 2021
+            <div className=" px-5 py-3 h-[150px] shadow rounded-sm">
+                <div className="flex items-center gap-x-2 mb-5">
+                    <h2 className="text-base text-gray-800">Process</h2>
+                    <span className="text-gray-400">•</span>
+                    <span className="text-gray-500 text-xs">
+                        {new Date(order.created_at).toLocaleDateString(
+                            "en-US",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }
+                        )}
                     </span>
-                    <span className=" text-gray-400">•</span>
-                    <span className="text-gray-500 text-xs font-normal leading-[21px] ">
-                        5 Products
+                    <span className="text-gray-400">•</span>
+                    <span className="text-gray-500 text-xs">
+                        {order.items.length > 1
+                            ? `${order.items.length} items`
+                            : `${order.items.length} item`}
                     </span>
                 </div>
-                <div className="flex w-full gap-x-8 justify-center relative pt-9">
-                    <Tracker status={status?.totalAmount} />
-                    <div className="absolute flex justify-between w-[100%] top-5">
-                        <div className=" flex flex-col justify-center items-center">
-                            <div className="mb-2 size-10 bg-black rounded-full flex items-center justify-center">
-                                <CheckIcon className=" text-white" />
-                            </div>
-                            <span
-                                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                    "processing"
-                                        ? "text-black"
-                                        : "text-green-500"
-                                }`}
-                            >
-                                Order received
-                            </span>
-                        </div>
-                        <div className=" flex flex-col justify-center items-center">
-                            <div className="mb-2 size-10 bg-black rounded-full flex items-center justify-center">
-                                {status?.totalAmount.toLocaleLowerCase() ==
-                                    "processing" ||
-                                status?.totalAmount.toLocaleLowerCase() ==
-                                    "on the way" ||
-                                status?.totalAmount.toLocaleLowerCase() ==
-                                    "completed" ? (
-                                    <CheckIcon className=" text-white" />
-                                ) : (
-                                    2
-                                )}
-                            </div>
-                            <span
-                                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "processing" ||
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "on the way" ||
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "completed"
-                                        ? "text-green-500"
-                                        : "text-black"
-                                }`}
-                            >
-                                Processing
-                            </span>
-                        </div>
-                        <div className=" flex flex-col justify-center items-center">
-                            <div
-                                className={`mb-2 size-10  rounded-full flex items-center justify-center ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "on the way" ||
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "completed"
-                                        ? "bg-black"
-                                        : " bg-white border-2 border-dashed border-[#00b207] text-[#00b207]"
-                                }`}
-                            >
-                                {status?.totalAmount.toLocaleLowerCase() ===
-                                    "on the way" ||
-                                status?.totalAmount.toLocaleLowerCase() ===
-                                    "completed" ? (
-                                    <CheckIcon className=" text-white" />
-                                ) : (
-                                    3
-                                )}
-                            </div>
-                            <span
-                                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "on the way" ||
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                        "completed"
-                                        ? "text-green-500"
-                                        : "text-gray-800"
-                                }`}
-                            >
-                                On the way
-                            </span>
-                        </div>
-                        <div className=" flex flex-col justify-center items-center">
-                            <div
-                                className={`mb-2 size-10  rounded-full flex items-center justify-center ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                    "completed"
-                                        ? "bg-black"
-                                        : " bg-white border-2 border-dashed border-[#00b207] text-[#00b207]"
-                                }`}
-                            >
-                                {status?.totalAmount.toLocaleLowerCase() ===
-                                "completed" ? (
-                                    <CheckIcon className=" text-white" />
-                                ) : (
-                                    4
-                                )}
-                            </div>
-                            <span
-                                className={` text-center font-poppins text-sm font-normal leading-[1.5] ${
-                                    status?.totalAmount.toLocaleLowerCase() ===
-                                    "completed"
-                                        ? "text-green-500"
-                                        : "text-gray-800"
-                                }`}
-                            >
-                                Delivered
-                            </span>
-                        </div>
+                <div className="flex w-full gap-x-8 justify-center relative pt-5">
+                    <Tracker status={localStatus} />
+                    <div className="absolute flex justify-between w-[97%] top-1">
+                        {steps.map((step, index) => {
+                            const isActive = currentIndex >= index;
+                            return (
+                                <div
+                                    key={step.status}
+                                    className="flex flex-col items-center"
+                                >
+                                    <div
+                                        className={`mb-2 size-10 rounded-full flex items-center justify-center ${
+                                            isActive
+                                                ? "bg-green-600 text-white"
+                                                : "bg-white border-2 border-dashed border-[#00b207] text-[#00b207]"
+                                        }`}
+                                    >
+                                        {isActive ? <CheckIcon /> : index + 1}
+                                    </div>
+                                    <p
+                                        className={`text-sm ${
+                                            isActive
+                                                ? "text-green-500"
+                                                : "text-gray-800"
+                                        }`}
+                                    >
+                                        {step.label}
+                                    </p>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
-            <div className="mb-2 flex items-center justify-between shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] rounded-sm px-4 py-3">
-                <div className=" flex items-center gap-x-2 border border-[#e8e8e8] px-3 py-2 rounded-full text-sm ">
-                    <SquareArrowRight className=" size-4 stroke-[1.5px]" />
+
+            <div className="mb-2 flex items-center justify-between shadow rounded-sm px-4 py-3">
+                <div className="flex items-center gap-x-2 border px-3 py-2 rounded-full text-sm">
+                    <SquareArrowRight className="size-4" />
                     <span>Estimated shipping date:</span>
-                    <span>Apr 23, 2024</span>
+                    <span>
+                        {new Date(estimatedShippingDate).toLocaleDateString(
+                            "en-US",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric"
+                            }
+                        )}
+                    </span>
                 </div>
-                <Button className=" bg-green-600 hover:bg-green-800 border-none">
-                    Mark as ready to next
-                </Button>
+                <div className="flex gap-x-3">
+                    {currentIndex < steps.length - 1 && (
+                        <Button
+                            className="bg-blue-500 hover:bg-blue-700"
+                            onClick={handleNextStep}
+                            disabled={isChanged}
+                        >
+                            Mark as ready to next
+                        </Button>
+                    )}
+                    {isChanged && (
+                        <Button
+                            className="bg-green-600 hover:bg-green-800"
+                            onClick={handleUpdate}
+                        >
+                            Update
+                        </Button>
+                    )}
+                </div>
             </div>
         </>
     );
