@@ -22,13 +22,6 @@ class BillingAddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'village' => 'required|string|max:255',
-            'sangkat' => 'required|string|max:255',
-            'district' => 'required|string|max:255',
-            'state' => 'required|string|max:255',
-            'email' => 'required|email',
-            'phone_number' => 'required|string|max:25',
             'user_id' => 'sometimes',
         ]);
 

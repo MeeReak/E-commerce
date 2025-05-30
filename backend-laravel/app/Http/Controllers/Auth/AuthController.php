@@ -12,99 +12,143 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\QueryException;
 
 class AuthController extends Controller
 {
+    // Helper method to return error responses
+    private function errorResponse($message, $status = 400, $errors = null)
+    {
+        $response = ['message' => $message];
+        if ($errors) {
+            $response['errors'] = $errors;
+        }
+        return response()->json($response, $status);
+    }
+
     public function register(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|unique:users,email', // Keep users table here
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->errorResponse('Validation failed', 422, $e->errors());
+        }
 
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password), // Use Hash::make instead of bcrypt
-        ]);
-        $accessToken = $user->createToken('authToken')->plainTextToken;
+        try {
+            $user = User::create([
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        BillingAddress::create([
-            'user_id' => $user->id,
-            'name' => '',
-            'village' => '',
-            'sangkat' => '',
-            'district' => '',
-            'state' => '',
-            'email' => '',
-            'phone_number' => '',
-        ]);
+            BillingAddress::create([
+                'user_id' => $user->id,
+            ]);
 
-        return new AuthResource($user)->additional([
-            'access_token' => $accessToken,
-        ]);
+            $accessToken = $user->createToken('authToken')->plainTextToken;
+
+            return (new AuthResource($user))->additional([
+                'access_token' => $accessToken,
+            ]);
+        } catch (QueryException $e) {
+            return $this->errorResponse('Failed to register user, please try again.', 500);
+        } catch (\Exception $e) {
+            return $this->errorResponse('An unexpected error occurred.', 500);
+        }
     }
 
     public function sendResetLink(Request $request)
     {
-        $request->validate(['email' => 'required|email|exists:users,email']); // Keep users table here
-
-        $user = User::where('email', $request->email)->first();
-
-        if (! $user) {
-            return response()->json(['message' => 'User not found'], 404);
+        try {
+            $request->validate(['email' => 'required|email|exists:users,email']);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->errorResponse('Validation failed', 422, $e->errors());
         }
 
-        $token = Str::random(60);
+        try {
+            $user = User::where('email', $request->email)->first();
 
-        Password_reset::create([
-            'user_id' => $user->id,
-            'reset_token' => $token,
-            'expires_at' => Carbon::now()->addHours(1), // Token expires in 1 hour
-        ]);
+            if (! $user) {
+                return $this->errorResponse('User not found', 404);
+            }
 
-        return response()->json(['message' => 'Reset link sent', 'token' => $token]);
+            $token = Str::random(60);
+
+            Password_reset::create([
+                'user_id' => $user->id,
+                'reset_token' => $token,
+                'expires_at' => Carbon::now()->addHours(1),
+                'used' => false,
+            ]);
+
+            // Ideally, send the token via email here instead of returning it
+
+            return response()->json(['message' => 'Reset link sent to your email.']);
+        } catch (\Exception $e) {
+            return $this->errorResponse('Failed to send reset link, please try again.', 500);
+        }
     }
 
     public function resetPassword(Request $request)
     {
-        $request->validate([
-            'token' => 'required',
-            'password' => 'required|min:6',
-        ]);
-
-        $reset = Password_reset::where('reset_token', $request->token)
-            ->where('expires_at', '>', Carbon::now())
-            ->where('used', false)
-            ->first();
-
-        if (! $reset) {
-            return response()->json(['message' => 'Invalid or expired token'], 400);
+        try {
+            $request->validate([
+                'token' => 'required|string',
+                'password' => 'required|string|min:6|confirmed',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->errorResponse('Validation failed', 422, $e->errors());
         }
 
-        $user = User::find($reset->user_id);
-        $user->update(['password' => Hash::make($request->password)]);
-        $reset->update(['used' => true]);
+        try {
+            $reset = Password_reset::where('reset_token', $request->token)
+                ->where('expires_at', '>', Carbon::now())
+                ->where('used', false)
+                ->first();
 
-        return response()->json(['message' => 'Password reset successful']);
+            if (! $reset) {
+                return $this->errorResponse('Invalid or expired token', 400);
+            }
+
+            $user = User::find($reset->user_id);
+            if (! $user) {
+                return $this->errorResponse('User not found', 404);
+            }
+
+            $user->update(['password' => Hash::make($request->password)]);
+            $reset->update(['used' => true]);
+
+            return response()->json(['message' => 'Password reset successful']);
+        } catch (\Exception $e) {
+            return $this->errorResponse('Failed to reset password, please try again.', 500);
+        }
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+        try {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required|string',
             ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return $this->errorResponse('Validation failed', 422, $e->errors());
         }
 
-        $accessToken = $user->createToken('authToken')->plainTextToken;
+        try {
+            $user = User::where('email', $request->email)->first();
 
-        return response()->json(['access_token' => $accessToken]);
+            if (! $user || ! Hash::check($request->password, $user->password)) {
+                return $this->errorResponse('Incorrect email or password', 401);
+            }
+
+            $accessToken = $user->createToken('authToken')->plainTextToken;
+
+            return response()->json(['access_token' => $accessToken]);
+        } catch (\Exception $e) {
+            return $this->errorResponse('Failed to login, please try again.', 500);
+        }
     }
 }

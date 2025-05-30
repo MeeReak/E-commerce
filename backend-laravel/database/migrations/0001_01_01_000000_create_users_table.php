@@ -28,13 +28,13 @@ return new class extends Migration
 
         Schema::create('billing_address', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('village');
-            $table->string('sangkat');
-            $table->string('district');
-            $table->string('state');
-            $table->string('email');
-            $table->string('phone_number');
+            $table->string('name')->nullable();
+            $table->string('village')->nullable();
+            $table->string('sangkat')->nullable();
+            $table->string('district')->nullable();
+            $table->string('state')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone_number')->nullable();
             $table->foreignId('user_id')->constrained('users', 'id')->onDelete('cascade');
             $table->timestamps();
         });
