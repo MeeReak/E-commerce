@@ -6,7 +6,7 @@ import { DialogDemo } from "./product/Create";
 import { Input } from "./ui/input";
 import { BlogCreate } from "./blog/features/Create";
 import Image from "next/image";
-import Cookies from "js-cookie";
+import api from "@/lib/axios";
 
 interface IHeaderProps {
     showAddButton?: boolean;
@@ -22,6 +22,11 @@ interface UserProfile {
     role?: string;
 }
 
+// Skeleton Loader Component
+const SkeletonBox = ({ className = "" }: { className?: string }) => (
+    <div className={`bg-gray-200 animate-pulse rounded ${className}`} />
+);
+
 export function Header({
     showAddButton = false,
     enableSearch = false,
@@ -34,36 +39,16 @@ export function Header({
 
     useEffect(() => {
         const fetchUserProfile = async () => {
-            const token = Cookies.get("auth_token");
-            if (!token) {
-                console.error("No auth token found in cookies");
-                return;
-            }
-
             try {
                 setLoading(true);
-                const response = await fetch(
-                    "http://127.0.0.1:8000/api/v1/users/me",
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            Accept: "application/json"
-                        }
-                    }
-                );
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch user profile");
-                }
-
-                const userData = await response.json();
+                const response = await api.get("/v1/users/me");
+                const user = response.data.data;
 
                 setProfile({
-                    avatar: userData.data?.profile,
-                    name: userData.data?.name,
-                    email: userData.data?.email,
-                    role: userData.data?.role
+                    avatar: user?.profile || "",
+                    name: user?.name,
+                    email: user?.email,
+                    role: user?.role
                 });
             } catch (error) {
                 console.error("Error fetching user profile:", error);
@@ -79,59 +64,67 @@ export function Header({
         fetchUserProfile();
     }, []);
 
+    useEffect(() => {
+        if (searchQuery) {
+            window.history.pushState({}, "", `?search=${searchQuery}`);
+        }
+    }, [searchQuery]);
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
     };
 
-    useEffect(() => {
-        window.history.pushState({}, "", `?search=${searchQuery}`);
-    }, [searchQuery]);
-
-    const getFirstLetter = () => {
-        return profile?.email ? profile.email.charAt(0).toUpperCase() : "S";
-    };
+    const getInitial = () => profile?.email?.charAt(0).toUpperCase() || "S";
 
     return (
-        <div className="flex items-center justify-between">
-            <h1 className="pl-5 text-2xl font-medium text-green-500">
-                {title}
-            </h1>
-            <div className="flex mx-5 h-20 items-center justify-end gap-x-5 text-black">
+        <div className="flex items-center justify-between px-5 py-3">
+            {/* Title or Skeleton */}
+            {loading ? (
+                <SkeletonBox className="h-8 w-40" />
+            ) : (
+                <h1 className="text-2xl font-medium text-green-500">{title}</h1>
+            )}
+
+            <div className="flex items-center gap-x-5 text-black">
+                {/* Search */}
                 {enableSearch && (
-                    <div className="flex items-center">
-                        <SearchIcon className="size-4 text-gray-400 -mr-6" />
+                    <div className="relative">
+                        <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
                         <Input
-                            className="w-[200px] placeholder:text-gray-400 pl-8"
+                            className="pl-8 w-[200px] placeholder:text-gray-400"
                             placeholder="Search"
                             value={searchQuery}
                             onChange={handleInputChange}
                         />
                     </div>
                 )}
+
+                {/* Add Button */}
                 {showAddButton && (
                     <div>{blog ? <BlogCreate /> : <DialogDemo />}</div>
                 )}
 
-                <div className="flex items-center">
+                {/* User Avatar or Skeleton */}
+                <div className="w-10 h-10">
                     {loading ? (
-                        <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse" />
+                        <SkeletonBox className="w-10 h-10 rounded-full" />
                     ) : profile?.avatar ? (
                         <Image
                             alt="User Avatar"
                             src={profile.avatar}
                             width={40}
                             height={40}
-                            className="rounded-full"
+                            className="rounded-full object-cover"
                             onError={() =>
                                 setProfile({ ...profile, avatar: "" })
                             }
                         />
                     ) : (
                         <div
-                            className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center text-lg font-medium"
+                            className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-lg font-medium"
                             title={profile?.name || "User"}
                         >
-                            {getFirstLetter()}
+                            {getInitial()}
                         </div>
                     )}
                 </div>

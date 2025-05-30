@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { DollarSign, Users, Newspaper, ClipboardListIcon } from "lucide-react";
+import api from "@/lib/axios";
 
+// Types
 interface MetricCardProps {
     title: string;
     value: string;
@@ -11,25 +13,35 @@ interface MetricCardProps {
     icon: React.ReactNode;
     period: string;
     iconBg: string;
+    loading?: boolean;
 }
 
+interface MetricsData {
+    totalSales: string;
+    orders: string;
+    users: string;
+    blogs: string;
+}
+
+// Utility Components
 const SkeletonBox = ({ className = "" }: { className?: string }) => (
     <div className={`bg-gray-200 animate-pulse rounded ${className}`} />
 );
 
-const MetricCard = ({
+// Metric Card
+const MetricCard: React.FC<MetricCardProps> = ({
     title,
     value,
     change,
     icon,
     period,
     iconBg,
-    loading
-}: MetricCardProps & { loading?: boolean }) => {
+    loading = false
+}) => {
     const isPositive = change?.startsWith("+");
 
     return (
-        <div className="w-full bg-[#ffffff] shadow-sm rounded-lg p-6 flex flex-col">
+        <div className="w-full bg-white shadow-sm rounded-lg p-6 flex flex-col">
             <div className="flex justify-between items-center mb-2">
                 {loading ? (
                     <>
@@ -60,11 +72,11 @@ const MetricCard = ({
                         </h2>
                         <p className="text-sm">
                             <span
-                                className={`${
+                                className={
                                     isPositive
                                         ? "text-green-500"
                                         : "text-red-500"
-                                }`}
+                                }
                             >
                                 {change}
                             </span>
@@ -77,9 +89,30 @@ const MetricCard = ({
     );
 };
 
-const MetricsPanel = ({ token }: { token: string }) => {
+// Data Fetching Function
+const fetchMetricsData = async (): Promise<MetricsData> => {
+    const [salesRes, ordersRes, usersRes, blogsRes] = await Promise.all([
+        await api.get(`${process.env.NEXT_PUBLIC_API_URL}/v1/total-spent`),
+        await api.get(`${process.env.NEXT_PUBLIC_API_URL}/v1/orders`),
+        await api.get(`${process.env.NEXT_PUBLIC_API_URL}/v1/users`),
+        await api.get(`${process.env.NEXT_PUBLIC_API_URL}/v1/blogs`)
+    ]);
+
+    return {
+        totalSales: new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(salesRes.data.total),
+        orders: ordersRes.data.meta.total.toString(),
+        users: usersRes.data.meta.total.toString(),
+        blogs: blogsRes.data.meta.total.toString()
+    };
+};
+
+// Main Panel
+const MetricsPanel: React.FC = () => {
     const [loading, setLoading] = useState(true);
-    const [metricsData, setMetricsData] = useState({
+    const [metricsData, setMetricsData] = useState<MetricsData>({
         totalSales: "",
         orders: "",
         users: "",
@@ -87,40 +120,10 @@ const MetricsPanel = ({ token }: { token: string }) => {
     });
 
     useEffect(() => {
-        const headers = {
-            Authorization: `Bearer ${token}`
-        };
-
-        const fetchMetrics = async () => {
+        const loadMetrics = async () => {
             try {
-                const [salesRes, ordersRes, usersRes, blogsRes] =
-                    await Promise.all([
-                        axios.get("http://127.0.0.1:8000/api/v1/total-spent", {
-                            headers
-                        }),
-                        axios.get("http://127.0.0.1:8000/api/v1/orders", {
-                            headers
-                        }),
-                        axios.get("http://127.0.0.1:8000/api/v1/users", {
-                            headers
-                        }),
-                        axios.get("http://127.0.0.1:8000/api/v1/blogs", {
-                            headers: {
-                                ...headers,
-                                Accept: "application/json"
-                            }
-                        })
-                    ]);
-
-                setMetricsData({
-                    totalSales: `${new Intl.NumberFormat("en-US", {
-                        style: "currency",
-                        currency: "USD"
-                    }).format(salesRes.data.total)}`,
-                    orders: `${ordersRes.data.meta.total}`,
-                    users: `${usersRes.data.meta.total}`,
-                    blogs: `${blogsRes.data.meta.total}`
-                });
+                const data = await fetchMetricsData();
+                setMetricsData(data);
             } catch (err) {
                 console.error("Error fetching metrics:", err);
             } finally {
@@ -128,10 +131,10 @@ const MetricsPanel = ({ token }: { token: string }) => {
             }
         };
 
-        fetchMetrics();
-    }, [token]);
+        loadMetrics();
+    }, []);
 
-    const metrics = [
+    const metrics: MetricCardProps[] = [
         {
             title: "Total Sales",
             value: metricsData.totalSales,

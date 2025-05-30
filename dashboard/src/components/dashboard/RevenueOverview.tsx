@@ -10,66 +10,62 @@ import {
     CartesianGrid,
     ResponsiveContainer
 } from "recharts";
+import api from "@/lib/axios";
 
-const RevenueOverview = ({ token }: { token: string }) => {
+const MONTHS = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+];
+
+const generateRandomValue = () => Math.floor(Math.random() * 4000) + 1000;
+
+const RevenueOverview = () => {
     const [data, setData] = useState<{ month: string; value: number }[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchTotalSpent = async () => {
+        const fetchRevenueData = async () => {
             try {
-                const response = await fetch(
-                    "http://127.0.0.1:8000/api/v1/total-spent",
-                    {
-                        method: "GET",
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    }
+                const response = await api.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/v1/total-spent`
                 );
+                const aprilValue = response.data.total;
 
-                if (!response.ok) {
-                    throw new Error("Failed to fetch total spent");
-                }
+                const chartData = MONTHS.map((month, index) => ({
+                    month,
+                    value:
+                        index === 3
+                            ? aprilValue
+                            : index < 3
+                              ? generateRandomValue()
+                              : 0
+                }));
 
-                const result = await response.json();
-                const totalSpent = result.total;
-
-                // Random values between 1000 and 5000
-                const getRandom = () => Math.floor(Math.random() * 4000) + 1000;
-
-                const fullData = [
-                    { month: "Jan", value: getRandom() },
-                    { month: "Feb", value: getRandom() },
-                    { month: "Mar", value: getRandom() },
-                    { month: "Apr", value: totalSpent },
-                    { month: "May", value: 0 },
-                    { month: "Jun", value: 0 },
-                    { month: "Jul", value: 0 },
-                    { month: "Aug", value: 0 },
-                    { month: "Sep", value: 0 },
-                    { month: "Oct", value: 0 },
-                    { month: "Nov", value: 0 },
-                    { month: "Dec", value: 0 }
-                ];
-
-                setData(fullData);
+                setData(chartData);
             } catch (error) {
-                console.error("Error fetching total spent:", error);
+                console.error("Failed to fetch revenue data:", error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchTotalSpent();
+        fetchRevenueData();
     }, []);
 
-    const formatYAxis = (value: number) => {
-        return `$${value}`;
-    };
+    const formatYAxis = (value: number) => `$${value}`;
 
     return (
-        <Card className="w-[65%] bg-[#ffffff] shadow-sm">
+        <Card className="w-[65%] bg-white shadow-sm">
             <CardHeader className="pb-4">
                 <CardTitle className="text-gray-400 text-xl">
                     Overview
