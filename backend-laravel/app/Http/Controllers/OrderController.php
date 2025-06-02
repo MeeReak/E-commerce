@@ -37,13 +37,13 @@ class OrderController extends Controller
     {
         try {
             if ($id == 'me') {
-                $order = Order::where('user_id', auth()->id())->get();
+                $order = Order::where('user_id', auth()->id())->with(['items.product', 'user'])->get();
                 // send the last order
                 $order = $order->last();
 
                 return new OrderResource($order);
             } else {
-                $order = Order::with(['items.product'])->findOrFail($id);
+                $order = Order::with(['items.product', 'user'])->findOrFail($id);
 
                 return new OrderResource($order);
             }

@@ -8,11 +8,10 @@ use App\Models\BillingAddress;
 use App\Models\Password_reset;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Database\QueryException;
 
 class AuthController extends Controller
 {
@@ -23,6 +22,7 @@ class AuthController extends Controller
         if ($errors) {
             $response['errors'] = $errors;
         }
+
         return response()->json($response, $status);
     }
 
@@ -51,6 +51,7 @@ class AuthController extends Controller
 
             return (new AuthResource($user))->additional([
                 'access_token' => $accessToken,
+                'token_type' => 'Bearer',
             ]);
         } catch (QueryException $e) {
             return $this->errorResponse('Failed to register user, please try again.', 500);
