@@ -2,10 +2,10 @@
 
 import { Label } from "../../ui/label";
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
 import { SelectDemo } from "@/components/Select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import api from "@/lib/axios";
 
 interface BlogFormProps {
     formData: Record<string, any>;
@@ -26,17 +26,11 @@ export function BlogForm({
     const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
         const fetchCategories = async () => {
-            const token = Cookies.get("auth_token");
-            const res = await fetch(
-                "http://127.0.0.1:8000/api/v1/collections",
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+            const res = await api.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/collections`
             );
-            const data = await res.json();
-            setCategories(data.data);
+            const data = res.data.data;
+            setCategories(data);
         };
         fetchCategories();
     }, []);

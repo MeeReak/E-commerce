@@ -60,14 +60,10 @@ export default function SignInPage() {
 
             const result = response.data;
 
-            //expries in 20s after login
-            // Cookies.set("auth_token", result.access_token, {
-            //     expires: 10 / (60 * 60 * 24) // 20 seconds in days
-            // });
             Cookies.set("auth_token", result.access_token, { expires: 7 });
             setApiError(null);
-            reset();
             router.push("/");
+            reset();
         } catch (error: any) {
             if (axios.isAxiosError(error)) {
                 setApiError(

@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import api from "@/lib/axios";
 
 interface ProductDetailsProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,14 +30,11 @@ export function ProductDetails({
     const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
         const fetchCategories = async () => {
-            const token = Cookies.get("auth_token");
-            const res = await fetch("http://127.0.0.1:8000/api/v1/categories", {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            const data = await res.json();
-            setCategories(data.data);
+            const res = await api.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/categories`
+            );
+            const data = res.data.data;
+            setCategories(data);
         };
         fetchCategories();
     }, []);

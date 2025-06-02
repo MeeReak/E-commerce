@@ -11,8 +11,9 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
+import api from "@/lib/axios";
 import { TrashIcon } from "lucide-react";
-import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 interface AlertDialogDemoProps {
     orderId: number;
@@ -24,28 +25,14 @@ export function AlertDialogDemo({
     orderName = ""
 }: AlertDialogDemoProps) {
     const handleDelete = async () => {
-        const token = Cookies.get("auth_token");
+        const route = useRouter();
 
         try {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/orders/${orderId}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+            await api.delete(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/orders/${orderId}`
             );
 
-            if (!res.ok) {
-                const error = await res.json();
-                console.error("Delete failed:", error);
-                alert("Failed to delete order.");
-                return;
-            }
-
-            // You can refresh the list, route away, or show a toast
-            window.location.reload();
+            route.refresh();
         } catch (error) {
             console.error("An error occurred while deleting the order:", error);
         }

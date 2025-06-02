@@ -1,6 +1,5 @@
 "use client";
 
-import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +16,9 @@ import { EditIcon } from "lucide-react";
 import { FileUpload, UploadedFile } from "../../FileUpload";
 import { BlogForm } from "./BlogForm";
 import { IBlog } from "./Table";
+import api from "@/lib/axios";
+import { useRouter } from "next/navigation";
+
 export function BlogEdit({ product }: { product: IBlog }): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
         product.images.map((image) => ({
@@ -25,7 +27,6 @@ export function BlogEdit({ product }: { product: IBlog }): JSX.Element {
             size: 0
         }))
     );
-
     const [formData, setFormData] = useState({
         name: product.name,
         postBy: product.user?.name,
@@ -35,6 +36,8 @@ export function BlogEdit({ product }: { product: IBlog }): JSX.Element {
         description2: product.description[1],
         description3: product.description[2]
     });
+
+    const router = useRouter();
 
     const handleFileChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -67,7 +70,6 @@ export function BlogEdit({ product }: { product: IBlog }): JSX.Element {
     };
 
     const handleSubmit = async (): Promise<void> => {
-        const token = Cookies.get("auth_token");
         const form = new FormData();
 
         form.append("_method", "PUT"); // Laravel expects method spoofing
@@ -89,29 +91,12 @@ export function BlogEdit({ product }: { product: IBlog }): JSX.Element {
         });
 
         try {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/blogs/${product.id}`,
-                {
-                    method: "POST", // Laravel will interpret this as PUT via _method
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${token}` // Replace dynamically
-                    },
-                    body: form
-                }
+            await api.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/blogs/${product.id}`,
+                form
             );
 
-            if (!res.ok) {
-                const errorData = await res.json();
-                console.error("Update failed:", errorData);
-                return;
-            }
-
-            const data = await res.json();
-            //redirect to the product page or show a success message
-
-            // Optional: close modal or trigger UI refresh
-            window.location.reload();
+            router.refresh();
         } catch (error) {
             console.error("An error occurred during product update:", error);
         }

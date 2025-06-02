@@ -13,32 +13,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { TrashIcon } from "lucide-react";
 import { IProduct } from "./Table";
-import Cookies from "js-cookie";
+import api from "@/lib/axios";
 
 export function AlertDialogDemo({ product }: { product: IProduct }) {
     const handleDelete = async () => {
-        const token = Cookies.get("auth_token");
-
         try {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/products/${product.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
-                }
+            await api.delete(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/products/${product.id}`
             );
 
-            if (!res.ok) {
-                const error = await res.json();
-                console.error("Delete failed:", error);
-                alert("Failed to delete product.");
-                return;
-            }
-
-            // You can refresh the list, route away, or show a toast
             window.location.reload();
         } catch (error) {
             console.error(

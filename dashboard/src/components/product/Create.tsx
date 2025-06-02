@@ -15,7 +15,8 @@ import {
 import { FileUpload, UploadedFile } from "../FileUpload";
 import { ProductDetails } from "./Detail";
 import { PlusIcon } from "lucide-react";
-import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import api from "@/lib/axios";
 
 export function DialogDemo(): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -34,6 +35,8 @@ export function DialogDemo(): JSX.Element {
         description: "",
         goodPoints: [] as string[]
     });
+
+    const router = useRouter();
 
     const handleFileChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -73,7 +76,6 @@ export function DialogDemo(): JSX.Element {
 
     const handleSubmit = async (): Promise<void> => {
         try {
-            const token = Cookies.get("auth_token"); // get auth token
             const form = new FormData();
 
             form.append("name", formData.name);
@@ -107,24 +109,11 @@ export function DialogDemo(): JSX.Element {
                 }
             });
 
-            const res = await fetch("http://127.0.0.1:8000/api/v1/products", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    Authorization: `Bearer ${token}`
-                    // ⚠️ Don't set Content-Type when using FormData — the browser sets it correctly.
-                },
-                body: form
+            await api.post("/products", {
+                form
             });
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                console.error("Create failed", data);
-                alert("Product creation failed.");
-            }
-
-            window.location.reload();
+            router.refresh();
         } catch (error) {
             console.error("Error creating product:", error);
             alert("An error occurred.");

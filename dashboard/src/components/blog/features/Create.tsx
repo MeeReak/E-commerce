@@ -16,6 +16,8 @@ import {
 import { FileUpload, UploadedFile } from "@/components/FileUpload";
 import { BlogForm } from "./BlogForm";
 import { PlusIcon } from "lucide-react";
+import api from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 export function BlogCreate(): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
@@ -26,6 +28,8 @@ export function BlogCreate(): JSX.Element {
         description2: "",
         description3: ""
     });
+
+    const router = useRouter();
 
     const handleFileChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -94,23 +98,9 @@ export function BlogCreate(): JSX.Element {
                 }
             });
 
-            const res = await fetch("http://127.0.0.1:8000/api/v1/blogs", {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: form
-            });
+            await api.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/blogs`, form);
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                console.error("Blog creation failed", data);
-                alert("Blog creation failed.");
-            }
-
-            window.location.reload();
+            router.refresh();
         } catch (error) {
             console.error("Error creating blog:", error);
             alert("An error occurred.");

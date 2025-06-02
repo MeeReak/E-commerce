@@ -15,6 +15,7 @@ import { BlogEdit } from "./Edit";
 import { useSearchParams } from "next/navigation";
 import { Skeleton } from "@/components/product/Table";
 import { AlertDialogDemo } from "./Delete";
+import api from "@/lib/axios";
 
 export interface IBlog {
     updated_at: string | number | Date;
@@ -32,53 +33,76 @@ export interface IBlog {
     description: string[];
 }
 
-export function BlogTable({ token }: { token: string }) {
+const formatDateWithOffset = (
+    dateInput: string | number | Date,
+    offsetMonths = 6
+): string => {
+    if (!dateInput) return "N/A";
+    const date = new Date(dateInput);
+    date.setMonth(date.getMonth() + offsetMonths);
+    return date.toLocaleDateString("en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+};
+
+const renderSkeletonRows = (count = 5) =>
+    Array.from({ length: count }).map((_, index) => (
+        <TableRow key={index}>
+            <TableCell className="pl-6">
+                <Skeleton className="h-4 w-6" />
+            </TableCell>
+            <TableCell>
+                <Skeleton className="h-4 w-[80px]" />
+            </TableCell>
+            <TableCell className="flex items-center gap-x-2">
+                <Skeleton className="h-9 w-9 rounded-full" />
+                <Skeleton className="h-4 w-[60px]" />
+            </TableCell>
+            <TableCell>
+                <Skeleton className="h-4 w-[100px]" />
+            </TableCell>
+            <TableCell>
+                <Skeleton className="h-4 w-[90px]" />
+            </TableCell>
+            <TableCell>
+                <Skeleton className="h-4 w-[60px]" />
+            </TableCell>
+        </TableRow>
+    ));
+
+export function BlogTable() {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
     const [loading, setLoading] = useState(true);
     const searchParams = useSearchParams();
-    const q = useMemo(() => {
-        return searchParams.get("search")?.toLowerCase() || "";
-    }, [searchParams.toString()]);
+    const searchQuery = useMemo(
+        () => searchParams.get("search")?.toLowerCase() || "",
+        [searchParams]
+    );
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await fetch("http://127.0.0.1:8000/api/v1/blogs", {
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                const res = await api.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/v1/blogs`
+                );
+                const blogData = res.data.data.slice(0, 10);
 
-                if (!res.ok) throw new Error("Failed to fetch blogs");
-
-                const blogData = await res.json();
-                const blogs = blogData.data.slice(0, 10);
-
-                // Fetch user info for each blog
-                const blogsWithUsers = await Promise.all(
-                    blogs.map(async (blog: IBlog) => {
+                const enrichedBlogs = await Promise.all(
+                    blogData.map(async (blog: IBlog) => {
                         try {
-                            const userRes = await fetch(
-                                `http://127.0.0.1:8000/api/v1/users/${blog.user_id}`,
-                                {
-                                    headers: {
-                                        Authorization: `Bearer ${token}`
-                                    }
-                                }
+                            const userRes = await api.get(
+                                `${process.env.NEXT_PUBLIC_API_URL}/v1/users/${blog.user_id}`
                             );
-                            const userData = await userRes.json();
-                            return {
-                                ...blog,
-                                user: userData.data
-                            };
+                            return { ...blog, user: userRes.data.data };
                         } catch {
-                            return blog; // fallback if user fetch fails
+                            return blog; // fallback
                         }
                     })
                 );
 
-                setBlogs(blogsWithUsers);
+                setBlogs(enrichedBlogs);
             } catch (error) {
                 console.error("Error fetching blogs:", error);
             } finally {
@@ -87,38 +111,36 @@ export function BlogTable({ token }: { token: string }) {
         };
 
         fetchBlogs();
-    }, [token]);
+    }, []);
 
-    const filtered = useMemo(() => {
-        if (!q) return blogs; // no search — return all orders
+    const filteredBlogs = useMemo(() => {
+        return searchQuery
+            ? blogs.filter((blog) =>
+                  blog.name?.toLowerCase().includes(searchQuery)
+              )
+            : blogs;
+    }, [blogs, searchQuery]);
 
-        return blogs.filter((blog) => blog.name?.toLowerCase().includes(q));
-    }, [blogs, q]);
+    const renderUserInfo = (user?: IBlog["user"], fallback?: string) => {
+        if (user?.profile) {
+            return (
+                <Image
+                    src={user.profile}
+                    alt={user.name}
+                    width={36}
+                    height={36}
+                    className="rounded-full object-cover"
+                />
+            );
+        }
 
-    const renderSkeletonRows = () =>
-        Array.from({ length: 5 }).map((_, index) => (
-            <TableRow key={index}>
-                <TableCell className="pl-6">
-                    <Skeleton className="h-4 w-6" />
-                </TableCell>
-                <TableCell>
-                    <Skeleton className="h-4 w-[80px]" />
-                </TableCell>
-                <TableCell className="flex items-center gap-x-2">
-                    <Skeleton className="h-9 w-9 rounded-full" />
-                    <Skeleton className="h-4 w-[60px]" />
-                </TableCell>
-                <TableCell>
-                    <Skeleton className="h-4 w-[100px]" />
-                </TableCell>
-                <TableCell>
-                    <Skeleton className="h-4 w-[90px]" />
-                </TableCell>
-                <TableCell>
-                    <Skeleton className="h-4 w-[60px]" />
-                </TableCell>
-            </TableRow>
-        ));
+        const initial = user?.name?.charAt(0).toUpperCase() || "?";
+        return (
+            <div className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700">
+                {initial}
+            </div>
+        );
+    };
 
     return (
         <Table className="bg-white rounded-lg">
@@ -129,38 +151,24 @@ export function BlogTable({ token }: { token: string }) {
                     <TableHead>Post by</TableHead>
                     <TableHead>Category</TableHead>
                     <TableHead>Created At</TableHead>
-                    <TableHead>Update At</TableHead>
+                    <TableHead>Updated At</TableHead>
                     <TableHead>Action</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {loading
                     ? renderSkeletonRows()
-                    : filtered.map((blog, index) => (
+                    : filteredBlogs.map((blog, index) => (
                           <TableRow key={blog.id}>
                               <TableCell className="pl-6">
                                   {index + 1}
                               </TableCell>
-                              <TableCell className=" max-w-60 truncate">
+                              <TableCell className="max-w-60 truncate">
                                   {blog.name || "N/A"}
                               </TableCell>
                               <TableCell>
                                   <div className="flex items-center gap-x-2">
-                                      {blog.user?.profile ? (
-                                          <Image
-                                              src={blog.user.profile}
-                                              alt={blog.user.name}
-                                              width={36}
-                                              height={36}
-                                              className="rounded-full object-cover"
-                                          />
-                                      ) : (
-                                          <div className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-sm font-semibold text-gray-700">
-                                              {blog.user?.name
-                                                  ?.charAt(0)
-                                                  .toUpperCase() || "?"}
-                                          </div>
-                                      )}
+                                      {renderUserInfo(blog.user, blog.post_by)}
                                       <span>
                                           {blog.user?.name ||
                                               blog.post_by ||
@@ -169,39 +177,13 @@ export function BlogTable({ token }: { token: string }) {
                                   </div>
                               </TableCell>
                               <TableCell>
-                                  {blog.collection.name || "N/A"}
+                                  {blog.collection?.name || "N/A"}
                               </TableCell>
                               <TableCell>
-                                  {(() => {
-                                      //add more 6 months to the date
-                                      const date = new Date(blog.created_at);
-                                      date.setMonth(date.getMonth() + 6);
-                                      const day = date.toLocaleString("en-US", {
-                                          day: "2-digit"
-                                      });
-                                      const month = date.toLocaleString(
-                                          "en-US",
-                                          { month: "short" }
-                                      );
-                                      const year = date.getFullYear();
-                                      return `${day} ${month} ${year}`;
-                                  })() || "N/A"}
+                                  {formatDateWithOffset(blog.created_at)}
                               </TableCell>
                               <TableCell>
-                                  {(() => {
-                                      if (!blog.updated_at) return "N/A";
-                                      const date = new Date(blog.updated_at);
-                                      date.setMonth(date.getMonth() + 6);
-                                      const day = date.toLocaleString("en-US", {
-                                          day: "2-digit"
-                                      });
-                                      const month = date.toLocaleString(
-                                          "en-US",
-                                          { month: "short" }
-                                      );
-                                      const year = date.getFullYear();
-                                      return `${day} ${month} ${year}`;
-                                  })() || "N/A"}
+                                  {formatDateWithOffset(blog.updated_at)}
                               </TableCell>
                               <TableCell>
                                   <div className="flex items-center gap-x-2">

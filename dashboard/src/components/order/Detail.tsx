@@ -12,7 +12,7 @@ import {
 } from "../ui/table";
 import { Tracker } from "../Tracker";
 import { IOrder } from "./Table";
-import Cookies from "js-cookie";
+import api from "@/lib/axios";
 
 interface IUser {
     phone_number: string;
@@ -39,35 +39,23 @@ interface IUser {
 
 export const OrderDetail = ({ order }: { order: IOrder }) => {
     const [user, setUser] = useState<IUser>();
-    const [loading, setLoading] = useState(true);
-    const token = Cookies.get("auth_token");
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await fetch(
-                    `http://127.0.0.1:8000/api/v1/users/${order.user.id}`,
-                    {
-                        headers: {
-                            Accept: "application/json",
-                            Authorization: `Bearer ${token}`
-                        }
-                    }
+                const res = await api.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/v1/users/${order.user.id}`
                 );
 
-                if (!res.ok) throw new Error("Failed to fetch users");
-
-                const userData = await res.json();
-                setUser(userData.data);
+                const data = res.data.data;
+                setUser(data);
             } catch (error) {
                 console.error("Error fetching users:", error);
-            } finally {
-                setLoading(false);
             }
         };
 
         fetchBlogs();
-    }, [token]);
+    }, []);
 
     // const discount = order.items.length >= 5 ? 10 : order.items.length / 2;
     const discount = 0;

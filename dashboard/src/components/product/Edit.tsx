@@ -16,7 +16,8 @@ import { EditIcon } from "lucide-react";
 import { FileUpload, UploadedFile } from "../FileUpload";
 import { ProductDetails } from "./Detail";
 import { IProduct } from "./Table";
-import Cookies from "js-cookie";
+import api from "@/lib/axios";
+import { useRouter } from "next/navigation";
 
 export function EditForm({ product }: { product: IProduct }): JSX.Element {
     const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>(
@@ -41,6 +42,8 @@ export function EditForm({ product }: { product: IProduct }): JSX.Element {
         description: product.description,
         goodPoints: product.good_points
     });
+
+    const router = useRouter();
 
     const handleFileChange = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -71,7 +74,6 @@ export function EditForm({ product }: { product: IProduct }): JSX.Element {
     };
 
     const handleSubmit = async (): Promise<void> => {
-        const token = Cookies.get("auth_token");
         const form = new FormData();
 
         form.append("_method", "PUT"); // Laravel expects method spoofing
@@ -104,29 +106,10 @@ export function EditForm({ product }: { product: IProduct }): JSX.Element {
         });
 
         try {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/products/${product.id}`,
-                {
-                    method: "POST", // Laravel will interpret this as PUT via _method
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: `Bearer ${token}` // Replace dynamically
-                    },
-                    body: form
-                }
+            await api.put(
+                `${process.env.NEXT_PUBLIC_API_URL}/v1/products/${product.id}`
             );
-
-            if (!res.ok) {
-                const errorData = await res.json();
-                console.error("Update failed:", errorData);
-                return;
-            }
-
-            const data = await res.json();
-            //redirect to the product page or show a success message
-
-            // Optional: close modal or trigger UI refresh
-            window.location.reload();
+            router.refresh(); // Refresh the page to see changes
         } catch (error) {
             console.error("An error occurred during product update:", error);
         }
